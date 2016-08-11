@@ -3,16 +3,16 @@
   "version": "0.1.0",
   "summary": "A short description of ThirdPayLib.",
   "description": "TODO: Add long description of the pod here.",
-  "homepage": "https://github.com/<GITHUB_USERNAME>/ThirdPayLib",
+  "homepage": "https://github.com/will0526/ThirdPayLib",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
   },
   "authors": {
-    "王英永": "willwyy@163.com"
+    "王英永": "woyaozhibeiyou@163.com"
   },
   "source": {
-    "git": "https://github.com/<will0526>/ThirdPayLib.git",
+    "git": "https://github.com/will0526/ThirdPayLib.git",
     "tag": "0.1.0"
   },
   "platforms": {
@@ -31,7 +31,7 @@
   ],
   "dependencies": {
     "AFNetworking": [
-      "~> 2.3"
+      "~> 3.0"
     ]
   }
 }
