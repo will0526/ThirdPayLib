@@ -22,7 +22,7 @@ pod "ThirdPayLib"
 
 ## Author
 
-王英永, yingyong_wang@loongjoy.com
+王英永, willwyy@163.com
 
 ## License
 
