@@ -1,0 +1,6 @@
+framework module Pods_ThirdPayLib_Example {
+  umbrella header "Pods-ThirdPayLib_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}

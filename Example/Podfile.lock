@@ -1,0 +1,42 @@
+PODS:
+  - AFNetworking (2.6.3):
+    - AFNetworking/NSURLConnection (= 2.6.3)
+    - AFNetworking/NSURLSession (= 2.6.3)
+    - AFNetworking/Reachability (= 2.6.3)
+    - AFNetworking/Security (= 2.6.3)
+    - AFNetworking/Serialization (= 2.6.3)
+    - AFNetworking/UIKit (= 2.6.3)
+  - AFNetworking/NSURLConnection (2.6.3):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/NSURLSession (2.6.3):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (2.6.3)
+  - AFNetworking/Security (2.6.3)
+  - AFNetworking/Serialization (2.6.3)
+  - AFNetworking/UIKit (2.6.3):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
+  - Kiwi (2.4.0)
+  - ThirdPayLib (0.1.0):
+    - AFNetworking (~> 2.3)
+
+DEPENDENCIES:
+  - Kiwi
+  - ThirdPayLib (from `../`)
+
+EXTERNAL SOURCES:
+  ThirdPayLib:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
+  Kiwi: f49c9d54b28917df5928fe44968a39ed198cb8a8
+  ThirdPayLib: 55e2773fc4fce9f278182fc888e9e9b9d46f8a47
+
+PODFILE CHECKSUM: 6ad449934bb9b601087f9d3fb9dd9722821f34b4
+
+COCOAPODS: 1.0.1
