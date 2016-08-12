@@ -36,7 +36,7 @@ TODO: Add long description of the pod here.
     'ThirdPayLib' => ['ThirdPayLib/Assets/*.png']
   }
 
-   s.public_header_files = 'Pod/Classes/ThirdPay.h'
+   s.public_header_files = 'ThirdPayLib/Classes/ThirdPay.h'
    s.frameworks = 'UIKit', 'MapKit'
    s.dependency 'AFNetworking', '~> 2.0'
 end

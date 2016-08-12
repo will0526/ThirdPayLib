@@ -30,7 +30,7 @@ CGFloat RadiansToDegrees(CGFloat radians)
     
     NSString *main_images_dir_path = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"ThirdPayLib.bundle"];
     NSLog(@"main_images_dir_pathmain_images_dir_path........%@",main_images_dir_path);
-     NSBundle *bundle = [NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"ThirdPayLib" ofType:@"bundle"]];
+    
     NSString *imagePath = [main_images_dir_path stringByAppendingPathComponent:[NSString stringWithFormat:@"%@@2x.png",imageName]];
     
     return [UIImage imageWithContentsOfFile:imagePath];

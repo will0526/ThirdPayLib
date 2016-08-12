@@ -44,7 +44,4 @@
 
 @property(nonatomic, weak)id<ThirdPayDelegate> thirdPayDelegate;
 
-
-+(void)gotopay;
-
 @end
