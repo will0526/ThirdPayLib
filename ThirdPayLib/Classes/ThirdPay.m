@@ -31,7 +31,7 @@
 #import "GlobleConstant.h"
 #import "GlobleDefine.h"
 #import "ShowPayTypeViewController.h"
-#import <AFNetworking/AFNetworking.h>"
+#import <AFNetworking/AFNetworking.h>
 
 @interface ThirdPay()
 
@@ -61,6 +61,10 @@
 
 //展示支付方式选择页面支付
 +(void)showPayTypeWithTradeInfo:(NSDictionary *)tradeInfo ViewController:(UIViewController *)controller Delegate:(id<ThirdPayDelegate>)delegate{
+    
+     [ThirdPay bookOrder:delegate];
+        
+    return;
     
     NSString *merchantNO = EncodeStringFromDic(tradeInfo, @"merchantNO");
     NSString *memberNO = EncodeStringFromDic(tradeInfo, @"memberNo");
@@ -129,21 +133,23 @@
 
 +(void)bookOrder:(id<ThirdPayDelegate>)delegate
 {
-    NSLog(@"net.......test");
-   
+    
+    
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     
-        manager.requestSerializer = [AFHTTPRequestSerializer serializer];
-        manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    
-        NSString *urlStr = @"http://www.baidu.com";
-        manager.requestSerializer.timeoutInterval = 30;
-        NSDictionary *params = [[NSDictionary alloc]init];
-        [manager POST:urlStr parameters:params success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
-            NSLog(@"net is ok");
-        } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
-            NSLog(@"net is failed");
-        }];
+    NSString *urlStr = @"http://www.baidu.com";
+    manager.requestSerializer.timeoutInterval = 30;
+    NSDictionary *params = [[NSDictionary alloc]init];
+    [manager GET:urlStr parameters:params success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        NSLog(@"........................................................success");
+        
+        [delegate onPayResult:PayStatus_PAYFAIL withInfo:@{@"test":@"test"}];
+    } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+        [delegate onPayResult:PayStatus_PAYFAIL withInfo:@{@"test":@"test"}];
+        NSLog(@"........................................................fail");
+    }];
     
     
 }

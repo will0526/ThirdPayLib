@@ -202,19 +202,28 @@
 
 
 -(void)netTest{
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.requestSerializer = [AFHTTPRequestSerializer serializer];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     
     NSString *urlStr = @"http://www.baidu.com";
     manager.requestSerializer.timeoutInterval = 30;
     NSDictionary *params = [[NSDictionary alloc]init];
-    [manager POST:urlStr parameters:params success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+    [manager POST:urlStr parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         NSLog(@"net is ok");
-    } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
-        NSLog(@"net is failed");
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"net is fail");
     }];
+//    [manager POST:urlStr parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+//        NSLog(@"net is ok");
+//    } progress:^(NSProgress * _Nonnull uploadProgress) {
+//        NSLog(@"net is failed22222");
+//    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+//        NSLog(@"net is failed11");
+//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//        NSLog(@"net is failed");
+//    }];
     
 //
     
@@ -347,6 +356,7 @@
 
 -(void)onPayResult:(PayStatus)payStatus withInfo:(NSDictionary *)dict{
     NSLog(@"%u.......%@",payStatus,dict);
+    [self netTest];
     
 }
 - (void)didReceiveMemoryWarning
