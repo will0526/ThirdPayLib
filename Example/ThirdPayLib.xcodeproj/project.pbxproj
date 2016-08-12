@@ -23,6 +23,9 @@
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		7DA7550E220BEEC762FEC902 /* Pods_ThirdPayLib_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6D7CB2900584269E436D98B /* Pods_ThirdPayLib_Tests.framework */; };
 		BE52C5821D5C669500408F71 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE52C5811D5C669500408F71 /* Launch Screen.storyboard */; };
+		BE82C3CC1D5D989100926EB5 /* test2.png in Resources */ = {isa = PBXBuildFile; fileRef = BE82C3CB1D5D989100926EB5 /* test2.png */; };
+		BE82C3D11D5DA24400926EB5 /* ThirdPayLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE82C3D01D5DA24400926EB5 /* ThirdPayLib.framework */; };
+		BE82C3D31D5DA7A200926EB5 /* ThirdPayLib.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BE82C3D21D5DA7A200926EB5 /* ThirdPayLib.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +65,9 @@
 		79DB0AEDD7781E31D12FCD5E /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		807C03805F310A7D7058F0CA /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		BE52C5811D5C669500408F71 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		BE82C3CB1D5D989100926EB5 /* test2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test2.png; sourceTree = "<group>"; };
+		BE82C3D01D5DA24400926EB5 /* ThirdPayLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ThirdPayLib.framework; path = "../../../../Library/Developer/Xcode/DerivedData/ThirdPayLib-bhqrauzgvzjyvmcuxbvksxtjrgii/Build/Products/Release-iphoneos/ThirdPayLib/ThirdPayLib.framework"; sourceTree = "<group>"; };
+		BE82C3D21D5DA7A200926EB5 /* ThirdPayLib.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = ThirdPayLib.bundle; path = "../../../../../Library/Developer/Xcode/DerivedData/ThirdPayLib-bhqrauzgvzjyvmcuxbvksxtjrgii/Build/Products/Release-iphoneos/ThirdPayLib/ThirdPayLib.bundle"; sourceTree = "<group>"; };
 		E1E23D616DC1E42973AF1276 /* Pods-ThirdPayLib_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThirdPayLib_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ThirdPayLib_Tests/Pods-ThirdPayLib_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		E6D7CB2900584269E436D98B /* Pods_ThirdPayLib_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ThirdPayLib_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F190F638DD424D5F22D3695C /* Pods-ThirdPayLib_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThirdPayLib_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ThirdPayLib_Tests/Pods-ThirdPayLib_Tests.release.xcconfig"; sourceTree = "<group>"; };
@@ -72,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE82C3D11D5DA24400926EB5 /* ThirdPayLib.framework in Frameworks */,
 				6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */,
 				6003F592195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F58E195388D20070C39A /* Foundation.framework in Frameworks */,
@@ -117,6 +124,7 @@
 		6003F58C195388D20070C39A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BE82C3D01D5DA24400926EB5 /* ThirdPayLib.framework */,
 				6003F58D195388D20070C39A /* Foundation.framework */,
 				6003F58F195388D20070C39A /* CoreGraphics.framework */,
 				6003F591195388D20070C39A /* UIKit.framework */,
@@ -144,6 +152,8 @@
 		6003F594195388D20070C39A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				BE82C3CB1D5D989100926EB5 /* test2.png */,
+				BE82C3D21D5DA7A200926EB5 /* ThirdPayLib.bundle */,
 				6003F595195388D20070C39A /* ThirdPayLib-Info.plist */,
 				6003F596195388D20070C39A /* InfoPlist.strings */,
 				6003F599195388D20070C39A /* main.m */,
@@ -281,6 +291,8 @@
 			files = (
 				BE52C5821D5C669500408F71 /* Launch Screen.storyboard in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
+				BE82C3D31D5DA7A200926EB5 /* ThirdPayLib.bundle in Resources */,
+				BE82C3CC1D5D989100926EB5 /* test2.png in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

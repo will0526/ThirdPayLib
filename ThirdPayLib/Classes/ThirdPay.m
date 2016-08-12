@@ -62,10 +62,6 @@
 //展示支付方式选择页面支付
 +(void)showPayTypeWithTradeInfo:(NSDictionary *)tradeInfo ViewController:(UIViewController *)controller Delegate:(id<ThirdPayDelegate>)delegate{
     
-     [ThirdPay bookOrder:delegate];
-        
-    return;
-    
     NSString *merchantNO = EncodeStringFromDic(tradeInfo, @"merchantNO");
     NSString *memberNO = EncodeStringFromDic(tradeInfo, @"memberNo");
     NSString *merchantOrderNO = EncodeStringFromDic(tradeInfo, @"merchantOrderNO");

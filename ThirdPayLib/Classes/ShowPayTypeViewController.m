@@ -91,8 +91,9 @@
     UIImageView *iconView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 5, 40, 40)];
 //    iconView.image = [UIImage getImageFromBundle:[NSString stringWithFormat:@"%@",payTypeIcon[indexPath.row]]];
     UIImage *image = [UIImage getImageFromBundle:@"alipayIcon"];
+    image = [UIImage imageNamed:@"test.png"];
         iconView.image = image;
-    
+    iconView.backgroundColor = [UIColor lightGrayColor];
     [cell addSubview:iconView];
     
     UILabel *textLabel = [[UILabel alloc]initWithFrame:CGRectMake(60, 5, 100, 40)];

@@ -275,6 +275,9 @@
     textField.borderStyle = UITextBorderStyleRoundedRect;
     textField.delegate = self;
     textField.tag = indexPath.row;
+    NSString *main_images_dir_path = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"ThirdPayLib.bundle"];
+    textField.leftView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"test"]];
+    textField.leftViewMode = UITextFieldViewModeAlways;
     [cell addSubview:textField];
     
     switch (textField.tag) {
