@@ -23,13 +23,7 @@ CGFloat RadiansToDegrees(CGFloat radians)
 
 + (UIImage *)getImageFromBundle:(NSString *)imageName
 {
-    NSLog(@"test");
-    UIImage * image = [UIImage imageNamed:@"alipayIcon"];
-    UIImage * image1 = [UIImage imageNamed:@"test.png"];
-    
-    
     NSString *main_images_dir_path = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"ThirdPayLib.bundle"];
-    NSLog(@"main_images_dir_pathmain_images_dir_path........%@",main_images_dir_path);
     
     NSString *imagePath = [main_images_dir_path stringByAppendingPathComponent:[NSString stringWithFormat:@"%@@2x.png",imageName]];
     

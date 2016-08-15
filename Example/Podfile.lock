@@ -21,7 +21,7 @@ PODS:
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - Kiwi (2.4.0)
-  - ThirdPayLib (0.1.0):
+  - ThirdPayLib (0.1.1):
     - AFNetworking (~> 2.0)
 
 DEPENDENCIES:
@@ -35,7 +35,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
   Kiwi: f49c9d54b28917df5928fe44968a39ed198cb8a8
-  ThirdPayLib: c7f31792a7ce9571ebf3fbc713c3d0502600ba75
+  ThirdPayLib: e5fafc8cc95d87bacbe34aaa0308443712768b47
 
 PODFILE CHECKSUM: 6ad449934bb9b601087f9d3fb9dd9722821f34b4
 

@@ -19,14 +19,14 @@
 		0E6AC8A063C8CEFA16525C8265BEE435 /* KWWorkarounds.h in Headers */ = {isa = PBXBuildFile; fileRef = 08377B065983B1EF6808ED88B78636CD /* KWWorkarounds.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0E75B94E436B8FB46A4B193983D7ABF3 /* KWExampleSuite.h in Headers */ = {isa = PBXBuildFile; fileRef = 61D138C073EE6179360A80B4941C7874 /* KWExampleSuite.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		12C49C3B0F779F61F9EFA5F3E6A6C5BD /* KWExistVerifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 718AA794AADCEAE8AA37F0B633C8678F /* KWExistVerifier.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		133104C6A2194937E341436631921633 /* UIView+Category.h in Headers */ = {isa = PBXBuildFile; fileRef = 4EED1F61BDE5F8D94C7AE72C64760F6C /* UIView+Category.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		1389748BE24F9D2223187CB20D9A020C /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 920E0155AF9B349409C2429C91BC4246 /* AFURLRequestSerialization.m */; };
 		1467305E92437AF23051250723B38C0A /* KWAfterEachNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 7B7F3EA6E9543B3ECFB4633DC608D472 /* KWAfterEachNode.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		148AB29095DC893EBF4DF796DAD61A77 /* KWBeBetweenMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF4A2F3E2275EC5653DA22C9823A8AA /* KWBeBetweenMatcher.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		19F5CC6AE7A77CD52A32FBF23CB7E6DE /* Kiwi-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 54041AECED898903180AD30093D169FD /* Kiwi-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1A15E1DAB1BF63371AE5ADFAED9169E5 /* UIRefreshControl+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B4AA30F36CF9CF6F2D65CF5190B7882 /* UIRefreshControl+AFNetworking.m */; };
 		1AB56B58F74658A69520601DF94CABFE /* KWMessageTracker.h in Headers */ = {isa = PBXBuildFile; fileRef = 4196B89463538BAAE6A0AB32D152E990 /* KWMessageTracker.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1C89F43E680A849413FE005A57B9E267 /* EnvironmentConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = A9BF76BD191ACEFDCD1F49C2AE8D9933 /* EnvironmentConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1D3ADA047EDDCA08285236FA6CF8B41A /* NSString+MD5.h in Headers */ = {isa = PBXBuildFile; fileRef = E4892A5DB6A1007B703B3C2C9CDA7234 /* NSString+MD5.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1CE9032793B773FC4FEE291CDC305642 /* ThirdPayLib.bundle in Resources */ = {isa = PBXBuildFile; fileRef = EEDB6286067014B692A1026B279DA6D5 /* ThirdPayLib.bundle */; };
 		1DFA4149D6E5C854FD9B628533E6F343 /* KWBeSubclassOfClassMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 638F738CC0FE17BB1ED643EAEAD870F4 /* KWBeSubclassOfClassMatcher.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		1DFF9BCC47A9C92465BDA80CEA33E46A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62EB3540BBB7259F46E170A7792367FC /* UIKit.framework */; };
 		1E2E58A00C8CCD27570D715CED4B5F84 /* GlobleDefine.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D0B3B3FC5B91F250F4A00353C22C601 /* GlobleDefine.m */; };
@@ -35,10 +35,11 @@
 		1E98EBAC92693E8681A6A1E713131B39 /* NSNumber+KiwiAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D570CB487084E5D79C885CEDB1F35B7F /* NSNumber+KiwiAdditions.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		1EA06503C7AF1CA5E13950E3E7D7830E /* AFNetworkActivityIndicatorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D6E4CF58B20623974866589E2B9F9AB4 /* AFNetworkActivityIndicatorManager.m */; };
 		1F04B6585BD6276CE5BC0D6D35325D94 /* KWSuiteConfigurationBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 186546D2E025079EA9F7D71A2C2F9D32 /* KWSuiteConfigurationBase.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		20E557E03BE5118661C6C072A5C09BC3 /* NSString+DES.h in Headers */ = {isa = PBXBuildFile; fileRef = 579B2F58DD4A41F5E066A998963258D6 /* NSString+DES.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		210072BF1FEF2C9C0524F0A47BD3ED38 /* KWStringUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 01E793F658F73A7DCC40902732451F74 /* KWStringUtilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2143861EBCA95F726A12F41D78251641 /* checked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0577C450041C44DB041CBDB357BE21F0 /* checked@2x.png */; };
+		21493CEEC615AE3A1BF2E47622455F6D /* GlobleConstant.h in Headers */ = {isa = PBXBuildFile; fileRef = C94D0C4F7B31DA5F809C72AB4C4C7D55 /* GlobleConstant.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		2181FB3E451EBC2851EF6ADB314B11A6 /* KWGenericMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 197F85FEA0CDAF087EAC3D874776D32A /* KWGenericMatcher.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		22A0E4787376BB19595891701FC756C5 /* ShowPayTypeViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = E9F4882B1F50CF13A7D4A30068FF2853 /* ShowPayTypeViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		22ED741A3BE808CD77EB1A649C74A761 /* NSString+Hashes.h in Headers */ = {isa = PBXBuildFile; fileRef = E68EC64919FEDA17AD034104AA5A1EDB /* NSString+Hashes.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		236B2A7A0EB66B09CBB59FD7C4E3FE75 /* KWExpectationType.h in Headers */ = {isa = PBXBuildFile; fileRef = B9AA2CAAD25FE789CB65711B4456158A /* KWExpectationType.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		24DEA96A0A7FE1B41467C57487E4B982 /* KWMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = E257F1D14EA69BCA9576341271897FEA /* KWMatcher.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		25E550741DDFCF25526F473F4705F159 /* KWBeSubclassOfClassMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 08F643CF5EBB6DB93E8AB4E814E0615D /* KWBeSubclassOfClassMatcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -49,25 +50,24 @@
 		29E12972FF5B8259985EFE49A250BAE0 /* KWFailure.m in Sources */ = {isa = PBXBuildFile; fileRef = 01823BE5E2E520A65ED61EF730096E7B /* KWFailure.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		2B5FA94D170478635C20678F972EC473 /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 422B130CE6FD2F084022FEBC135E87D4 /* NSString+MD5.m */; };
 		2B6623AE59E41A85C0BADAA9196426F6 /* KWPendingNode.h in Headers */ = {isa = PBXBuildFile; fileRef = EE1A35C0710C3C19E63B2D78C664FA4D /* KWPendingNode.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2CA1F52E2F746C2FBF197EEEB270190C /* NSData+Utils.h in Headers */ = {isa = PBXBuildFile; fileRef = C4B0B4D4E48D91D7487819BA48612FDB /* NSData+Utils.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2DFFBD8796BAF9C7DC191B470234B3A6 /* KWRespondToSelectorMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = B55AE1930435912A373BC8577801D68B /* KWRespondToSelectorMatcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2EB45A33310058F3436C5AF80C9F2089 /* KWNotificationMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 24A948D3F1346FEAC13091A387F05A8A /* KWNotificationMatcher.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		2EEB357F162198EEA4772A179EBEB410 /* GlobleDefine.h in Headers */ = {isa = PBXBuildFile; fileRef = 538756A7EB5844871B07ABBF31933D6C /* GlobleDefine.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		2F58F332183F648F09EDA5920A05790A /* NSObject+KiwiStubAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = AE85EF515E63B9CEFDA26A3A56E05041 /* NSObject+KiwiStubAdditions.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		30AA080B8C01FF36208F2F2582EEBD76 /* KWConformToProtocolMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = A5BBB19B3F4EA3C9CE27A7038235EA58 /* KWConformToProtocolMatcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3124C0016AB3962C96DA7FAA7C5A1EFC /* KWSharedExample.h in Headers */ = {isa = PBXBuildFile; fileRef = 68CB2DCBB1876F166558EB7423105241 /* KWSharedExample.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32BE0FB08D9ECD2974197D862E320E36 /* UIWebView+AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 032E7E4B8234580FD16C72E5D552B62E /* UIWebView+AFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		32EB7779D965B77D3B7BAB81829F20BA /* IPAddress.h in Headers */ = {isa = PBXBuildFile; fileRef = F89DDF7FD936A98326114BFBE4524C77 /* IPAddress.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		34134763540387B131CCA16C4AA28954 /* NSNumber+KiwiAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = B6D6059BF23BF6A06C842111492573D6 /* NSNumber+KiwiAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		34563AECF217AC24E7B4576938B617AE /* Kiwi.h in Headers */ = {isa = PBXBuildFile; fileRef = C8F6F04F291DBB65F3DEAB6DCB8106E7 /* Kiwi.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		34BEE08ED8F8B9B3B939D4D732CFBEFE /* AFNetworking-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 1133D2EC7E46F492C1139566588C9EBC /* AFNetworking-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		35E08B6538B516BEDF43F38451ABEBDD /* GlobleConstant.h in Headers */ = {isa = PBXBuildFile; fileRef = C94D0C4F7B31DA5F809C72AB4C4C7D55 /* GlobleConstant.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		366DF4AE97D7EB1DC63D78A777F64706 /* UIView+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 73FC1EA8C7DFD425FC3A2A287CADC8A7 /* UIView+Category.m */; };
 		37A4F450AE996BCE567341B5BDA65916 /* KWBeZeroMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 18F23EDAE56B6011E5CC5687F8E3D99A /* KWBeZeroMatcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		38CD6A2336A0AA44CD492EF8BE59C415 /* NSString+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 35D3BDAE90F07340BACF65DBDDF3149D /* NSString+Additions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3AC3DD23771C305AFAA9AA9CBAB94692 /* KWContainMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = BEC85CED99FEF2F875DECF3C9CB6DD97 /* KWContainMatcher.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		3AF5667CEAB2BDB68DEC2A7988496135 /* alipayIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 50F5A2438391F946545A68A68D1E2176 /* alipayIcon@2x.png */; };
 		3B72913B972E03F487322E7A56F9BDD2 /* KWMessageSpying.h in Headers */ = {isa = PBXBuildFile; fileRef = BAB49DDD204FF3312CF34604600EB518 /* KWMessageSpying.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3C948547D683C42BA3662AA928C5F38C /* KWProbe.h in Headers */ = {isa = PBXBuildFile; fileRef = BB11C40E9E210A6DA8459ADFB83A81EB /* KWProbe.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3CCC3284B15F20A7972756FA46226087 /* NSMethodSignature+KiwiAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = D7E6B26E73CD240431FDF388E7FF0C88 /* NSMethodSignature+KiwiAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3D8C9F0337C57FEA62C8BD4C3410C884 /* baiIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D531E26DB764C18B56C89DCB155D721E /* baiIcon@2x.png */; };
 		3FA550F4FAD8747FA239C4F9A650FE98 /* KWBlock.h in Headers */ = {isa = PBXBuildFile; fileRef = 63D8872DC98A47FBA0155DCFAB743ADD /* KWBlock.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		401C2DDD1436B4AD6B3A43D775389EA4 /* UIButton+AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = BC53668F2491B9683A3D464AF7FF4401 /* UIButton+AFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4098D03D617F5BFD07F05674F4CE4C6E /* KWFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = D6BB851C7AC80E391432F043594218C6 /* KWFormatter.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -83,23 +83,23 @@
 		45EDCEF3C25FEB2B0AD5878F7E5AD492 /* KWGenericMatchingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 123F6E74067F764F14C4690EE5AD9EEA /* KWGenericMatchingAdditions.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		462BDD0C366E303BF2B6BB46062E2CDF /* KWRegularExpressionPatternMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = F2147CB97C333407171148B0D889FFD5 /* KWRegularExpressionPatternMatcher.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		46E6741A635722FBC55561E435315E35 /* KWUserDefinedMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B931D7A8680570829DDA3F56C15B84B /* KWUserDefinedMatcher.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		47909E3E9837333FB83756581ABF1F83 /* UIView+Category.h in Headers */ = {isa = PBXBuildFile; fileRef = 4EED1F61BDE5F8D94C7AE72C64760F6C /* UIView+Category.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		487AEC027FB01999ACE3A1E256E8B45B /* KWFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = C42BA362FB52363E8F08B4015440FB14 /* KWFormatter.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		48A730A3461BEF9674463643EF84B7B3 /* KWSymbolicator.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B7D69875151BE92A5737C2EF3EC777E /* KWSymbolicator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		48C263B5BED3087E83056CCDE59E6DE2 /* KWDeviceInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 99E4A4C200184A9C3B831D956EBF0C1F /* KWDeviceInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		48E9894EF9C13CD5992D173B1269B402 /* YipayIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 99C9D1FBB01111E7DB32871F92C34143 /* YipayIcon@2x.png */; };
 		49CAB4F6D14856F9DC701AFB334F7C73 /* KWStringContainsMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 895AB77C964FDE5FA2BA0DF6F6515556 /* KWStringContainsMatcher.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		4A96CF2CD5DA0A891E67D131CD94A08E /* KWExampleDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 92EC1FCD8327A3959AB959E8850DF901 /* KWExampleDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4C4463E2B6B49949663B45EA8DE13659 /* KWExample.h in Headers */ = {isa = PBXBuildFile; fileRef = D56A92D1B167FF794832E8883686A39D /* KWExample.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4CF576723539AA05F5B444C7B460600C /* KWContainStringMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C01293C912D2E6EF1ACA10EFE94326 /* KWContainStringMatcher.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		4DCE2623E4CCB6BBCC612E3E67344A05 /* NSInvocation+KiwiAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D2DEF8A6BB5E3278809523D45E044D8E /* NSInvocation+KiwiAdditions.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		4E32C6B26518F18DC4AB3E225B86EE88 /* AFSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4703EA346AF0CA204B3C50EA6EFE854D /* AFSecurityPolicy.m */; };
-		4E51A8AF36AE1021D0988908F77AC457 /* alipayIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D1E4D98A7DFEE4777FBCF2A7E6C436D /* alipayIcon@2x.png */; };
 		4E94B8F460BF431A50D94814F7C8AF61 /* UIActivityIndicatorView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 58AB22C97A19B01021DFCF5CF1750943 /* UIActivityIndicatorView+AFNetworking.m */; };
 		4F093F6FBA6E6B060CF66145CF214E14 /* AFNetworkReachabilityManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 4DDCF344D5B9C8E251E3FD24BB6377B9 /* AFNetworkReachabilityManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		52A6098961939163EC68C2842B9D97E2 /* KWExampleNode.h in Headers */ = {isa = PBXBuildFile; fileRef = B453D92A6E55669325B53F7EC4B076D7 /* KWExampleNode.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		53641F9A3E1BB3BB560198B2B2F4ED03 /* KWBeKindOfClassMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 8D2910EC602C38155322F6764BA250A2 /* KWBeKindOfClassMatcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5426CBA610406D0F5CFA86E2E6BC55EC /* NSInvocation+OCMAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = AFE6CF47C9BA1290B3DDFAE01123AC83 /* NSInvocation+OCMAdditions.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		5511AE9123CA02FA2BBFF04F12D884EF /* KWBeTrueMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 46EAC1773FCCB0EA0AEF14AF4F1ED008 /* KWBeTrueMatcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		551CA1EB6E39B9F52B0C14EF3CEC42F3 /* ShowPayTypeViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = E9F4882B1F50CF13A7D4A30068FF2853 /* ShowPayTypeViewController.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		56B2466716C547BBFFFA2BF0BD55D1DE /* KWInequalityMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 757BD508DD53996B56D1C7EED336C084 /* KWInequalityMatcher.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		56C8D4F00869E61F210A24E0EE8F3A13 /* UIActivityIndicatorView+AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 47654122EFE3D0959FC2A68632CF2600 /* UIActivityIndicatorView+AFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		56F856700E4292464BFF15E2ED51A984 /* NSProxy+KiwiVerifierAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A8DD9972AC50109A9D049C3808532D5 /* NSProxy+KiwiVerifierAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -130,12 +130,15 @@
 		76C1FA68EFCD242119622AE2CEB4D24F /* AFURLResponseSerialization.h in Headers */ = {isa = PBXBuildFile; fileRef = 84CF6F3C86D5812C37E2BD9BA4B58552 /* AFURLResponseSerialization.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		76C72D9FA8C86EBBC7E3E4AF7F0B4BB5 /* UIImage+AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = B345A5CC1D685D2A5BDA6405EE82FF19 /* UIImage+AFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		78D7EE00A078A06FF67F6E58F4DBF5B6 /* KiwiConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = 606AC76DB06E594E26FB60AB56848F6B /* KiwiConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7936143DD29D9D5457E1971253C2B15E /* UIImage+SNAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E35B9E7CA86A6CAA5F398F475FC6667 /* UIImage+SNAdditions.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		7999F436677B92F6DDA1C3D45B67762F /* UIProgressView+AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = B93512AA7530F6996A8145AFCD5A70E2 /* UIProgressView+AFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		79D287D48B2A81896F365CA21F0B27D6 /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA30E65F8CCF2895C2BCFEE96A6559B /* UIWebView+AFNetworking.m */; };
 		7A6C4B78F9C48A6CC4BC23CC03B30E4D /* KWBackgroundTask.h in Headers */ = {isa = PBXBuildFile; fileRef = 019F8DB6F4A0679097C943ED5F6A9E56 /* KWBackgroundTask.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7AE5838331D194D05D19E264461E2FDC /* UIColor+SNAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = EF5222D857023C357CF1442105FB08DE /* UIColor+SNAdditions.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		7BF10ABB1F03D1F84687A872E69A7FBC /* KWNull.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6DB6C4AB70DC110355801EC42A44F8 /* KWNull.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		7C238B8C5145C8D0372115C92BED0880 /* KWMatching.h in Headers */ = {isa = PBXBuildFile; fileRef = 20D6762C6980AE5A43CA7307C7866738 /* KWMatching.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7D22BD9803447DB1A15244E8C4E85B35 /* NSObject+KiwiStubAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = C1E1491A4CEAEC41B50D070A59BC7FCF /* NSObject+KiwiStubAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7D2542455686CDC6B5BA1B70CCC61FF5 /* NSData+Base64.h in Headers */ = {isa = PBXBuildFile; fileRef = 824439B6ACC0E1412FE0352815805FF8 /* NSData+Base64.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		7E1AA75413173A84694B798611487CFB /* KWInequalityMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 4F26240DD7655CE5D0850A5A75954532 /* KWInequalityMatcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7E30FFE025B37B8CCC526605C7A4D0E3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDC1BDD0ABBCC1A39580719402D48DAE /* Foundation.framework */; };
 		7EE11C2110B326B5D455828E52ECF4DE /* Pods-ThirdPayLib_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2EBCE30F7CA667B70F08CFC9251952 /* Pods-ThirdPayLib_Tests-dummy.m */; };
@@ -156,19 +159,16 @@
 		8CA58E2CDDFACA397642E2A08BB14FDA /* NSObject+KiwiVerifierAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 44634176D40BD9A961C7A9D7F0C30562 /* NSObject+KiwiVerifierAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8D3773E93EEACF95BABFE425059813F1 /* ShowPayTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59F62D8677E98E0381932AD1252F0F83 /* ShowPayTypeViewController.m */; };
 		8DC21DC962C8CADFB15BD6BAF9AADA98 /* KWBlockNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C504ED9646507827C2C226B34E559FF /* KWBlockNode.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		8DD7B4CB2EE534B897D09D14DB217A25 /* NSString+Hashes.h in Headers */ = {isa = PBXBuildFile; fileRef = E68EC64919FEDA17AD034104AA5A1EDB /* NSString+Hashes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8E9303791551CB55B0D5B602235FFBAF /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBFDB26B87ADE8E41A8194787DB8B637 /* MapKit.framework */; };
 		8EC297CE0443CD7D001258C6C2B9302A /* KWMessagePattern.m in Sources */ = {isa = PBXBuildFile; fileRef = 644B90CD9D4FBD6A0315C8FD846B2960 /* KWMessagePattern.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		8FF196C5BE6A5BFF24FC44D228F231DB /* IPAddress.h in Headers */ = {isa = PBXBuildFile; fileRef = F89DDF7FD936A98326114BFBE4524C77 /* IPAddress.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		8FFE0CA5DFE3379BBDA253EBFF2D07E2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B05FEE28ABDD31BDF6950499546FB4D /* CoreGraphics.framework */; };
-		900591DC5F6AA7AE289A5B65898DC1D6 /* GlobleDefine.h in Headers */ = {isa = PBXBuildFile; fileRef = 538756A7EB5844871B07ABBF31933D6C /* GlobleDefine.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		91D6715AAA080BB7F6A9E4073300F3A0 /* KWFailure.h in Headers */ = {isa = PBXBuildFile; fileRef = 789FF303108BB54560CC1395CB00567D /* KWFailure.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		92A1C5FC709CDF14F009F2619BCC9424 /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = B484ACB10BCB51798F2273A0EE49FE79 /* test.png */; };
 		92B389DEB09796E1D9DFB563FE6480D3 /* KWContainStringMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 95F6F8007B5B40748B4A52E4BB77B395 /* KWContainStringMatcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		941EBEE1AEB30B8FEB9110EB374C6C93 /* KWPendingNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DDD1A591440186299E8AD2BD269AE0F /* KWPendingNode.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		9435AB04C1A6B5B86F39150A483F8860 /* KWSymbolicator.m in Sources */ = {isa = PBXBuildFile; fileRef = C54FB3C5282451D569B410DA24F3E679 /* KWSymbolicator.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		943D90006076267B312A813FA1425E2D /* KWCaptureSpy.h in Headers */ = {isa = PBXBuildFile; fileRef = B1742DACF9C6BA00D56B903F1396EBFB /* KWCaptureSpy.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		945C9834347A969CDD4FB9A5AB9FF0E0 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 339A19364667466444B3B76BD523119A /* AFURLSessionManager.m */; };
-		951A8BF3A1B2DA77C13A94571A72C7BB /* Constant.h in Headers */ = {isa = PBXBuildFile; fileRef = 17D21B24FD0D14666A687B6DFCE6CC69 /* Constant.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		95D156CA876BE0AC5E828A7E89E3D7AF /* KWAny.m in Sources */ = {isa = PBXBuildFile; fileRef = F29B3E42748B772D9D7AED39B69D2292 /* KWAny.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		96247D22CC837A06A450BB49F1D2F79E /* AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = D2F80A9F350F54F3BA02E3736E5EC733 /* AFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		96C76D3FE7E77BF38CA55E33A29E847E /* KWExampleSuite.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CBFD9D4CEAD109CC5CF1273A431274D /* KWExampleSuite.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
@@ -183,6 +183,7 @@
 		9E795055729E8F398250A5687BB00AE2 /* UIImageView+AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = D22E43F07AA670C9AF6DDFF47404278D /* UIImageView+AFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9E98007C31D2F74CAA0CAD2978A6DE87 /* KWGenericMatchingAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 289DD2D39D689852F9F5C116F67A4FCE /* KWGenericMatchingAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9F256A973D1FF35E1478B282E263889A /* KWSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A5CFBEE68B2D2BD499F5ECC896F49ED /* KWSpec.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		A063A8EE844406FDB54F8DB00D116786 /* NSString+NULL.h in Headers */ = {isa = PBXBuildFile; fileRef = DDEB29327D58675C253FDDFED9685394 /* NSString+NULL.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		A1F4FDD164555F81361B6DCFEE8FDAB1 /* KWBeZeroMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 25A1ED22BC56A53A0E5EEFD3F616B970 /* KWBeZeroMatcher.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		A2A7FAEBEF6D72727BDAFB967F936671 /* KWBlockRaiseMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 56CBA77C4973F38AE4C32A6F7CD2BDFC /* KWBlockRaiseMatcher.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		A32F0D3FCB854F83334AEC198083DD57 /* ThirdPayLib-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4652F9573B2847440C9B168158F2B822 /* ThirdPayLib-dummy.m */; };
@@ -193,13 +194,13 @@
 		A6DF6E48B4D5385134777D1BF0AEB6E1 /* KWValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C78EA3A4AA70E4512202B9B3BABFABC /* KWValue.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		A8908F03C70FB33860754009F1AD2D94 /* KWBeIdenticalToMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A4C55626E75B63B58AA5BA7FBCA8EB5 /* KWBeIdenticalToMatcher.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		A8B33F58F11756EF1BE170C704FC9E0E /* KWRegisterMatchersNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CF95B2DEC80294CA8FF90D3053617A0 /* KWRegisterMatchersNode.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A9483F5A33CB1DFCE6BEA45521C002CB /* NSString+SEL.h in Headers */ = {isa = PBXBuildFile; fileRef = 7BF3957AB57B935F21A13AC10EF22E4E /* NSString+SEL.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A974BE699254672C0B8869D7970C1FC5 /* KWBackgroundTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 4578D3C55A598FDA4398F259625ED36C /* KWBackgroundTask.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		A9BC637641B9278B77E1D236AA254107 /* KWExampleSuiteBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F9E4A164424AF08220AA2D17D1DF20A /* KWExampleSuiteBuilder.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		A9CDEE4D11B4FFB6A553C29A09C92D3A /* KWBeWithinMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = AF8B85364D893E11EA9E0E72565D36F0 /* KWBeWithinMatcher.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		AA760B19876CD521FF7EA578DA8EA934 /* KWAfterAllNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D78231410242A5AB24044FF4E001B55 /* KWAfterAllNode.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		AAC94C275C5F29CCA4F3D0ACD7C66361 /* KWBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = A2C0709B8C8B27E6777F00A15BD4DB68 /* KWBlock.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		AC7C6289920D865E6FBFC20F0DC4F252 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF5A65EC1344AAE6D8D4E86A748E55C7 /* MobileCoreServices.framework */; };
+		B186D7541C606BF4D1ED62400E7323D3 /* weixinIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2397B6F4D8C17AA6B47EFD5C678528A /* weixinIcon@2x.png */; };
 		B1D203D9999C93CFE3F3DE35BF9AF3AC /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30EBB92D22926550B6C29927F8C229BB /* XCTest.framework */; };
 		B331D7C5AC2258597F9FE24A9234982F /* UIImage+SNAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = BCC2EB9CF6DB79E20B1BFA081809BE7C /* UIImage+SNAdditions.m */; };
 		B33A3BC7B8EF3996AF0DBB495742B22D /* KWAfterEachNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 0378A85A7D5BDCD7DD7F761B8B507066 /* KWAfterEachNode.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
@@ -207,6 +208,7 @@
 		B3CACA28C4C3F9A6C7317CBCEABAE0EB /* KWStub.h in Headers */ = {isa = PBXBuildFile; fileRef = A4C9EFCC6F9F731A17228CE74F853745 /* KWStub.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B42A49260E02658534FF92164B6FC311 /* UIRefreshControl+AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = F40DFE02C5A792F2D501111C6A797789 /* UIRefreshControl+AFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B46F1038D3B8DC9AEF88812D328CC704 /* KWIntercept.h in Headers */ = {isa = PBXBuildFile; fileRef = CDFF5097740DFA56220797A5450D27EB /* KWIntercept.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B5679F7437A2D32763A07DA8110B26E1 /* EnvironmentConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = A9BF76BD191ACEFDCD1F49C2AE8D9933 /* EnvironmentConfig.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		B7062DBFF707BEF699191AE7C84AA863 /* KWNull.h in Headers */ = {isa = PBXBuildFile; fileRef = 0F3EF2415A1A63A96C0F52DBFAE42B8F /* KWNull.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B8A99F1C9B33C6834DC4763D68244B15 /* KWChangeMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = D9D910328BE59897836868D0D084329C /* KWChangeMatcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BB0F35C6FCCFF2A63A2C234CA3C2A3E3 /* KWMatcherFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = D9B6A744D2442885A6B276AC3229B618 /* KWMatcherFactory.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
@@ -214,7 +216,6 @@
 		BC2127CD0F9E84E79390DF48C3E64EC8 /* IPAddress.c in Sources */ = {isa = PBXBuildFile; fileRef = 72BDAE1F4D759C7163FA449A1EDBDCC8 /* IPAddress.c */; };
 		BC397572D9F74C49F519AA263CCD4354 /* KWBeEmptyMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CBCF3209443F0346435B2076916EB49 /* KWBeEmptyMatcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BDA7F91497D7631984F90FA5140A615B /* Pods-ThirdPayLib_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = F4EDE67431964DE34ADB4916840AD3C8 /* Pods-ThirdPayLib_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		BE82C3CF1D5DA12A00926EB5 /* ThirdPayLib.bundle in Resources */ = {isa = PBXBuildFile; fileRef = EEDB6286067014B692A1026B279DA6D5 /* ThirdPayLib.bundle */; };
 		BFC7FF4903B5266B73F616DF25C22FCD /* KWContainMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 7DC9D289BC4211E719E9BDBB8338F4A0 /* KWContainMatcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C087B9B3A493BC8232CBA4DB1CB47A67 /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D8EFCBF4B6825F68B38B2C15539E71A /* AFNetworkReachabilityManager.m */; };
 		C2588711C15B7902C40F64081B255D2D /* KWWorkarounds.m in Sources */ = {isa = PBXBuildFile; fileRef = 9962049C94D077F7E13415005BA17F93 /* KWWorkarounds.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
@@ -223,7 +224,6 @@
 		C51B96A7E543F72CD7925968E35DC041 /* AFNetworking-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B9F8083E5FA67C67BF7F1F7E3F6059D5 /* AFNetworking-dummy.m */; };
 		C541A567569CB7EE66609AA32114E2E3 /* KWHaveValueMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = FBB107DE3E0FDBD4907F775EF988A11E /* KWHaveValueMatcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C5FB6EBF48BDDFD60A9ADB29E9B8024E /* ThirdPay.h in Headers */ = {isa = PBXBuildFile; fileRef = 1AB9EB0585242330C2629D596BE96362 /* ThirdPay.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C6CD5A326D7CB3F2A076E1C79822678B /* NSData+Base64.h in Headers */ = {isa = PBXBuildFile; fileRef = 824439B6ACC0E1412FE0352815805FF8 /* NSData+Base64.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C6CDABE1AEBB5DC4A35A6B221BB98D13 /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 29D30649FC843E1C7D7829C342EA88A2 /* AFURLConnectionOperation.m */; };
 		C70AC3CB2D21E9466D55F37D6167DBA5 /* UIKit+AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = F1C61DD38187B7D4174C84327E6F570F /* UIKit+AFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C70D8848451F30F1C745632203368C84 /* KWBeMemberOfClassMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CE04C49BA82617860D3626836DB835A /* KWBeMemberOfClassMatcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -234,17 +234,19 @@
 		C96A46504F6F9AFC50123E79FCEFB92C /* KWVerifying.h in Headers */ = {isa = PBXBuildFile; fileRef = 3347292E7F35FCE550C157ACD2B07000 /* KWVerifying.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C9D1EC34DABC10885B1C36E13A77AA75 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDC1BDD0ABBCC1A39580719402D48DAE /* Foundation.framework */; };
 		CA4AD7D93953FEA0E1E18042D6C46A0C /* KWBeKindOfClassMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = C20B8FB42C9608F8B26F79FFDE3D6BB3 /* KWBeKindOfClassMatcher.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		CA85DE8B860219F3F112D3D6818CC777 /* NSString+MD5.h in Headers */ = {isa = PBXBuildFile; fileRef = E4892A5DB6A1007B703B3C2C9CDA7234 /* NSString+MD5.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		CB2F9DF8C413D68C84CDE41F70A387FC /* KWBeEmptyMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 82DB42B715305955F9447926E82ECE52 /* KWBeEmptyMatcher.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		CC20A42D395C78C2C56FC7180260B1D0 /* NSData+Utils.h in Headers */ = {isa = PBXBuildFile; fileRef = C4B0B4D4E48D91D7487819BA48612FDB /* NSData+Utils.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		CEDFE191DF66B8884828359B3494F8E9 /* UIAlertView+AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 5FDC79CD19B1E05BE9BCDD04FEB1C52C /* UIAlertView+AFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CEFF0197FF05564E1548C98AE0ECBA61 /* KWCaptureSpy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BCB8DE67FD652F4FE6E6CE5401D4DDB /* KWCaptureSpy.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		CF051D17275C20E0FBF5736E3C8A0573 /* UIProgressView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 001B886477F668776805DD356747F33D /* UIProgressView+AFNetworking.m */; };
 		CF398E70EA7A1857E3A0EF93B7E96F08 /* KWExampleSuiteBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 4557AB90C8C5C63135DC60D0CF55B1E7 /* KWExampleSuiteBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CF544DBC13090F6F9B6F9593C8CA2575 /* UIImage+SNAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E35B9E7CA86A6CAA5F398F475FC6667 /* UIImage+SNAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CF6E4F79DECFA88E4E456BE52ECF5447 /* KWGenericMatchEvaluator.m in Sources */ = {isa = PBXBuildFile; fileRef = 19592B19DBB8F6D4237E417C92E0895C /* KWGenericMatchEvaluator.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		CF919FAA9FB12B543F07F97FAA593945 /* KWInvocationCapturer.m in Sources */ = {isa = PBXBuildFile; fileRef = 72667D0A071C4F77956DD4F51FE49C88 /* KWInvocationCapturer.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		D15CF8F9C631100913CBE770B03E05BF /* NSString+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 99C96AE2955D71338B63C8321175171C /* NSString+Additions.m */; };
 		D1ADCEFDC899F10814362CCDE4BC3E1C /* NSValue+KiwiAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = E8F6ED1F6AFAEFD38608415AED932389 /* NSValue+KiwiAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D21C9F3E9241BA861197112F06F61A69 /* KWMock.m in Sources */ = {isa = PBXBuildFile; fileRef = D52EC76F8B21447DC6D4935A93B4BD4C /* KWMock.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		D3275C599174764095AFD7C085884A8A /* NSString+DES.h in Headers */ = {isa = PBXBuildFile; fileRef = 579B2F58DD4A41F5E066A998963258D6 /* NSString+DES.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		D39F8CD00049355BD5004B023A15DFB5 /* KWHaveMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 0EC91D10B5F17F5F24AD2B49B172915A /* KWHaveMatcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D683AE41CD959324F0A6B61DBFDEF9FC /* KWGenericMatchEvaluator.h in Headers */ = {isa = PBXBuildFile; fileRef = FF3B6BFDDE36C48D2D8C6F9BC27E65A3 /* KWGenericMatchEvaluator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D7C1594DC6A0E38E33E8971C288A9F82 /* AFURLRequestSerialization.h in Headers */ = {isa = PBXBuildFile; fileRef = 30A411BA65FADA7D2C100C4E14C5649B /* AFURLRequestSerialization.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -257,20 +259,20 @@
 		DCB6B307F2FF22A65CAFD340CCD84C70 /* KWDeviceInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A4181825157ADA54D8A5F8638320FF /* KWDeviceInfo.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		DD0766EFCE6C7080AC2A4B29FCA5A641 /* KWNilMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B0901DF2D775F0971F59EBFC3635857 /* KWNilMatcher.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		DDE6CF00EAF6F9A98496CA37C7201C94 /* ThirdPayLib-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = D2261683EC6BBC18AE1D6031683153D0 /* ThirdPayLib-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DE06E8FDFBC727652A737E8F10959690 /* Constant.h in Headers */ = {isa = PBXBuildFile; fileRef = 17D21B24FD0D14666A687B6DFCE6CC69 /* Constant.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		DE74786A292DDB0A70463BD7EC85459A /* NSObject+KiwiMockAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = B3A097B1431A36ABB2F9B68E0F328C41 /* NSObject+KiwiMockAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DEEDBC9CB5D62A31ECDD1A671651E41D /* UIColor+SNAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F804592C857B03A078427131BE274FD /* UIColor+SNAdditions.m */; };
 		DF4112FFA156222BF7053EF22A8827B9 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A8A39347B3030DB6C8FDB5E06DFC188 /* AFHTTPRequestOperation.m */; };
 		DFC29AA19504EF95C8902348017273A8 /* AFURLSessionManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D1D056A063F4A53A0FA0B0F810FCA64 /* AFURLSessionManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E01EC26AE9D28AC9111888AFD1FCFD47 /* KWSharedExampleRegistry.h in Headers */ = {isa = PBXBuildFile; fileRef = DBBA6935907D7DF909B65B29D2A8C970 /* KWSharedExampleRegistry.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E0AE556377B336BD9C0CF4C057761DF6 /* UIColor+SNAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = EF5222D857023C357CF1442105FB08DE /* UIColor+SNAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E1D056893598F1D1CB102A450C6E89AE /* KWFutureObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 1515A7541E0EB261C25993C2F8BD037D /* KWFutureObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E23DA5C722203D07EDA09333FDCB1FF0 /* KWItNode.h in Headers */ = {isa = PBXBuildFile; fileRef = B6661F512BF225C294A99BD7C3D591D0 /* KWItNode.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E2EF032BC108B5539BA12F41A19DB1B0 /* NSString+SEL.m in Sources */ = {isa = PBXBuildFile; fileRef = 971D949E8140578BED838BB4FD4DF9B1 /* NSString+SEL.m */; };
 		E527FAC0DD00C27E02BDB401DD31B94A /* KWStringContainsMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 04F160E481F7A213411BEC27C5A70570 /* KWStringContainsMatcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E57B247C5C5353A2E1F8AE17EF57272B /* SystemInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 1716F6D1A1D67E2361E24C39DCF5B958 /* SystemInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E69FE6081A3BF9F47992FEAF3F049C50 /* KWMock.h in Headers */ = {isa = PBXBuildFile; fileRef = F7DEB9ED0D932B42D9900DFFE2242E76 /* KWMock.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E7FA21C38D6A1CB113BE2DA22E73B845 /* UIAlertView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = F691E408697B24FE5A444E038F3DA269 /* UIAlertView+AFNetworking.m */; };
 		EA7AFB4D9C6AE8EAC19B67030547825F /* KWGenericMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = B9730D5A7A26845678054FC515320554 /* KWGenericMatcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EAB6C6217AA82262746151B953AA794F /* NSString+SEL.h in Headers */ = {isa = PBXBuildFile; fileRef = 7BF3957AB57B935F21A13AC10EF22E4E /* NSString+SEL.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		EBC4504E0E4C77B4F051829F4635F789 /* KWObjCUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 528E5E0F2BD62E56C9603E0A7F47DDD5 /* KWObjCUtilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EDCFB7B843423DBF452B75028A451F9D /* KWNilMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = ADB32AD27FD0180BCC2E684B60ABC60C /* KWNilMatcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EE213B8C66E0A71C1417424130242B0B /* NSMethodSignature+KiwiAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = B9945989EF22804F3F00865667863AF4 /* NSMethodSignature+KiwiAdditions.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
@@ -279,12 +281,13 @@
 		F2664B70DA3A6BDCBB3D79F4D216F8CD /* KWProbePoller.h in Headers */ = {isa = PBXBuildFile; fileRef = 94684804D6ADEF462763E1C805054F54 /* KWProbePoller.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F2E9945B7494E20ED7DC4720A2B8CDC9 /* AFNetworkActivityIndicatorManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 2E01372DE9050280E901A8FD6984E459 /* AFNetworkActivityIndicatorManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F3B96FCAAEDEBEB8ED029170FCADC281 /* Pods-ThirdPayLib_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = EB474580545F355C27A4B6D9CAB2AF01 /* Pods-ThirdPayLib_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F45D61161F50C7D8D10BE9F2B90FF82F /* NSString+NULL.h in Headers */ = {isa = PBXBuildFile; fileRef = DDEB29327D58675C253FDDFED9685394 /* NSString+NULL.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F3E7574F71DA41496C03BA40A4D14B3D /* NSString+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 35D3BDAE90F07340BACF65DBDDF3149D /* NSString+Additions.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		F640DB280BDE7DC494000F534E6201BD /* KWBeMemberOfClassMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD3A47106D6ADDB138BF61A1872DE0B /* KWBeMemberOfClassMatcher.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		F694CC531BFD34BEAB6DAAA32C5A79FA /* KWAsyncVerifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ED65E51AFCA12968332BF4A2C5D2EF3 /* KWAsyncVerifier.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		F7BCC0CB8DFB22AB34ECE9BC5C72DD2B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8910D113B5E2A643746CAFE4AD9C379 /* SystemConfiguration.framework */; };
 		FA02995005CF9AAF46C5E7896DF4AED9 /* KWMessageTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E960990C584476771A186B737C8931 /* KWMessageTracker.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		FA1EE1170FA4CC5880321E930A4BA3E4 /* KWStringUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FF2CC12A00D8ACA9DC16DC5E831BCA /* KWStringUtilities.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		FA2A63E5455BE618F1B303485A208D0F /* SystemInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 1716F6D1A1D67E2361E24C39DCF5B958 /* SystemInfo.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		FCAF64234EDC227EC8024F2B45293969 /* KWHaveValueMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F63A063A4284EBAB360369EDA819BF2 /* KWHaveValueMatcher.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		FD1755B140D3C29DC87986E48561F567 /* NSValue+KiwiAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D0BF3FDB9754168E74C0D81D91470727 /* NSValue+KiwiAdditions.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		FF00C532F3A850F3196254244B15FC47 /* KWReceiveMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D5CBF31994E87DA0E0ECACFC2B6A4D1 /* KWReceiveMatcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -341,6 +344,7 @@
 		03E559C095340DE036D0914CD3F96824 /* Kiwi-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Kiwi-prefix.pch"; sourceTree = "<group>"; };
 		04F160E481F7A213411BEC27C5A70570 /* KWStringContainsMatcher.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = KWStringContainsMatcher.h; path = Classes/Matchers/KWStringContainsMatcher.h; sourceTree = "<group>"; };
 		056C0178355881B8D623E4C2A6053865 /* KWAllTestsSuite.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = KWAllTestsSuite.m; path = Classes/Config/KWAllTestsSuite.m; sourceTree = "<group>"; };
+		0577C450041C44DB041CBDB357BE21F0 /* checked@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; path = "checked@2x.png"; sourceTree = "<group>"; };
 		07DC341BE704B11DCF5A73E7EE46D9E4 /* KWStub.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = KWStub.m; path = Classes/Stubbing/KWStub.m; sourceTree = "<group>"; };
 		08377B065983B1EF6808ED88B78636CD /* KWWorkarounds.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = KWWorkarounds.h; path = Classes/Core/KWWorkarounds.h; sourceTree = "<group>"; };
 		08F643CF5EBB6DB93E8AB4E814E0615D /* KWBeSubclassOfClassMatcher.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = KWBeSubclassOfClassMatcher.h; path = Classes/Matchers/KWBeSubclassOfClassMatcher.h; sourceTree = "<group>"; };
@@ -440,6 +444,7 @@
 		4F63A063A4284EBAB360369EDA819BF2 /* KWHaveValueMatcher.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = KWHaveValueMatcher.m; path = Classes/Matchers/KWHaveValueMatcher.m; sourceTree = "<group>"; };
 		4FD5C910BCFC4809B0A9E5E236A7FFF6 /* KiwiBlockMacros.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = KiwiBlockMacros.h; path = Classes/Core/KiwiBlockMacros.h; sourceTree = "<group>"; };
 		50AB5BA848F468DACF3AE573D37091F7 /* KWBeforeAllNode.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = KWBeforeAllNode.h; path = Classes/Nodes/KWBeforeAllNode.h; sourceTree = "<group>"; };
+		50F5A2438391F946545A68A68D1E2176 /* alipayIcon@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; path = "alipayIcon@2x.png"; sourceTree = "<group>"; };
 		5229F71BD1EF36356EDEE6FB2886BFED /* KWInvocationCapturer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = KWInvocationCapturer.h; path = Classes/Core/KWInvocationCapturer.h; sourceTree = "<group>"; };
 		525EB0134A1C7F54121F3BB60C6D3BE8 /* KWFutureObject.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = KWFutureObject.m; path = Classes/Core/KWFutureObject.m; sourceTree = "<group>"; };
 		52674250B6EBA93059C59B7333153A80 /* Kiwi.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Kiwi.xcconfig; sourceTree = "<group>"; };
@@ -523,13 +528,13 @@
 		971D949E8140578BED838BB4FD4DF9B1 /* NSString+SEL.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "NSString+SEL.m"; sourceTree = "<group>"; };
 		9962049C94D077F7E13415005BA17F93 /* KWWorkarounds.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = KWWorkarounds.m; path = Classes/Core/KWWorkarounds.m; sourceTree = "<group>"; };
 		99C96AE2955D71338B63C8321175171C /* NSString+Additions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "NSString+Additions.m"; sourceTree = "<group>"; };
+		99C9D1FBB01111E7DB32871F92C34143 /* YipayIcon@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; path = "YipayIcon@2x.png"; sourceTree = "<group>"; };
 		99E4A4C200184A9C3B831D956EBF0C1F /* KWDeviceInfo.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = KWDeviceInfo.h; path = Classes/Core/KWDeviceInfo.h; sourceTree = "<group>"; };
 		9A959183392E28B7B90C1755303DEFDA /* AFNetworking-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AFNetworking-prefix.pch"; sourceTree = "<group>"; };
 		9B6AC211D52EC1DC9407BAE5EC5B13BE /* KWMatcherFactory.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = KWMatcherFactory.h; path = Classes/Core/KWMatcherFactory.h; sourceTree = "<group>"; };
 		9C06C6686C5048B396707156EBA7605E /* KWBeforeEachNode.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = KWBeforeEachNode.m; path = Classes/Nodes/KWBeforeEachNode.m; sourceTree = "<group>"; };
 		9C534EC45EDE563B9604F5016AE5E89A /* KWSuiteConfigurationBase.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = KWSuiteConfigurationBase.h; path = Classes/Config/KWSuiteConfigurationBase.h; sourceTree = "<group>"; };
 		9CE04C49BA82617860D3626836DB835A /* KWBeMemberOfClassMatcher.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = KWBeMemberOfClassMatcher.h; path = Classes/Matchers/KWBeMemberOfClassMatcher.h; sourceTree = "<group>"; };
-		9D1E4D98A7DFEE4777FBCF2A7E6C436D /* alipayIcon@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; path = "alipayIcon@2x.png"; sourceTree = "<group>"; };
 		9DDD1A591440186299E8AD2BD269AE0F /* KWPendingNode.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = KWPendingNode.m; path = Classes/Nodes/KWPendingNode.m; sourceTree = "<group>"; };
 		9E4C759C3134151D8EDA09E9AC03D92D /* Pods-ThirdPayLib_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-ThirdPayLib_Tests.modulemap"; sourceTree = "<group>"; };
 		9F4189BD951291D593A13299888A5A07 /* KWBeforeAllNode.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = KWBeforeAllNode.m; path = Classes/Nodes/KWBeforeAllNode.m; sourceTree = "<group>"; };
@@ -554,7 +559,6 @@
 		B3659E7A753C2576657FB31DCD275704 /* KWContextNode.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = KWContextNode.h; path = Classes/Nodes/KWContextNode.h; sourceTree = "<group>"; };
 		B3A097B1431A36ABB2F9B68E0F328C41 /* NSObject+KiwiMockAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSObject+KiwiMockAdditions.h"; path = "Classes/Mocking/NSObject+KiwiMockAdditions.h"; sourceTree = "<group>"; };
 		B453D92A6E55669325B53F7EC4B076D7 /* KWExampleNode.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = KWExampleNode.h; path = Classes/Nodes/KWExampleNode.h; sourceTree = "<group>"; };
-		B484ACB10BCB51798F2273A0EE49FE79 /* test.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; path = test.png; sourceTree = "<group>"; };
 		B5092DF04A64E1C83D4C0267734E9EFB /* ResourceBundle-ThirdPayLib-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-ThirdPayLib-Info.plist"; sourceTree = "<group>"; };
 		B55AE1930435912A373BC8577801D68B /* KWRespondToSelectorMatcher.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = KWRespondToSelectorMatcher.h; path = Classes/Matchers/KWRespondToSelectorMatcher.h; sourceTree = "<group>"; };
 		B6661F512BF225C294A99BD7C3D591D0 /* KWItNode.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = KWItNode.h; path = Classes/Nodes/KWItNode.h; sourceTree = "<group>"; };
@@ -597,6 +601,7 @@
 		D2DEF8A6BB5E3278809523D45E044D8E /* NSInvocation+KiwiAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSInvocation+KiwiAdditions.m"; path = "Classes/Core/NSInvocation+KiwiAdditions.m"; sourceTree = "<group>"; };
 		D2F80A9F350F54F3BA02E3736E5EC733 /* AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFNetworking.h; path = AFNetworking/AFNetworking.h; sourceTree = "<group>"; };
 		D52EC76F8B21447DC6D4935A93B4BD4C /* KWMock.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = KWMock.m; path = Classes/Mocking/KWMock.m; sourceTree = "<group>"; };
+		D531E26DB764C18B56C89DCB155D721E /* baiIcon@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; path = "baiIcon@2x.png"; sourceTree = "<group>"; };
 		D56A92D1B167FF794832E8883686A39D /* KWExample.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = KWExample.h; path = Classes/Core/KWExample.h; sourceTree = "<group>"; };
 		D570CB487084E5D79C885CEDB1F35B7F /* NSNumber+KiwiAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSNumber+KiwiAdditions.m"; path = "Classes/Core/NSNumber+KiwiAdditions.m"; sourceTree = "<group>"; };
 		D65F98E4715B503FAAB12B760789F864 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -629,6 +634,7 @@
 		EF5222D857023C357CF1442105FB08DE /* UIColor+SNAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UIColor+SNAdditions.h"; sourceTree = "<group>"; };
 		F1C61DD38187B7D4174C84327E6F570F /* UIKit+AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIKit+AFNetworking.h"; path = "UIKit+AFNetworking/UIKit+AFNetworking.h"; sourceTree = "<group>"; };
 		F2147CB97C333407171148B0D889FFD5 /* KWRegularExpressionPatternMatcher.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = KWRegularExpressionPatternMatcher.m; path = Classes/Matchers/KWRegularExpressionPatternMatcher.m; sourceTree = "<group>"; };
+		F2397B6F4D8C17AA6B47EFD5C678528A /* weixinIcon@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; path = "weixinIcon@2x.png"; sourceTree = "<group>"; };
 		F29B3E42748B772D9D7AED39B69D2292 /* KWAny.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = KWAny.m; path = Classes/Core/KWAny.m; sourceTree = "<group>"; };
 		F40DFE02C5A792F2D501111C6A797789 /* UIRefreshControl+AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIRefreshControl+AFNetworking.h"; path = "UIKit+AFNetworking/UIRefreshControl+AFNetworking.h"; sourceTree = "<group>"; };
 		F4EDE67431964DE34ADB4916840AD3C8 /* Pods-ThirdPayLib_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ThirdPayLib_Example-umbrella.h"; sourceTree = "<group>"; };
@@ -707,7 +713,7 @@
 		0252483A78D9868C1C7E6B3736FF1CD6 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				F40823AF004EEDA7D717D8203D274E7C /* ThirdPayLib */,
+				1A77070760AE3FC8ACB830F48BD8199E /* ThirdPayLib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -762,6 +768,14 @@
 				971D949E8140578BED838BB4FD4DF9B1 /* NSString+SEL.m */,
 			);
 			path = String;
+			sourceTree = "<group>";
+		};
+		1A77070760AE3FC8ACB830F48BD8199E /* ThirdPayLib */ = {
+			isa = PBXGroup;
+			children = (
+				C63A82EAAC9D3BE04ADCDF2105340D62 /* Assets */,
+			);
+			path = ThirdPayLib;
 			sourceTree = "<group>";
 		};
 		26FFECD75DA3148FC64673CB39BE2768 /* NSURLConnection */ = {
@@ -1125,15 +1139,6 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		98093D36439A9EAB77D214FF8F13E355 /* Assets */ = {
-			isa = PBXGroup;
-			children = (
-				9D1E4D98A7DFEE4777FBCF2A7E6C436D /* alipayIcon@2x.png */,
-				B484ACB10BCB51798F2273A0EE49FE79 /* test.png */,
-			);
-			path = Assets;
-			sourceTree = "<group>";
-		};
 		9C8B2EBCB4B09818F56B16A2A27EB849 /* ThirdPayLib */ = {
 			isa = PBXGroup;
 			children = (
@@ -1212,6 +1217,18 @@
 			path = addition;
 			sourceTree = "<group>";
 		};
+		C63A82EAAC9D3BE04ADCDF2105340D62 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				50F5A2438391F946545A68A68D1E2176 /* alipayIcon@2x.png */,
+				D531E26DB764C18B56C89DCB155D721E /* baiIcon@2x.png */,
+				0577C450041C44DB041CBDB357BE21F0 /* checked@2x.png */,
+				F2397B6F4D8C17AA6B47EFD5C678528A /* weixinIcon@2x.png */,
+				99C9D1FBB01111E7DB32871F92C34143 /* YipayIcon@2x.png */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
 		CB7735D5F1EAD7887581C90F2B0329D5 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1248,14 +1265,6 @@
 				9C8B2EBCB4B09818F56B16A2A27EB849 /* ThirdPayLib */,
 			);
 			name = "Development Pods";
-			sourceTree = "<group>";
-		};
-		F40823AF004EEDA7D717D8203D274E7C /* ThirdPayLib */ = {
-			isa = PBXGroup;
-			children = (
-				98093D36439A9EAB77D214FF8F13E355 /* Assets */,
-			);
-			path = ThirdPayLib;
 			sourceTree = "<group>";
 		};
 		F7323800AAC9AB91AEF8D2C3EDBA6C09 /* AFNetworking */ = {
@@ -1352,26 +1361,26 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				951A8BF3A1B2DA77C13A94571A72C7BB /* Constant.h in Headers */,
-				1C89F43E680A849413FE005A57B9E267 /* EnvironmentConfig.h in Headers */,
-				35E08B6538B516BEDF43F38451ABEBDD /* GlobleConstant.h in Headers */,
-				900591DC5F6AA7AE289A5B65898DC1D6 /* GlobleDefine.h in Headers */,
-				32EB7779D965B77D3B7BAB81829F20BA /* IPAddress.h in Headers */,
-				C6CD5A326D7CB3F2A076E1C79822678B /* NSData+Base64.h in Headers */,
-				2CA1F52E2F746C2FBF197EEEB270190C /* NSData+Utils.h in Headers */,
-				38CD6A2336A0AA44CD492EF8BE59C415 /* NSString+Additions.h in Headers */,
-				20E557E03BE5118661C6C072A5C09BC3 /* NSString+DES.h in Headers */,
-				8DD7B4CB2EE534B897D09D14DB217A25 /* NSString+Hashes.h in Headers */,
-				1D3ADA047EDDCA08285236FA6CF8B41A /* NSString+MD5.h in Headers */,
-				F45D61161F50C7D8D10BE9F2B90FF82F /* NSString+NULL.h in Headers */,
-				A9483F5A33CB1DFCE6BEA45521C002CB /* NSString+SEL.h in Headers */,
-				22A0E4787376BB19595891701FC756C5 /* ShowPayTypeViewController.h in Headers */,
-				E57B247C5C5353A2E1F8AE17EF57272B /* SystemInfo.h in Headers */,
+				DE06E8FDFBC727652A737E8F10959690 /* Constant.h in Headers */,
+				B5679F7437A2D32763A07DA8110B26E1 /* EnvironmentConfig.h in Headers */,
+				21493CEEC615AE3A1BF2E47622455F6D /* GlobleConstant.h in Headers */,
+				2EEB357F162198EEA4772A179EBEB410 /* GlobleDefine.h in Headers */,
+				8FF196C5BE6A5BFF24FC44D228F231DB /* IPAddress.h in Headers */,
+				7D2542455686CDC6B5BA1B70CCC61FF5 /* NSData+Base64.h in Headers */,
+				CC20A42D395C78C2C56FC7180260B1D0 /* NSData+Utils.h in Headers */,
+				F3E7574F71DA41496C03BA40A4D14B3D /* NSString+Additions.h in Headers */,
+				D3275C599174764095AFD7C085884A8A /* NSString+DES.h in Headers */,
+				22ED741A3BE808CD77EB1A649C74A761 /* NSString+Hashes.h in Headers */,
+				CA85DE8B860219F3F112D3D6818CC777 /* NSString+MD5.h in Headers */,
+				A063A8EE844406FDB54F8DB00D116786 /* NSString+NULL.h in Headers */,
+				EAB6C6217AA82262746151B953AA794F /* NSString+SEL.h in Headers */,
+				551CA1EB6E39B9F52B0C14EF3CEC42F3 /* ShowPayTypeViewController.h in Headers */,
+				FA2A63E5455BE618F1B303485A208D0F /* SystemInfo.h in Headers */,
 				C5FB6EBF48BDDFD60A9ADB29E9B8024E /* ThirdPay.h in Headers */,
 				DDE6CF00EAF6F9A98496CA37C7201C94 /* ThirdPayLib-umbrella.h in Headers */,
-				E0AE556377B336BD9C0CF4C057761DF6 /* UIColor+SNAdditions.h in Headers */,
-				CF544DBC13090F6F9B6F9593C8CA2575 /* UIImage+SNAdditions.h in Headers */,
-				47909E3E9837333FB83756581ABF1F83 /* UIView+Category.h in Headers */,
+				7AE5838331D194D05D19E264461E2FDC /* UIColor+SNAdditions.h in Headers */,
+				7936143DD29D9D5457E1971253C2B15E /* UIImage+SNAdditions.h in Headers */,
+				133104C6A2194937E341436631921633 /* UIView+Category.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1527,7 +1536,7 @@
 			buildPhases = (
 				AB28E65EB20D3C765CF9EFF48D025A78 /* Sources */,
 				67150784B40951621EDF1339C427322A /* Frameworks */,
-				16931ED536F0AFA878229E29E333CEB1 /* Resources */,
+				06ED0A11888DB1DADCD0D48FF1DF1069 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -1625,12 +1634,15 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		16931ED536F0AFA878229E29E333CEB1 /* Resources */ = {
+		06ED0A11888DB1DADCD0D48FF1DF1069 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4E51A8AF36AE1021D0988908F77AC457 /* alipayIcon@2x.png in Resources */,
-				92A1C5FC709CDF14F009F2619BCC9424 /* test.png in Resources */,
+				3AF5667CEAB2BDB68DEC2A7988496135 /* alipayIcon@2x.png in Resources */,
+				3D8C9F0337C57FEA62C8BD4C3410C884 /* baiIcon@2x.png in Resources */,
+				2143861EBCA95F726A12F41D78251641 /* checked@2x.png in Resources */,
+				B186D7541C606BF4D1ED62400E7323D3 /* weixinIcon@2x.png in Resources */,
+				48E9894EF9C13CD5992D173B1269B402 /* YipayIcon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1638,7 +1650,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE82C3CF1D5DA12A00926EB5 /* ThirdPayLib.bundle in Resources */,
+				1CE9032793B773FC4FEE291CDC305642 /* ThirdPayLib.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1846,38 +1858,38 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		0446AA6C9CC059DABFC9967F297D4882 /* Debug */ = {
+		2A5B3640F2196421FC59FFB7C4036363 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 71AF11F63C1B5275C1595F94E22BA73E /* Pods-ThirdPayLib_Tests.debug.xcconfig */;
+			baseConfigurationReference = 11D787586B778A56C1DB2DE5F4AF14FE /* Pods-ThirdPayLib_Example.release.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-ThirdPayLib_Tests/Info.plist";
+				INFOPLIST_FILE = "Target Support Files/Pods-ThirdPayLib_Example/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-ThirdPayLib_Tests/Pods-ThirdPayLib_Tests.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
+				MODULEMAP_FILE = "Target Support Files/Pods-ThirdPayLib_Example/Pods-ThirdPayLib_Example.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_ThirdPayLib_Tests;
+				PRODUCT_NAME = Pods_ThirdPayLib_Example;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Debug;
+			name = Release;
 		};
 		3772092A61B51CF1F29DD16E6EC95D09 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -1895,7 +1907,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/ThirdPayLib/ThirdPayLib-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/ThirdPayLib/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/ThirdPayLib/ThirdPayLib.modulemap";
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -1908,7 +1920,90 @@
 			};
 			name = Debug;
 		};
-		3FA2475660FFC880302AD18E29B2E5FC /* Debug */ = {
+		3C97693FB6F8F53F7CF04E9C7B7AC578 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 71AF11F63C1B5275C1595F94E22BA73E /* Pods-ThirdPayLib_Tests.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-ThirdPayLib_Tests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-ThirdPayLib_Tests/Pods-ThirdPayLib_Tests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_ThirdPayLib_Tests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		3DCEB047DD5BD111A7A4ED19432212BB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 12D8095721B117F86305BE09C903225D /* Pods-ThirdPayLib_Example.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-ThirdPayLib_Example/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-ThirdPayLib_Example/Pods-ThirdPayLib_Example.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_ThirdPayLib_Example;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		403968B49D9C1F2113C65EA5C976CD79 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C21FB41B67D9AE30EA6F614001C8FCA9 /* ThirdPayLib.xcconfig */;
+			buildSettings = {
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/ThirdPayLib";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/ThirdPayLib/ResourceBundle-ThirdPayLib-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				PRODUCT_NAME = ThirdPayLib;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
+		47BEF9D903506B003EA5C2B249729489 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -1943,29 +2038,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = YES;
 				STRIP_INSTALLED_PRODUCT = NO;
 				SYMROOT = "${SRCROOT}/../build";
 			};
 			name = Debug;
-		};
-		403968B49D9C1F2113C65EA5C976CD79 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = C21FB41B67D9AE30EA6F614001C8FCA9 /* ThirdPayLib.xcconfig */;
-			buildSettings = {
-				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/ThirdPayLib";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/ThirdPayLib/ResourceBundle-ThirdPayLib-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				PRODUCT_NAME = ThirdPayLib;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				WRAPPER_EXTENSION = bundle;
-			};
-			name = Release;
 		};
 		49C74040F2EAC98182A6C63A2FDDCFDB /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -1983,7 +2061,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/ThirdPayLib/ThirdPayLib-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/ThirdPayLib/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/ThirdPayLib/ThirdPayLib.modulemap";
 				MTL_ENABLE_DEBUG_INFO = NO;
@@ -2025,6 +2103,39 @@
 			};
 			name = Release;
 		};
+		675581D67FBEF44D589E1FA843F25B93 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 69B076312E2D3F0FF693B34DB5350968 /* Pods-ThirdPayLib_Tests.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-ThirdPayLib_Tests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-ThirdPayLib_Tests/Pods-ThirdPayLib_Tests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_ThirdPayLib_Tests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		799D4ADFE1C339C5CD9AE1327785A039 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C21FB41B67D9AE30EA6F614001C8FCA9 /* ThirdPayLib.xcconfig */;
@@ -2033,7 +2144,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "Target Support Files/ThirdPayLib/ResourceBundle-ThirdPayLib-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_NAME = ThirdPayLib;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -2058,7 +2169,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/AFNetworking/AFNetworking-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/AFNetworking/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/AFNetworking/AFNetworking.modulemap";
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -2116,7 +2227,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/AFNetworking/AFNetworking-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/AFNetworking/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/AFNetworking/AFNetworking.modulemap";
 				MTL_ENABLE_DEBUG_INFO = NO;
@@ -2129,106 +2240,7 @@
 			};
 			name = Release;
 		};
-		B482E73C460F6CD433014227D8A2C379 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 12D8095721B117F86305BE09C903225D /* Pods-ThirdPayLib_Example.debug.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-ThirdPayLib_Example/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-ThirdPayLib_Example/Pods-ThirdPayLib_Example.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_ThirdPayLib_Example;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		B6308EEC745B41694BCBD0535713884A /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 69B076312E2D3F0FF693B34DB5350968 /* Pods-ThirdPayLib_Tests.release.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-ThirdPayLib_Tests/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-ThirdPayLib_Tests/Pods-ThirdPayLib_Tests.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_ThirdPayLib_Tests;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		D74B9FAABB56A0C82BD6A4C7F19BD26D /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 11D787586B778A56C1DB2DE5F4AF14FE /* Pods-ThirdPayLib_Example.release.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-ThirdPayLib_Example/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-ThirdPayLib_Example/Pods-ThirdPayLib_Example.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_ThirdPayLib_Example;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		F325026B55060D3B22BEC0BAB5FA7344 /* Release */ = {
+		AAF678CED40D3499169D10F63CA0719E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -2259,7 +2271,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				STRIP_INSTALLED_PRODUCT = NO;
 				SYMROOT = "${SRCROOT}/../build";
 				VALIDATE_PRODUCT = YES;
@@ -2272,8 +2284,8 @@
 		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				3FA2475660FFC880302AD18E29B2E5FC /* Debug */,
-				F325026B55060D3B22BEC0BAB5FA7344 /* Release */,
+				47BEF9D903506B003EA5C2B249729489 /* Debug */,
+				AAF678CED40D3499169D10F63CA0719E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -2290,8 +2302,8 @@
 		47043751113FC6BAD2AFF78260E0869F /* Build configuration list for PBXNativeTarget "Pods-ThirdPayLib_Example" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B482E73C460F6CD433014227D8A2C379 /* Debug */,
-				D74B9FAABB56A0C82BD6A4C7F19BD26D /* Release */,
+				3DCEB047DD5BD111A7A4ED19432212BB /* Debug */,
+				2A5B3640F2196421FC59FFB7C4036363 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -2308,8 +2320,8 @@
 		E4F1FC269A80ED4E38FDFC7549DA54D3 /* Build configuration list for PBXNativeTarget "Pods-ThirdPayLib_Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				0446AA6C9CC059DABFC9967F297D4882 /* Debug */,
-				B6308EEC745B41694BCBD0535713884A /* Release */,
+				3C97693FB6F8F53F7CF04E9C7B7AC578 /* Debug */,
+				675581D67FBEF44D589E1FA843F25B93 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

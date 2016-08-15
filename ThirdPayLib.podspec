@@ -31,7 +31,6 @@ TODO: Add long description of the pod here.
   s.ios.deployment_target = '7.0'
 
   s.source_files = 'ThirdPayLib/Classes/**/*'
-  
   s.resource_bundles = {
     'ThirdPayLib' => ['ThirdPayLib/Assets/*.png']
   }
