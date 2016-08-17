@@ -32,10 +32,7 @@
 
 
 
-+ (NSString *)appName
-{
-    return APP_NAME;
-}
+
 
 + (NSString *)osVersion
 {

@@ -25,6 +25,7 @@
 		BE52C5821D5C669500408F71 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE52C5811D5C669500408F71 /* Launch Screen.storyboard */; };
 		BE82C3D11D5DA24400926EB5 /* ThirdPayLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE82C3D01D5DA24400926EB5 /* ThirdPayLib.framework */; };
 		BE82C3E71D5DC9F500926EB5 /* ThirdPayLib.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BE82C3E61D5DC9F500926EB5 /* ThirdPayLib.bundle */; };
+		BEED301C1D62B0F40037534C /* PNRSuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEED301B1D62B0F40037534C /* PNRSuccessViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,8 @@
 		BE52C5811D5C669500408F71 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		BE82C3D01D5DA24400926EB5 /* ThirdPayLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ThirdPayLib.framework; path = "../../../../Library/Developer/Xcode/DerivedData/ThirdPayLib-bhqrauzgvzjyvmcuxbvksxtjrgii/Build/Products/Release-iphoneos/ThirdPayLib/ThirdPayLib.framework"; sourceTree = "<group>"; };
 		BE82C3E61D5DC9F500926EB5 /* ThirdPayLib.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ThirdPayLib.bundle; sourceTree = "<group>"; };
+		BEED301A1D62B0F40037534C /* PNRSuccessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNRSuccessViewController.h; sourceTree = "<group>"; };
+		BEED301B1D62B0F40037534C /* PNRSuccessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNRSuccessViewController.m; sourceTree = "<group>"; };
 		E1E23D616DC1E42973AF1276 /* Pods-ThirdPayLib_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThirdPayLib_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ThirdPayLib_Tests/Pods-ThirdPayLib_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		E6D7CB2900584269E436D98B /* Pods_ThirdPayLib_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ThirdPayLib_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F190F638DD424D5F22D3695C /* Pods-ThirdPayLib_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThirdPayLib_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ThirdPayLib_Tests/Pods-ThirdPayLib_Tests.release.xcconfig"; sourceTree = "<group>"; };
@@ -136,6 +139,8 @@
 		6003F593195388D20070C39A /* Example for ThirdPayLib */ = {
 			isa = PBXGroup;
 			children = (
+				BEED301A1D62B0F40037534C /* PNRSuccessViewController.h */,
+				BEED301B1D62B0F40037534C /* PNRSuccessViewController.m */,
 				6003F59C195388D20070C39A /* PNRAppDelegate.h */,
 				6003F59D195388D20070C39A /* PNRAppDelegate.m */,
 				6003F5A5195388D20070C39A /* PNRViewController.h */,
@@ -402,6 +407,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6003F59E195388D20070C39A /* PNRAppDelegate.m in Sources */,
+				BEED301C1D62B0F40037534C /* PNRSuccessViewController.m in Sources */,
 				6003F5A7195388D20070C39A /* PNRViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 			);

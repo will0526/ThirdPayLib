@@ -7,9 +7,9 @@
 //
 
 #import "ShowPayTypeViewController.h"
-#import "UIImage+SNAdditions.h"
-#import "UIColor+SNAdditions.h"
-#import "UIView+Category.h"
+#import "BookOrderRequest.h"
+#import "CommonService.h"
+
 @interface ShowPayTypeViewController ()<UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate>
 
 @property(nonatomic, strong)UITableView *tableView;
@@ -41,10 +41,10 @@
     int selectedIndex;
     
     
-    UIView *goodsName;
-    UIView *payAmount;
-    UIView *orderNO;
-    
+    UILabel *goodsNameLabel;
+    UILabel *payAmountLabel;
+    UILabel *orderNOLabel;
+    UILabel *memoLabel;
 }
 
 
@@ -55,8 +55,8 @@
     self.view.backgroundColor =HEX_RGB(0xeeeeee);
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(Back)];
     
-    dataSource = @[@"微信支付",@"支付宝支付",@"翼支付",@"百度钱包支付"];
-    payTypeIcon = @[@"weixinIcon",@"alipayIcon",@"YipayIcon",@"baiIcon"];
+    dataSource = @[@"翼支付",@"微信支付",@"支付宝支付",@"百度钱包支付"];
+    payTypeIcon = @[@"YipayIcon",@"weixinIcon",@"alipayIcon",@"baiIcon"];
 
     
     [self bookOrder];
@@ -69,6 +69,18 @@
 }
 
 -(void)bookOrder{
+    
+    BookOrderRequest *request = [[BookOrderRequest alloc]init];
+    BaseResponse *response = [[BaseResponse alloc]init];
+    [[MOPHUDCenter shareInstance]showHUDWithTitle:@""
+                                             type:MOPHUDCenterHUDTypeNetWorkLoading
+                                       controller:self
+                                   showBackground:NO];
+    [CommonService beginService:request response:response success:^(BaseResponse *response) {
+        [[MOPHUDCenter shareInstance]removeHUD];
+    } failed:^(NSString *errorCode, NSString *errorMsg) {
+        [[MOPHUDCenter shareInstance]removeHUD];
+    } controller:self];
     
     
     
@@ -90,12 +102,9 @@
             break;
         case 1:
         {
-            NSDictionary *dict = [[NSDictionary alloc]init];
-            if (self.thirdPayDelegate && [self.thirdPayDelegate respondsToSelector:@selector(onPayResult:withInfo:)]) {
-                [self.thirdPayDelegate onPayResult:PayStatus_PAYCANCEL withInfo:dict];
-            }
+            
             [alertView setHidden:YES];
-            [self.navigationController popViewControllerAnimated:YES];
+            [self tradeReturn];
         }
             break;
             
@@ -106,8 +115,8 @@
 
 -(UIButton *)payButton{
     if (_payButton == nil) {
-        _payButton = [[UIButton alloc]initWithFrame:CGRectMake(15, self.view.height - 70, self.view.width - 30, 50)];
-        [_payButton setTitle:[NSString stringWithFormat:@"确认支付 ￥%@",self.payAmount] forState:UIControlStateNormal];
+        _payButton = [[UIButton alloc]initWithFrame:CGRectMake(30, self.view.height - 70, self.view.width - 60, 50)];
+        [_payButton setTitle:[NSString stringWithFormat:@"确认支付￥%@",self.payAmount] forState:UIControlStateNormal];
         [_payButton setBackgroundImage:[UIImage imageWithColor:HEX_RGB(0xff9e05)] forState:UIControlStateNormal];
         [_payButton setBackgroundImage:[UIImage imageWithColor:HEX_RGB(0xff9e05)] forState:UIControlStateHighlighted];
         _payButton.layer.cornerRadius = 3.5;
@@ -123,11 +132,11 @@
 -(void)payButtonPressed:(UIButton *)button{
     
     
-    //    @[@"微信",@"支付宝",@"Apple Pay",@"百度钱包"];
+    //    @[@"翼支付",@"微信",@"支付宝",@"百度钱包"];
     switch (selectedIndex) {
         case 0:
         {
-            NSLog(@"微信");
+            
             
         }
             break;
@@ -158,13 +167,37 @@
 -(UIView *)headView{
     
     if (_headView == nil) {
-        self.headView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 100)];
-        self.headView.backgroundColor = HEX_RGB(0xf9f9fc);
+        _headView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 200)];
+        _headView.backgroundColor = HEX_RGB(0xf9f9fc);
+        
+        goodsNameLabel = [[UILabel alloc]initWithFrame:CGRectMake(30, 20, self.view.width - 60, 40)];
+        goodsNameLabel.textAlignment = NSTextAlignmentLeft;
+        goodsNameLabel.font = [UIFont systemFontOfSize:16];
+        goodsNameLabel.text = [NSString stringWithFormat:@"订单详情：%@",self.goodsName];
+        [_headView addSubview:goodsNameLabel];
+        
+        payAmountLabel = [[UILabel alloc]initWithFrame:CGRectMake(goodsNameLabel.left, goodsNameLabel.bottom, goodsNameLabel.width, goodsNameLabel.height)];
+        payAmountLabel.textAlignment = NSTextAlignmentLeft;
+        payAmountLabel.font = [UIFont systemFontOfSize:16];
+        payAmountLabel.text = [NSString stringWithFormat:@"订单金额：￥%@",self.payAmount];
+        [_headView addSubview:payAmountLabel];
         
         
+        orderNOLabel = [[UILabel alloc]initWithFrame:CGRectMake(payAmountLabel.left, payAmountLabel.bottom, payAmountLabel.width, goodsNameLabel.height)];
+        orderNOLabel.textAlignment = NSTextAlignmentLeft;
+        orderNOLabel.font = [UIFont systemFontOfSize:16];
+        orderNOLabel.text = [NSString stringWithFormat:@"订单编号：%@",self.merchantOrderNO];
+        [_headView addSubview:orderNOLabel];
         
-        
-        
+        if (!IsStrEmpty(self.memo)) {
+            memoLabel = [[UILabel alloc]initWithFrame:CGRectMake(payAmountLabel.left, orderNOLabel.bottom, payAmountLabel.width, goodsNameLabel.height)];
+            memoLabel.textAlignment = NSTextAlignmentLeft;
+            memoLabel.font = [UIFont systemFontOfSize:16];
+            memoLabel.text = [NSString stringWithFormat:@"备        注：%@",self.memo];
+            [_headView addSubview:memoLabel];
+            
+            _headView.frame = CGRectMake(0, 0, self.view.width, memoLabel.bottom+10);
+        }
     }
     
     
@@ -191,7 +224,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return 4;
+    return dataSource.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -202,14 +235,15 @@
     }
     cell.accessoryType = UITableViewCellAccessoryNone;
     
-    UIImageView *iconView = [[UIImageView alloc]initWithFrame:CGRectMake(15, 20, 20, 20)];
+    UIImageView *iconView = [[UIImageView alloc]initWithFrame:CGRectMake(30, 17.5, 25, 25)];
     iconView.image = [UIImage getImageFromBundle:[NSString stringWithFormat:@"%@",payTypeIcon[indexPath.row]]];
+    iconView.contentMode = UIViewContentModeRedraw;
     [cell addSubview:iconView];
     
     UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(iconView.right + 20, 15, self.view.width -120, 30)];
     titleLabel.textAlignment = NSTextAlignmentLeft;
     titleLabel.text = dataSource[indexPath.row];
-    titleLabel.font = [UIFont systemFontOfSize:20];
+    titleLabel.font = [UIFont systemFontOfSize:18];
     [cell addSubview:titleLabel];
     
     if (indexPath.row == selectedIndex ) {
@@ -223,7 +257,7 @@
     cell.backgroundColor = [UIColor whiteColor];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, 59, self.view.frame.size.width, 1)];
-    line.backgroundColor = [UIColor lightGrayColor];
+    line.backgroundColor = HEX_RGB(0xe4e4e4);
     [cell addSubview:line];
     
     return cell;
@@ -249,12 +283,12 @@
 //支付宝
 -(void)alipay{
     
-    
+    [self tradeReturn];
 }
 
 //微信
 -(void)weixinpay{
-    
+    [self tradeReturn];
     
 }
 
@@ -262,16 +296,25 @@
 -(void)baidupay{
     
     
-    
+    [self tradeReturn];
 }
 
 //翼支付
 -(void)yipay{
 
     
-    
+    [self tradeReturn];
 }
 
+
+-(void)tradeReturn{
+    
+    NSDictionary *dict = [[NSDictionary alloc]init];
+    if (self.thirdPayDelegate && [self.thirdPayDelegate respondsToSelector:@selector(onPayResult:withInfo:)]) {
+        [self.thirdPayDelegate onPayResult:PayStatus_PAYCANCEL withInfo:dict];
+    }
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 
 #pragma mark pay method

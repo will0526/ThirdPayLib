@@ -16,7 +16,7 @@
     "tag": "0.1.1"
   },
   "platforms": {
-    "ios": "7.0"
+    "ios": "8.0"
   },
   "source_files": "ThirdPayLib/Classes/**/*",
   "resource_bundles": {
@@ -32,6 +32,9 @@
   "dependencies": {
     "AFNetworking": [
       "~> 2.0"
+    ],
+    "JSONKit": [
+      "~> 1.5pre"
     ]
   }
 }

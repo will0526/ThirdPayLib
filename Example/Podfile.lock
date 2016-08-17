@@ -20,9 +20,11 @@ PODS:
   - AFNetworking/UIKit (2.6.3):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - JSONKit (1.5pre)
   - Kiwi (2.4.0)
   - ThirdPayLib (0.1.1):
     - AFNetworking (~> 2.0)
+    - JSONKit (~> 1.5pre)
 
 DEPENDENCIES:
   - Kiwi
@@ -34,8 +36,9 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
+  JSONKit: bae313ce6a6c444f40489a6c0b023f399888871f
   Kiwi: f49c9d54b28917df5928fe44968a39ed198cb8a8
-  ThirdPayLib: e5fafc8cc95d87bacbe34aaa0308443712768b47
+  ThirdPayLib: e1e9d55a70d69c6aa65c519f0cff9f1c60948159
 
 PODFILE CHECKSUM: 6ad449934bb9b601087f9d3fb9dd9722821f34b4
 

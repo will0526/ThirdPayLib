@@ -22,7 +22,7 @@ typedef enum{
     PayType_WeichatPay,       //微信
     PayType_ApplePay,         //Apple Pay
     PayType_YiPay,            //翼支付
-    PayType_Baifu             //百度钱包
+    PayType_BestPay             //百度钱包
     
 }PayType;
 

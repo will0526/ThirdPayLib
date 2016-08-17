@@ -359,7 +359,23 @@
 
 -(void)onPayResult:(PayStatus)payStatus withInfo:(NSDictionary *)dict{
     NSLog(@"%u.......%@",payStatus,dict);
-    [self netTest];
+    
+    switch (payStatus) {
+        case PayStatus_PAYSUCCESS:
+        {
+        
+            
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"交易结果" message:@"" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil, nil];
+    
+    
+    
     
 }
 - (void)didReceiveMemoryWarning

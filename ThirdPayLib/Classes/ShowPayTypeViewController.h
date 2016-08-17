@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "ThirdPay.h"
-@interface ShowPayTypeViewController : UIViewController
+#import "CommonViewController.h"
+@interface ShowPayTypeViewController :CommonViewController
 
 
 

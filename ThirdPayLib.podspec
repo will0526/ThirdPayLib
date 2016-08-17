@@ -28,14 +28,16 @@ TODO: Add long description of the pod here.
   s.source           = { :git => 'https://github.com/will0526/ThirdPayLib.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '7.0'
+  s.ios.deployment_target = '8.0'
 
   s.source_files = 'ThirdPayLib/Classes/**/*'
   s.resource_bundles = {
     'ThirdPayLib' => ['ThirdPayLib/Assets/*.png']
   }
 
-   s.public_header_files = 'ThirdPayLib/Classes/ThirdPay.h'
-   s.frameworks = 'UIKit', 'MapKit'
-   s.dependency 'AFNetworking', '~> 2.0'
+    s.public_header_files = 'ThirdPayLib/Classes/ThirdPay.h'
+    s.frameworks = 'UIKit', 'MapKit'
+    s.dependency 'AFNetworking', '~> 2.0'
+
+    s.dependency 'JSONKit', '~> 1.5pre'
 end
