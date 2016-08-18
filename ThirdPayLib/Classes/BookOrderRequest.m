@@ -32,14 +32,13 @@
     NSString *uuid = [SystemInfo getUUID];
     NSString *device = [SystemInfo platformString];
     NSString *OS = [SystemInfo osVersion];
-    
-    
     NSString *ipAdrress = [LJSecurityUtils getIPAddress];
-    NSLog(@"ip.....%@",ipAdrress);
+    
     EncodeUnEmptyStrObjctToDic(dic, uuid, @"uuid");
     EncodeUnEmptyStrObjctToDic(dic, VERSION, @"sdkver");
     EncodeUnEmptyStrObjctToDic(dic, @"121.48", @"xlocation");
     EncodeUnEmptyStrObjctToDic(dic, @"31.22", @"ylocation");
+    EncodeUnEmptyStrObjctToDic(dic, ipAdrress, @"ip");
     EncodeUnEmptyStrObjctToDic(dic, [NSString stringWithFormat:@"%@%@",device,OS], @"osver");
     
     NSString *payTypeStr = @"";
