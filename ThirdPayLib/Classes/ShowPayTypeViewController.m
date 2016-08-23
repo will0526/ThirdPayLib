@@ -9,6 +9,7 @@
 #import "ShowPayTypeViewController.h"
 #import "BookOrderRequest.h"
 #import "CommonService.h"
+#import "LJSecurityUtils.h"
 
 @interface ShowPayTypeViewController ()<UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate>
 
@@ -59,7 +60,7 @@
     payTypeIcon = @[@"YipayIcon",@"weixinIcon",@"alipayIcon",@"baiIcon"];
 
     
-    [self bookOrder];
+//    [self bookOrder];
     
     [self.view addSubview:self.tableView];
     
@@ -67,15 +68,75 @@
     [self.view addSubview:self.payButton];
     
 }
+- (NSString *)formatPrivateKey:(NSString *)privateKey {
+    const char *pstr = [privateKey UTF8String];
+    int len = (int)[privateKey length];
+    NSMutableString *result = [NSMutableString string];
+    [result appendString:@"-----BEGIN PRIVATE KEY-----\n"];
+    int index = 0;
+    int count = 0;
+    while (index < len) {
+        char ch = pstr[index];
+        if (ch == '\r' || ch == '\n') {
+            ++index;
+            continue;
+        }
+        [result appendFormat:@"%c", ch];
+        if (++count == 79)
+        {
+            [result appendString:@"\n"];
+            count = 0;
+        }
+        index++;
+    }
+    [result appendString:@"\n-----END PRIVATE KEY-----"];
+    return result;
+}
 
 -(void)bookOrder{
+    /*
+    NSString *temp = @"{\"merchantNo\":\"2000000001\",\"params\":eyJkZXZpY2UiOiJpUGhvbmU2cyIsIm9zdmVyIjoiaU9TOS4yIiwicmVzb2x1dGlvbiI6IjMyMCo0ODAiLCJzZGt2ZXIiOiIxLjAiLCJ1dWlkIjoiMTIzNDU2Nzg5IiwieGxvY2F0aW9uIjoiMTIxLjQ4IiwieWxvY2F0aW9uIjoiMzEuMjIifQ==\",\"seqNo\":\"34455555555s神啊分\",\"time\":\"14567899000\",\"version\":\"1.0.1\"}";
+    NSData *tempData = [temp dataUsingEncoding:NSUTF8StringEncoding];
+//    NSString *temp = @"test";
+    NSData *md5str = [LJSecurityUtils md5:temp];
+//    NSString *md5str = [NSString  stringWithUTF8String:[md5Data bytes]];
+    NSLog(@"md5..............%@",md5str);
+    NSString *result = [LJSecurityUtils RSAEncrypt:temp publicKey:RSAKEY];
+    
+    
+    
+    
+//    NSString *documentPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+//    NSString *path = [documentPath stringByAppendingPathComponent:@"rsa_rsa_private_key"];
+//    NSString *formatKey = [self formatPrivateKey:RSAPRIVATE];
+//    NSLog(@"file path....%@",path);
+//    [formatKey writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:nil];
+    NSString *result1 = [LJSecurityUtils RSASign:@"rsa_private_key" Content:tempData];
+    NSLog(@"result1>>>>>>>>>>>>>%@",result1);
+    
+    
+    return;
+    */
+    
     
     BookOrderRequest *request = [[BookOrderRequest alloc]init];
+    request.merchantNO = self.merchantNO;
+    request.merchantOrderNO = self.merchantOrderNO;
+//    request.payType = sel
+    request.memberNO = self.memberNO;
+    request.memo = self.memo;
+    request.goodsName = self.goodsName;
+    request.goodsDetail = self.goodsDetail;
+    request.totalAmount = self.totalAmount;
+    request.payAmount = self.payAmount;
+    request.memberPoints = self.memberPoints;
+    
+    
     BaseResponse *response = [[BaseResponse alloc]init];
     [[MOPHUDCenter shareInstance]showHUDWithTitle:@""
                                              type:MOPHUDCenterHUDTypeNetWorkLoading
                                        controller:self
-                                   showBackground:NO];
+                                   showBackground:YES];
     [CommonService beginService:request response:response success:^(BaseResponse *response) {
         [[MOPHUDCenter shareInstance]removeHUD];
     } failed:^(NSString *errorCode, NSString *errorMsg) {
@@ -131,6 +192,7 @@
 
 -(void)payButtonPressed:(UIButton *)button{
     
+    [self bookOrder];
     
     //    @[@"翼支付",@"微信",@"支付宝",@"百度钱包"];
     switch (selectedIndex) {
@@ -209,7 +271,7 @@
 
 -(UITableView *)tableView{
     if (_tableView == nil) {
-        self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.height) style:UITableViewStylePlain];
+        self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.height) style:UITableViewStylePlain];
         self.tableView.dataSource = self;
         self.tableView.delegate = self;
 //        self.tableView.scrollEnabled = NO;

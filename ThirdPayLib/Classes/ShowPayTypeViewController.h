@@ -24,8 +24,11 @@
  *  @param goodsName        商品名称
  *  @param goodsDetail      商品详情
  *  @param memo             备注
+ 
  *  @param totalAmount      订单总金额（分）
  *  @param payAmount        待支付金额（分）
+ *  @param redPocket        红包金额（分）
+ *  @param memberPoints     积分抵扣金额（分）
  *  @param notifyURL        后台通知地址
  
  *  @param controller       调用接口的view
@@ -42,6 +45,8 @@
 @property(nonatomic,strong)NSString *totalAmount;
 @property(nonatomic,strong)NSString *payAmount;
 @property(nonatomic,strong)NSString *notifyURL;
+@property(nonatomic,strong)NSString *redPocket;
+@property(nonatomic,strong)NSString *memberPoints;
 
 @property(nonatomic, weak)id<ThirdPayDelegate> thirdPayDelegate;
 

@@ -13,7 +13,7 @@
 #import "UIView+MBProgressHUD.h"
 #import "LJSecurityUtils.h"
 
-#define Request_Timeout_Default  30
+#define Request_Timeout_Default  15
 
 @interface CommonService()
 {
@@ -120,14 +120,20 @@ withOptionalAnimation:(MOPHUDCenterHUDType)hudtype
             request.requestParamDic = [self combileParam:request.requestParamDic];
             
             AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-            NSLog(@"params............%@",request.requestParamDic);
-            manager.requestSerializer = [AFHTTPRequestSerializer serializer];
-            manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+            AFSecurityPolicy *policy = [AFSecurityPolicy defaultPolicy];
+            policy.allowInvalidCertificates = YES;
+            policy.validatesDomainName = NO;
+            manager.securityPolicy = policy;
             
-            NSString *urlStr = [NSString stringWithFormat:@"%@%@",BASEURL,@""];
+            manager.requestSerializer = [AFJSONRequestSerializer serializer];
+            manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+//            manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
+            
+//            NSString *urlStr = [NSString stringWithFormat:@"%@%@",BASEURL,@""];
             manager.requestSerializer.timeoutInterval = timeout;
-            NSLog(@"urlStr..........%@",urlStr);
-            [manager POST:urlStr parameters:request.requestParamDic success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSLog(@"params............%@",request.requestParamDic);
+            
+            [manager POST:BASEURL parameters:request.requestParamDic success:^(AFHTTPRequestOperation *operation, id responseObject) {
 //                NSLog(@"JSON: %@", responseObject);
                NSString *temp = [[NSString alloc]initWithData:responseObject encoding:NSUTF8StringEncoding];
                 NSData *jsonData = [temp dataUsingEncoding:NSUTF8StringEncoding];
@@ -143,10 +149,10 @@ withOptionalAnimation:(MOPHUDCenterHUDType)hudtype
 //                        [ctl hidingLoadingView];
 //                    }
                     
-                    NSString *respcode = EncodeStringFromDic(response.jsonDict, @"respcode");
+                    NSString *respcode = EncodeStringFromDic(response.jsonDict, @"code");
                     NSString *msg = EncodeStringFromDic(response.jsonDict, @"respmsg");
                     NSLog(@"response>>>>>>>>>>%@",dic);
-                    if ( [respcode isEqualToString:@"SUCCESS"]) {
+                    if ( [respcode isEqualToString:@"0000"]) {
                         
                         NSDictionary *data = EncodeDicFromDic(response.jsonDict, @"data");
                         NSString *busscode = EncodeStringFromDic(data, @"busscode");
@@ -260,29 +266,63 @@ withOptionalAnimation:(MOPHUDCenterHUDType)hudtype
 }
 
 +(NSMutableDictionary *)combileParam:(NSMutableDictionary *) dict{
-    
-    NSString *textStr = [self getParamSign:dict];
+    NSLog(@"dict........%@",dict);
+    NSString *textStr = [self Base64Params:dict];
     
     NSLog(@"textStr.........%@",textStr);
 
-    NSString *rsaSign = [LJSecurityUtils RSAEncrypt:textStr publicKey:RSAKEY];
-    
-    EncodeUnEmptyStrObjctToDic(dict, rsaSign, @"sign");
+//    NSString *rsaSign = [LJSecurityUtils RSAEncrypt:textStr publicKey:RSAKEY];
+    [dict setObject:textStr forKey:@"params"];
+//    EncodeUnEmptyStrObjctToDic(dict, textStr, @"params");
+    EncodeUnEmptyStrObjctToDic(dict, @"1", @"sign");
     NSLog(@"dict........%@",dict);
     
-    NSMutableDictionary *temp = [[NSMutableDictionary alloc]init];
-    EncodeUnEmptyStrObjctToDic(temp, @"utf-8", @"encode");
-     NSError *error;
-    NSData * jsonData = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:&error];
-    NSString *jsonDataStr = [[NSString alloc]initWithData:jsonData encoding:NSUTF8StringEncoding];
-    NSLog(@"jsonDataStr..........%@",jsonDataStr);
+//    NSMutableDictionary *temp = [[NSMutableDictionary alloc]init];
+//    EncodeUnEmptyStrObjctToDic(temp, @"utf-8", @"encode");
+//     NSError *error;
+//    NSData * jsonData = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:&error];
+//    NSString *jsonDataStr = [[NSString alloc]initWithData:jsonData encoding:NSUTF8StringEncoding];
+//    NSLog(@"jsonDataStr..........%@",jsonDataStr);
 //    NSString *urlStr = [jsonDataStr URLEncoding];
 //    NSLog(@"urlStr..........%@",urlStr);
-//    EncodeUnEmptyStrObjctToDic(temp, urlStr, @"content");
+//    EncodeUnEmptyStrObjctToDic(dict, textStr, @"content");
+    NSString *temp = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:dict options:0 error:nil] encoding:NSUTF8StringEncoding];
+    NSLog(@"JSONString ...%@",temp);
     return dict;
 
 }
 
++(NSString *)Base64Params:(NSMutableDictionary *)temp{
+    NSDictionary *dict = EncodeDicFromDic(temp, @"params");
+    NSString *retString = nil;
+//    NSArray *keys = [dict allKeys];
+//    keys = [keys sortedArrayUsingSelector:@selector(compare:)];
+//    NSString *key;
+//    for (key in keys)
+//    {
+//        if (retString == nil) {
+//            
+//            retString = [NSString stringWithFormat:@"\"%@\":\"%@\"",key,[dict valueForKey:key]];
+//        }else{
+//            NSString *val = [NSString stringWithFormat:@",\"%@\":\"%@\"",key,[dict valueForKey:key]];
+//            
+//            retString = [retString stringByAppendingString:val];
+//        }
+//    }
+//    
+//    if (!retString) {
+//        retString = @"";
+//    }
+    
+//    retString = [NSString stringWithFormat:@"{%@}",retString];
+    
+    retString = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:dict options:0 error:nil] encoding:NSUTF8StringEncoding];
+    NSData *paramsBase64Data = [[retString dataUsingEncoding:NSUTF8StringEncoding]base64EncodedDataWithOptions:0];
+    NSString *paramsDataStr = [NSString stringWithUTF8String:[paramsBase64Data bytes]];
+    NSLog(@"retString............%@",paramsDataStr);
+    return paramsDataStr;
+    
+}
 
 /**
  * get all params string
@@ -307,6 +347,7 @@ withOptionalAnimation:(MOPHUDCenterHUDType)hudtype
                 NSString *paramsStr = [self getParamSign:temp];
                 NSData *paramsBase64Data = [[paramsStr dataUsingEncoding:NSUTF8StringEncoding]base64EncodedDataWithOptions:0];
                 NSString *paramsDataStr = [NSString stringWithUTF8String:[paramsBase64Data bytes]];
+                NSLog(@"paramsDataStr%@",paramsDataStr);
                 retString = [retString stringByAppendingString:[NSString stringWithFormat:@",\"params\":%@",paramsDataStr]];
                 
             }else{

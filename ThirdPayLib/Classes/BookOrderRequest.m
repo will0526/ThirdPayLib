@@ -16,7 +16,7 @@
     self = [super init];
     if (self) {
         _tradeCurrency = @"rmb";
-        _tradeTpye = @"";
+        _tradeTpye = @"online";
         
     }
     return self;
@@ -25,7 +25,7 @@
 -(NSDictionary *)dtoToDictionary
 {
     [super dtoToDictionary];
-    EncodeUnEmptyStrObjctToDic(self.requestParamDic, self.merchantNO, @"merchantNO");
+    EncodeUnEmptyStrObjctToDic(self.requestParamDic, self.merchantNO, @"merchantNo");
     
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
     
@@ -68,7 +68,6 @@
             break;
     }
     
-    EncodeUnEmptyStrObjctToDic(dic, [NSString stringWithFormat:@"%d",self.payType], @"payType");
     EncodeUnEmptyStrObjctToDic(dic, self.payAmount, @"tradeAmount");
     EncodeUnEmptyStrObjctToDic(dic, self.tradeCurrency, @"tradeCurrency");
     EncodeUnEmptyStrObjctToDic(dic, self.merchantOrderNO, @"orderNo");
@@ -79,13 +78,17 @@
     EncodeUnEmptyStrObjctToDic(dic, self.memberNO, @"memberNo");
     EncodeUnEmptyStrObjctToDic(dic, self.redPocket, @"redPocket");
     EncodeUnEmptyStrObjctToDic(dic, self.memberPoints, @"memberPoints");
-    EncodeUnEmptyStrObjctToDic(dic, self.notifyURL, @"backURL");
+    
+    EncodeUnEmptyStrObjctToDic(dic, @"https://www.baidu.com/", @"backURL");
+    
     EncodeUnEmptyStrObjctToDic(dic, self.memo, @"attach");
     
     
     EncodeUnEmptyDicObjctToDic(self.requestParamDic, dic, @"params");
-    
-    
+    EncodeUnEmptyStrObjctToDic(self.requestParamDic, @"9999", @"terminalNo");
+    EncodeUnEmptyStrObjctToDic(self.requestParamDic, @"9999", @"batchNo");
+    EncodeUnEmptyStrObjctToDic(self.requestParamDic, @"0009", @"transType");
+    EncodeUnEmptyStrObjctToDic(self.requestParamDic, @"0003", @"payType");
     return self.requestParamDic;
 }
 

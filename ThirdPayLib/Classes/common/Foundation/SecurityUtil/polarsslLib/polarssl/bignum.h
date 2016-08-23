@@ -84,7 +84,7 @@ typedef UINT64 uint64_t;
  * Note: Calculations can results temporarily in larger MPIs. So the number
  * of limbs required (POLARSSL_MPI_MAX_LIMBS) is higher.
  */
-#define POLARSSL_MPI_MAX_SIZE                              512      /**< Maximum number of bytes for usable MPIs. */
+#define POLARSSL_MPI_MAX_SIZE                              128      /**< Maximum number of bytes for usable MPIs. */
 
 #endif /* !POLARSSL_CONFIG_OPTIONS */
 

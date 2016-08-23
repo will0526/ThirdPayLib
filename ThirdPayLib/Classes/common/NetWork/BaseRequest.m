@@ -44,8 +44,9 @@
                                                       ], @"seqNo");
         
         EncodeUnEmptyStrObjctToDic(_requestParamDic, timeSp, @"time");
+        
         EncodeUnEmptyStrObjctToDic(_requestParamDic, APIVER, @"version");
-      
+        
     }
     return _requestParamDic;
 }

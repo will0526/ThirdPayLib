@@ -34,7 +34,7 @@
 #include <ifaddrs.h>
 #import <dlfcn.h>
 #import <SystemConfiguration/SystemConfiguration.h>
-
+#import "NSData+Base64.h"
 #define BLOCK_SIZE 100
 #define KEYE @"10001"
 
@@ -97,7 +97,7 @@
 +(NSString *)RSAEncrypt:(NSString *)text publicKey:(NSString *)key{
     NSData *data = [[NSData alloc]initWithBase64EncodedString:key options:NSDataBase64DecodingIgnoreUnknownCharacters];
     NSData * data1 = [data subdataWithRange:NSMakeRange(29, 128)];
-    NSString *modeStr = [NSString stringWithFormat:@"%@",data1];
+    NSString * modeStr = [NSString stringWithFormat:@"%@",data1];
     
     
     modeStr = [modeStr stringByReplacingOccurrencesOfString:@" " withString:@""];
@@ -123,6 +123,8 @@
     for (NSData * data in blockPlaintArr) {
         [blockEncryArr addObject:[self RSAEncryptWithBlockData:data KeyN:keyn KeyE:keye]];
     }
+    NSData *temp = [NSData getIntegrationData:blockEncryArr];
+    
     
     return [NSData getIntegrationData:blockEncryArr];
     
@@ -231,7 +233,7 @@ void lj_tdes_decrypt(const unsigned char *data, unsigned char *result,
     unsigned char buf[POLARSSL_MPI_MAX_SIZE];
     
     NSString *keyPath = [[NSBundle mainBundle] pathForResource:pemFilePath ofType:@"pem"];
-
+    NSLog(@"keyPath>>>>>>>>%@",keyPath);
     pk_init( &key );
     ret = pk_parse_keyfile( &key, [keyPath UTF8String], NULL );
     
@@ -255,7 +257,34 @@ void lj_tdes_decrypt(const unsigned char *data, unsigned char *result,
     }
     
     pk_free( &key );
-    return [[NSString alloc] initWithBytes:buf length:POLARSSL_MPI_MAX_SIZE encoding:NSUTF8StringEncoding];
+    
+    NSData *cipherData = [[NSData alloc]initWithBytes:buf length:POLARSSL_MPI_MAX_SIZE];
+    
+    NSLog(@"cipherData......%@",cipherData);
+
+    [LJSecurityUtils RSAVerify:content Sign:cipherData publicKey:RSAKEY];
+    
+    NSString *dataStr = [cipherData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+    NSLog(@"dataStr......%@",dataStr);
+
+   
+    return dataStr;
+}
+
++(BOOL)RSAVerify:(NSData *)content Sign:(NSData *)sign publicKey:(NSString *)key{
+    NSData *data = [[NSData alloc]initWithBase64EncodedString:key options:NSDataBase64DecodingIgnoreUnknownCharacters];
+    NSData * data1 = [data subdataWithRange:NSMakeRange(29, 128)];
+    NSString * modeStr = [NSString stringWithFormat:@"%@",data1];
+    
+    
+    modeStr = [modeStr stringByReplacingOccurrencesOfString:@" " withString:@""];
+    modeStr = [modeStr stringByReplacingOccurrencesOfString:@"<" withString:@""];
+    modeStr = [modeStr stringByReplacingOccurrencesOfString:@">" withString:@""];
+    modeStr = [modeStr uppercaseString];
+    
+ 
+    return [LJSecurityUtils RSAVerify:content Sign:sign KeyN:modeStr KeyE:KEYE];
+    
 }
 
 +(BOOL)RSAVerify:(NSData *)content Sign:(NSData *)sign KeyN:(NSString *)keyn KeyE:(NSString *)keye
@@ -282,8 +311,10 @@ void lj_tdes_decrypt(const unsigned char *data, unsigned char *result,
     if( ( ret = rsa_pkcs1_verify( &rsa, NULL, NULL, RSA_PUBLIC,
                                  POLARSSL_MD_SHA1, 20, hash, [sign bytes] ) ) != 0 )
     {
+        NSLog(@"%d",ret);
         return NO;
     }
+    NSLog(@"%d",ret);
 	return YES;
     
 }

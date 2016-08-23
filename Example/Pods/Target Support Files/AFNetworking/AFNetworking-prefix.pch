@@ -9,3 +9,6 @@
 #ifndef TARGET_OS_WATCH
   #define TARGET_OS_WATCH 0
 #endif
+#import <SystemConfiguration/SystemConfiguration.h>
+#import <MobileCoreServices/MobileCoreServices.h>
+#define AFNETWORKING_ALLOW_INVALID_SSL_CERTIFICATES

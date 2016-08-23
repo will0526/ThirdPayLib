@@ -21,11 +21,13 @@
  *  @param memo             备注
  *  @param totalAmount      订单总金额（分）
  *  @param payAmount        待支付金额（分）
- *  @param notifyURL        后台通知地址
+ *  @param redPocket        红包金额（分）
+ *  @param memberPoints     积分金额（分）
+ 
  
  *  @param controller       调用接口的view
  *  @param delegate         回调代理
- *  @param payType          支付方式
+ *  @param payType          支付类型
  */
 
 @property(nonatomic,strong)NSString *merchantNO;        //商户号
@@ -36,13 +38,13 @@
 @property(nonatomic,strong)NSString *memo;              //订单备注
 @property(nonatomic,strong)NSString *totalAmount;       //订单总金额
 @property(nonatomic,strong)NSString *payAmount;         //订单支付金额
-@property(nonatomic,strong)NSString *notifyURL;         //支付通知地址
 
-@property(nonatomic,assign)PayType payType;           //支付类型
-@property(nonatomic,strong)NSString *tradeTpye;         //调用类型
+
+@property(nonatomic,assign)PayType payType;             //支付类型
+@property(nonatomic,strong)NSString *tradeTpye;         //调用类型(线上)
 @property(nonatomic,strong)NSString *redPocket;         //红包金额
 @property(nonatomic,strong)NSString *memberPoints;      //积分金额
-@property(nonatomic,strong)NSString *tradeCurrency;     //币种
+@property(nonatomic,strong)NSString *tradeCurrency;     //币种 （RMB）
 
 
 @end

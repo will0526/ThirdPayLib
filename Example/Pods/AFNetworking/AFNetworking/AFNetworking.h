@@ -22,7 +22,7 @@
 
 #import <Foundation/Foundation.h>
 #import <Availability.h>
-
+#define AFNETWORKING_ALLOW_INVALID_SSL_CERTIFICATES
 #ifndef _AFNETWORKING_
     #define _AFNETWORKING_
 
