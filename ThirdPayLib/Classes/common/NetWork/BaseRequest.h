@@ -12,13 +12,9 @@
 #define DEFAULT_POST_TIMEOUT		(30.0f)			// 发协议30秒超时
 @interface BaseRequest : NSObject
 
-
-@property (nonatomic , strong) NSString * commandId;
-@property (nonatomic , strong) NSString * messageType;
-
 @property (nonatomic, strong) NSMutableDictionary  *requestParamDic;
 
--(NSString *)getCommandId;
+
 
 -(NSDictionary *)dtoToDictionary;
 @end

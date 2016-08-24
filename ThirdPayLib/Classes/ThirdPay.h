@@ -26,6 +26,7 @@ typedef enum{
     
 }PayType;
 
+typedef void (^ThirdPayCompletion)(NSDictionary *result);
 
 @protocol ThirdPayDelegate <NSObject>
 
@@ -111,6 +112,9 @@ typedef enum{
  *  @param delegate         回调代理
  */
 +(void)showPayTypeWithTradeInfo:(NSDictionary *)tradeInfo ViewController:(UIViewController *)controller Delegate:(id<ThirdPayDelegate>)delegate;
+
+
++(Boolean)handleOpenURL:(NSURL *)url withCompletion:(ThirdPayCompletion )complete;
 
 
 

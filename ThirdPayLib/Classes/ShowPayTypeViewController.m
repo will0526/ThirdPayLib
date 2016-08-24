@@ -10,13 +10,15 @@
 #import "BookOrderRequest.h"
 #import "CommonService.h"
 #import "LJSecurityUtils.h"
+#import <AlipaySDK/AlipaySDK.h>
+
 
 @interface ShowPayTypeViewController ()<UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate>
 
 @property(nonatomic, strong)UITableView *tableView;
 @property(nonatomic, strong)UIView *headView;
 @property(nonatomic, strong)UIButton *payButton;
-
+@property(nonatomic, strong)NSString *orderNO;
 @end
 
 @implementation ShowPayTypeViewController
@@ -46,6 +48,10 @@
     UILabel *payAmountLabel;
     UILabel *orderNOLabel;
     UILabel *memoLabel;
+    
+    PayStatus payStatus;
+    NSString *OrderString;
+    NSMutableDictionary *_resultDict;
 }
 
 
@@ -58,8 +64,8 @@
     
     dataSource = @[@"翼支付",@"微信支付",@"支付宝支付",@"百度钱包支付"];
     payTypeIcon = @[@"YipayIcon",@"weixinIcon",@"alipayIcon",@"baiIcon"];
-
-    
+    selectedIndex = 2;
+    _resultDict = [[NSMutableDictionary alloc]init];
 //    [self bookOrder];
     
     [self.view addSubview:self.tableView];
@@ -138,11 +144,67 @@
                                        controller:self
                                    showBackground:YES];
     [CommonService beginService:request response:response success:^(BaseResponse *response) {
+        NSLog(@"response.json......%@",response.jsonDict);
+        NSString *orderStringbase64 = EncodeStringFromDic(response.jsonDict, @"data");
+        
+        NSData *base64Data = [NSData dataWithBase64EncodedString:orderStringbase64];
+        
+        NSLog(@"base64Data%@",base64Data);
+        
+        NSString *orderStr = [[NSString alloc]initWithData:base64Data encoding:NSUTF8StringEncoding];
+        
+        NSString *jsonStr = [orderStr URLDecoding];
+        
+        NSData* jsonData = [jsonStr dataUsingEncoding:NSUTF8StringEncoding];
+//        解析json数据，使用系统方法 JSONObjectWithData:  options: error:
+        NSDictionary* dic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:nil];
+        NSLog(@"dic..........%@",dic);
+//        [orderStr URLDecoding];
+//        [orderStr formatJSON];
+        
+        OrderString = EncodeStringFromDic(dic, @"transMsg");
+        [self gotoPay];
         [[MOPHUDCenter shareInstance]removeHUD];
     } failed:^(NSString *errorCode, NSString *errorMsg) {
+        payStatus = PayStatus_PAYFAIL;
+        
+//        [self tradeReturn];
         [[MOPHUDCenter shareInstance]removeHUD];
     } controller:self];
     
+    
+    
+    
+}
+
+-(void)gotoPay{
+    
+    switch (selectedIndex) {
+        case 0:
+        {
+            
+            
+        }
+            break;
+        case 1:
+        {
+            
+        }
+            break;
+        case 2:
+        {
+            [self alipay];
+        }
+            break;
+        case 3:
+        {
+            
+        }
+            break;
+            
+        default:
+            break;
+    }
     
     
     
@@ -345,12 +407,42 @@
 //支付宝
 -(void)alipay{
     
-    [self tradeReturn];
+//    NSString *orderTemp = @"sign=eZhn4Fb27HrAQHuJd78%2BDUpZIhhwnRvIdbyWH2IhJYR3dd3oRrknm%2FBVPQ657Zv8NR2hfacHz7yMzpuE0lRF%2Fp%2BaZm07AXMYhOgJPwbLrJ7%2F7e%2BerSrcCYXwXtwp86Bp8Dh%2FULAFBBa1k36uWOEWKY1rghLQEQbxgTIAPcczimA%3D&biz_content=%7B%22total_amount%22%3A%221.00%22%2C%22body%22%3A%22%E8%8B%B9%E6%9E%9C%E6%89%8B%E6%9C%BA6s+%E6%AD%A3%E5%93%81%E8%A1%8C%E8%B4%A7+64G+%E5%81%87%E4%B8%80%E8%B5%94%E5%8D%81%22%2C%22subject%22%3A%22%E8%8B%B9%E6%9E%9C%E6%89%8B%E6%9C%BA6s+%E6%AD%A3%E5%93%81%E8%A1%8C%E8%B4%A7+64G+%E5%81%87%E4%B8%80%E8%B5%94%E5%8D%81%22%2C%22seller_id%22%3A%22pay_hk%40pnrtec.com%22%2C%22out_trade_no%22%3A%2220160824183711000089%22%7D&timestamp=2016-08-24+18%3A37%3A11&sign_type=RSA&notify_url=http%3A%2F%2Fpay.pnrtec.com%2Fpay%2Freceiver%2F0003%2F0009%2F01.html&charset=utf-8&app_id=2016072801677304&method=alipay.trade.app.pay&version=1.0";
+    
+    if (IsStrEmpty(OrderString)) {
+        [self tradeReturn];
+        return;
+    }
+     NSLog(@"OrderString%@",OrderString);
+    [[AlipaySDK defaultService] payOrder:OrderString fromScheme:self.appScheme callback:^(NSDictionary *result) {
+        
+        NSString *resultStatus = EncodeStringFromDic(result, @"resultStatus");
+        if ([resultStatus isEqualToString:@"9000"]) {
+            payStatus = PayStatus_PAYSUCCESS;
+            EncodeUnEmptyStrObjctToDic(_resultDict, @"支付成功", @"message");
+            EncodeUnEmptyStrObjctToDic(_resultDict, @"0000", @"code");
+            EncodeUnEmptyDicObjctToDic(_resultDict, [self getParamsWrap], @"content");
+            
+        }else {
+            payStatus = PayStatus_PAYFAIL;
+            EncodeUnEmptyStrObjctToDic(_resultDict, @"支付失败", @"message");
+            EncodeUnEmptyStrObjctToDic(_resultDict, resultStatus, @"code");
+            EncodeUnEmptyDicObjctToDic(_resultDict, [self getParamsWrap], @"content");
+            
+            
+        }
+        
+        
+        NSLog(@"reslut = %@",_resultDict);
+        [self tradeReturn];
+    }];
+//    [self tradeReturn];
 }
+
 
 //微信
 -(void)weixinpay{
-    [self tradeReturn];
+//    [self tradeReturn];
     
 }
 
@@ -358,22 +450,41 @@
 -(void)baidupay{
     
     
-    [self tradeReturn];
+//    [self tradeReturn];
 }
 
 //翼支付
 -(void)yipay{
 
     
-    [self tradeReturn];
+//    [self tradeReturn:];
 }
 
+-(NSDictionary *)getParamsWrap{
+    
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
+    EncodeUnEmptyStrObjctToDic(dict, self.merchantNO, @"merchantNO");
+    EncodeUnEmptyStrObjctToDic(dict, self.merchantOrderNO, @"merchantOrderNO");
+    EncodeUnEmptyStrObjctToDic(dict, self.memberPoints, @"memberPoints");
+    EncodeUnEmptyStrObjctToDic(dict, self.goodsName, @"goodsName");
+    EncodeUnEmptyStrObjctToDic(dict, self.goodsDetail, @"goodsDetail");
+    EncodeUnEmptyStrObjctToDic(dict, self.memo, @"memo");
+    EncodeUnEmptyStrObjctToDic(dict, self.totalAmount, @"totalAmount");
+    EncodeUnEmptyStrObjctToDic(dict, self.payAmount, @"payAmount");
+    EncodeUnEmptyStrObjctToDic(dict, self.redPocket, @"redPocket");
+    EncodeUnEmptyStrObjctToDic(dict, self.orderNO, @"orderNO");
+    
+    return dict;
+    
+    
+    
+}
 
 -(void)tradeReturn{
     
-    NSDictionary *dict = [[NSDictionary alloc]init];
+    
     if (self.thirdPayDelegate && [self.thirdPayDelegate respondsToSelector:@selector(onPayResult:withInfo:)]) {
-        [self.thirdPayDelegate onPayResult:PayStatus_PAYCANCEL withInfo:dict];
+        [self.thirdPayDelegate onPayResult:payStatus withInfo:_resultDict];
     }
     [self.navigationController popViewControllerAnimated:YES];
 }

@@ -590,12 +590,16 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ThirdPayLib/ThirdPayLib-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/ThirdPayLib/alipay",
+					"$(inherited)",
 					"$(SRCROOT)/ThirdPayLib",
+					"$(SRCROOT)/ThirdPayLib/alipay",
 				);
 				INFOPLIST_FILE = "ThirdPayLib/ThirdPayLib-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/ThirdPayLib";
+				LIBRARY_SEARCH_PATHS = (
+					"$(SRCROOT)/ThirdPayLib",
+					"$(SRCROOT)/ThirdPayLib/alipay",
+				);
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = com.huifu.thirdPay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -619,12 +623,16 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ThirdPayLib/ThirdPayLib-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/ThirdPayLib/alipay",
+					"$(inherited)",
 					"$(SRCROOT)/ThirdPayLib",
+					"$(SRCROOT)/ThirdPayLib/alipay",
 				);
 				INFOPLIST_FILE = "ThirdPayLib/ThirdPayLib-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/ThirdPayLib";
+				LIBRARY_SEARCH_PATHS = (
+					"$(SRCROOT)/ThirdPayLib",
+					"$(SRCROOT)/ThirdPayLib/alipay",
+				);
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = com.huifu.thirdPay;
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -7,6 +7,7 @@
 //
 
 #import "PNRAppDelegate.h"
+#import <ThirdPayLib/ThirdPay.h>
 #import "PNRViewController.h"
 @implementation PNRAppDelegate
 
@@ -50,6 +51,19 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(nullable NSString *)sourceApplication annotation:(id)annotation{
+    Boolean handle = [ThirdPay handleOpenURL:url withCompletion:nil];
+    return handle;
+    
+}
+
+// NOTE: 9.0以后使用新API接口
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString*, id> *)options
+{
+    Boolean handle = [ThirdPay handleOpenURL:url withCompletion:nil];
+    return handle;
 }
 
 @end

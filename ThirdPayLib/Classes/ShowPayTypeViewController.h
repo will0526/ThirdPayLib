@@ -47,6 +47,9 @@
 @property(nonatomic,strong)NSString *notifyURL;
 @property(nonatomic,strong)NSString *redPocket;
 @property(nonatomic,strong)NSString *memberPoints;
+@property(nonatomic,strong)NSString *appScheme;
+
+
 
 @property(nonatomic, weak)id<ThirdPayDelegate> thirdPayDelegate;
 

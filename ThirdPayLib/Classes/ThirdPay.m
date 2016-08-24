@@ -32,7 +32,7 @@
 #import "GlobleDefine.h"
 #import "ShowPayTypeViewController.h"
 #import <AFNetworking/AFNetworking.h>
-
+#import <AlipaySDK/AlipaySDK.h>
 @interface ThirdPay()
 
 
@@ -71,7 +71,7 @@
     NSString *totalAmount = EncodeStringFromDic(tradeInfo, @"totalAmount");
     NSString *payAmount = EncodeStringFromDic(tradeInfo, @"payAmount");
     NSString *notifyURL = EncodeStringFromDic(tradeInfo, @"notifyURL");
-    
+    NSString *appSchemeStr = EncodeStringFromDic(tradeInfo, @"appSchemeStr");
     NSString *resultInfo = @"";
     
     if (IsStrEmpty(merchantNO)) {
@@ -88,6 +88,8 @@
         resultInfo = @"支付金额不能为空";
     }else if (IsStrEmpty(notifyURL)){
         resultInfo = @"后台通知地址不能为空";
+    }else if (IsStrEmpty(appSchemeStr)){
+        resultInfo = @"appSchemeStr不能为空";
     }else{
         resultInfo = @"";
     }
@@ -148,6 +150,18 @@
     }];
     
     
+}
+
++(Boolean)handleOpenURL:(NSURL *)url withCompletion:(ThirdPayCompletion)complete{
+    if ([url.host isEqualToString:@"safepay"]) {
+                //跳转支付宝钱包进行支付，处理支付结果
+        [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
+            
+                        NSLog(@"result = %@",resultDic);
+        }];
+            
+    }
+        return YES;
 }
 
 @end

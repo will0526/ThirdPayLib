@@ -7,7 +7,7 @@
 //
 
 #import "BookOrderRequest.h"
-#import "LJSecurityUtils.h"
+
 @implementation BookOrderRequest
 
 
@@ -32,8 +32,8 @@
     NSString *uuid = [SystemInfo getUUID];
     NSString *device = [SystemInfo platformString];
     NSString *OS = [SystemInfo osVersion];
-    NSString *ipAdrress = [LJSecurityUtils getIPAddress];
-    
+//    NSString *ipAdrress = [LJSecurityUtils getIPAddress];
+    NSString *ipAdrress = @"192.168.2.1";
     EncodeUnEmptyStrObjctToDic(dic, uuid, @"uuid");
     EncodeUnEmptyStrObjctToDic(dic, VERSION, @"sdkver");
     EncodeUnEmptyStrObjctToDic(dic, @"121.48", @"xlocation");

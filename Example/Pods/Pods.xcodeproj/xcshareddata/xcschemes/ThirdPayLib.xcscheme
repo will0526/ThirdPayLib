@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A50F378E44F9C203C9FAFAFC2F79CB54"
+               BlueprintIdentifier = "5BD4C5773E3D6B6D41392BB1D5786F50"
                BuildableName = "ThirdPayLib.framework"
                BlueprintName = "ThirdPayLib"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -42,7 +42,7 @@
       </AdditionalOptions>
    </TestAction>
    <LaunchAction
-      buildConfiguration = "Release"
+      buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
@@ -73,7 +73,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A50F378E44F9C203C9FAFAFC2F79CB54"
+            BlueprintIdentifier = "5BD4C5773E3D6B6D41392BB1D5786F50"
             BuildableName = "ThirdPayLib.framework"
             BlueprintName = "ThirdPayLib"
             ReferencedContainer = "container:Pods.xcodeproj">

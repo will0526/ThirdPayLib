@@ -11,7 +11,7 @@
 #import "JSONKit.h"
 #import "SystemInfo.h"
 #import "UIView+MBProgressHUD.h"
-#import "LJSecurityUtils.h"
+
 
 #define Request_Timeout_Default  15
 
@@ -150,34 +150,25 @@ withOptionalAnimation:(MOPHUDCenterHUDType)hudtype
 //                    }
                     
                     NSString *respcode = EncodeStringFromDic(response.jsonDict, @"code");
-                    NSString *msg = EncodeStringFromDic(response.jsonDict, @"respmsg");
+                    NSString *msg = EncodeStringFromDic(response.jsonDict, @"message");
                     NSLog(@"response>>>>>>>>>>%@",dic);
                     if ( [respcode isEqualToString:@"0000"]) {
                         
-                        NSDictionary *data = EncodeDicFromDic(response.jsonDict, @"data");
-                        NSString *busscode = EncodeStringFromDic(data, @"busscode");
-                        NSString *bussmsg = EncodeStringFromDic(data, @"bussmsg");
-                        if([busscode isEqualToString:@"SUCCESS"]){
-                            if (SuccessBlock)
-                            {
-                                SuccessBlock(response);
-                            }
-                            
-                        }else{
-                            if (FailedBlock)
-                            {
-                                if(IsStrEmpty(bussmsg)){
-                                    msg = @"网络请求异常";
-                                }
-                                FailedBlock(busscode,bussmsg);
-                            }
+                        if (SuccessBlock)
+                        {
+                            SuccessBlock(response);
                         }
-                        
                         
                     }
                     else if ([respcode isEqualToString:@"TIMEOUT"])
                     {
-                        
+                        if (FailedBlock)
+                        {
+                            if(IsStrEmpty(msg)){
+                                msg = @"网络请求异常";
+                            }
+                            FailedBlock(respcode,msg);
+                        }
                     }
                     else{
                         if (FailedBlock)

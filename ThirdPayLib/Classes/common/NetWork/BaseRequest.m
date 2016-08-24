@@ -22,12 +22,6 @@
     return self;
 }
 
--(NSString *)getCommandId
-{
-    return _commandId;
-}
-
-
 -(NSDictionary *)dtoToDictionary
 {
     return self.requestParamDic;
@@ -40,7 +34,7 @@
         NSDate *datenow = [NSDate date];
         NSString *timeSp = [NSString stringWithFormat:@"%d", (long)[datenow timeIntervalSince1970]];
         NSString *uuid = [SystemInfo getUUID];
-        EncodeUnEmptyStrObjctToDic(_requestParamDic, [NSString stringWithFormat:@"%@%@",uuid,timeSp
+        EncodeUnEmptyStrObjctToDic(_requestParamDic, [NSString stringWithFormat:@"%@",timeSp
                                                       ], @"seqNo");
         
         EncodeUnEmptyStrObjctToDic(_requestParamDic, timeSp, @"time");

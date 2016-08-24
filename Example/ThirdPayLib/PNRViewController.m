@@ -329,6 +329,7 @@
         default:
             break;
     }
+    [self.params setValue:@"ThirdPayDemo" forKey:@"appSchemeStr"];
     
     cell.backgroundColor = [UIColor whiteColor];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
