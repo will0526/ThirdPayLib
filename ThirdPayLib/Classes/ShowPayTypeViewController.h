@@ -11,10 +11,6 @@
 #import "CommonViewController.h"
 @interface ShowPayTypeViewController :CommonViewController
 
-
-
-
-
 /**
  *  订单支付，无支付方式选择，支付方式通过payType传递
  *  字典tradeinfo 内字段如下
@@ -52,5 +48,8 @@
 
 
 @property(nonatomic, weak)id<ThirdPayDelegate> thirdPayDelegate;
+
+-(Boolean)handleOpenURL:(NSURL *)url withCompletion:(ThirdPayCompletion )complete;
+
 
 @end

@@ -243,6 +243,8 @@
 		BCCFB0F9EDC9D86F92DBB9CDCD6A57DB /* NSString+DES.h in Headers */ = {isa = PBXBuildFile; fileRef = 72DFB583E73EE1F68D815E16E5E70B15 /* NSString+DES.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		BE0993861D6D48BC0039E95F /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE0993851D6D48BC0039E95F /* AlipaySDK.framework */; };
 		BE3FF76F24B81590F4945E597B9A027A /* ThirdPayLib-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4652F9573B2847440C9B168158F2B822 /* ThirdPayLib-dummy.m */; };
+		BE82BDC81D6E9A3B00A69A0F /* QueryOrderRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = BE82BDC61D6E9A3B00A69A0F /* QueryOrderRequest.h */; };
+		BE82BDCA1D6E9EA800A69A0F /* QueryOrderRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = BE82BDC71D6E9A3B00A69A0F /* QueryOrderRequest.m */; };
 		BE88E5161D65BBCF002CCD42 /* libc++abi.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = BE88E5151D65BBCF002CCD42 /* libc++abi.tbd */; };
 		BEC292381D6D34BF00C072BA /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BEC292361D6D34BF00C072BA /* AlipaySDK.bundle */; };
 		BEC2923B1D6D44DF00C072BA /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEC2923A1D6D44DF00C072BA /* CFNetwork.framework */; };
@@ -658,6 +660,8 @@
 		BD1550328FEA7A558C9E4FA4E0B1DC97 /* KWRespondToSelectorMatcher.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = KWRespondToSelectorMatcher.m; path = Classes/Matchers/KWRespondToSelectorMatcher.m; sourceTree = "<group>"; };
 		BDB30D9A2F0AD8C82A3BDE4A77FE4E55 /* KWGenericMatchingAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = KWGenericMatchingAdditions.m; path = Classes/Matchers/KWGenericMatchingAdditions.m; sourceTree = "<group>"; };
 		BE0993851D6D48BC0039E95F /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlipaySDK.framework; path = alipay/AlipaySDK.framework; sourceTree = "<group>"; };
+		BE82BDC61D6E9A3B00A69A0F /* QueryOrderRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryOrderRequest.h; sourceTree = "<group>"; };
+		BE82BDC71D6E9A3B00A69A0F /* QueryOrderRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryOrderRequest.m; sourceTree = "<group>"; };
 		BE88E5151D65BBCF002CCD42 /* libc++abi.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++abi.tbd"; path = "Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/usr/lib/libc++abi.tbd"; sourceTree = DEVELOPER_DIR; };
 		BEC292361D6D34BF00C072BA /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlipaySDK.bundle; sourceTree = "<group>"; };
 		BEC292371D6D34BF00C072BA /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
@@ -1085,6 +1089,8 @@
 		6EE1105B530DCB577A21BEC4B67A38C3 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				BE82BDC61D6E9A3B00A69A0F /* QueryOrderRequest.h */,
+				BE82BDC71D6E9A3B00A69A0F /* QueryOrderRequest.m */,
 				14767D577C9F59DDCF6447F0ABFEA98B /* BookOrderRequest.h */,
 				0B607B31775A4EFAFEF6D2C46E53F2BC /* BookOrderRequest.m */,
 				11019E17C12110A6850BD6CD6DD1F25B /* ShowPayTypeViewController.h */,
@@ -1571,6 +1577,7 @@
 				4126FC06B09C1514C4623BEF344EEDF2 /* AFHTTPRequestOperationManager.h in Headers */,
 				43BC8D2611C04A47C0BE9FFB228E07A5 /* AFHTTPSessionManager.h in Headers */,
 				F2E9945B7494E20ED7DC4720A2B8CDC9 /* AFNetworkActivityIndicatorManager.h in Headers */,
+				BE82BDC81D6E9A3B00A69A0F /* QueryOrderRequest.h in Headers */,
 				34BEE08ED8F8B9B3B939D4D732CFBEFE /* AFNetworking-umbrella.h in Headers */,
 				96247D22CC837A06A450BB49F1D2F79E /* AFNetworking.h in Headers */,
 				4F093F6FBA6E6B060CF66145CF214E14 /* AFNetworkReachabilityManager.h in Headers */,
@@ -1978,6 +1985,7 @@
 				9C1EC69F8AB1F77E5169EC857A861702 /* SystemInfo.m in Sources */,
 				8E4FDD094917CCB9794B753AC016FF1E /* ThirdPay.m in Sources */,
 				BE3FF76F24B81590F4945E597B9A027A /* ThirdPayLib-dummy.m in Sources */,
+				BE82BDCA1D6E9EA800A69A0F /* QueryOrderRequest.m in Sources */,
 				F96A241A5F47655131F5108FB9DC8007 /* UIColor+SNAdditions.m in Sources */,
 				4ABDA4822AC565305F4366C1800A6210 /* UIImage+SNAdditions.m in Sources */,
 				2C588A66836E1C1FCE007A64E999274E /* UIView+Category.m in Sources */,

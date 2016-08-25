@@ -34,12 +34,18 @@
         NSDate *datenow = [NSDate date];
         NSString *timeSp = [NSString stringWithFormat:@"%d", (long)[datenow timeIntervalSince1970]];
         NSString *uuid = [SystemInfo getUUID];
-        EncodeUnEmptyStrObjctToDic(_requestParamDic, [NSString stringWithFormat:@"%@",timeSp
-                                                      ], @"seqNo");
+        EncodeUnEmptyStrObjctToDic(_requestParamDic, [NSString stringWithFormat:@"%@",timeSp], @"seqNo");
         
         EncodeUnEmptyStrObjctToDic(_requestParamDic, timeSp, @"time");
         
+        
         EncodeUnEmptyStrObjctToDic(_requestParamDic, APIVER, @"version");
+        
+        
+        EncodeUnEmptyStrObjctToDic(_requestParamDic, self.terminalNo, @"terminalNo");
+        EncodeUnEmptyStrObjctToDic(_requestParamDic, @"9999", @"batchNo");
+        EncodeUnEmptyStrObjctToDic(_requestParamDic, @"0009", @"transType");
+        EncodeUnEmptyStrObjctToDic(_requestParamDic, @"0003", @"payType");
         
     }
     return _requestParamDic;

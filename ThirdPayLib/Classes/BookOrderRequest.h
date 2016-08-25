@@ -40,7 +40,7 @@
 @property(nonatomic,strong)NSString *payAmount;         //订单支付金额
 
 
-@property(nonatomic,assign)PayType payType;             //支付类型
+
 @property(nonatomic,strong)NSString *tradeTpye;         //调用类型(线上)
 @property(nonatomic,strong)NSString *redPocket;         //红包金额
 @property(nonatomic,strong)NSString *memberPoints;      //积分金额

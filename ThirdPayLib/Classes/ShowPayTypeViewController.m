@@ -100,30 +100,6 @@
 }
 
 -(void)bookOrder{
-    /*
-    NSString *temp = @"{\"merchantNo\":\"2000000001\",\"params\":eyJkZXZpY2UiOiJpUGhvbmU2cyIsIm9zdmVyIjoiaU9TOS4yIiwicmVzb2x1dGlvbiI6IjMyMCo0ODAiLCJzZGt2ZXIiOiIxLjAiLCJ1dWlkIjoiMTIzNDU2Nzg5IiwieGxvY2F0aW9uIjoiMTIxLjQ4IiwieWxvY2F0aW9uIjoiMzEuMjIifQ==\",\"seqNo\":\"34455555555s神啊分\",\"time\":\"14567899000\",\"version\":\"1.0.1\"}";
-    NSData *tempData = [temp dataUsingEncoding:NSUTF8StringEncoding];
-//    NSString *temp = @"test";
-    NSData *md5str = [LJSecurityUtils md5:temp];
-//    NSString *md5str = [NSString  stringWithUTF8String:[md5Data bytes]];
-    NSLog(@"md5..............%@",md5str);
-    NSString *result = [LJSecurityUtils RSAEncrypt:temp publicKey:RSAKEY];
-    
-    
-    
-    
-//    NSString *documentPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-//    NSString *path = [documentPath stringByAppendingPathComponent:@"rsa_rsa_private_key"];
-//    NSString *formatKey = [self formatPrivateKey:RSAPRIVATE];
-//    NSLog(@"file path....%@",path);
-//    [formatKey writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:nil];
-    NSString *result1 = [LJSecurityUtils RSASign:@"rsa_private_key" Content:tempData];
-    NSLog(@"result1>>>>>>>>>>>>>%@",result1);
-    
-    
-    return;
-    */
-    
     
     BookOrderRequest *request = [[BookOrderRequest alloc]init];
     request.merchantNO = self.merchantNO;
@@ -136,6 +112,8 @@
     request.totalAmount = self.totalAmount;
     request.payAmount = self.payAmount;
     request.memberPoints = self.memberPoints;
+    request.transType = @"009";
+    request.payType =@"003";
     
     
     BaseResponse *response = [[BaseResponse alloc]init];
@@ -166,9 +144,19 @@
         [self gotoPay];
         [[MOPHUDCenter shareInstance]removeHUD];
     } failed:^(NSString *errorCode, NSString *errorMsg) {
-        payStatus = PayStatus_PAYFAIL;
+        if([errorCode isEqualToString:@"9001"]){
+            payStatus = PayStatus_PAYTIMEOUT;
+           
+        }else{
+            payStatus = PayStatus_PAYFAIL;
+        }
+        EncodeUnEmptyStrObjctToDic(_resultDict, errorMsg, @"message");
+        EncodeUnEmptyStrObjctToDic(_resultDict, errorCode, @"code");
+        EncodeUnEmptyDicObjctToDic(_resultDict, [self getParamsWrap], @"content");
         
-//        [self tradeReturn];
+        
+        
+        [self tradeReturn];
         [[MOPHUDCenter shareInstance]removeHUD];
     } controller:self];
     
@@ -227,6 +215,11 @@
         {
             
             [alertView setHidden:YES];
+            payStatus = PayStatus_PAYCANCEL;
+        
+            EncodeUnEmptyStrObjctToDic(_resultDict, @"交易取消", @"message");
+            EncodeUnEmptyStrObjctToDic(_resultDict, @"0001", @"code");
+            EncodeUnEmptyDicObjctToDic(_resultDict, [self getParamsWrap], @"content");
             [self tradeReturn];
         }
             break;
@@ -407,35 +400,53 @@
 //支付宝
 -(void)alipay{
     
-//    NSString *orderTemp = @"sign=eZhn4Fb27HrAQHuJd78%2BDUpZIhhwnRvIdbyWH2IhJYR3dd3oRrknm%2FBVPQ657Zv8NR2hfacHz7yMzpuE0lRF%2Fp%2BaZm07AXMYhOgJPwbLrJ7%2F7e%2BerSrcCYXwXtwp86Bp8Dh%2FULAFBBa1k36uWOEWKY1rghLQEQbxgTIAPcczimA%3D&biz_content=%7B%22total_amount%22%3A%221.00%22%2C%22body%22%3A%22%E8%8B%B9%E6%9E%9C%E6%89%8B%E6%9C%BA6s+%E6%AD%A3%E5%93%81%E8%A1%8C%E8%B4%A7+64G+%E5%81%87%E4%B8%80%E8%B5%94%E5%8D%81%22%2C%22subject%22%3A%22%E8%8B%B9%E6%9E%9C%E6%89%8B%E6%9C%BA6s+%E6%AD%A3%E5%93%81%E8%A1%8C%E8%B4%A7+64G+%E5%81%87%E4%B8%80%E8%B5%94%E5%8D%81%22%2C%22seller_id%22%3A%22pay_hk%40pnrtec.com%22%2C%22out_trade_no%22%3A%2220160824183711000089%22%7D&timestamp=2016-08-24+18%3A37%3A11&sign_type=RSA&notify_url=http%3A%2F%2Fpay.pnrtec.com%2Fpay%2Freceiver%2F0003%2F0009%2F01.html&charset=utf-8&app_id=2016072801677304&method=alipay.trade.app.pay&version=1.0";
+//    NSString *OrderString = @"biz_content={\"total_amount\":\"0.01\",\"body\":\"%E8%AE%A2%E5%8D%95%E6%8F%8F%E8%BF%B0\",\"product_code\":\"QUICK_MSECURITY_PAY\",\"subject\":\"%E8%AE%A2%E5%8D%95%E6%8F%8F%E8%BF%B0\",\"out_trade_no\":\"20160825173306000090\"}&sign=m2Boi0kVJokWRedHeTcKPqlAG6d7gBEh%2BG5gUc1fYoRWL5sIfdgHVCzOl1cU4x9Q1PDUU1ythBN6JbxNhYVnml1aWF%2BPlqdVJhgHbDKZQB%2FO190lXVO6me1%2FT6uOgYzgXYr5NeMls41iFufRBpJSSE7DDi86uveJxd39J6N4qc4%3D&timestamp=2016-08-25+17%3A32%3A01&sign_type=RSA&notify_url=http%3A%2F%2F114.55.173.244%3A8181%2Fipp.pay%2Freceiver%2F0003%2F0009%2F01.html&charset=utf-8&app_id=2016072801677304&method=alipay.trade.app.pay&version=1.0";
+//    self.appScheme = @"ThirdPayDemo";
     
     if (IsStrEmpty(OrderString)) {
         [self tradeReturn];
         return;
     }
-     NSLog(@"OrderString%@",OrderString);
-    [[AlipaySDK defaultService] payOrder:OrderString fromScheme:self.appScheme callback:^(NSDictionary *result) {
-        
-        NSString *resultStatus = EncodeStringFromDic(result, @"resultStatus");
-        if ([resultStatus isEqualToString:@"9000"]) {
-            payStatus = PayStatus_PAYSUCCESS;
-            EncodeUnEmptyStrObjctToDic(_resultDict, @"支付成功", @"message");
-            EncodeUnEmptyStrObjctToDic(_resultDict, @"0000", @"code");
-            EncodeUnEmptyDicObjctToDic(_resultDict, [self getParamsWrap], @"content");
+     NSLog(@"OrderString%@",self.appScheme);
+    @try{
+        [[[UIApplication sharedApplication] windows] objectAtIndex:0].hidden = NO;
+        [[AlipaySDK defaultService] payOrder:OrderString fromScheme:self.appScheme callback:^(NSDictionary *result) {
             
-        }else {
-            payStatus = PayStatus_PAYFAIL;
-            EncodeUnEmptyStrObjctToDic(_resultDict, @"支付失败", @"message");
-            EncodeUnEmptyStrObjctToDic(_resultDict, resultStatus, @"code");
-            EncodeUnEmptyDicObjctToDic(_resultDict, [self getParamsWrap], @"content");
+            NSString *resultStatus = EncodeStringFromDic(result, @"resultStatus");
+            if ([resultStatus isEqualToString:@"9000"]) {
+                payStatus = PayStatus_PAYSUCCESS;
+                EncodeUnEmptyStrObjctToDic(_resultDict, @"支付成功", @"message");
+                EncodeUnEmptyStrObjctToDic(_resultDict, @"0000", @"code");
+                EncodeUnEmptyDicObjctToDic(_resultDict, [self getParamsWrap], @"content");
+                
+            }else if ([resultStatus isEqualToString:@"6001"]){
+                payStatus = PayStatus_PAYCANCEL;
+                EncodeUnEmptyStrObjctToDic(_resultDict, @"交易取消", @"message");
+                EncodeUnEmptyStrObjctToDic(_resultDict, resultStatus, @"code");
+                EncodeUnEmptyDicObjctToDic(_resultDict, [self getParamsWrap], @"content");
+                
+                
+            }else{
+                payStatus = PayStatus_PAYFAIL;
+                EncodeUnEmptyStrObjctToDic(_resultDict, @"支付失败", @"message");
+                EncodeUnEmptyStrObjctToDic(_resultDict, resultStatus, @"code");
+                EncodeUnEmptyDicObjctToDic(_resultDict, [self getParamsWrap], @"content");
+                
+                
+            }
             
             
-        }
+            NSLog(@"reslut = %@",_resultDict);
+            [self tradeReturn];
+        }];
+    }
+    @catch(NSException *exception) {
+        NSLog(@"exception:%@", exception);
+    }
+    @finally {
         
-        
-        NSLog(@"reslut = %@",_resultDict);
-        [self tradeReturn];
-    }];
+    }
+    
 //    [self tradeReturn];
 }
 
@@ -458,6 +469,40 @@
 
     
 //    [self tradeReturn:];
+}
+
+-(Boolean)handleOpenURL:(NSURL *)url withCompletion:(ThirdPayCompletion )complete{
+    if ([url.host isEqualToString:@"safepay"]) {
+        
+        
+                //跳转支付宝钱包进行支付，处理支付结果
+        [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
+            
+                        NSLog(@"result = %@",resultDic);
+            NSString *resultStatus = EncodeStringFromDic(resultDic, @"resultStatus");
+            if ([resultStatus isEqualToString:@"9000"]) {
+                payStatus = PayStatus_PAYSUCCESS;
+                EncodeUnEmptyStrObjctToDic(_resultDict, @"支付成功", @"message");
+                EncodeUnEmptyStrObjctToDic(_resultDict, @"0000", @"code");
+                EncodeUnEmptyDicObjctToDic(_resultDict, [self getParamsWrap], @"content");
+                
+            }else {
+                payStatus = PayStatus_PAYFAIL;
+                EncodeUnEmptyStrObjctToDic(_resultDict, @"支付失败", @"message");
+                EncodeUnEmptyStrObjctToDic(_resultDict, resultStatus, @"code");
+                EncodeUnEmptyDicObjctToDic(_resultDict, [self getParamsWrap], @"content");
+                
+                
+            }
+            
+            
+            NSLog(@"reslut = %@",_resultDict);
+            [self tradeReturn];
+            
+        }];
+            
+    }    return YES;
+    
 }
 
 -(NSDictionary *)getParamsWrap{

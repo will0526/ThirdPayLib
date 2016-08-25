@@ -160,12 +160,12 @@ withOptionalAnimation:(MOPHUDCenterHUDType)hudtype
                         }
                         
                     }
-                    else if ([respcode isEqualToString:@"TIMEOUT"])
+                    else if ([respcode isEqualToString:@"9001"])
                     {
                         if (FailedBlock)
                         {
                             if(IsStrEmpty(msg)){
-                                msg = @"网络请求异常";
+                                msg = @"交易处理超时";
                             }
                             FailedBlock(respcode,msg);
                         }

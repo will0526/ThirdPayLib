@@ -33,13 +33,34 @@
 #import "ShowPayTypeViewController.h"
 #import <AFNetworking/AFNetworking.h>
 #import <AlipaySDK/AlipaySDK.h>
+
 @interface ThirdPay()
+
+@property(nonatomic, weak)id<ThirdPayDelegate> thirdPayDelegate;
+@property(nonatomic, strong) NSString *orderNO;
 
 
 @end
 
 @implementation ThirdPay
-
+{
+    NSString *merchantNO;
+    NSString *memberNO;
+    NSString *merchantOrderNO;
+    NSString *goodsName;
+    NSString *goodsDetail;
+    NSString *memo;
+    NSString *totalAmount ;
+    NSString *payAmount;
+    NSString *notifyURL;
+    NSString *appSchemeStr;
+    NSString *resultInfo;
+    NSString *memberPoints;
+    NSString *redPocket;
+    
+    
+}
+static ShowPayTypeViewController *payController;
 //下单
 +(void)payWithTradeInfo:(NSDictionary *)tradeInfo ViewController:(UIViewController *)controller Delegate:(id<ThirdPayDelegate>)delegate PayType:(PayType)payType
 {
@@ -102,7 +123,7 @@
     }
     
     
-    ShowPayTypeViewController *payController = [[ShowPayTypeViewController alloc]init];
+    payController = [[ShowPayTypeViewController alloc]init];
     
     payController.memberNO = memberNO;
     payController.merchantNO = merchantNO;
@@ -113,7 +134,7 @@
     payController.totalAmount = totalAmount;
     payController.payAmount = payAmount;
     payController.notifyURL = notifyURL;
-    
+    payController.appScheme = appSchemeStr;
     payController.thirdPayDelegate = delegate;
     
     [controller.navigationController pushViewController:payController animated:YES];
@@ -153,15 +174,13 @@
 }
 
 +(Boolean)handleOpenURL:(NSURL *)url withCompletion:(ThirdPayCompletion)complete{
-    if ([url.host isEqualToString:@"safepay"]) {
-                //跳转支付宝钱包进行支付，处理支付结果
-        [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
-            
-                        NSLog(@"result = %@",resultDic);
-        }];
-            
-    }
+    [payController handleOpenURL:url withCompletion:complete];
+    
+    
         return YES;
 }
+
+
+
 
 @end

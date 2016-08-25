@@ -33,8 +33,8 @@
     self.title = @"测试";
     
     //测试数据
-    dataSource = @[@"用户号",@"商户号",@"订单号",@"商品名称",@"商品详情",@"订单金额",@"实付金额",@"备注",@"通知地址"];
-    defaultSource = @[@"0001",@"000002",@"20160806",@"苹果手机6s",@"苹果手机6s 正品行货 64G 假一赔十",@"5400",@"100",@"不支持货到付款",@"http://www.baidu.com"];
+    dataSource = @[@"用户号",@"商户号",@"订单号",@"商品名称",@"商品详情",@"订单金额",@"实付金额",@"红包",@"积分",@"备注",@"通知地址"];
+    defaultSource = @[@"0001",@"000002",@"20160806",@"苹果手机6s",@"苹果手机6s 正品行货 64G 假一赔十",@"5400",@"1",@"1",@"1",@"不支持货到付款",@"http://www.baidu.com"];
     
     self.params = [[NSMutableDictionary alloc]init];
     
@@ -360,11 +360,31 @@
 
 -(void)onPayResult:(PayStatus)payStatus withInfo:(NSDictionary *)dict{
     NSLog(@"%u.......%@",payStatus,dict);
-    
+    NSString *title = @"";
+    NSString *content = [NSString stringWithFormat:@"%@",dict];
+    NSLog(@"content%@",content);
     switch (payStatus) {
         case PayStatus_PAYSUCCESS:
         {
-        
+            title = @"支付成功";
+            
+        }
+            break;
+        case PayStatus_PAYFAIL:
+        {
+            title = @"交易失败";
+            
+        }
+            break;
+        case PayStatus_PAYTIMEOUT:
+        {
+            title = @"交易超时";
+            
+        }
+            break;
+        case PayStatus_PAYCANCEL:
+        {
+            title = @"交易取消";
             
         }
             break;
@@ -373,9 +393,9 @@
             break;
     }
     
-    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"交易结果" message:@"" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil, nil];
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:title message:content delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil, nil];
     
-    
+    [alert show];
     
     
 }

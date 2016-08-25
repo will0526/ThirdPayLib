@@ -25,9 +25,12 @@
 -(NSDictionary *)dtoToDictionary
 {
     [super dtoToDictionary];
+    
     EncodeUnEmptyStrObjctToDic(self.requestParamDic, self.merchantNO, @"merchantNo");
     
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+    
+    
     
     NSString *uuid = [SystemInfo getUUID];
     NSString *device = [SystemInfo platformString];
@@ -42,31 +45,31 @@
     EncodeUnEmptyStrObjctToDic(dic, [NSString stringWithFormat:@"%@%@",device,OS], @"osver");
     
     NSString *payTypeStr = @"";
-    switch (self.payType) {
-        case PayType_Alipay:
-        {
-            payTypeStr = @"";
-        }
-            break;
-        case PayType_WeichatPay:
-        {
-            payTypeStr = @"";
-        }
-            break;
-        case PayType_BestPay:
-        {
-            payTypeStr = @"";
-        }
-            break;
-        case PayType_YiPay:
-        {
-            payTypeStr = @"";
-        }
-            break;
-            
-        default:
-            break;
-    }
+//    switch (self.payType) {
+//        case PayType_Alipay:
+//        {
+//            payTypeStr = @"";
+//        }
+//            break;
+//        case PayType_WeichatPay:
+//        {
+//            payTypeStr = @"";
+//        }
+//            break;
+//        case PayType_BestPay:
+//        {
+//            payTypeStr = @"";
+//        }
+//            break;
+//        case PayType_YiPay:
+//        {
+//            payTypeStr = @"";
+//        }
+//            break;
+//            
+//        default:
+//            break;
+//    }
     
     EncodeUnEmptyStrObjctToDic(dic, self.payAmount, @"tradeAmount");
     EncodeUnEmptyStrObjctToDic(dic, self.tradeCurrency, @"tradeCurrency");
@@ -83,12 +86,8 @@
     
     EncodeUnEmptyStrObjctToDic(dic, self.memo, @"attach");
     
-    
     EncodeUnEmptyDicObjctToDic(self.requestParamDic, dic, @"params");
-    EncodeUnEmptyStrObjctToDic(self.requestParamDic, @"9999", @"terminalNo");
-    EncodeUnEmptyStrObjctToDic(self.requestParamDic, @"9999", @"batchNo");
-    EncodeUnEmptyStrObjctToDic(self.requestParamDic, @"0009", @"transType");
-    EncodeUnEmptyStrObjctToDic(self.requestParamDic, @"0003", @"payType");
+    
     return self.requestParamDic;
 }
 
