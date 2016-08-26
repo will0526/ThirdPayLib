@@ -8,7 +8,7 @@
 
 #import "PNRAppDelegate.h"
 #import <ThirdPayLib/ThirdPay.h>
-#import "PNRViewController.h"
+#import "PNRMainViewController.h"
 @implementation PNRAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -18,7 +18,7 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     
-    PNRViewController *viewController = [[PNRViewController alloc]init];
+    PNRMainViewController *viewController = [[PNRMainViewController alloc]init];
     UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:viewController];
     
     [self.window setRootViewController:nav];

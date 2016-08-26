@@ -64,7 +64,7 @@
                 failed:FailedBlock
  withOptionalAnimation:MOPHUDCenterHUDTypeNetWorkLoading
                timeout:Request_Timeout_Default
-       showProgressBar:YES
+       showProgressBar:NO
              withTitle:@""
         withController:ctl];
     
@@ -99,16 +99,17 @@ withOptionalAnimation:(MOPHUDCenterHUDType)hudtype
            withTitle:(NSString*)title
       withController:ctl
 {
-//    
-//    if(showProgressBar)
-//    {
-//        
-////        [[MOPHUDCenter shareInstance]showHUDWithTitle:title
-////                                                 type:hudtype
-////                                           controller:ctl
-////                                       showBackground:NO];
-//        [ctl showLoadingView];
-//    }
+//
+    
+    if(showProgressBar)
+    {
+        
+//        [[MOPHUDCenter shareInstance]showHUDWithTitle:title
+//                                                 type:hudtype
+//                                           controller:ctl
+//                                       showBackground:NO];
+        [ctl showLoadingView];
+    }
     dispatch_queue_t myNetQueue = dispatch_queue_create([@"MYNETQUEUE" UTF8String], NULL);
     dispatch_async
     (myNetQueue, ^{
@@ -257,28 +258,14 @@ withOptionalAnimation:(MOPHUDCenterHUDType)hudtype
 }
 
 +(NSMutableDictionary *)combileParam:(NSMutableDictionary *) dict{
-    NSLog(@"dict........%@",dict);
+    
     NSString *textStr = [self Base64Params:dict];
-    
-    NSLog(@"textStr.........%@",textStr);
-
-//    NSString *rsaSign = [LJSecurityUtils RSAEncrypt:textStr publicKey:RSAKEY];
-    [dict setObject:textStr forKey:@"params"];
-//    EncodeUnEmptyStrObjctToDic(dict, textStr, @"params");
-    EncodeUnEmptyStrObjctToDic(dict, @"1", @"sign");
+    EncodeUnEmptyStrObjctToDic(dict, textStr, @"params");
+    NSString *sign = [self getParamSign:dict];
+    EncodeUnEmptyStrObjctToDic(dict, sign, @"sign");
     NSLog(@"dict........%@",dict);
     
-//    NSMutableDictionary *temp = [[NSMutableDictionary alloc]init];
-//    EncodeUnEmptyStrObjctToDic(temp, @"utf-8", @"encode");
-//     NSError *error;
-//    NSData * jsonData = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:&error];
-//    NSString *jsonDataStr = [[NSString alloc]initWithData:jsonData encoding:NSUTF8StringEncoding];
-//    NSLog(@"jsonDataStr..........%@",jsonDataStr);
-//    NSString *urlStr = [jsonDataStr URLEncoding];
-//    NSLog(@"urlStr..........%@",urlStr);
-//    EncodeUnEmptyStrObjctToDic(dict, textStr, @"content");
-    NSString *temp = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:dict options:0 error:nil] encoding:NSUTF8StringEncoding];
-    NSLog(@"JSONString ...%@",temp);
+    
     return dict;
 
 }
@@ -286,27 +273,7 @@ withOptionalAnimation:(MOPHUDCenterHUDType)hudtype
 +(NSString *)Base64Params:(NSMutableDictionary *)temp{
     NSDictionary *dict = EncodeDicFromDic(temp, @"params");
     NSString *retString = nil;
-//    NSArray *keys = [dict allKeys];
-//    keys = [keys sortedArrayUsingSelector:@selector(compare:)];
-//    NSString *key;
-//    for (key in keys)
-//    {
-//        if (retString == nil) {
-//            
-//            retString = [NSString stringWithFormat:@"\"%@\":\"%@\"",key,[dict valueForKey:key]];
-//        }else{
-//            NSString *val = [NSString stringWithFormat:@",\"%@\":\"%@\"",key,[dict valueForKey:key]];
-//            
-//            retString = [retString stringByAppendingString:val];
-//        }
-//    }
-//    
-//    if (!retString) {
-//        retString = @"";
-//    }
-    
-//    retString = [NSString stringWithFormat:@"{%@}",retString];
-    
+ 
     retString = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:dict options:0 error:nil] encoding:NSUTF8StringEncoding];
     NSData *paramsBase64Data = [[retString dataUsingEncoding:NSUTF8StringEncoding]base64EncodedDataWithOptions:0];
     NSString *paramsDataStr = [NSString stringWithUTF8String:[paramsBase64Data bytes]];
@@ -314,6 +281,8 @@ withOptionalAnimation:(MOPHUDCenterHUDType)hudtype
     return paramsDataStr;
     
 }
+
+
 
 /**
  * get all params string
@@ -325,38 +294,26 @@ withOptionalAnimation:(MOPHUDCenterHUDType)hudtype
     NSArray *keys = [dict allKeys];
     keys = [keys sortedArrayUsingSelector:@selector(compare:)];
     NSString *key;
-//    NSMutableArray *temp = [[NSMutableArray alloc]init];
+    
     for (key in keys)
     {
         if (retString == nil) {
             
-            retString = [NSString stringWithFormat:@"\"%@\":\"%@\"",key,[dict valueForKey:key]];
+            retString = [NSString stringWithFormat:@"%@=%@",key,[dict valueForKey:key]];
         } else {
-            if ([key isEqualToString:@"params"]) {
-                
-                NSDictionary *temp = EncodeDicFromDic(dict, @"params");
-                NSString *paramsStr = [self getParamSign:temp];
-                NSData *paramsBase64Data = [[paramsStr dataUsingEncoding:NSUTF8StringEncoding]base64EncodedDataWithOptions:0];
-                NSString *paramsDataStr = [NSString stringWithUTF8String:[paramsBase64Data bytes]];
-                NSLog(@"paramsDataStr%@",paramsDataStr);
-                retString = [retString stringByAppendingString:[NSString stringWithFormat:@",\"params\":%@",paramsDataStr]];
-                
-            }else{
-                NSString *val = [NSString stringWithFormat:@",\"%@\":\"%@\"",key,[dict valueForKey:key]];
-                
-                retString = [retString stringByAppendingString:val];
-            }
+            NSString *val = [NSString stringWithFormat:@"&%@=%@",key,[dict valueForKey:key]];
             
+            retString = [retString stringByAppendingString:val];
         }
-        
-    
     }
     
+    [retString stringByAppendingString:SALT];
     
     if (!retString) {
         retString = @"";
     }
-    retString = [NSString stringWithFormat:@"{%@}",retString];
+    retString = [[retString md5]uppercaseString];
+    
     NSLog(@"retString............%@",retString);
     return retString;
 }

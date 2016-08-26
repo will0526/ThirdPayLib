@@ -10,6 +10,7 @@
 #import "BookOrderRequest.h"
 #import "CommonService.h"
 #import "LJSecurityUtils.h"
+#import "QueryOrderRequest.h"
 #import <AlipaySDK/AlipaySDK.h>
 
 
@@ -52,6 +53,7 @@
     PayStatus payStatus;
     NSString *OrderString;
     NSMutableDictionary *_resultDict;
+    BOOL isCancel;
 }
 
 
@@ -137,8 +139,7 @@
 //        解析json数据，使用系统方法 JSONObjectWithData:  options: error:
         NSDictionary* dic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:nil];
         NSLog(@"dic..........%@",dic);
-//        [orderStr URLDecoding];
-//        [orderStr formatJSON];
+        
         
         OrderString = EncodeStringFromDic(dic, @"transMsg");
         [self gotoPay];
@@ -166,6 +167,9 @@
 }
 
 -(void)gotoPay{
+    
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"支付中。。。" message:nil delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+    [alert show];
     
     switch (selectedIndex) {
         case 0:
@@ -200,6 +204,7 @@
 
 -(void)Back{
     UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"取消支付" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    isCancel = YES;
     [alert show];
     
 }
@@ -208,6 +213,10 @@
     switch (buttonIndex) {
         case 0:
         {
+            if (!isCancel) {
+                [self queryOrder];
+            }
+            
             [alertView setHidden:YES];
         }
             break;
@@ -478,7 +487,7 @@
                 //跳转支付宝钱包进行支付，处理支付结果
         [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
             
-                        NSLog(@"result = %@",resultDic);
+            NSLog(@"result = %@",resultDic);
             NSString *resultStatus = EncodeStringFromDic(resultDic, @"resultStatus");
             if ([resultStatus isEqualToString:@"9000"]) {
                 payStatus = PayStatus_PAYSUCCESS;
@@ -486,7 +495,14 @@
                 EncodeUnEmptyStrObjctToDic(_resultDict, @"0000", @"code");
                 EncodeUnEmptyDicObjctToDic(_resultDict, [self getParamsWrap], @"content");
                 
-            }else {
+            }else if ([resultStatus isEqualToString:@"6001"]){
+                payStatus = PayStatus_PAYCANCEL;
+                EncodeUnEmptyStrObjctToDic(_resultDict, @"用户取消", @"message");
+                EncodeUnEmptyStrObjctToDic(_resultDict, resultStatus, @"code");
+                EncodeUnEmptyDicObjctToDic(_resultDict, [self getParamsWrap], @"content");
+                
+                
+            }else{
                 payStatus = PayStatus_PAYFAIL;
                 EncodeUnEmptyStrObjctToDic(_resultDict, @"支付失败", @"message");
                 EncodeUnEmptyStrObjctToDic(_resultDict, resultStatus, @"code");
@@ -495,13 +511,13 @@
                 
             }
             
-            
             NSLog(@"reslut = %@",_resultDict);
             [self tradeReturn];
             
         }];
             
-    }    return YES;
+    }
+    return YES;
     
 }
 
@@ -537,6 +553,33 @@
 
 #pragma mark pay method
 
+-(void)queryOrder{
+    
+    
+    [[MOPHUDCenter shareInstance]showHUDWithTitle:@"交易查询中"
+                                             type:MOPHUDCenterHUDTypeNetWorkLoading
+                                       controller:self
+                                   showBackground:YES];
+    QueryOrderRequest *request = [[QueryOrderRequest alloc]init];
+    request.merchantNO = self.merchantNO;
+    request.orderNO = self.orderNO;
+    //    reque
+    BaseResponse *response = [[BaseResponse alloc]init];
+    [CommonService beginService:request response:response success:^(BaseResponse *response) {
+        NSLog(@"response.json......%@",response.jsonDict);
+        NSDictionary *dict = @{@"message":@"查询成功"};
+        [[MOPHUDCenter shareInstance]removeHUD];
+        
+        
+        
+    } failed:^(NSString *errorCode, NSString *errorMsg) {
+        [[MOPHUDCenter shareInstance]removeHUD];
+        NSDictionary *dict = @{@"message":@"查询失败",@"code":@"0001"};
+        
+    } controller:self];
+    
+    
+}
 
 
 - (void)didReceiveMemoryWarning {

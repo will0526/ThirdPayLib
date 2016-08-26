@@ -44,8 +44,6 @@
         
         EncodeUnEmptyStrObjctToDic(_requestParamDic, self.terminalNo, @"terminalNo");
         EncodeUnEmptyStrObjctToDic(_requestParamDic, @"9999", @"batchNo");
-        EncodeUnEmptyStrObjctToDic(_requestParamDic, @"0009", @"transType");
-        EncodeUnEmptyStrObjctToDic(_requestParamDic, @"0003", @"payType");
         
     }
     return _requestParamDic;

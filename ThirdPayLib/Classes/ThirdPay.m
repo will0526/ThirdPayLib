@@ -33,6 +33,8 @@
 #import "ShowPayTypeViewController.h"
 #import <AFNetworking/AFNetworking.h>
 #import <AlipaySDK/AlipaySDK.h>
+#import "CommonService.h"
+#import "QueryOrderRequest.h"
 
 @interface ThirdPay()
 
@@ -77,6 +79,61 @@ static ShowPayTypeViewController *payController;
 //查询
 +(void)queryOrderInfo:(NSDictionary *)tradeInfo ViewController:(UIViewController *)controller Delegate:(id<ThirdPayDelegate>)delegate{
     
+    NSString *merchantNO = EncodeStringFromDic(tradeInfo, @"merchantNO");
+//    NSString *memberNO = EncodeStringFromDic(tradeInfo, @"memberNo");
+    NSString *orderNO = EncodeStringFromDic(tradeInfo, @"orderNO");
+    NSString *resultInfo = @"";
+    if (IsStrEmpty(merchantNO)) {
+        resultInfo = @"商户号不能为空";
+    }else if (IsStrEmpty(orderNO)){
+        resultInfo = @"订单号不能为空";
+    }
+    
+    if (!IsStrEmpty(resultInfo)) {
+        tradeInfo = @{@"resultInfo":resultInfo};
+        if (delegate && [delegate respondsToSelector:@selector(onQueryOrder:)]) {
+            [delegate onQueryOrder:tradeInfo];
+            return;
+        }
+    }
+    
+    [[MOPHUDCenter shareInstance]showHUDWithTitle:@""
+                                             type:MOPHUDCenterHUDTypeNetWorkLoading
+                                       controller:controller
+                                   showBackground:YES];
+    QueryOrderRequest *request = [[QueryOrderRequest alloc]init];
+    request.merchantNO = merchantNO;
+    request.orderNO = orderNO;
+//    reque
+    BaseResponse *response = [[BaseResponse alloc]init];
+    [CommonService beginService:request response:response success:^(BaseResponse *response) {
+        NSLog(@"response.json......%@",response.jsonDict);
+        NSDictionary *dict = @{@"message":@"查询成功"};
+        [[MOPHUDCenter shareInstance]removeHUD];
+        if (delegate && [delegate respondsToSelector:@selector(onQueryOrder:)]) {
+            [delegate onQueryOrder:dict];
+            return;
+        }
+        
+        
+        
+    } failed:^(NSString *errorCode, NSString *errorMsg) {
+        [[MOPHUDCenter shareInstance]removeHUD];
+        NSDictionary *dict = @{@"message":@"查询失败",@"code":@"0001"};
+        if (delegate && [delegate respondsToSelector:@selector(onQueryOrder:)]) {
+            [delegate onQueryOrder:dict];
+            return;
+        }
+    } controller:controller];
+    
+
+    
+    
+}
+
++(NSDictionary *)combilParams{
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
+    
     
 }
 
@@ -85,7 +142,7 @@ static ShowPayTypeViewController *payController;
     
     NSString *merchantNO = EncodeStringFromDic(tradeInfo, @"merchantNO");
     NSString *memberNO = EncodeStringFromDic(tradeInfo, @"memberNo");
-    NSString *merchantOrderNO = EncodeStringFromDic(tradeInfo, @"merchantOrderNO");
+    NSString *merchantOrderNO = EncodeStringFromDic(tradeInfo, @"orderNO");
     NSString *goodsName = EncodeStringFromDic(tradeInfo, @"goodsName");
     NSString *goodsDetail = EncodeStringFromDic(tradeInfo, @"goodsDetail");
     NSString *memo = EncodeStringFromDic(tradeInfo, @"memo");
@@ -139,12 +196,6 @@ static ShowPayTypeViewController *payController;
     
     [controller.navigationController pushViewController:payController animated:YES];
     
-    
-    
-    
-    //    payController
-    
-    
 }
 
 
@@ -152,32 +203,13 @@ static ShowPayTypeViewController *payController;
 
 +(void)bookOrder:(id<ThirdPayDelegate>)delegate
 {
-    
-    
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    
-    NSString *urlStr = @"http://www.baidu.com";
-    manager.requestSerializer.timeoutInterval = 30;
-    NSDictionary *params = [[NSDictionary alloc]init];
-    [manager GET:urlStr parameters:params success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
-        NSLog(@"........................................................success");
         
-        [delegate onPayResult:PayStatus_PAYFAIL withInfo:@{@"test":@"test"}];
-    } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
-        [delegate onPayResult:PayStatus_PAYFAIL withInfo:@{@"test":@"test"}];
-        NSLog(@"........................................................fail");
-    }];
-    
-    
 }
 
 +(Boolean)handleOpenURL:(NSURL *)url withCompletion:(ThirdPayCompletion)complete{
+    
     [payController handleOpenURL:url withCompletion:complete];
-    
-    
-        return YES;
+    return YES;
 }
 
 

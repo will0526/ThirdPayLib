@@ -10,4 +10,7 @@
 
 @interface PNRViewController : UIViewController
 
+@property (nonatomic, assign)NSInteger viewType;
+
+
 @end

@@ -23,6 +23,7 @@
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		7DA7550E220BEEC762FEC902 /* Pods_ThirdPayLib_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6D7CB2900584269E436D98B /* Pods_ThirdPayLib_Tests.framework */; };
 		BE52C5821D5C669500408F71 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE52C5811D5C669500408F71 /* Launch Screen.storyboard */; };
+		BE82BDCE1D6FDF9900A69A0F /* PNRMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE82BDCD1D6FDF9900A69A0F /* PNRMainViewController.m */; };
 		BE82C3D11D5DA24400926EB5 /* ThirdPayLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE82C3D01D5DA24400926EB5 /* ThirdPayLib.framework */; };
 		BE82C3E71D5DC9F500926EB5 /* ThirdPayLib.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BE82C3E61D5DC9F500926EB5 /* ThirdPayLib.bundle */; };
 		BE88E5141D65A71B002CCD42 /* rsa_private_key.pem in Resources */ = {isa = PBXBuildFile; fileRef = BE88E5131D65A71B002CCD42 /* rsa_private_key.pem */; };
@@ -76,6 +77,8 @@
 		79DB0AEDD7781E31D12FCD5E /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		807C03805F310A7D7058F0CA /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		BE52C5811D5C669500408F71 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		BE82BDCC1D6FDF9900A69A0F /* PNRMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNRMainViewController.h; sourceTree = "<group>"; };
+		BE82BDCD1D6FDF9900A69A0F /* PNRMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNRMainViewController.m; sourceTree = "<group>"; };
 		BE82C3D01D5DA24400926EB5 /* ThirdPayLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ThirdPayLib.framework; path = "../../../../Library/Developer/Xcode/DerivedData/ThirdPayLib-bhqrauzgvzjyvmcuxbvksxtjrgii/Build/Products/Release-iphoneos/ThirdPayLib/ThirdPayLib.framework"; sourceTree = "<group>"; };
 		BE82C3E61D5DC9F500926EB5 /* ThirdPayLib.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ThirdPayLib.bundle; sourceTree = "<group>"; };
 		BE88E5131D65A71B002CCD42 /* rsa_private_key.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = rsa_private_key.pem; sourceTree = "<group>"; };
@@ -180,6 +183,8 @@
 			children = (
 				BEED301A1D62B0F40037534C /* PNRSuccessViewController.h */,
 				BEED301B1D62B0F40037534C /* PNRSuccessViewController.m */,
+				BE82BDCC1D6FDF9900A69A0F /* PNRMainViewController.h */,
+				BE82BDCD1D6FDF9900A69A0F /* PNRMainViewController.m */,
 				6003F59C195388D20070C39A /* PNRAppDelegate.h */,
 				6003F59D195388D20070C39A /* PNRAppDelegate.m */,
 				6003F5A5195388D20070C39A /* PNRViewController.h */,
@@ -461,6 +466,7 @@
 				6003F59E195388D20070C39A /* PNRAppDelegate.m in Sources */,
 				BEED301C1D62B0F40037534C /* PNRSuccessViewController.m in Sources */,
 				6003F5A7195388D20070C39A /* PNRViewController.m in Sources */,
+				BE82BDCE1D6FDF9900A69A0F /* PNRMainViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

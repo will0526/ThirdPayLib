@@ -29,7 +29,7 @@
 
 
 #define BASEURL @"https://pay.pnrtec.com/front/pay/onlineGateway.json"//URL
-
+#define SALT @"fTWFH3QRH7gSs3DE"
 
 #define weixinAppID     @"wx6688088896af3762"
 #define weixinAppSecret @"5a33445d8d2b4fc811de515a24bd39ba"

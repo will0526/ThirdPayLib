@@ -33,8 +33,25 @@
     self.title = @"测试";
     
     //测试数据
-    dataSource = @[@"用户号",@"商户号",@"订单号",@"商品名称",@"商品详情",@"订单金额",@"实付金额",@"红包",@"积分",@"备注",@"通知地址"];
-    defaultSource = @[@"0001",@"000002",@"20160806",@"苹果手机6s",@"苹果手机6s 正品行货 64G 假一赔十",@"5400",@"1",@"1",@"1",@"不支持货到付款",@"http://www.baidu.com"];
+    switch (_viewType) {
+        case 0:
+        {
+            dataSource = @[@"用户号",@"商户号",@"订单号"];
+            defaultSource = @[@"0001",@"000002",@"20160806"];
+        }
+            break;
+        case 1:
+        {
+            dataSource = @[@"用户号",@"商户号",@"商户订单号",@"商品名称",@"商品详情",@"订单金额(分)",@"实付金额(分)",@"红包",@"积分",@"备注",@"通知地址"];
+            defaultSource = @[@"0001",@"000002",@"20160806",@"苹果手机6s",@"苹果手机6s 正品行货 64G 假一赔十",@"5400",@"1",@"1",@"1",@"不支持货到付款",@"http://www.baidu.com"];
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
+    
     
     self.params = [[NSMutableDictionary alloc]init];
     
@@ -176,7 +193,22 @@
 -(UIButton *)bookOrder{
     if (_bookOrder == nil) {
         _bookOrder = [[UIButton alloc]initWithFrame:CGRectMake(self.view.frame.size.width/3, self.tableView.frame.size.height+self.tableView.frame.origin.y+10, self.view.frame.size.width/3, 40)];
-        [_bookOrder setTitle:@"下单" forState:UIControlStateNormal];
+        switch (_viewType) {
+            case 0:
+            {
+                [_bookOrder setTitle:@"查询" forState:UIControlStateNormal];
+            }
+                break;
+            case 1:
+            {
+                [_bookOrder setTitle:@"下单" forState:UIControlStateNormal];
+            }
+                break;
+                
+            default:
+                break;
+        }
+        
         [_bookOrder setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         
         [_bookOrder setBackgroundColor:[UIColor orangeColor]];
@@ -193,42 +225,31 @@
 
 -(void)bookOrder:(UIButton *)button{
     
-    NSDictionary *dict = [[NSDictionary alloc]initWithDictionary:self.params];
+    switch (_viewType) {
+        case 0:
+        {
+            NSDictionary *dict = [[NSDictionary alloc]initWithDictionary:self.params];
+            
+            [ThirdPay queryOrderInfo:dict ViewController:self Delegate:self];
+        }
+            break;
+        case 1:
+        {
+            NSDictionary *dict = [[NSDictionary alloc]initWithDictionary:self.params];
+            
+            [ThirdPay showPayTypeWithTradeInfo:dict ViewController:self Delegate:self];
+        }
+            break;
+            
+        default:
+            break;
+    }
     
     
-    [ThirdPay showPayTypeWithTradeInfo:dict ViewController:self Delegate:self];
     
 }
 
 
--(void)netTest{
-    
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    
-    NSString *urlStr = @"http://www.baidu.com";
-    manager.requestSerializer.timeoutInterval = 30;
-    NSDictionary *params = [[NSDictionary alloc]init];
-    [manager POST:urlStr parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-        NSLog(@"net is ok");
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"net is fail");
-    }];
-//    [manager POST:urlStr parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-//        NSLog(@"net is ok");
-//    } progress:^(NSProgress * _Nonnull uploadProgress) {
-//        NSLog(@"net is failed22222");
-//    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-//        NSLog(@"net is failed11");
-//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-//        NSLog(@"net is failed");
-//    }];
-    
-//
-    
-    
-}
 
 #pragma mark tableView start
 
@@ -263,19 +284,18 @@
     }
     cell.accessoryType = UITableViewCellAccessoryNone;
     
-    UILabel *textLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 5, 80, 40)];
+    UILabel *textLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 5, 100, 40)];
     textLabel.text = dataSource[indexPath.row];
     textLabel.textAlignment = NSTextAlignmentLeft;
     
     [cell addSubview:textLabel];
     
-    UITextField *textField = [[UITextField alloc]initWithFrame:CGRectMake(95, 5, 250, 40)];
+    UITextField *textField = [[UITextField alloc]initWithFrame:CGRectMake(110, 5, 250, 40)];
     textField.placeholder = dataSource[indexPath.row];
     textField.text = defaultSource[indexPath.row];
     textField.borderStyle = UITextBorderStyleRoundedRect;
     textField.delegate = self;
     textField.tag = indexPath.row;
-    NSString *main_images_dir_path = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"ThirdPayLib.bundle"];
     textField.leftView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"test"]];
     textField.leftViewMode = UITextFieldViewModeAlways;
     [cell addSubview:textField];
@@ -293,7 +313,7 @@
             break;
         case 2:
         {
-            [self.params setValue:textField.text forKey:@"merchantOrderNO"];
+            [self.params setValue:textField.text forKey:@"orderNO"];
         }
             break;
         case 3:
@@ -355,13 +375,19 @@
 
 -(void)onQueryOrder:(NSDictionary *)dict{
     
+    NSString *title = @"查询结果";
+    NSString *content = [self combieTitle:dict];
+    NSLog(@"content%@",content);
     
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:title message:content delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil, nil];
+    
+    [alert show];
 }
 
 -(void)onPayResult:(PayStatus)payStatus withInfo:(NSDictionary *)dict{
     NSLog(@"%u.......%@",payStatus,dict);
     NSString *title = @"";
-    NSString *content = [NSString stringWithFormat:@"%@",dict];
+    NSString *content = [self combieTitle:dict];
     NSLog(@"content%@",content);
     switch (payStatus) {
         case PayStatus_PAYSUCCESS:
@@ -399,6 +425,48 @@
     
     
 }
+
+
+-(NSString *)combieTitle:(NSDictionary *)dict{
+    NSArray *keys = [dict allKeys];
+    NSString *key;
+    NSString *retString;
+    for (key in keys)
+    {
+        if (retString == nil) {
+            
+            retString = [NSString stringWithFormat:@"\"%@\":\"%@\"",key,[dict valueForKey:key]];
+            [retString cStringUsingEncoding:NSUnicodeStringEncoding];
+        }else{
+            NSString *val = [NSString stringWithFormat:@",\"%@\":\"%@\"",key,[dict valueForKey:key]];
+            
+            retString = [retString stringByAppendingString:val];
+        }
+    }
+    
+    if (!retString) {
+        retString = @"";
+    }
+    retString = [self replaceUnicode:retString];
+    
+    
+    return retString;
+    
+}
+- (NSString *)replaceUnicode:(NSString *)unicodeStr
+{
+    
+    NSString *tempStr1 = [unicodeStr stringByReplacingOccurrencesOfString:@"\\u"withString:@"\\U"];
+    NSString *tempStr2 = [tempStr1 stringByReplacingOccurrencesOfString:@"\""withString:@"\\\""];
+    NSString *tempStr3 = [[@"\""stringByAppendingString:tempStr2] stringByAppendingString:@"\""];
+    NSData *tempData = [tempStr3 dataUsingEncoding:NSUTF8StringEncoding];
+    NSString* returnStr = [NSPropertyListSerialization propertyListFromData:tempData
+                                                           mutabilityOption:NSPropertyListImmutable
+                                                                     format:NULL
+                                                           errorDescription:NULL];
+    return [returnStr stringByReplacingOccurrencesOfString:@"\\r\\n"withString:@"\n"];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
