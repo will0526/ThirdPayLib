@@ -260,7 +260,7 @@ withOptionalAnimation:(MOPHUDCenterHUDType)hudtype
 +(NSMutableDictionary *)combileParam:(NSMutableDictionary *) dict{
     
     NSString *textStr = [self Base64Params:dict];
-    EncodeUnEmptyStrObjctToDic(dict, textStr, @"params");
+    [dict setObject:textStr forKey:@"params"];
     NSString *sign = [self getParamSign:dict];
     EncodeUnEmptyStrObjctToDic(dict, sign, @"sign");
     NSLog(@"dict........%@",dict);

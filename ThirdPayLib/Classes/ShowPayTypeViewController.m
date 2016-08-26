@@ -54,6 +54,10 @@
     NSString *OrderString;
     NSMutableDictionary *_resultDict;
     BOOL isCancel;
+    
+    UIAlertView *cancelAlert;
+    UIAlertView *payingAlert;
+    
 }
 
 
@@ -168,8 +172,8 @@
 
 -(void)gotoPay{
     
-    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"支付中。。。" message:nil delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-    [alert show];
+    payingAlert = [[UIAlertView alloc]initWithTitle:@"支付中。。。" message:nil delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+//    [payingAlert show];
     
     switch (selectedIndex) {
         case 0:
@@ -203,9 +207,9 @@
 }
 
 -(void)Back{
-    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"取消支付" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    cancelAlert = [[UIAlertView alloc]initWithTitle:@"取消支付" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
     isCancel = YES;
-    [alert show];
+    [cancelAlert show];
     
 }
 
@@ -241,7 +245,8 @@
 -(UIButton *)payButton{
     if (_payButton == nil) {
         _payButton = [[UIButton alloc]initWithFrame:CGRectMake(30, self.view.height - 70, self.view.width - 60, 50)];
-        [_payButton setTitle:[NSString stringWithFormat:@"确认支付￥%@",self.payAmount] forState:UIControlStateNormal];
+        NSString *money = [self moneyTran:self.payAmount ownType:1];
+        [_payButton setTitle:[NSString stringWithFormat:@"确认支付￥%@元",money] forState:UIControlStateNormal];
         [_payButton setBackgroundImage:[UIImage imageWithColor:HEX_RGB(0xff9e05)] forState:UIControlStateNormal];
         [_payButton setBackgroundImage:[UIImage imageWithColor:HEX_RGB(0xff9e05)] forState:UIControlStateHighlighted];
         _payButton.layer.cornerRadius = 3.5;
@@ -305,7 +310,8 @@
         payAmountLabel = [[UILabel alloc]initWithFrame:CGRectMake(goodsNameLabel.left, goodsNameLabel.bottom, goodsNameLabel.width, goodsNameLabel.height)];
         payAmountLabel.textAlignment = NSTextAlignmentLeft;
         payAmountLabel.font = [UIFont systemFontOfSize:16];
-        payAmountLabel.text = [NSString stringWithFormat:@"订单金额：￥%@",self.payAmount];
+        NSString *money = [self moneyTran:self.payAmount ownType:1];
+        payAmountLabel.text = [NSString stringWithFormat:@"订单金额：￥%@元",money];
         [_headView addSubview:payAmountLabel];
         
         
@@ -481,6 +487,7 @@
 }
 
 -(Boolean)handleOpenURL:(NSURL *)url withCompletion:(ThirdPayCompletion )complete{
+    [payingAlert setHidden:YES];
     if ([url.host isEqualToString:@"safepay"]) {
         
         
@@ -581,6 +588,32 @@
     
 }
 
+-(NSString *)moneyTran:(NSString *)yM ownType:(int)type{
+    if (!yM) return @"0";
+    NSNumberFormatter *nf = [[NSNumberFormatter alloc] init];
+    
+    
+    if(type==0){
+        
+        if ([yM doubleValue]>DBL_MAX) {
+            return @"";
+        }
+        
+        nf.positiveFormat = @"0";
+        double h=(double) ([yM doubleValue])*100;
+        return  [nf stringFromNumber: [NSNumber numberWithDouble:h]];
+    }
+    else if(type==1){
+        double h=(double) ([yM doubleValue])/100;
+        nf.positiveFormat = @"0.00";
+        return [nf stringFromNumber: [NSNumber numberWithDouble:h]];
+    }else if (type == 2){
+        double h=(double) ([yM doubleValue])/100;
+        nf.positiveFormat = @"0";
+        return [nf stringFromNumber: [NSNumber numberWithDouble:h]];
+    }
+    else return @"";
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
