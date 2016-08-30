@@ -72,7 +72,7 @@
     payTypeIcon = @[@"YipayIcon",@"weixinIcon",@"alipayIcon",@"baiIcon"];
     selectedIndex = 2;
     _resultDict = [[NSMutableDictionary alloc]init];
-//    [self bookOrder];
+    
     
     [self.view addSubview:self.tableView];
     
@@ -118,8 +118,7 @@
     request.totalAmount = self.totalAmount;
     request.payAmount = self.payAmount;
     request.memberPoints = self.memberPoints;
-    request.transType = @"009";
-    request.payType =@"003";
+    
     
     
     BaseResponse *response = [[BaseResponse alloc]init];
@@ -132,8 +131,6 @@
         NSString *orderStringbase64 = EncodeStringFromDic(response.jsonDict, @"data");
         
         NSData *base64Data = [NSData dataWithBase64EncodedString:orderStringbase64];
-        
-        NSLog(@"base64Data%@",base64Data);
         
         NSString *orderStr = [[NSString alloc]initWithData:base64Data encoding:NSUTF8StringEncoding];
         

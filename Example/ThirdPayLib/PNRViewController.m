@@ -32,6 +32,12 @@
     
     self.title = @"测试";
     
+    NSDate *datenow = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyMMddHHmmss"];
+    NSString *merchantOrder = [dateFormatter stringFromDate:datenow];
+    
+    
     //测试数据
     switch (_viewType) {
         case 0:
@@ -43,7 +49,7 @@
         case 1:
         {
             dataSource = @[@"用户号",@"商户号",@"商户订单号",@"商品名称",@"商品详情",@"订单金额(分)",@"实付金额(分)",@"红包",@"积分",@"备注",@"通知地址"];
-            defaultSource = @[@"0001",@"000002",@"20160806",@"苹果手机6s",@"苹果手机6s 正品行货 64G 假一赔十",@"5400",@"1",@"1",@"1",@"不支持货到付款",@"http://www.baidu.com"];
+            defaultSource = @[@"0001",@"000002",merchantOrder,@"苹果手机6s",@"苹果手机6s 正品行货 64G 假一赔十",@"5400",@"1",@"1",@"1",@"不支持货到付款",@"http://www.baidu.com"];
         }
             break;
             

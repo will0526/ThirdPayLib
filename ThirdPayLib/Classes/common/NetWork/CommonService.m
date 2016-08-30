@@ -132,7 +132,7 @@ withOptionalAnimation:(MOPHUDCenterHUDType)hudtype
             
 //            NSString *urlStr = [NSString stringWithFormat:@"%@%@",BASEURL,@""];
             manager.requestSerializer.timeoutInterval = timeout;
-            NSLog(@"params............%@",request.requestParamDic);
+            NSLog(@"paramsStr............%@",request.requestParamDic);
             
             [manager POST:BASEURL parameters:request.requestParamDic success:^(AFHTTPRequestOperation *operation, id responseObject) {
 //                NSLog(@"JSON: %@", responseObject);
@@ -263,8 +263,6 @@ withOptionalAnimation:(MOPHUDCenterHUDType)hudtype
     [dict setObject:textStr forKey:@"params"];
     NSString *sign = [self getParamSign:dict];
     EncodeUnEmptyStrObjctToDic(dict, sign, @"sign");
-    NSLog(@"dict........%@",dict);
-    
     
     return dict;
 
@@ -277,7 +275,7 @@ withOptionalAnimation:(MOPHUDCenterHUDType)hudtype
     retString = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:dict options:0 error:nil] encoding:NSUTF8StringEncoding];
     NSData *paramsBase64Data = [[retString dataUsingEncoding:NSUTF8StringEncoding]base64EncodedDataWithOptions:0];
     NSString *paramsDataStr = [NSString stringWithUTF8String:[paramsBase64Data bytes]];
-    NSLog(@"retString............%@",paramsDataStr);
+    
     return paramsDataStr;
     
 }
@@ -307,11 +305,12 @@ withOptionalAnimation:(MOPHUDCenterHUDType)hudtype
         }
     }
     
-    [retString stringByAppendingString:SALT];
-    
+    retString = [NSString stringWithFormat:@"%@%@",retString,SALT];
+    NSLog(@"retString............%@",retString);
     if (!retString) {
         retString = @"";
     }
+    
     retString = [[retString md5]uppercaseString];
     
     NSLog(@"retString............%@",retString);

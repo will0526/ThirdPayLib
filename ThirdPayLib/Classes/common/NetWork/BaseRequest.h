@@ -16,7 +16,6 @@
 @property (nonatomic, strong) NSString *terminalNo;
 @property (nonatomic, strong) NSString *batchNo;
 @property (nonatomic, strong) NSString *transType;
-@property (nonatomic, strong) NSString *payType;
 
 -(NSDictionary *)dtoToDictionary;
 @end
