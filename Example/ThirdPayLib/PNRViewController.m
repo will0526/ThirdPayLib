@@ -11,7 +11,7 @@
 #import <AFNetworking/AFNetworking.h>
 #import <ThirdPayLib/ThirdPay.h>
 
-@interface PNRViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,ThirdPayDelegate>
+@interface PNRViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,ThirdPayDelegate,UIPickerViewDelegate,UIPickerViewDataSource>
 
 @property (nonatomic, strong)UITableView * tableView;
 @property (nonatomic, strong)UITableView * backgroundTableview;
@@ -25,7 +25,11 @@
 {
     NSArray *dataSource;
     NSArray *defaultSource;
+    NSArray *pickerData;
     UIView *backView;
+    UILabel *payTypeLabel;
+    PayType paytype;
+    UIPickerView *_pickerView;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -43,13 +47,28 @@
         case 0:
         {
             dataSource = @[@"用户号",@"商户号",@"订单号"];
-            defaultSource = @[@"0001",@"000002",@"20160806"];
+            defaultSource = @[@"0001",@"000000000000001",@"20160831095000000102"];
         }
             break;
         case 1:
         {
             dataSource = @[@"用户号",@"商户号",@"商户订单号",@"商品名称",@"商品详情",@"订单金额(分)",@"实付金额(分)",@"红包",@"积分",@"备注",@"通知地址"];
-            defaultSource = @[@"0001",@"000002",merchantOrder,@"苹果手机6s",@"苹果手机6s 正品行货 64G 假一赔十",@"5400",@"1",@"1",@"1",@"不支持货到付款",@"http://www.baidu.com"];
+            defaultSource = @[@"0001",@"000000000000001",merchantOrder,@"苹果手机6s",@"苹果手机6s 正品行货 64G 假一赔十",@"5400",@"1",@"0",@"0",@"不支持货到付款",@"http://www.baidu.com"];
+        }
+            break;
+        case 2:
+        {
+            dataSource = @[@"用户号",@"商户号",@"商户订单号",@"商品名称",@"商品详情",@"订单金额(分)",@"实付金额(分)",@"红包",@"积分",@"备注",@"支付方式"];
+            pickerData = @[@"支付宝",@"微信",@"翼支付",@"Apple Pay",@"百度钱包"];
+            defaultSource = @[@"0001",@"000000000000001",merchantOrder,@"苹果手机6s",@"苹果手机6s 正品行货 64G 假一赔十",@"5400",@"1",@"0",@"0",@"不支持货到付款",@""];
+            _pickerView = [[UIPickerView alloc]initWithFrame:CGRectMake(0, self.view.frame.size.height - 260, self.view.frame.size.width, 260)];
+            _pickerView.dataSource = self;
+            _pickerView.delegate = self;
+            _pickerView.showsSelectionIndicator = YES;
+//            _pickerView.hidden = YES;
+            _pickerView.frame = CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width, 260);
+            _pickerView.backgroundColor = [UIColor lightGrayColor];
+            
         }
             break;
             
@@ -64,6 +83,9 @@
     backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-64)];
     [backView addSubview:self.tableView];
     [backView addSubview:self.bookOrder];
+    
+    [backView addSubview:_pickerView];
+    
     
     [self.bookOrder addTarget:self action:@selector(bookOrder:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -131,7 +153,22 @@
             break;
         case 2:
         {
-            [self.params setValue:textField.text forKey:@"merchantOrderNO"];
+            switch (_viewType) {
+                case 0:
+                {
+                    [self.params setValue:textField.text forKey:@"orderNO"];
+                }
+                    break;
+                case 1:
+                {
+                    [self.params setValue:textField.text forKey:@"merchantOrderNO"];
+                }
+                    break;
+                    
+                default:
+                    break;
+            }
+            
         }
             break;
         case 3:
@@ -156,13 +193,24 @@
             break;
         case 7:
         {
-            [self.params setValue:textField.text forKey:@"memo"];
+            [self.params setValue:textField.text forKey:@"redPocket"];
         }
             break;
         case 8:
         {
-            [self.params setValue:textField.text forKey:@"notifyURL"];
+            [self.params setValue:textField.text forKey:@"point"];
         }
+            break;
+        case 9:
+        {
+            [self.params setValue:textField.text forKey:@"memo"];
+        }
+            break;
+        case 10:
+        {
+            [self.params setValue:@"http\\:www.baidu.com" forKey:@"notifyURL"];
+        }
+            break;
             break;
         default:
             break;
@@ -210,6 +258,11 @@
                 [_bookOrder setTitle:@"下单" forState:UIControlStateNormal];
             }
                 break;
+            case 2:
+            {
+                [_bookOrder setTitle:@"立即支付" forState:UIControlStateNormal];
+            }
+                break;
                 
             default:
                 break;
@@ -230,6 +283,8 @@
 }
 
 -(void)bookOrder:(UIButton *)button{
+    [self.view endEditing:YES];
+    [self.params setValue:@"ThirdPayDemo" forKey:@"appSchemeStr"];
     
     switch (_viewType) {
         case 0:
@@ -244,6 +299,13 @@
             NSDictionary *dict = [[NSDictionary alloc]initWithDictionary:self.params];
             
             [ThirdPay showPayTypeWithTradeInfo:dict ViewController:self Delegate:self];
+        }
+            break;
+        case 2:
+        {
+            NSDictionary *dict = [[NSDictionary alloc]initWithDictionary:self.params];
+            
+            [ThirdPay payWithTradeInfo:dict ViewController:self Delegate:self PayType:PayType_Alipay];
         }
             break;
             
@@ -283,8 +345,10 @@
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
     NSString static *identify = @"datasoure";
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    
     if (!cell) {
         cell= [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identify];
     }
@@ -293,69 +357,108 @@
     UILabel *textLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 5, 100, 40)];
     textLabel.text = dataSource[indexPath.row];
     textLabel.textAlignment = NSTextAlignmentLeft;
-    
     [cell addSubview:textLabel];
     
-    UITextField *textField = [[UITextField alloc]initWithFrame:CGRectMake(110, 5, 250, 40)];
-    textField.placeholder = dataSource[indexPath.row];
-    textField.text = defaultSource[indexPath.row];
-    textField.borderStyle = UITextBorderStyleRoundedRect;
-    textField.delegate = self;
-    textField.tag = indexPath.row;
-    textField.leftView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"test"]];
-    textField.leftViewMode = UITextFieldViewModeAlways;
-    [cell addSubview:textField];
-    
-    switch (textField.tag) {
-        case 0:
-        {
-            [self.params setValue:textField.text forKey:@"memberNO"];
+    if (_viewType == 2 && indexPath.row == 10 ) {
+        
+        payTypeLabel = [[UILabel alloc]initWithFrame:CGRectMake(110, 5, 250, 40)];
+        payTypeLabel.text = @"支付宝";
+        paytype = PayType_Alipay;
+        payTypeLabel.textAlignment = NSTextAlignmentLeft;
+        [cell addSubview:payTypeLabel];
+        UIButton *paytypeSelect = [[UIButton alloc]initWithFrame:CGRectMake(110, 5, 250, 40)];
+        [paytypeSelect setBackgroundColor:[UIColor clearColor]];
+        [paytypeSelect addTarget:self action:@selector(pickerViewShow) forControlEvents:UIControlEventTouchUpInside];
+        [cell addSubview:paytypeSelect];
+       
+        [self.params setValue:@"http\\:www.baidu.com" forKey:@"notifyURL"];
+    }else{
+        UITextField *textField = [[UITextField alloc]initWithFrame:CGRectMake(110, 5, 250, 40)];
+        textField.placeholder = dataSource[indexPath.row];
+        textField.text = defaultSource[indexPath.row];
+        textField.borderStyle = UITextBorderStyleRoundedRect;
+        textField.delegate = self;
+        textField.tag = indexPath.row;
+        textField.leftView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"test"]];
+        textField.leftViewMode = UITextFieldViewModeAlways;
+        [cell addSubview:textField];
+        
+        switch (textField.tag) {
+            case 0:
+            {
+                [self.params setValue:textField.text forKey:@"memberNO"];
+            }
+                break;
+            case 1:
+            {
+                [self.params setValue:textField.text forKey:@"merchantNO"];
+            }
+                break;
+            case 2:
+            {
+                switch (_viewType) {
+                    case 0:
+                    {
+                        [self.params setValue:textField.text forKey:@"orderNO"];
+                    }
+                        break;
+                    case 1:
+                    case 2:
+                    {
+                        [self.params setValue:textField.text forKey:@"merchantOrderNO"];
+                    }
+                        break;
+                        
+                    default:
+                        break;
+                }
+            }
+                break;
+            case 3:
+            {
+                [self.params setValue:textField.text forKey:@"goodsName"];
+            }
+                break;
+            case 4:
+            {
+                [self.params setValue:textField.text forKey:@"goodsDetail"];
+            }
+                break;
+            case 5:
+            {
+                [self.params setValue:textField.text forKey:@"totalAmount"];
+            }
+                break;
+            case 6:
+            {
+                [self.params setValue:textField.text forKey:@"payAmount"];
+            }
+                break;
+            case 7:
+            {
+                [self.params setValue:textField.text forKey:@"redPocket"];
+            }
+                break;
+            case 8:
+            {
+                [self.params setValue:textField.text forKey:@"point"];
+            }
+                break;
+            case 9:
+            {
+                [self.params setValue:textField.text forKey:@"memo"];
+            }
+                break;
+            case 10:
+            {
+                [self.params setValue:@"http\\:www.baidu.com" forKey:@"notifyURL"];
+            }
+                break;
+            default:
+                break;
         }
-            break;
-        case 1:
-        {
-            [self.params setValue:textField.text forKey:@"merchantNO"];
-        }
-            break;
-        case 2:
-        {
-            [self.params setValue:textField.text forKey:@"orderNO"];
-        }
-            break;
-        case 3:
-        {
-            [self.params setValue:textField.text forKey:@"goodsName"];
-        }
-            break;
-        case 4:
-        {
-            [self.params setValue:textField.text forKey:@"goodsDetail"];
-        }
-            break;
-        case 5:
-        {
-            [self.params setValue:textField.text forKey:@"totalAmount"];
-        }
-            break;
-        case 6:
-        {
-            [self.params setValue:textField.text forKey:@"payAmount"];
-        }
-            break;
-        case 7:
-        {
-            [self.params setValue:textField.text forKey:@"memo"];
-        }
-            break;
-        case 8:
-        {
-            [self.params setValue:textField.text forKey:@"notifyURL"];
-        }
-            break;
-        default:
-            break;
     }
-    [self.params setValue:@"ThirdPayDemo" forKey:@"appSchemeStr"];
+    
     
     cell.backgroundColor = [UIColor whiteColor];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -373,6 +476,87 @@
 
 
 #pragma mark tableView end
+
+#pragma mark pickerView start
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
+
+    return 1;
+}
+
+// returns the # of rows in each component..
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
+    return [pickerData count];
+}
+
+- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component{
+    return 40;
+}
+
+-(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    return pickerData[row];
+    
+}
+
+-(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
+
+    payTypeLabel.text = pickerData[row];
+    switch (row) {
+        case 0:
+        {
+            paytype = PayType_Alipay;
+        }
+            
+            break;
+        case 1:
+        {
+            paytype = PayType_Alipay;
+        }
+            
+            break;
+        case 2:
+        {
+            paytype = PayType_Alipay;
+        }
+            
+            break;
+        case 3:
+        {
+            paytype = PayType_Alipay;
+        }
+            
+            break;
+        case 4:
+        {
+            paytype = PayType_Alipay;
+        }
+            
+            break;
+            
+        default:
+            break;
+    }
+    
+    [UIView animateWithDuration:0.5 animations:^{
+        _pickerView.frame = CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width, 260);
+    }];
+    
+}
+
+-(void)pickerViewShow{
+//    _pickerView.hidden = NO;
+    
+    [UIView animateWithDuration:0.5 animations:^{
+        _pickerView.frame = CGRectMake(0, self.view.frame.size.height-260, self.view.frame.size.width, 260);
+    }];
+}
+
+
+
+
+#pragma mark pickerView end
+
 
 
 
@@ -444,7 +628,7 @@
             retString = [NSString stringWithFormat:@"\"%@\":\"%@\"",key,[dict valueForKey:key]];
             [retString cStringUsingEncoding:NSUnicodeStringEncoding];
         }else{
-            NSString *val = [NSString stringWithFormat:@",\"%@\":\"%@\"",key,[dict valueForKey:key]];
+            NSString *val = [NSString stringWithFormat:@",\n\"%@\":\"%@\"",key,[dict valueForKey:key]];
             
             retString = [retString stringByAppendingString:val];
         }

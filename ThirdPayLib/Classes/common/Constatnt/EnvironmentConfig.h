@@ -13,6 +13,7 @@
 //测试环境
 #ifdef kRelease
 
+#define DDLog(string, object) 
 
 
 
@@ -27,6 +28,7 @@
 #define VERSION @"1.0.0"//APP版本
 #define APIVER @"1.0"//api版本
 
+#define DDLog(string, object) NSLog(@"%@..........%@",string,object)
 
 #define BASEURL @"https://pay.pnrtec.com/front/pay/onlineGateway.json"//URL
 #define SALT @"fTWFH3QRH7gSs3DE"

@@ -44,10 +44,15 @@
 @property(nonatomic,strong)NSString *redPocket;
 @property(nonatomic,strong)NSString *memberPoints;
 @property(nonatomic,strong)NSString *appScheme;
+@property(nonatomic,strong)NSString *viewType;
+
+@property(nonatomic, assign)PayType payType;
 
 
 
 @property(nonatomic, weak)id<ThirdPayDelegate> thirdPayDelegate;
+
+-(void)bookOrder;
 
 -(Boolean)handleOpenURL:(NSURL *)url withCompletion:(ThirdPayCompletion )complete;
 

@@ -28,8 +28,37 @@
     
     EncodeUnEmptyStrObjctToDic(self.requestParamDic, self.merchantNO, @"merchantNo");
     
+    NSString *payTypeStr = @"";
+    switch (self.payType) {
+        case PayType_Alipay:
+        {
+            payTypeStr = @"0003";
+        }
+            break;
+        case PayType_WeichatPay:
+        {
+            payTypeStr = @"";
+        }
+            break;
+        case PayType_BestPay:
+        {
+            payTypeStr = @"";
+        }
+            break;
+        case PayType_YiPay:
+        {
+            payTypeStr = @"";
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
     EncodeUnEmptyStrObjctToDic(self.requestParamDic, @"0009", @"transType");
-    EncodeUnEmptyStrObjctToDic(self.requestParamDic, @"0003", @"payType");
+    
+    
+    EncodeUnEmptyStrObjctToDic(self.requestParamDic, payTypeStr, @"payType");
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
     
     
@@ -46,32 +75,7 @@
     EncodeUnEmptyStrObjctToDic(dic, ipAdrress, @"ip");
     EncodeUnEmptyStrObjctToDic(dic, [NSString stringWithFormat:@"%@%@",device,OS], @"osver");
     
-    NSString *payTypeStr = @"";
-//    switch (self.payType) {
-//        case PayType_Alipay:
-//        {
-//            payTypeStr = @"";
-//        }
-//            break;
-//        case PayType_WeichatPay:
-//        {
-//            payTypeStr = @"";
-//        }
-//            break;
-//        case PayType_BestPay:
-//        {
-//            payTypeStr = @"";
-//        }
-//            break;
-//        case PayType_YiPay:
-//        {
-//            payTypeStr = @"";
-//        }
-//            break;
-//            
-//        default:
-//            break;
-//    }
+    
     
     EncodeUnEmptyStrObjctToDic(dic, self.payAmount, @"tradeAmount");
     EncodeUnEmptyStrObjctToDic(dic, self.tradeCurrency, @"tradeCurrency");

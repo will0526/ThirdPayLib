@@ -24,32 +24,17 @@
 
 @implementation ShowPayTypeViewController
 {
-    NSString *service;
-    NSString *it_b_pay;
-    NSString *_input_charset;
-    
-    NSString * partner;// =  "2088101568358171";
-    NSString * seller_id;
-    NSString * out_trade_no;
-    NSString * subject;
-    NSString * body;
-    NSString * total_fee;
-    NSString * notify_url;
-    
-    NSString * payment_type;
-    NSString * sign;
-    NSString * sign_type;
     
     NSArray * dataSource;
     NSArray * payTypeIcon;
     int selectedIndex;
     
-    
     UILabel *goodsNameLabel;
     UILabel *payAmountLabel;
     UILabel *orderNOLabel;
     UILabel *memoLabel;
-    
+    UILabel *redPocketLabel;
+    UILabel *pointLabel;
     PayStatus payStatus;
     NSString *OrderString;
     NSMutableDictionary *_resultDict;
@@ -71,6 +56,7 @@
     dataSource = @[@"翼支付",@"微信支付",@"支付宝支付",@"百度钱包支付"];
     payTypeIcon = @[@"YipayIcon",@"weixinIcon",@"alipayIcon",@"baiIcon"];
     selectedIndex = 2;
+    self.payType = PayType_Alipay;
     _resultDict = [[NSMutableDictionary alloc]init];
     
     
@@ -80,37 +66,13 @@
     [self.view addSubview:self.payButton];
     
 }
-- (NSString *)formatPrivateKey:(NSString *)privateKey {
-    const char *pstr = [privateKey UTF8String];
-    int len = (int)[privateKey length];
-    NSMutableString *result = [NSMutableString string];
-    [result appendString:@"-----BEGIN PRIVATE KEY-----\n"];
-    int index = 0;
-    int count = 0;
-    while (index < len) {
-        char ch = pstr[index];
-        if (ch == '\r' || ch == '\n') {
-            ++index;
-            continue;
-        }
-        [result appendFormat:@"%c", ch];
-        if (++count == 79)
-        {
-            [result appendString:@"\n"];
-            count = 0;
-        }
-        index++;
-    }
-    [result appendString:@"\n-----END PRIVATE KEY-----"];
-    return result;
-}
 
 -(void)bookOrder{
     
     BookOrderRequest *request = [[BookOrderRequest alloc]init];
     request.merchantNO = self.merchantNO;
     request.merchantOrderNO = self.merchantOrderNO;
-//    request.payType = sel
+    
     request.memberNO = self.memberNO;
     request.memo = self.memo;
     request.goodsName = self.goodsName;
@@ -118,7 +80,9 @@
     request.totalAmount = self.totalAmount;
     request.payAmount = self.payAmount;
     request.memberPoints = self.memberPoints;
+    request.redPocket = self.redPocket;
     
+    request.payType = self.payType;
     
     
     BaseResponse *response = [[BaseResponse alloc]init];
@@ -128,21 +92,10 @@
                                    showBackground:YES];
     [CommonService beginService:request response:response success:^(BaseResponse *response) {
         NSLog(@"response.json......%@",response.jsonDict);
-        NSString *orderStringbase64 = EncodeStringFromDic(response.jsonDict, @"data");
+        NSDictionary *data = EncodeDicFromDic(response.jsonDict, @"data");
         
-        NSData *base64Data = [NSData dataWithBase64EncodedString:orderStringbase64];
-        
-        NSString *orderStr = [[NSString alloc]initWithData:base64Data encoding:NSUTF8StringEncoding];
-        
-        NSString *jsonStr = [orderStr URLDecoding];
-        
-        NSData* jsonData = [jsonStr dataUsingEncoding:NSUTF8StringEncoding];
-//        解析json数据，使用系统方法 JSONObjectWithData:  options: error:
-        NSDictionary* dic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:nil];
-        NSLog(@"dic..........%@",dic);
-        
-        
-        OrderString = EncodeStringFromDic(dic, @"transMsg");
+        self.orderNO = EncodeStringFromDic(data, @"ippOrderNo");
+        OrderString = EncodeStringFromDic(data, @"transMsg");
         [self gotoPay];
         [[MOPHUDCenter shareInstance]removeHUD];
     } failed:^(NSString *errorCode, NSString *errorMsg) {
@@ -172,26 +125,32 @@
     payingAlert = [[UIAlertView alloc]initWithTitle:@"支付中。。。" message:nil delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
 //    [payingAlert show];
     
-    switch (selectedIndex) {
-        case 0:
-        {
-            
-            
-        }
-            break;
-        case 1:
-        {
-            
-        }
-            break;
-        case 2:
+    switch (self.payType) {
+        case PayType_Alipay:
         {
             [self alipay];
         }
             break;
-        case 3:
+        case PayType_YiPay:
         {
             
+            
+        }
+            break;
+        case PayType_WeichatPay:
+        {
+            
+        }
+            break;
+        
+        case PayType_BestPay:
+        {
+            
+        }
+            break;
+        case PayType_ApplePay:
+        {
+            [self alipay];
         }
             break;
             
@@ -260,7 +219,7 @@
     
     [self bookOrder];
     
-    //    @[@"翼支付",@"微信",@"支付宝",@"百度钱包"];
+    
     switch (selectedIndex) {
         case 0:
         {
@@ -325,11 +284,33 @@
             memoLabel.text = [NSString stringWithFormat:@"备        注：%@",self.memo];
             [_headView addSubview:memoLabel];
             
-            _headView.frame = CGRectMake(0, 0, self.view.width, memoLabel.bottom+10);
+        }else{
+            memoLabel = [[UILabel alloc]initWithFrame:CGRectMake(payAmountLabel.left, orderNOLabel.bottom, payAmountLabel.width, 0)];
         }
+        if (!IsStrEmpty(self.redPocket)&&[self.redPocket intValue]>0) {
+            redPocketLabel = [[UILabel alloc]initWithFrame:CGRectMake(payAmountLabel.left, memoLabel.bottom, payAmountLabel.width, goodsNameLabel.height)];
+            redPocketLabel.textAlignment = NSTextAlignmentLeft;
+            redPocketLabel.font = [UIFont systemFontOfSize:16];
+            redPocketLabel.text = [NSString stringWithFormat:@"红包抵扣：%f",[self.redPocket intValue]];
+            [_headView addSubview:redPocketLabel];
+            
+            _headView.frame = CGRectMake(0, 0, self.view.width, redPocketLabel.bottom+10);
+        }else{
+            redPocketLabel = [[UILabel alloc]initWithFrame:CGRectMake(payAmountLabel.left, memoLabel.bottom, payAmountLabel.width, 0)];
+        }
+        if (!IsStrEmpty(self.memberPoints)&&[self.memberPoints intValue]>0) {
+            pointLabel = [[UILabel alloc]initWithFrame:CGRectMake(payAmountLabel.left, redPocketLabel.bottom, payAmountLabel.width, goodsNameLabel.height)];
+            pointLabel.textAlignment = NSTextAlignmentLeft;
+            pointLabel.font = [UIFont systemFontOfSize:16];
+            pointLabel.text = [NSString stringWithFormat:@"积分抵扣：%f",[self.memberPoints intValue]];
+            [_headView addSubview:pointLabel];
+            
+            _headView.frame = CGRectMake(0, 0, self.view.width, redPocketLabel.bottom+10);
+        }else{
+            pointLabel = [[UILabel alloc]initWithFrame:CGRectMake(payAmountLabel.left, redPocketLabel.bottom, payAmountLabel.width, 0)];
+        }
+        
     }
-    
-    
     return _headView;
     
 }
@@ -341,7 +322,6 @@
         self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.height) style:UITableViewStylePlain];
         self.tableView.dataSource = self;
         self.tableView.delegate = self;
-//        self.tableView.scrollEnabled = NO;
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     }
     return _tableView;
@@ -401,6 +381,31 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     selectedIndex = indexPath.row;
+    switch (selectedIndex) {
+        case 0:
+        {
+            
+        }
+            break;
+        case 1:
+        {
+            
+        }
+            break;
+        case 2:
+        {
+            self.payType = PayType_Alipay;
+            
+        }
+            break;
+        case 3:
+        {
+            
+        }
+            break;
+        default:
+            break;
+    }
     [tableView reloadData];
    
 }
@@ -419,7 +424,7 @@
         [self tradeReturn];
         return;
     }
-     NSLog(@"OrderString%@",self.appScheme);
+
     @try{
         [[[UIApplication sharedApplication] windows] objectAtIndex:0].hidden = NO;
         [[AlipaySDK defaultService] payOrder:OrderString fromScheme:self.appScheme callback:^(NSDictionary *result) {
@@ -453,7 +458,7 @@
         }];
     }
     @catch(NSException *exception) {
-        NSLog(@"exception:%@", exception);
+        DDLog(@"exception",exception);
     }
     @finally {
         
@@ -537,7 +542,7 @@
     EncodeUnEmptyStrObjctToDic(dict, self.totalAmount, @"totalAmount");
     EncodeUnEmptyStrObjctToDic(dict, self.payAmount, @"payAmount");
     EncodeUnEmptyStrObjctToDic(dict, self.redPocket, @"redPocket");
-    EncodeUnEmptyStrObjctToDic(dict, self.orderNO, @"orderNO");
+    EncodeUnEmptyStrObjctToDic(dict, self.orderNO, @"ippOrderNO");
     
     return dict;
     
@@ -551,7 +556,10 @@
     if (self.thirdPayDelegate && [self.thirdPayDelegate respondsToSelector:@selector(onPayResult:withInfo:)]) {
         [self.thirdPayDelegate onPayResult:payStatus withInfo:_resultDict];
     }
-    [self.navigationController popViewControllerAnimated:YES];
+    if (![_viewType isEqualToString:@"NOVIEW"]) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    
 }
 
 

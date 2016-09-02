@@ -12,7 +12,7 @@
 
 @property (nonatomic,strong)UIButton *queryButton;
 @property (nonatomic,strong)UIButton *orderButton;
-
+@property (nonatomic,strong)UIButton *orderButton2;
 @end
 
 @implementation PNRMainViewController
@@ -24,7 +24,7 @@
     
     [self.view addSubview:self.queryButton];
     [self.view addSubview:self.orderButton];
-    
+    [self.view addSubview:self.orderButton2];
     
     // Do any additional setup after loading the view.
 }
@@ -50,8 +50,6 @@
     
 }
 
-
-
 -(UIButton *)orderButton{
     if (_orderButton == nil) {
         _orderButton = [[UIButton alloc]initWithFrame:CGRectMake(self.view.frame.size.width/6, 170, self.view.frame.size.width*2/3, 40)];
@@ -67,9 +65,28 @@
     }
     
     return _orderButton;
+}
+
+
+-(UIButton *)orderButton2{
+    if (_orderButton2 == nil) {
+        _orderButton2 = [[UIButton alloc]initWithFrame:CGRectMake(self.view.frame.size.width/6, 240, self.view.frame.size.width*2/3, 40)];
+        [_orderButton2 setTitle:@"下单（无页面）" forState:UIControlStateNormal];
+        [_orderButton2 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        
+        [_orderButton2 setBackgroundColor:[UIColor orangeColor]];
+        
+        _orderButton2.clipsToBounds = YES;
+        _orderButton2.layer.cornerRadius = 20;
+        _orderButton2.tag = 2;
+        [_orderButton2 addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    
+    return _orderButton2;
     
     
 }
+
 
 
 -(void)buttonPressed:(UIButton *)button{

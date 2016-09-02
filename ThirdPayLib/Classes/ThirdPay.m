@@ -66,8 +66,12 @@ static ShowPayTypeViewController *payController;
 //下单
 +(void)payWithTradeInfo:(NSDictionary *)tradeInfo ViewController:(UIViewController *)controller Delegate:(id<ThirdPayDelegate>)delegate PayType:(PayType)payType
 {
-    
-    [ThirdPay bookOrder:delegate];
+    if ([ThirdPay checkParams:tradeInfo delegate:delegate]) {
+        
+        [ThirdPay assignParams:tradeInfo delegate:delegate];
+        
+    }
+    [payController bookOrder];
     
     
     
@@ -108,18 +112,24 @@ static ShowPayTypeViewController *payController;
     BaseResponse *response = [[BaseResponse alloc]init];
     [CommonService beginService:request response:response success:^(BaseResponse *response) {
         NSLog(@"response.json......%@",response.jsonDict);
-        NSDictionary *dict = @{@"message":@"查询成功"};
+        
+        
+        
+        NSDictionary *dict = [self combilParams:response.jsonDict];
+        
+        
+        
         [[MOPHUDCenter shareInstance]removeHUD];
+        
         if (delegate && [delegate respondsToSelector:@selector(onQueryOrder:)]) {
             [delegate onQueryOrder:dict];
             return;
         }
         
         
-        
     } failed:^(NSString *errorCode, NSString *errorMsg) {
         [[MOPHUDCenter shareInstance]removeHUD];
-        NSDictionary *dict = @{@"message":@"查询失败",@"code":@"0001"};
+        NSDictionary *dict = @{@"message":errorMsg,@"code":errorCode};
         if (delegate && [delegate respondsToSelector:@selector(onQueryOrder:)]) {
             [delegate onQueryOrder:dict];
             return;
@@ -131,9 +141,42 @@ static ShowPayTypeViewController *payController;
     
 }
 
-+(NSDictionary *)combilParams{
++(NSDictionary *)combilParams:(NSDictionary *)dic{
+    
+    NSString *merchantNO = EncodeStringFromDic(dic, @"merchantNo");
+    NSString *batchNo = EncodeStringFromDic(dic, @"batchNo");
+    
+    NSDictionary *data = EncodeDicFromDic(dic, @"data");
+    
+    NSString *merchantName = EncodeStringFromDic(data, @"sellerName");
+    NSString *merchantOrderNO = EncodeStringFromDic(data, @"orderNo");
+    NSString *ippOrderNo = EncodeStringFromDic(data, @"ippOrderNo");
+    NSString *orderTime = EncodeStringFromDic(data, @"orderDate");
+    NSString *payTime = EncodeStringFromDic(data, @"merchantNO");
+    NSString *transStatus = EncodeStringFromDic(data, @"transStatus");
+    NSString *totalAmount = EncodeStringFromDic(data, @"orderSubject");
+    NSString *payAmount = EncodeStringFromDic(data, @"orderAmount");
+    
+    NSString *memo = EncodeStringFromDic(data, @"attach");
+    
     NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
     
+    EncodeDefaultStrObjctToDic(dict, merchantNO, @"merchantNO",@"");
+    EncodeDefaultStrObjctToDic(dict, merchantName, @"merchantName",@"");
+    
+    EncodeDefaultStrObjctToDic(dict, batchNo, @"batchNo",@"");
+    EncodeDefaultStrObjctToDic(dict, merchantOrderNO, @"merchantOrderNO",@"");
+    EncodeDefaultStrObjctToDic(dict, ippOrderNo, @"ippOrderNO",@"");
+    
+    EncodeDefaultStrObjctToDic(dict, totalAmount, @"totalAmount",@"");
+    EncodeDefaultStrObjctToDic(dict, payAmount, @"payAmount",@"");
+    
+    EncodeDefaultStrObjctToDic(dict, payTime, @"payTime",@"");
+    EncodeDefaultStrObjctToDic(dict, orderTime, @"orderTime",@"");
+    EncodeDefaultStrObjctToDic(dict, transStatus, @"transStatus",@"");
+    EncodeDefaultStrObjctToDic(dict, memo, @"memo",@"");
+    
+    return dict;
     
 }
 
@@ -142,12 +185,14 @@ static ShowPayTypeViewController *payController;
     
     NSString *merchantNO = EncodeStringFromDic(tradeInfo, @"merchantNO");
     NSString *memberNO = EncodeStringFromDic(tradeInfo, @"memberNo");
-    NSString *merchantOrderNO = EncodeStringFromDic(tradeInfo, @"orderNO");
+    NSString *merchantOrderNO = EncodeStringFromDic(tradeInfo, @"merchantOrderNO");
     NSString *goodsName = EncodeStringFromDic(tradeInfo, @"goodsName");
     NSString *goodsDetail = EncodeStringFromDic(tradeInfo, @"goodsDetail");
     NSString *memo = EncodeStringFromDic(tradeInfo, @"memo");
     NSString *totalAmount = EncodeStringFromDic(tradeInfo, @"totalAmount");
     NSString *payAmount = EncodeStringFromDic(tradeInfo, @"payAmount");
+    NSString *redPocket = EncodeStringFromDic(tradeInfo, @"redPocket");
+    NSString *point = EncodeStringFromDic(tradeInfo, @"point");
     NSString *notifyURL = EncodeStringFromDic(tradeInfo, @"notifyURL");
     NSString *appSchemeStr = EncodeStringFromDic(tradeInfo, @"appSchemeStr");
     NSString *resultInfo = @"";
@@ -179,6 +224,7 @@ static ShowPayTypeViewController *payController;
         }
     }
     
+    DDLog(@"test", merchantNO);
     
     payController = [[ShowPayTypeViewController alloc]init];
     
@@ -190,14 +236,97 @@ static ShowPayTypeViewController *payController;
     payController.memo = memo;
     payController.totalAmount = totalAmount;
     payController.payAmount = payAmount;
+    payController.redPocket = redPocket;
+    payController.memberPoints = point;
     payController.notifyURL = notifyURL;
     payController.appScheme = appSchemeStr;
     payController.thirdPayDelegate = delegate;
+    payController.viewType = @"VIEW";
     
     [controller.navigationController pushViewController:payController animated:YES];
     
 }
 
++(BOOL)checkParams:(NSDictionary *)tradeInfo delegate:(id<ThirdPayDelegate>)delegate{
+    
+    NSString *merchantNO = EncodeStringFromDic(tradeInfo, @"merchantNO");
+    NSString *memberNO = EncodeStringFromDic(tradeInfo, @"memberNo");
+    NSString *merchantOrderNO = EncodeStringFromDic(tradeInfo, @"merchantOrderNO");
+    NSString *goodsName = EncodeStringFromDic(tradeInfo, @"goodsName");
+    NSString *goodsDetail = EncodeStringFromDic(tradeInfo, @"goodsDetail");
+    NSString *memo = EncodeStringFromDic(tradeInfo, @"memo");
+    NSString *totalAmount = EncodeStringFromDic(tradeInfo, @"totalAmount");
+    NSString *payAmount = EncodeStringFromDic(tradeInfo, @"payAmount");
+    NSString *redPocket = EncodeStringFromDic(tradeInfo, @"redPocket");
+    NSString *point = EncodeStringFromDic(tradeInfo, @"point");
+    NSString *notifyURL = EncodeStringFromDic(tradeInfo, @"notifyURL");
+    NSString *appSchemeStr = EncodeStringFromDic(tradeInfo, @"appSchemeStr");
+    NSString *resultInfo = @"";
+    
+    if (IsStrEmpty(merchantNO)) {
+        resultInfo = @"商户号不能为空";
+    }else if (IsStrEmpty(merchantOrderNO)){
+        resultInfo = @"商户订单号不能为空";
+    }else if (IsStrEmpty(goodsName)){
+        resultInfo = @"商品名称不能为空";
+    }else if (IsStrEmpty(goodsDetail)){
+        resultInfo = @"商品详情不能为空";
+    }else if (IsStrEmpty(totalAmount)){
+        resultInfo = @"订单金额不能为空";
+    }else if (IsStrEmpty(payAmount)){
+        resultInfo = @"支付金额不能为空";
+    }else if (IsStrEmpty(notifyURL)){
+        resultInfo = @"后台通知地址不能为空";
+    }else if (IsStrEmpty(appSchemeStr)){
+        resultInfo = @"appSchemeStr不能为空";
+    }else{
+        resultInfo = @"";
+    }
+    if (!IsStrEmpty(resultInfo)) {
+        tradeInfo = @{@"resultInfo":resultInfo};
+        if (delegate && [delegate respondsToSelector:@selector(onPayResult:withInfo:)]) {
+            [delegate onPayResult:PayStatus_PAYFAIL withInfo:tradeInfo];
+            return NO;
+        }
+    }
+    return YES;
+    
+}
+
++(void)assignParams:(NSDictionary *)tradeInfo delegate:(id<ThirdPayDelegate>)delegate{
+    
+    NSString *merchantNO = EncodeStringFromDic(tradeInfo, @"merchantNO");
+    NSString *memberNO = EncodeStringFromDic(tradeInfo, @"memberNo");
+    NSString *merchantOrderNO = EncodeStringFromDic(tradeInfo, @"merchantOrderNO");
+    NSString *goodsName = EncodeStringFromDic(tradeInfo, @"goodsName");
+    NSString *goodsDetail = EncodeStringFromDic(tradeInfo, @"goodsDetail");
+    NSString *memo = EncodeStringFromDic(tradeInfo, @"memo");
+    NSString *totalAmount = EncodeStringFromDic(tradeInfo, @"totalAmount");
+    NSString *payAmount = EncodeStringFromDic(tradeInfo, @"payAmount");
+    NSString *redPocket = EncodeStringFromDic(tradeInfo, @"redPocket");
+    NSString *point = EncodeStringFromDic(tradeInfo, @"point");
+    NSString *notifyURL = EncodeStringFromDic(tradeInfo, @"notifyURL");
+    NSString *appSchemeStr = EncodeStringFromDic(tradeInfo, @"appSchemeStr");
+    
+    
+    payController = [[ShowPayTypeViewController alloc]init];
+    
+    payController.memberNO = memberNO;
+    payController.merchantNO = merchantNO;
+    payController.merchantOrderNO = merchantOrderNO;
+    payController.goodsName = goodsName;
+    payController.goodsDetail = goodsDetail;
+    payController.memo = memo;
+    payController.totalAmount = totalAmount;
+    payController.payAmount = payAmount;
+    payController.redPocket = redPocket;
+    payController.memberPoints = point;
+    payController.notifyURL = notifyURL;
+    payController.appScheme = appSchemeStr;
+    payController.thirdPayDelegate = delegate;
+    
+    payController.viewType = @"NOVIEW";
+}
 
 //下单
 

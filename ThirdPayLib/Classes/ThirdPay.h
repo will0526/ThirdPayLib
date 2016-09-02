@@ -8,8 +8,8 @@
 
 #import <Foundation/Foundation.h>
 typedef enum{
-    PayStatus_PAYSUCCESS,              //交易成功
     PayStatus_PAYFAIL,                 //交易失败
+    PayStatus_PAYSUCCESS,              //交易成功
     PayStatus_PAYTIMEOUT,              //交易超时
     PayStatus_PAYCANCEL,               //交易取消
     

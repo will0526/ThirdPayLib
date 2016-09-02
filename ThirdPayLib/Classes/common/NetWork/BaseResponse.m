@@ -29,7 +29,7 @@
 
 -(void)praseJsondicttoResponse
 {
-
+    
 }
 
 -(CommonDTO *)dtoToDictionary:(NSDictionary *)jsonDict
