@@ -15,7 +15,7 @@
 {
     self = [super init];
     if (self) {
-        _tradeCurrency = @"rmb";
+        _tradeCurrency = @"CNY";
         _tradeTpye = @"online";
         
     }
@@ -37,17 +37,22 @@
             break;
         case PayType_WeichatPay:
         {
-            payTypeStr = @"";
+            payTypeStr = @"0002";
         }
             break;
         case PayType_BestPay:
         {
-            payTypeStr = @"";
+            payTypeStr = @"0006";
         }
             break;
         case PayType_YiPay:
         {
-            payTypeStr = @"";
+            payTypeStr = @"0004";
+        }
+            break;
+        case PayType_ApplePay:
+        {
+            payTypeStr = @"0005";
         }
             break;
             
@@ -61,13 +66,10 @@
     EncodeUnEmptyStrObjctToDic(self.requestParamDic, payTypeStr, @"payType");
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
     
-    
-    
     NSString *uuid = [SystemInfo getUUID];
     NSString *device = [SystemInfo platformString];
     NSString *OS = [SystemInfo osVersion];
-//    NSString *ipAdrress = [LJSecurityUtils getIPAddress];
-    NSString *ipAdrress = @"192.168.2.1";
+    NSString *ipAdrress = [self getIPAddress];
     EncodeUnEmptyStrObjctToDic(dic, uuid, @"uuid");
     EncodeUnEmptyStrObjctToDic(dic, VERSION, @"sdkver");
     EncodeUnEmptyStrObjctToDic(dic, @"121.48", @"xlocation");
@@ -78,7 +80,7 @@
     
     
     EncodeUnEmptyStrObjctToDic(dic, self.payAmount, @"tradeAmount");
-    EncodeUnEmptyStrObjctToDic(dic, self.tradeCurrency, @"tradeCurrency");
+    EncodeUnEmptyStrObjctToDic(dic, self.tradeCurrency, @"currency");
     EncodeUnEmptyStrObjctToDic(dic, self.merchantOrderNO, @"orderNo");
     EncodeUnEmptyStrObjctToDic(dic, self.goodsDetail, @"orderSubject");
     EncodeUnEmptyStrObjctToDic(dic, self.goodsDetail, @"orderDescription");
@@ -96,6 +98,10 @@
     
     return self.requestParamDic;
 }
+
+
+
+
 
 @end
 

@@ -18,4 +18,5 @@
 @property (nonatomic, strong) NSString *transType;
 
 -(NSDictionary *)dtoToDictionary;
+- (NSString *)getIPAddress;
 @end

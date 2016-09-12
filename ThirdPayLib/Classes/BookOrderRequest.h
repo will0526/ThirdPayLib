@@ -39,7 +39,7 @@
 @property(nonatomic,strong)NSString *totalAmount;       //订单总金额
 @property(nonatomic,strong)NSString *payAmount;         //订单支付金额
 
-@property(nonatomic,assign)PayType payType;         //订单支付金额
+@property(nonatomic,assign)PayType payType;         //订单支付方式
 
 
 

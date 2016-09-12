@@ -12,7 +12,9 @@
 #import "LJSecurityUtils.h"
 #import "QueryOrderRequest.h"
 #import <AlipaySDK/AlipaySDK.h>
-
+#import "BestpaySDK.h"
+#import "BestpayNativeModel.h"
+#import "WXApi.h"
 
 @interface ShowPayTypeViewController ()<UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate>
 
@@ -133,7 +135,7 @@
             break;
         case PayType_YiPay:
         {
-            
+            [self yipay];
             
         }
             break;
@@ -384,12 +386,13 @@
     switch (selectedIndex) {
         case 0:
         {
+            self.payType = PayType_YiPay;
             
         }
             break;
         case 1:
         {
-            
+            self.payType = PayType_WeichatPay;
         }
             break;
         case 2:
@@ -470,8 +473,32 @@
 
 //微信
 -(void)weixinpay{
-//    [self tradeReturn];
+    [WXApi registerApp:@"wxd930ea5d5a258f4f" withDescription:@"demo 2.0"];
+    PayReq *request = [[PayReq alloc] init];
+    request.partnerId = @"10000100";
+    request.prepayId= @"1101000000140415649af9fc314aa427";
+    request.package = @"Sign=WXPay";
+    request.nonceStr= @"a462b76e7436e98e0ed6e13c64b4fd1c";
+    request.timeStamp= @"1397527777";
+    request.sign= @"582282D72DD2B03AD892830965F428CB16E7A256";
+    [WXApi sendReq:request];
     
+    
+}
+
+-(void)onResp:(BaseResp*)resp{
+    if ([resp isKindOfClass:[PayResp class]]){
+        PayResp * response=(PayResp*)resp;
+        switch(response.errCode){
+            caseWXSuccess:
+                //服务器端查询支付通知或查询API返回的结果再提示成功
+                DDLog(@"", @"");
+                break;
+            default:
+                NSLog(@"支付失败，retcode=%d",resp.errCode);
+                break;
+        }
+    }
 }
 
 //百度钱包
@@ -484,9 +511,26 @@
 //翼支付
 -(void)yipay{
 
+    NSString *orderStr = OrderString;//[self orderInfos];
+    DDLog(@"跳转支付页面带入信息:", orderStr);
     
-//    [self tradeReturn:];
+    BestpayNativeModel *order =[[BestpayNativeModel alloc]init];
+    order.orderInfo = orderStr;
+    order.launchType = launchTypePay1;
+    order.scheme = self.appScheme;
+    
+    //调用sdk的方法
+    [BestpaySDK payWithOrder:order fromViewController:self callback:^(NSDictionary *resultDic) {
+        //支付成功后回调结果
+        NSLog(@"result == %@", resultDic);
+        
+    }];
+    
 }
+
+
+
+
 
 -(Boolean)handleOpenURL:(NSURL *)url withCompletion:(ThirdPayCompletion )complete{
     [payingAlert setHidden:YES];
@@ -619,6 +663,13 @@
     }
     else return @"";
 }
+
+
+
+
+
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

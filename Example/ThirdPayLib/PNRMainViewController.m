@@ -8,11 +8,13 @@
 
 #import "PNRMainViewController.h"
 #import "PNRViewController.h"
+#import "PNRAboutUSViewController.h"
 @interface PNRMainViewController ()
 
 @property (nonatomic,strong)UIButton *queryButton;
 @property (nonatomic,strong)UIButton *orderButton;
 @property (nonatomic,strong)UIButton *orderButton2;
+@property (nonatomic,strong)UIButton *aboutButton;
 @end
 
 @implementation PNRMainViewController
@@ -25,6 +27,7 @@
     [self.view addSubview:self.queryButton];
     [self.view addSubview:self.orderButton];
     [self.view addSubview:self.orderButton2];
+    [self.view addSubview:self.aboutButton];
     
     // Do any additional setup after loading the view.
 }
@@ -49,6 +52,8 @@
     
     
 }
+
+
 
 -(UIButton *)orderButton{
     if (_orderButton == nil) {
@@ -87,9 +92,39 @@
     
 }
 
+-(UIButton *)aboutButton{
+    if (_aboutButton == nil) {
+        _aboutButton = [[UIButton alloc]initWithFrame:CGRectMake(self.view.frame.size.width/6, 320, self.view.frame.size.width*2/3, 40)];
+        [_aboutButton setTitle:@"关于我们" forState:UIControlStateNormal];
+        [_aboutButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        
+        [_aboutButton setBackgroundColor:[UIColor orangeColor]];
+        
+        _aboutButton.clipsToBounds = YES;
+        _aboutButton.layer.cornerRadius = 20;
+        _aboutButton.tag = 0;
+        [_aboutButton addTarget:self action:@selector(aboutUS) forControlEvents:UIControlEventTouchUpInside];
+        
+    }
+    
+    return _aboutButton;
+    
+    
+}
+
+
+-(void)aboutUS{
+    PNRAboutUSViewController *about = [[PNRAboutUSViewController alloc]init];
+    [self.navigationController pushViewController:about animated:YES];
+    
+    
+}
 
 
 -(void)buttonPressed:(UIButton *)button{
+    
+    
+    
     
     PNRViewController *pnr = [[PNRViewController alloc]init];
     

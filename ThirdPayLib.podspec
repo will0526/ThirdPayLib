@@ -37,7 +37,7 @@ TODO: Add long description of the pod here.
 
     s.public_header_files = 'ThirdPayLib/Classes/ThirdPay.h'
     s.frameworks = 'UIKit', 'MapKit'
-    s.dependency 'AFNetworking', '~> 2.0'
+    s.dependency 'AFNetworking', '~> 3.0'
 
-    s.dependency 'JSONKit', '~> 1.5pre'
+#s.dependency 'JSONKit', '~> 1.5pre'
 end

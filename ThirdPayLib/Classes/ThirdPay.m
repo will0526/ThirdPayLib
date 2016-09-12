@@ -35,7 +35,8 @@
 #import <AlipaySDK/AlipaySDK.h>
 #import "CommonService.h"
 #import "QueryOrderRequest.h"
-
+#import "WXApi.h"
+#import "OrderInfo.h"
 @interface ThirdPay()
 
 @property(nonatomic, weak)id<ThirdPayDelegate> thirdPayDelegate;
@@ -184,6 +185,7 @@ static ShowPayTypeViewController *payController;
 +(void)showPayTypeWithTradeInfo:(NSDictionary *)tradeInfo ViewController:(UIViewController *)controller Delegate:(id<ThirdPayDelegate>)delegate{
     
     NSString *merchantNO = EncodeStringFromDic(tradeInfo, @"merchantNO");
+    
     NSString *memberNO = EncodeStringFromDic(tradeInfo, @"memberNo");
     NSString *merchantOrderNO = EncodeStringFromDic(tradeInfo, @"merchantOrderNO");
     NSString *goodsName = EncodeStringFromDic(tradeInfo, @"goodsName");
@@ -197,7 +199,9 @@ static ShowPayTypeViewController *payController;
     NSString *appSchemeStr = EncodeStringFromDic(tradeInfo, @"appSchemeStr");
     NSString *resultInfo = @"";
     
-    if (IsStrEmpty(merchantNO)) {
+    if (IsStrEmpty(memberNO)) {
+        resultInfo = @"用户号不能为空";
+    }else if (IsStrEmpty(merchantNO)) {
         resultInfo = @"商户号不能为空";
     }else if (IsStrEmpty(merchantOrderNO)){
         resultInfo = @"商户订单号不能为空";
@@ -248,6 +252,21 @@ static ShowPayTypeViewController *payController;
 }
 
 +(BOOL)checkParams:(NSDictionary *)tradeInfo delegate:(id<ThirdPayDelegate>)delegate{
+    
+    OrderInfo *order = [[OrderInfo alloc]init];
+    order.merchantNO;
+    order.memberNO;
+    order.merchantOrderNO;
+    order.goodsName;
+    order.goodsDetail;
+    order.memo;
+    order.totalAmount;
+    order.payAmount;
+    order.redPocket;
+    order.memberPoints;
+    order.appSchemeStr;
+    order.notifyURL;
+    
     
     NSString *merchantNO = EncodeStringFromDic(tradeInfo, @"merchantNO");
     NSString *memberNO = EncodeStringFromDic(tradeInfo, @"memberNo");

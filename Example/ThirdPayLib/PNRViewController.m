@@ -47,7 +47,7 @@
         case 0:
         {
             dataSource = @[@"用户号",@"商户号",@"订单号"];
-            defaultSource = @[@"0001",@"000000000000001",@"20160831095000000102"];
+            defaultSource = @[@"0001",@"000000000000001",@"20160907104115000148"];
         }
             break;
         case 1:
@@ -129,7 +129,7 @@
     
     
     /*
-     @param memberNO         用户号
+     @param memberNo         用户号
      *  @param merchantNO       商户号
      *  @param merchantOrderNO  商户订单号
      *  @param goodsName        商品名称
@@ -143,7 +143,7 @@
     switch (textField.tag) {
         case 0:
         {
-            [self.params setValue:textField.text forKey:@"memberNO"];
+            [self.params setValue:textField.text forKey:@"memberNo"];
         }
             break;
         case 1:
@@ -386,7 +386,8 @@
         switch (textField.tag) {
             case 0:
             {
-                [self.params setValue:textField.text forKey:@"memberNO"];
+                NSString *temp = textField.text;
+                [self.params setValue:temp forKey:@"memberNo"];
             }
                 break;
             case 1:

@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+
 typedef enum{
     PayStatus_PAYFAIL,                 //交易失败
     PayStatus_PAYSUCCESS,              //交易成功

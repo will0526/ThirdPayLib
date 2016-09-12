@@ -28,6 +28,7 @@
     
     EncodeUnEmptyStrObjctToDic(self.requestParamDic, self.merchantNO, @"merchantNo");
     EncodeUnEmptyStrObjctToDic(self.requestParamDic, @"0010", @"transType");
+    EncodeUnEmptyStrObjctToDic(self.requestParamDic, @"0000", @"payType");
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
     
     
@@ -35,15 +36,16 @@
     NSString *uuid = [SystemInfo getUUID];
     NSString *device = [SystemInfo platformString];
     NSString *OS = [SystemInfo osVersion];
-    //    NSString *ipAdrress = [LJSecurityUtils getIPAddress];
-    NSString *ipAdrress = @"192.168.2.1";
+    NSString *ipAdrress = [self getIPAddress];
+//    NSString *ipAdrress = @"192.168.2.1";
     EncodeUnEmptyStrObjctToDic(dic, uuid, @"uuid");
-    EncodeUnEmptyStrObjctToDic(dic, VERSION, @"sdkver");
+    EncodeUnEmptyStrObjctToDic(dic, VERSION, @"sdkVer");
     EncodeUnEmptyStrObjctToDic(dic, @"121.48", @"xlocation");
     EncodeUnEmptyStrObjctToDic(dic, @"31.22", @"ylocation");
     EncodeUnEmptyStrObjctToDic(dic, ipAdrress, @"ip");
-    EncodeUnEmptyStrObjctToDic(dic, [NSString stringWithFormat:@"%@%@",device,OS], @"osver");
-    
+    EncodeUnEmptyStrObjctToDic(dic, [NSString stringWithFormat:@"%@",device], @"device");
+    EncodeUnEmptyStrObjctToDic(dic, [NSString stringWithFormat:@"%@",device], @"resolution");
+    EncodeUnEmptyStrObjctToDic(dic, [NSString stringWithFormat:@"%@",OS], @"OSver");
     EncodeUnEmptyStrObjctToDic(dic, self.orderNO, @"ippOrderNo");
     
     EncodeUnEmptyDicObjctToDic(self.requestParamDic, dic, @"params");

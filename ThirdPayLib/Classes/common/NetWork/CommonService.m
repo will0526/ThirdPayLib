@@ -8,12 +8,12 @@
 //
 
 #import "CommonService.h"
-#import "JSONKit.h"
+//#import "JSONKit.h"
 #import "SystemInfo.h"
 #import "UIView+MBProgressHUD.h"
+#import "NSString+Hashes.h"
 
-
-#define Request_Timeout_Default  15
+#define Request_Timeout_Default  60
 
 @interface CommonService()
 {
@@ -120,7 +120,7 @@ withOptionalAnimation:(MOPHUDCenterHUDType)hudtype
             NSLog(@"request>>>>>>>%@",request.requestParamDic);
             
             request.requestParamDic = [self combileParam:request.requestParamDic];
-            AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+            AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
             AFSecurityPolicy *policy = [AFSecurityPolicy defaultPolicy];
             policy.allowInvalidCertificates = YES;
             policy.validatesDomainName = NO;
@@ -129,9 +129,14 @@ withOptionalAnimation:(MOPHUDCenterHUDType)hudtype
             manager.responseSerializer = [AFHTTPResponseSerializer serializer];
             manager.requestSerializer.timeoutInterval = timeout;
             NSLog(@"paramsStr............%@",request.requestParamDic);
-            [manager POST:BASEURL parameters:request.requestParamDic success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            
+            [manager POST:BASEURL parameters:request.requestParamDic progress:^(NSProgress * _Nonnull uploadProgress) {
+                
+            } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                
+                
                 NSLog(@"JSON: %@", responseObject);
-               NSString *temp = [[NSString alloc]initWithData:responseObject encoding:NSUTF8StringEncoding];
+                NSString *temp = [[NSString alloc]initWithData:responseObject encoding:NSUTF8StringEncoding];
                 NSData *jsonData = [temp dataUsingEncoding:NSUTF8StringEncoding];
                 NSError *err;
                 NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData
@@ -140,10 +145,10 @@ withOptionalAnimation:(MOPHUDCenterHUDType)hudtype
                 response.jsonDict = dic;
                 
                 dispatch_async(dispatch_get_main_queue(), ^ {
-//                    if(showProgressBar){
-////                        [[MOPHUDCenter shareInstance]removeHUD];
-//                        [ctl hidingLoadingView];
-//                    }
+                    //                    if(showProgressBar){
+                    ////                        [[MOPHUDCenter shareInstance]removeHUD];
+                    //                        [ctl hidingLoadingView];
+                    //                    }
                     
                     NSString *respcode = EncodeStringFromDic(response.jsonDict, @"code");
                     NSString *msg = EncodeStringFromDic(response.jsonDict, @"message");
@@ -178,23 +183,25 @@ withOptionalAnimation:(MOPHUDCenterHUDType)hudtype
                     
                 });
                 
-            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                 NSLog(@"Error: %@", error);
+//                NSDictionary *userinfo = error.userInfo;
+                NSString *errorCode = [NSString stringWithFormat:@"%ld", (long)error.code];
+                NSString *errorInfo = error.userInfo[@"NSLocalizedDescription"];
                 dispatch_async(dispatch_get_main_queue(), ^ {
-//                    if(showProgressBar){
-//                        [[MOPHUDCenter shareInstance]removeHUD];
-//                        [ctl hidingLoadingView];
-//                    
-//                    }
+                    //                    if(showProgressBar){
+                    //                        [[MOPHUDCenter shareInstance]removeHUD];
+                    //                        [ctl hidingLoadingView];
+                    //
+                    //                    }
                     if (FailedBlock)
                     {
                         
-                        FailedBlock(@"9999",@"异常");
+                        FailedBlock(errorCode,errorInfo);
                     }
-//                    [ctl presentSheet:@"网络请求异常"];
-
+                    //                    [ctl presentSheet:@"网络请求异常"];
+                    
                 });
-            
                 
             }];
             
