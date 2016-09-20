@@ -47,7 +47,7 @@
         case 0:
         {
             dataSource = @[@"用户号",@"商户号",@"订单号"];
-            defaultSource = @[@"0001",@"000000000000001",@"20160907104115000148"];
+            defaultSource = @[@"0001",@"000000000000001",@"20160919171536000524"];
         }
             break;
         case 1:
@@ -305,7 +305,7 @@
         {
             NSDictionary *dict = [[NSDictionary alloc]initWithDictionary:self.params];
             
-            [ThirdPay payWithTradeInfo:dict ViewController:self Delegate:self PayType:PayType_Alipay];
+            [ThirdPay payWithTradeInfo:dict ViewController:self Delegate:self PayType:paytype];
         }
             break;
             
@@ -512,25 +512,25 @@
             break;
         case 1:
         {
-            paytype = PayType_Alipay;
+            paytype = PayType_WeichatPay;
         }
             
             break;
         case 2:
         {
-            paytype = PayType_Alipay;
+            paytype = PayType_YiPay;
         }
             
             break;
         case 3:
         {
-            paytype = PayType_Alipay;
+            paytype = PayType_ApplePay;
         }
             
             break;
         case 4:
         {
-            paytype = PayType_Alipay;
+            paytype = PayType_BaiduPay;
         }
             
             break;

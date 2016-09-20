@@ -1,5 +1,6 @@
 #ifdef __OBJC__
 #import <UIKit/UIKit.h>
+#import "ShowPayTypeViewController.h"
 #import "UIColor+SNAdditions.h"
 #import "UIImage+SNAdditions.h"
 #import "NSData+Base64.h"
@@ -22,5 +23,11 @@
 #import "EnvironmentConfig.h"
 #import "GlobleConstant.h"
 #import "GlobleDefine.h"
+#import "ShowPayTypeViewController.h"
+#import <AFNetworking/AFNetworking.h>
+
+
+#import "CommonService.h"
+#import "QueryOrderRequest.h"
 #endif
 

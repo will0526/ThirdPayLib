@@ -19,4 +19,5 @@
 
 -(NSDictionary *)dtoToDictionary;
 - (NSString *)getIPAddress;
+- (NSString *)getResolution;
 @end

@@ -43,9 +43,9 @@
     EncodeUnEmptyStrObjctToDic(dic, @"121.48", @"xlocation");
     EncodeUnEmptyStrObjctToDic(dic, @"31.22", @"ylocation");
     EncodeUnEmptyStrObjctToDic(dic, ipAdrress, @"ip");
+    EncodeUnEmptyStrObjctToDic(dic, [NSString stringWithFormat:@"%@",OS], @"osVer");
     EncodeUnEmptyStrObjctToDic(dic, [NSString stringWithFormat:@"%@",device], @"device");
-    EncodeUnEmptyStrObjctToDic(dic, [NSString stringWithFormat:@"%@",device], @"resolution");
-    EncodeUnEmptyStrObjctToDic(dic, [NSString stringWithFormat:@"%@",OS], @"OSver");
+    EncodeUnEmptyStrObjctToDic(dic, [self getResolution], @"resolution");
     EncodeUnEmptyStrObjctToDic(dic, self.orderNO, @"ippOrderNo");
     
     EncodeUnEmptyDicObjctToDic(self.requestParamDic, dic, @"params");

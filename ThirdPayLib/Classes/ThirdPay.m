@@ -32,6 +32,7 @@
 #import "GlobleDefine.h"
 #import "ShowPayTypeViewController.h"
 #import <AFNetworking/AFNetworking.h>
+
 #import <AlipaySDK/AlipaySDK.h>
 #import "CommonService.h"
 #import "QueryOrderRequest.h"
@@ -152,12 +153,16 @@ static ShowPayTypeViewController *payController;
     NSString *merchantName = EncodeStringFromDic(data, @"sellerName");
     NSString *merchantOrderNO = EncodeStringFromDic(data, @"orderNo");
     NSString *ippOrderNo = EncodeStringFromDic(data, @"ippOrderNo");
-    NSString *orderTime = EncodeStringFromDic(data, @"orderDate");
-    NSString *payTime = EncodeStringFromDic(data, @"merchantNO");
+    NSString *payMethod = EncodeStringFromDic(data, @"payMethod");
+    
+    NSString *orderStatus = EncodeStringFromDic(data, @"orderStatus");
+    NSString *orderDate = EncodeStringFromDic(data, @"orderDate");
+    NSString *orderTime = EncodeStringFromDic(data, @"orderTime");
+    NSString *payTime = EncodeStringFromDic(data, @"payTime");
     NSString *transStatus = EncodeStringFromDic(data, @"transStatus");
     NSString *totalAmount = EncodeStringFromDic(data, @"orderSubject");
     NSString *payAmount = EncodeStringFromDic(data, @"orderAmount");
-    
+    NSArray *transInfo = EncodeArrayFromDic(data, @"transInfo");
     NSString *memo = EncodeStringFromDic(data, @"attach");
     
     NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
@@ -173,8 +178,10 @@ static ShowPayTypeViewController *payController;
     EncodeDefaultStrObjctToDic(dict, payAmount, @"payAmount",@"");
     
     EncodeDefaultStrObjctToDic(dict, payTime, @"payTime",@"");
-    EncodeDefaultStrObjctToDic(dict, orderTime, @"orderTime",@"");
-    EncodeDefaultStrObjctToDic(dict, transStatus, @"transStatus",@"");
+    EncodeDefaultStrObjctToDic(dict, orderDate, @"orderTime",@"");
+    EncodeDefaultStrObjctToDic(dict, orderTime, @"orderDate",@"");
+    EncodeDefaultStrObjctToDic(dict, orderStatus, @"transStatus",@"");
+    EncodeDefaultStrObjctToDic(dict, payMethod, @"payMethod",@"");
     EncodeDefaultStrObjctToDic(dict, memo, @"memo",@"");
     
     return dict;

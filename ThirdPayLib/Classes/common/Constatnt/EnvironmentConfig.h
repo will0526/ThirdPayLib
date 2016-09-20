@@ -33,15 +33,7 @@
 #define BASEURL @"https://pay.pnrtec.com/front/pay/onlineGateway.json"//URL
 #define SALT @"fTWFH3QRH7gSs3DE"
 
-#define weixinAppID     @"wx6688088896af3762"
-#define weixinAppSecret @"5a33445d8d2b4fc811de515a24bd39ba"
 
-#define qqAppID  @"1102080086"
-#define qqAppKey @"PRyDR7j5OAssahov"
-
-#define share_title @""//分享标题
-#define share_content @""//分享内容
-#define share_url @""//分享url
 
 #endif
 

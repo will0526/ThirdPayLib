@@ -6,6 +6,9 @@
 //
 //
 
+#define weixinAppID     @"wx6688088896af3762"
+#define weixinAppSecret @"5a33445d8d2b4fc811de515a24bd39ba"
+
 #import <Foundation/Foundation.h>
 
 typedef enum{
@@ -23,7 +26,7 @@ typedef enum{
     PayType_WeichatPay,       //微信
     PayType_ApplePay,         //Apple Pay
     PayType_YiPay,            //翼支付
-    PayType_BestPay             //百度钱包
+    PayType_BaiduPay             //百度钱包
     
 }PayType;
 

@@ -40,7 +40,7 @@
             payTypeStr = @"0002";
         }
             break;
-        case PayType_BestPay:
+        case PayType_BaiduPay:
         {
             payTypeStr = @"0006";
         }
@@ -71,26 +71,26 @@
     NSString *OS = [SystemInfo osVersion];
     NSString *ipAdrress = [self getIPAddress];
     EncodeUnEmptyStrObjctToDic(dic, uuid, @"uuid");
-    EncodeUnEmptyStrObjctToDic(dic, VERSION, @"sdkver");
+    EncodeUnEmptyStrObjctToDic(dic, VERSION, @"sdkVer");
     EncodeUnEmptyStrObjctToDic(dic, @"121.48", @"xlocation");
     EncodeUnEmptyStrObjctToDic(dic, @"31.22", @"ylocation");
     EncodeUnEmptyStrObjctToDic(dic, ipAdrress, @"ip");
-    EncodeUnEmptyStrObjctToDic(dic, [NSString stringWithFormat:@"%@%@",device,OS], @"osver");
-    
-    
-    
+    EncodeUnEmptyStrObjctToDic(dic, [NSString stringWithFormat:@"%@",OS], @"osVer");
+    EncodeUnEmptyStrObjctToDic(dic, [NSString stringWithFormat:@"%@",device], @"device");
+    EncodeUnEmptyStrObjctToDic(dic, [self getResolution], @"resolution");
+    EncodeUnEmptyStrObjctToDic(dic, self.totalAmount, @"orderAmount");
     EncodeUnEmptyStrObjctToDic(dic, self.payAmount, @"tradeAmount");
     EncodeUnEmptyStrObjctToDic(dic, self.tradeCurrency, @"currency");
     EncodeUnEmptyStrObjctToDic(dic, self.merchantOrderNO, @"orderNo");
-    EncodeUnEmptyStrObjctToDic(dic, self.goodsDetail, @"orderSubject");
+    EncodeUnEmptyStrObjctToDic(dic, self.goodsName, @"orderSubject");
     EncodeUnEmptyStrObjctToDic(dic, self.goodsDetail, @"orderDescription");
-    EncodeUnEmptyStrObjctToDic(dic, self.goodsName, @"goodsName");
-    EncodeUnEmptyStrObjctToDic(dic, self.tradeTpye, @"tradeTpye");
-    EncodeUnEmptyStrObjctToDic(dic, self.memberNO, @"memberNo");
+    EncodeUnEmptyStrObjctToDic(dic, @"", @"goodsInfo");
+    EncodeUnEmptyStrObjctToDic(dic, self.tradeTpye, @"tradeType");
+    EncodeUnEmptyStrObjctToDic(dic, self.memberNO, @"accountNo");
     EncodeUnEmptyStrObjctToDic(dic, self.redPocket, @"redPocket");
     EncodeUnEmptyStrObjctToDic(dic, self.memberPoints, @"memberPoints");
     
-    EncodeUnEmptyStrObjctToDic(dic, @"https://www.baidu.com/", @"backURL");
+    EncodeUnEmptyStrObjctToDic(dic, self.notifyURL, @"backURL");
     
     EncodeUnEmptyStrObjctToDic(dic, self.memo, @"attach");
     

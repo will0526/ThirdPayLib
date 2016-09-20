@@ -23,13 +23,13 @@
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		7DA7550E220BEEC762FEC902 /* Pods_ThirdPayLib_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6D7CB2900584269E436D98B /* Pods_ThirdPayLib_Tests.framework */; };
 		BE52C5821D5C669500408F71 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE52C5811D5C669500408F71 /* Launch Screen.storyboard */; };
+		BE56DFA91D8E2AA300FF4DD6 /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEED31731D65541A0037534C /* AlipaySDK.framework */; };
 		BE77500F1D813CC100819EA4 /* PNRAboutUSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE77500E1D813CC100819EA4 /* PNRAboutUSViewController.m */; };
 		BE82BDCE1D6FDF9900A69A0F /* PNRMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE82BDCD1D6FDF9900A69A0F /* PNRMainViewController.m */; };
 		BE82C3D11D5DA24400926EB5 /* ThirdPayLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE82C3D01D5DA24400926EB5 /* ThirdPayLib.framework */; };
 		BE82C3E71D5DC9F500926EB5 /* ThirdPayLib.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BE82C3E61D5DC9F500926EB5 /* ThirdPayLib.bundle */; };
 		BEED301C1D62B0F40037534C /* PNRSuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEED301B1D62B0F40037534C /* PNRSuccessViewController.m */; };
 		BEED31741D65541A0037534C /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BEED31721D65541A0037534C /* AlipaySDK.bundle */; };
-		BEED31751D65541A0037534C /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEED31731D65541A0037534C /* AlipaySDK.framework */; };
 		BEED31771D6556D90037534C /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = BEED31761D6556D90037534C /* libc++.tbd */; };
 		BEED31791D6556F40037534C /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = BEED31781D6556F40037534C /* libz.tbd */; };
 		BEED317B1D6556FE0037534C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEED317A1D6556FE0037534C /* SystemConfiguration.framework */; };
@@ -126,6 +126,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE56DFA91D8E2AA300FF4DD6 /* AlipaySDK.framework in Frameworks */,
 				BEF9843F1D8682C900B7984F /* AudioToolbox.framework in Frameworks */,
 				BEF9843D1D8682B600B7984F /* libsqlite3.0.tbd in Frameworks */,
 				BEF9843B1D8682A700B7984F /* libstdc++.6.0.9.tbd in Frameworks */,
@@ -144,7 +145,6 @@
 				BE82C3D11D5DA24400926EB5 /* ThirdPayLib.framework in Frameworks */,
 				6003F58E195388D20070C39A /* Foundation.framework in Frameworks */,
 				5A18DDED2D559BC604527C43 /* Pods_ThirdPayLib_Example.framework in Frameworks */,
-				BEED31751D65541A0037534C /* AlipaySDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -668,6 +668,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ThirdPayLib/alipay",
+					"$(SRCROOT)/ThirdPayLib/alipay",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ThirdPayLib/ThirdPayLib-Prefix.pch";
@@ -679,6 +680,7 @@
 				INFOPLIST_FILE = "ThirdPayLib/ThirdPayLib-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
 					"$(SRCROOT)/ThirdPayLib",
 					"$(SRCROOT)/ThirdPayLib/alipay",
 					"$(PROJECT_DIR)/ThirdPayLib/BestPaySDK-V3.0.0/BestPayInclude",
@@ -710,8 +712,9 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
 					"$(PROJECT_DIR)/ThirdPayLib/alipay",
+					"$(inherited)",
+					"$(SRCROOT)/ThirdPayLib/alipay",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ThirdPayLib/ThirdPayLib-Prefix.pch";
@@ -723,6 +726,7 @@
 				INFOPLIST_FILE = "ThirdPayLib/ThirdPayLib-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
 					"$(SRCROOT)/ThirdPayLib",
 					"$(SRCROOT)/ThirdPayLib/alipay",
 					"$(PROJECT_DIR)/ThirdPayLib/BestPaySDK-V3.0.0/BestPayInclude",

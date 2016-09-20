@@ -86,4 +86,22 @@
     return address;
 }
 
+-(NSString*)getResolution{
+    
+    
+    CGRect rect = [[UIScreen mainScreen] bounds];
+    CGSize size = rect.size;
+    CGFloat width = size.width;
+    CGFloat height = size.height;
+    NSLog(@"print %f,%f",width,height);
+    CGFloat scale_screen = [UIScreen mainScreen].scale;
+    
+    NSString *resolution = [NSString stringWithFormat:@"%d*%d",(int)width*scale_screen,(int)height*scale_screen];
+    return resolution;
+    
+    
+}
+
+
+
 @end

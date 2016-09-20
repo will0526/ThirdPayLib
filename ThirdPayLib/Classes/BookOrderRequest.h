@@ -47,6 +47,6 @@
 @property(nonatomic,strong)NSString *redPocket;         //红包金额
 @property(nonatomic,strong)NSString *memberPoints;      //积分金额
 @property(nonatomic,strong)NSString *tradeCurrency;     //币种 （RMB）
-
+@property(nonatomic,strong)NSString *notifyURL;     //币种 （RMB）
 
 @end
