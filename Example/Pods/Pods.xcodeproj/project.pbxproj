@@ -240,17 +240,17 @@
 		BC397572D9F74C49F519AA263CCD4354 /* KWBeEmptyMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = C457B2B2E1796EA865D871DE2621B0B5 /* KWBeEmptyMatcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BD8372529689BDDFC081BF17BC2B3E0E /* NSString+SEL.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D392CBB2B293E53D8AAA652684C45E /* NSString+SEL.m */; };
 		BDA7F91497D7631984F90FA5140A615B /* Pods-ThirdPayLib_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = F4EDE67431964DE34ADB4916840AD3C8 /* Pods-ThirdPayLib_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		BEEDA77C1D8E31D900B0E397 /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BEEDA77A1D8E31D900B0E397 /* AlipaySDK.bundle */; };
-		BEEDA77D1D8E31D900B0E397 /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEEDA77B1D8E31D900B0E397 /* AlipaySDK.framework */; };
+		BE948CA31D937CA700736EF1 /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BE948CA11D937CA700736EF1 /* AlipaySDK.bundle */; };
+		BE948CA41D937CA700736EF1 /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE948CA21D937CA700736EF1 /* AlipaySDK.framework */; };
+		BE948CAA1D937E6400736EF1 /* libH5ContainerStaticLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BE948CA91D937E6400736EF1 /* libH5ContainerStaticLib.a */; };
+		BE948CB71D939BA200736EF1 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BE948CB41D939BA200736EF1 /* libWeChatSDK.a */; };
+		BE948CB81D939BA200736EF1 /* WXApi.h in Headers */ = {isa = PBXBuildFile; fileRef = BE948CB51D939BA200736EF1 /* WXApi.h */; };
+		BE948CB91D939BA200736EF1 /* WXApiObject.h in Headers */ = {isa = PBXBuildFile; fileRef = BE948CB61D939BA200736EF1 /* WXApiObject.h */; };
 		BEEDA7871D8E31E700B0E397 /* BestpayNativeModel.h in Headers */ = {isa = PBXBuildFile; fileRef = BEEDA7801D8E31E700B0E397 /* BestpayNativeModel.h */; };
 		BEEDA7881D8E31E700B0E397 /* BestpaySDK.h in Headers */ = {isa = PBXBuildFile; fileRef = BEEDA7811D8E31E700B0E397 /* BestpaySDK.h */; };
-		BEEDA7891D8E31E700B0E397 /* libH5ContainerStaticLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BEEDA7821D8E31E700B0E397 /* libH5ContainerStaticLib.a */; };
 		BEEDA78A1D8E31E700B0E397 /* bestpay_error.html in Resources */ = {isa = PBXBuildFile; fileRef = BEEDA7841D8E31E700B0E397 /* bestpay_error.html */; };
 		BEEDA78B1D8E31E700B0E397 /* bestpay_nowifi.png in Resources */ = {isa = PBXBuildFile; fileRef = BEEDA7851D8E31E700B0E397 /* bestpay_nowifi.png */; };
 		BEEDA78C1D8E31E700B0E397 /* PassGuardCtrlBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BEEDA7861D8E31E700B0E397 /* PassGuardCtrlBundle.bundle */; };
-		BEEDA7911D8E320D00B0E397 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BEEDA78E1D8E320D00B0E397 /* libWeChatSDK.a */; };
-		BEEDA7921D8E320D00B0E397 /* WXApi.h in Headers */ = {isa = PBXBuildFile; fileRef = BEEDA78F1D8E320D00B0E397 /* WXApi.h */; };
-		BEEDA7931D8E320D00B0E397 /* WXApiObject.h in Headers */ = {isa = PBXBuildFile; fileRef = BEEDA7901D8E320D00B0E397 /* WXApiObject.h */; };
 		BEEDA7951D8E33C700B0E397 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = BEEDA7941D8E33C700B0E397 /* libc++.tbd */; };
 		BEEDA7971D8E33D300B0E397 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = BEEDA7961D8E33D300B0E397 /* libz.tbd */; };
 		BEEDA7981D8E33E100B0E397 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8910D113B5E2A643746CAFE4AD9C379 /* SystemConfiguration.framework */; };
@@ -635,17 +635,19 @@
 		BC1A747E23CDBC5FA61CA4543C7E366A /* KWStringPrefixMatcher.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = KWStringPrefixMatcher.m; path = Classes/Matchers/KWStringPrefixMatcher.m; sourceTree = "<group>"; };
 		BCCBD59290E580CE157BEA93189D567C /* KWInvocationCapturer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = KWInvocationCapturer.h; path = Classes/Core/KWInvocationCapturer.h; sourceTree = "<group>"; };
 		BE2E00E1C23ED078BD2AB67E1584D072 /* KWBeKindOfClassMatcher.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = KWBeKindOfClassMatcher.h; path = Classes/Matchers/KWBeKindOfClassMatcher.h; sourceTree = "<group>"; };
-		BEEDA77A1D8E31D900B0E397 /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlipaySDK.bundle; sourceTree = "<group>"; };
-		BEEDA77B1D8E31D900B0E397 /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
+		BE948CA11D937CA700736EF1 /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlipaySDK.bundle; sourceTree = "<group>"; };
+		BE948CA21D937CA700736EF1 /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
+		BE948CA71D937E2F00736EF1 /* libH5ContainerStaticLib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libH5ContainerStaticLib.a; path = "../ThirdPayLib/BestPaySDK-V3.0.0/BestPayInclude/libH5ContainerStaticLib.a"; sourceTree = "<group>"; };
+		BE948CA91D937E6400736EF1 /* libH5ContainerStaticLib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libH5ContainerStaticLib.a; path = "BestPaySDK-V3.0.0/BestPayInclude/libH5ContainerStaticLib.a"; sourceTree = "<group>"; };
+		BE948CB41D939BA200736EF1 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
+		BE948CB51D939BA200736EF1 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
+		BE948CB61D939BA200736EF1 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
 		BEEDA7801D8E31E700B0E397 /* BestpayNativeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BestpayNativeModel.h; sourceTree = "<group>"; };
 		BEEDA7811D8E31E700B0E397 /* BestpaySDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BestpaySDK.h; sourceTree = "<group>"; };
 		BEEDA7821D8E31E700B0E397 /* libH5ContainerStaticLib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libH5ContainerStaticLib.a; sourceTree = "<group>"; };
 		BEEDA7841D8E31E700B0E397 /* bestpay_error.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = bestpay_error.html; sourceTree = "<group>"; };
 		BEEDA7851D8E31E700B0E397 /* bestpay_nowifi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bestpay_nowifi.png; sourceTree = "<group>"; };
 		BEEDA7861D8E31E700B0E397 /* PassGuardCtrlBundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = PassGuardCtrlBundle.bundle; sourceTree = "<group>"; };
-		BEEDA78E1D8E320D00B0E397 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
-		BEEDA78F1D8E320D00B0E397 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
-		BEEDA7901D8E320D00B0E397 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
 		BEEDA7941D8E33C700B0E397 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/usr/lib/libc++.tbd"; sourceTree = DEVELOPER_DIR; };
 		BEEDA7961D8E33D300B0E397 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/usr/lib/libz.tbd; sourceTree = DEVELOPER_DIR; };
 		BEEDA7991D8E33FF00B0E397 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/CoreTelephony.framework; sourceTree = DEVELOPER_DIR; };
@@ -799,8 +801,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE948CAA1D937E6400736EF1 /* libH5ContainerStaticLib.a in Frameworks */,
 				BEEDA7A91D8E348500B0E397 /* AudioToolbox.framework in Frameworks */,
 				BEEDA7A71D8E347400B0E397 /* libsqlite3.0.tbd in Frameworks */,
+				BE948CA41D937CA700736EF1 /* AlipaySDK.framework in Frameworks */,
 				BEEDA7A51D8E345D00B0E397 /* libstdc++.6.0.9.tbd in Frameworks */,
 				BEEDA7A31D8E344900B0E397 /* CoreMotion.framework in Frameworks */,
 				BEEDA7A11D8E343F00B0E397 /* CFNetwork.framework in Frameworks */,
@@ -809,14 +813,12 @@
 				BEEDA79E1D8E341600B0E397 /* CoreText.framework in Frameworks */,
 				BEEDA79A1D8E33FF00B0E397 /* CoreTelephony.framework in Frameworks */,
 				BEEDA7981D8E33E100B0E397 /* SystemConfiguration.framework in Frameworks */,
+				BE948CB71D939BA200736EF1 /* libWeChatSDK.a in Frameworks */,
 				BEEDA7971D8E33D300B0E397 /* libz.tbd in Frameworks */,
 				BEEDA7951D8E33C700B0E397 /* libc++.tbd in Frameworks */,
-				BEEDA7911D8E320D00B0E397 /* libWeChatSDK.a in Frameworks */,
 				B3B171EA87451706CB7A3A646EDA9219 /* AFNetworking.framework in Frameworks */,
-				BEEDA77D1D8E31D900B0E397 /* AlipaySDK.framework in Frameworks */,
 				63AF668E7F1EDD11F0DF6B91FBE28633 /* Foundation.framework in Frameworks */,
 				8E9303791551CB55B0D5B602235FFBAF /* MapKit.framework in Frameworks */,
-				BEEDA7891D8E31E700B0E397 /* libH5ContainerStaticLib.a in Frameworks */,
 				1DFF9BCC47A9C92465BDA80CEA33E46A /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -848,6 +850,8 @@
 		0490604202E32853E6D039C300F14E31 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BE948CA91D937E6400736EF1 /* libH5ContainerStaticLib.a */,
+				BE948CA71D937E2F00736EF1 /* libH5ContainerStaticLib.a */,
 				BEEDA7A81D8E348500B0E397 /* AudioToolbox.framework */,
 				BEEDA7A61D8E347400B0E397 /* libsqlite3.0.tbd */,
 				BEEDA7A41D8E345D00B0E397 /* libstdc++.6.0.9.tbd */,
@@ -1244,9 +1248,9 @@
 		77CB11C8F2A513F857FD6F618D28CB75 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				BEEDA78D1D8E320D00B0E397 /* wxSDK */,
+				BE948CB31D939BA200736EF1 /* wxSDK */,
+				BE948CA01D937CA700736EF1 /* alipay */,
 				BEEDA77E1D8E31E700B0E397 /* BestPaySDK-V3.0.0 */,
-				BEEDA7791D8E31D900B0E397 /* alipay */,
 				1D135C1B6197A4ECD0821BB37B89DBF8 /* Info.plist */,
 				B5092DF04A64E1C83D4C0267734E9EFB /* ResourceBundle-ThirdPayLib-Info.plist */,
 				40FCFD828EB120580EDB15E4681E7786 /* ThirdPayLib.modulemap */,
@@ -1381,13 +1385,23 @@
 			name = NSURLSession;
 			sourceTree = "<group>";
 		};
-		BEEDA7791D8E31D900B0E397 /* alipay */ = {
+		BE948CA01D937CA700736EF1 /* alipay */ = {
 			isa = PBXGroup;
 			children = (
-				BEEDA77A1D8E31D900B0E397 /* AlipaySDK.bundle */,
-				BEEDA77B1D8E31D900B0E397 /* AlipaySDK.framework */,
+				BE948CA11D937CA700736EF1 /* AlipaySDK.bundle */,
+				BE948CA21D937CA700736EF1 /* AlipaySDK.framework */,
 			);
 			path = alipay;
+			sourceTree = SOURCE_ROOT;
+		};
+		BE948CB31D939BA200736EF1 /* wxSDK */ = {
+			isa = PBXGroup;
+			children = (
+				BE948CB41D939BA200736EF1 /* libWeChatSDK.a */,
+				BE948CB51D939BA200736EF1 /* WXApi.h */,
+				BE948CB61D939BA200736EF1 /* WXApiObject.h */,
+			);
+			path = wxSDK;
 			sourceTree = "<group>";
 		};
 		BEEDA77E1D8E31E700B0E397 /* BestPaySDK-V3.0.0 */ = {
@@ -1417,16 +1431,6 @@
 				BEEDA7861D8E31E700B0E397 /* PassGuardCtrlBundle.bundle */,
 			);
 			path = BestPayResources;
-			sourceTree = "<group>";
-		};
-		BEEDA78D1D8E320D00B0E397 /* wxSDK */ = {
-			isa = PBXGroup;
-			children = (
-				BEEDA78E1D8E320D00B0E397 /* libWeChatSDK.a */,
-				BEEDA78F1D8E320D00B0E397 /* WXApi.h */,
-				BEEDA7901D8E320D00B0E397 /* WXApiObject.h */,
-			);
-			path = wxSDK;
 			sourceTree = "<group>";
 		};
 		D29E3227B64E8A4AA4E66E23A68468DE /* Image */ = {
@@ -1585,13 +1589,13 @@
 				52FB304F0F28B54C587DC5525DD7B133 /* CommonDTO.h in Headers */,
 				4FFFF2A2F98DCAA1BEAC841CF4AB7910 /* CommonService.h in Headers */,
 				22929EC786AC8E2C5557E5C3C2BEC458 /* CommonViewController.h in Headers */,
-				BEEDA7931D8E320D00B0E397 /* WXApiObject.h in Headers */,
+				BE948CB91D939BA200736EF1 /* WXApiObject.h in Headers */,
 				F469A9D6F429780ADA5645B1203D8687 /* Constant.h in Headers */,
 				2DABC271EE194AD72DD4F8CA4ED4CFF6 /* EnvironmentConfig.h in Headers */,
 				1A785437883D1076351EAC553B328C04 /* GlobleConstant.h in Headers */,
 				BEEDA7871D8E31E700B0E397 /* BestpayNativeModel.h in Headers */,
 				DB7559EDCFEFC0CD77DC7F17FDD295AA /* GlobleDefine.h in Headers */,
-				BEEDA7921D8E320D00B0E397 /* WXApi.h in Headers */,
+				BE948CB81D939BA200736EF1 /* WXApi.h in Headers */,
 				4BA8D5C638D6D6885198C77B22B21A09 /* IPAddress.h in Headers */,
 				55C73B4D1ADB8EDCE2E064AC4163FD3E /* LJSecurityUtils.h in Headers */,
 				BF84F14297C5E8EAD5F5969FBEB77801 /* LJTimer.h in Headers */,
@@ -1882,9 +1886,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE948CA31D937CA700736EF1 /* AlipaySDK.bundle in Resources */,
 				BEEDA78B1D8E31E700B0E397 /* bestpay_nowifi.png in Resources */,
 				BEEDA78A1D8E31E700B0E397 /* bestpay_error.html in Resources */,
-				BEEDA77C1D8E31D900B0E397 /* AlipaySDK.bundle in Resources */,
 				BEEDA7AB1D8FDBF100B0E397 /* applepayIcon@2x.png in Resources */,
 				BEEDA78C1D8E31E700B0E397 /* PassGuardCtrlBundle.bundle in Resources */,
 				1CE9032793B773FC4FEE291CDC305642 /* ThirdPayLib.bundle in Resources */,
@@ -2201,6 +2205,10 @@
 					"$(PROJECT_DIR)/Target",
 					Support,
 					Files/ThirdPayLib/alipay,
+					"$(PROJECT_DIR)/Target",
+					Support,
+					Files/ThirdPayLib/alipay,
+					"$(PROJECT_DIR)/alipay",
 				);
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREFIX_HEADER = "Target Support Files/ThirdPayLib/ThirdPayLib-prefix.pch";
@@ -2216,18 +2224,23 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(SRCROOT)/ThirdPayLib",
 					"$(SRCROOT)/ThirdPayLib/alipay",
-					"$(PROJECT_DIR)/ThirdPayLib/BestPaySDK-V3.0.0/BestPayInclude",
-					"$(PROJECT_DIR)/Pods/BestPaySDK-V3.0.0/BestPayInclude",
-					"$(PROJECT_DIR)/ThirdPayLib/wxSDK",
-					"$(PROJECT_DIR)/Target",
-					Support,
-					"Files/ThirdPayLib/BestPaySDK-V3.0.0/BestPayInclude",
+					"\"$(SRCROOT)/alipay\"",
+					"\"$(SRCROOT)/wxSDK\"",
+					"$(PROJECT_DIR)/BestPaySDK-V3.0.0/BestPayInclude",
 					"$(PROJECT_DIR)/Target",
 					Support,
 					Files/ThirdPayLib/wxSDK,
 				);
 				MODULEMAP_FILE = "Target Support Files/ThirdPayLib/ThirdPayLib.modulemap";
 				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = (
+					"-Objc",
+					"$(inherited)",
+					"-framework",
+					"\"MapKit\"",
+					"-framework",
+					"\"UIKit\"",
+				);
 				PRODUCT_NAME = ThirdPayLib;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -2381,6 +2394,10 @@
 					"$(PROJECT_DIR)/Target",
 					Support,
 					Files/ThirdPayLib/alipay,
+					"$(PROJECT_DIR)/Target",
+					Support,
+					Files/ThirdPayLib/alipay,
+					"$(PROJECT_DIR)/alipay",
 				);
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREFIX_HEADER = "Target Support Files/ThirdPayLib/ThirdPayLib-prefix.pch";
@@ -2396,18 +2413,23 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(SRCROOT)/ThirdPayLib",
 					"$(SRCROOT)/ThirdPayLib/alipay",
-					"$(PROJECT_DIR)/ThirdPayLib/BestPaySDK-V3.0.0/BestPayInclude",
-					"$(PROJECT_DIR)/Pods/BestPaySDK-V3.0.0/BestPayInclude",
-					"$(PROJECT_DIR)/ThirdPayLib/wxSDK",
-					"$(PROJECT_DIR)/Target",
-					Support,
-					"Files/ThirdPayLib/BestPaySDK-V3.0.0/BestPayInclude",
+					"\"$(SRCROOT)/alipay\"",
+					"\"$(SRCROOT)/wxSDK\"",
+					"$(PROJECT_DIR)/BestPaySDK-V3.0.0/BestPayInclude",
 					"$(PROJECT_DIR)/Target",
 					Support,
 					Files/ThirdPayLib/wxSDK,
 				);
 				MODULEMAP_FILE = "Target Support Files/ThirdPayLib/ThirdPayLib.modulemap";
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = (
+					"-Objc",
+					"$(inherited)",
+					"-framework",
+					"\"MapKit\"",
+					"-framework",
+					"\"UIKit\"",
+				);
 				PRODUCT_NAME = ThirdPayLib;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;

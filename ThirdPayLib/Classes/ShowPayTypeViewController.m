@@ -16,7 +16,7 @@
 #import "BestpayNativeModel.h"
 #import "WXApi.h"
 
-@interface ShowPayTypeViewController ()<UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate>
+@interface ShowPayTypeViewController ()<UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate,WXApiDelegate>
 
 @property(nonatomic, strong)UITableView *tableView;
 @property(nonatomic, strong)UIView *headView;
@@ -71,7 +71,7 @@
 
 -(void)bookOrder{
 //        OrderString = @"MERCHANTID=02440201030132107&SUBMERCHANTID=000000000000001&MERCHANTPWD=975388&ORDERSEQ=0000000000000511&ORDERAMOUNT=0.01&ORDERTIME=20160914162734&ORDERVALIDITYTIME=&PRODUCTDESC=pay&CUSTOMERID=&PRODUCTAMOUNT=0.01&ATTACHAMOUNT=0&CURTYPE=RMB&BACKMERCHANTURL=http://pay.pnrtec.com/receiver/0004/0005/01.html&ATTACH=&PRODUCTID=04&USERIP=192.168.11.130&DIVDETAILS=&ACCOUNTID=&BUSITYPE=04&ORDERREQTRANSEQ=0000000000000511&SERVICE=mobile.security.pay&SIGNTYPE=MD5&SIGN=68AB7FB3EDCA18380D17DF1C27598857&SUBJECT=6&SWTICHACC=true&SESSIONKEY=&OTHERFLOW=&ACCESSTOKEN=";
-//    [self yipay];
+//    [self weixinpay];
 //    return;
     
     BookOrderRequest *request = [[BookOrderRequest alloc]init];
@@ -148,7 +148,7 @@
             break;
         case PayType_WeichatPay:
         {
-            
+            [self weixinpay];
         }
             break;
         
@@ -454,14 +454,24 @@
 
 //微信
 -(void)weixinpay{
+    
+//    OrderString = @"{\"appid\":\"wxd74f10be104372ab\",\"package\":\"Sign=WXPay\",\"partnerid\":\"1391276302\",\"noncestr\":\"201609211755412159251494\",\"timestamp\":\"1474451741\",\"prepayid\":\"wx201609211755403eafc71e6a0694025503\",\"sign\":\"B65F04F54911515697F88711CF3DB886\"}";
+//    "{\"appid\":\"wxd74f10be104372ab\",\"package\":\"Sign=WXPay\",\"partnerid\":\"1391276302\",\"noncestr\":\"201609221322534043900560\",\"timestamp\":\"1474521773\",\"prepayid\":\"wx20160922132253e23d44d1e50249159091\",\"sign\":\"E5E7F53D2DFC4C90006F8F458038DCC2\"}"
+    NSData *jsonData = [OrderString dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *err;
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                        options:NSJSONReadingMutableContainers
+                                                          error:&err];
+    
     [WXApi registerApp:weixinAppID withDescription:@"demo 2.0"];
+    
     PayReq *request = [[PayReq alloc] init];
-    request.partnerId = @"10000100";
-    request.prepayId= @"1101000000140415649af9fc314aa427";
-    request.package = @"Sign=WXPay";
-    request.nonceStr= @"a462b76e7436e98e0ed6e13c64b4fd1c";
-    request.timeStamp= @"1397527777";
-    request.sign= @"582282D72DD2B03AD892830965F428CB16E7A256";
+    request.partnerId = EncodeStringFromDic(dic, @"partnerid");
+    request.prepayId= EncodeStringFromDic(dic, @"prepayid");
+    request.package = EncodeStringFromDic(dic, @"package");
+    request.nonceStr= EncodeStringFromDic(dic, @"noncestr");
+    request.timeStamp= [EncodeStringFromDic(dic, @"timestamp") intValue];
+    request.sign= EncodeStringFromDic(dic, @"sign");
     [WXApi sendReq:request];
     
     
@@ -470,13 +480,37 @@
 -(void)onResp:(BaseResp*)resp{
     if ([resp isKindOfClass:[PayResp class]]){
         PayResp * response=(PayResp*)resp;
+        
         switch(response.errCode){
-            caseWXSuccess:
+            case WXSuccess:
                 //服务器端查询支付通知或查询API返回的结果再提示成功
-                DDLog(@"", @"");
+            {
+                payStatus = PayStatus_PAYSUCCESS;
+                EncodeUnEmptyStrObjctToDic(_resultDict, @"支付成功", @"message");
+                EncodeUnEmptyStrObjctToDic(_resultDict, @"0000", @"code");
+                EncodeUnEmptyDicObjctToDic(_resultDict, [self getParamsWrap], @"content");
+                
+            }
+                break;
+            case WXErrCodeUserCancel:
+            {
+                payStatus = PayStatus_PAYCANCEL;
+                EncodeUnEmptyStrObjctToDic(_resultDict, @"交易取消", @"message");
+                EncodeUnEmptyStrObjctToDic(_resultDict, [NSString stringWithFormat:@"%d",response.errCode], @"code");
+                EncodeUnEmptyDicObjctToDic(_resultDict, [self getParamsWrap], @"content");
+                
+                
+            }
                 break;
             default:
-                NSLog(@"支付失败，retcode=%d",resp.errCode);
+            {
+                payStatus = PayStatus_PAYFAIL;
+                EncodeUnEmptyStrObjctToDic(_resultDict, [NSString stringWithFormat:@"交易失败:%@",response.errStr], @"message");
+                EncodeUnEmptyStrObjctToDic(_resultDict, [NSString stringWithFormat:@"%d",response.errCode], @"code");
+                EncodeUnEmptyDicObjctToDic(_resultDict, [self getParamsWrap], @"content");
+                
+                DDLog(@"支付失败", response.errStr);
+            }
                 break;
         }
     }
@@ -492,13 +526,10 @@
 //翼支付
 -(void)yipay{
 
-
-// @"MERCHANTID=02440201030132107&SUBMERCHANTID=000000000000001&MERCHANTPWD=975388&ORDERSEQ=0000000000000494&ORDERAMOUNT=0.01&PRODUCTDESC=pay&PRODUCTAMOUNT=0.01&ATTACHAMOUNT=0&CURTYPE=RMB&BACKMERCHANTURL=http://pay.pnrtec.com/receiver/0004/0005/01.html&PRODUCTID=04&USERIP=192.168.11.130&BUSITYPE=04&ORDERREQTRANSEQ=0000000000000494&SERVICE=mobile.security.pay&SIGNTYPE=MD5&SUBJECT=苹果手机6s 正品行货 64G 假一赔十&SWTICHACC=true&ORDERTIME=20160914160316&SIGN=01450EAA04B8648906C7B5872346AF6A
-    NSString *orderStr = OrderString;//[self orderInfos];
-    DDLog(@"跳转支付页面带入信息:", orderStr);
+    DDLog(@"跳转支付页面带入信息:", OrderString);
     
     BestpayNativeModel *order =[[BestpayNativeModel alloc]init];
-    order.orderInfo = orderStr;
+    order.orderInfo = OrderString;
     order.launchType = launchTypePay1;
     order.scheme = self.appScheme;
     
@@ -585,7 +616,9 @@
                     
             }
         }
-            
+        case PayType_WeichatPay:{
+            [WXApi handleOpenURL:url delegate:self];
+        }
         default:
             break;
     }

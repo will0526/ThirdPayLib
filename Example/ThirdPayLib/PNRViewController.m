@@ -10,7 +10,7 @@
 
 #import <AFNetworking/AFNetworking.h>
 #import <ThirdPayLib/ThirdPay.h>
-
+#import "AFNetworking.h"
 @interface PNRViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,ThirdPayDelegate,UIPickerViewDelegate,UIPickerViewDataSource>
 
 @property (nonatomic, strong)UITableView * tableView;
@@ -47,7 +47,7 @@
         case 0:
         {
             dataSource = @[@"用户号",@"商户号",@"订单号"];
-            defaultSource = @[@"0001",@"000000000000001",@"20160919171536000524"];
+            defaultSource = @[@"0001",@"000000000000001",@"20160923091858000551"];
         }
             break;
         case 1:

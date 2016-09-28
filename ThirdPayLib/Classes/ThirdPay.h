@@ -6,8 +6,8 @@
 //
 //
 
-#define weixinAppID     @"wx6688088896af3762"
-#define weixinAppSecret @"5a33445d8d2b4fc811de515a24bd39ba"
+#define weixinAppID     @"wxd74f10be104372ab"
+#define weixinAppSecret @"16361bdf5841fbb95a42376101febdd1"
 
 #import <Foundation/Foundation.h>
 

@@ -12,7 +12,6 @@
 #import "BaseRequest.h"
 #import "BaseResponse.h"
 #import "CommonDTO.h"
-
 #import "MOPHUDCenter.h"
 #import <AFNetWorking/AFNetworking.h>
 #import "CommonViewController.h"

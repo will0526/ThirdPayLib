@@ -36,7 +36,7 @@
 #import <AlipaySDK/AlipaySDK.h>
 #import "CommonService.h"
 #import "QueryOrderRequest.h"
-#import "WXApi.h"
+
 #import "OrderInfo.h"
 @interface ThirdPay()
 
@@ -73,12 +73,8 @@ static ShowPayTypeViewController *payController;
         [ThirdPay assignParams:tradeInfo delegate:delegate];
         
     }
+    payController.payType = payType;
     [payController bookOrder];
-    
-    
-    
-    
-    
     
 }
 

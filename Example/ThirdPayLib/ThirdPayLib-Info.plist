@@ -38,7 +38,9 @@
 			<key>CFBundleURLName</key>
 			<string>weixin</string>
 			<key>CFBundleURLSchemes</key>
-			<array/>
+			<array>
+				<string>wxd74f10be104372ab</string>
+			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
