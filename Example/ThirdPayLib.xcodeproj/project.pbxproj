@@ -30,6 +30,7 @@
 		BE82C3E71D5DC9F500926EB5 /* ThirdPayLib.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BE82C3E61D5DC9F500926EB5 /* ThirdPayLib.bundle */; };
 		BE948CAB1D937E8000736EF1 /* libH5ContainerStaticLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BEF984151D86813300B7984F /* libH5ContainerStaticLib.a */; };
 		BE948CBE1D939BD400736EF1 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BE948CBB1D939BD400736EF1 /* libWeChatSDK.a */; };
+		BEB06C231DC051B800588628 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEB06C221DC051B800588628 /* AVFoundation.framework */; };
 		BEED301C1D62B0F40037534C /* PNRSuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEED301B1D62B0F40037534C /* PNRSuccessViewController.m */; };
 		BEED31741D65541A0037534C /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BEED31721D65541A0037534C /* AlipaySDK.bundle */; };
 		BEED31771D6556D90037534C /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = BEED31761D6556D90037534C /* libc++.tbd */; };
@@ -94,6 +95,7 @@
 		BE948CBB1D939BD400736EF1 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
 		BE948CBC1D939BD400736EF1 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
 		BE948CBD1D939BD400736EF1 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
+		BEB06C221DC051B800588628 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		BEED301A1D62B0F40037534C /* PNRSuccessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNRSuccessViewController.h; sourceTree = "<group>"; };
 		BEED301B1D62B0F40037534C /* PNRSuccessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNRSuccessViewController.m; sourceTree = "<group>"; };
 		BEED31721D65541A0037534C /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlipaySDK.bundle; sourceTree = "<group>"; };
@@ -126,6 +128,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BEED317D1D65570A0037534C /* CoreTelephony.framework in Frameworks */,
+				BEB06C231DC051B800588628 /* AVFoundation.framework in Frameworks */,
 				BE948CAB1D937E8000736EF1 /* libH5ContainerStaticLib.a in Frameworks */,
 				BE56DFA91D8E2AA300FF4DD6 /* AlipaySDK.framework in Frameworks */,
 				BEF9843F1D8682C900B7984F /* AudioToolbox.framework in Frameworks */,
@@ -137,7 +141,6 @@
 				6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */,
 				BEED31811D65571D0037534C /* CoreText.framework in Frameworks */,
 				BEED317F1D6557130037534C /* QuartzCore.framework in Frameworks */,
-				BEED317D1D65570A0037534C /* CoreTelephony.framework in Frameworks */,
 				BE948CBE1D939BD400736EF1 /* libWeChatSDK.a in Frameworks */,
 				BEED317B1D6556FE0037534C /* SystemConfiguration.framework in Frameworks */,
 				BEED31791D6556F40037534C /* libz.tbd in Frameworks */,
@@ -186,6 +189,7 @@
 		6003F58C195388D20070C39A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BEB06C221DC051B800588628 /* AVFoundation.framework */,
 				BEF9843E1D8682C900B7984F /* AudioToolbox.framework */,
 				BEF9843C1D8682B600B7984F /* libsqlite3.0.tbd */,
 				BEF9843A1D8682A700B7984F /* libstdc++.6.0.9.tbd */,
@@ -699,7 +703,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.huifu.thirdPay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "8b21c7a0-09c9-4327-ae2b-cb42cf8e5f5e";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -745,7 +749,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.huifu.thirdPay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "8b21c7a0-09c9-4327-ae2b-cb42cf8e5f5e";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

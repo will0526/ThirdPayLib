@@ -56,5 +56,6 @@
 
 -(Boolean)handleOpenURL:(NSURL *)url withCompletion:(ThirdPayCompletion )complete;
 
+-(void)scanCode:(UIViewController *)controller;
 
 @end

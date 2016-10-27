@@ -15,8 +15,8 @@
 #import "BestpaySDK.h"
 #import "BestpayNativeModel.h"
 #import "WXApi.h"
-
-@interface ShowPayTypeViewController ()<UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate,WXApiDelegate>
+#import "QRCodeViewController.h"
+@interface ShowPayTypeViewController ()<UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate,WXApiDelegate,QRCodeDelegate>
 
 @property(nonatomic, strong)UITableView *tableView;
 @property(nonatomic, strong)UIView *headView;
@@ -91,31 +91,42 @@
     request.notifyURL = self.notifyURL;
     
     BaseResponse *response = [[BaseResponse alloc]init];
+    
     [[MOPHUDCenter shareInstance]showHUDWithTitle:@""
                                              type:MOPHUDCenterHUDTypeNetWorkLoading
                                        controller:self
                                    showBackground:YES];
+    
     [CommonService beginService:request response:response success:^(BaseResponse *response) {
+        
         NSLog(@"response.json......%@",response.jsonDict);
+        
         NSDictionary *data = EncodeDicFromDic(response.jsonDict, @"data");
         
         self.orderNO = EncodeStringFromDic(data, @"ippOrderNo");
         OrderString = EncodeStringFromDic(data, @"transMsg");
+        
         [self gotoPay];
+        
         [[MOPHUDCenter shareInstance]removeHUD];
+        
     } failed:^(NSString *errorCode, NSString *errorMsg) {
+        
         if([errorCode isEqualToString:@"9001"]){
+            
             payStatus = PayStatus_PAYTIMEOUT;
            
         }else{
+            
             payStatus = PayStatus_PAYFAIL;
         }
+        
         EncodeUnEmptyStrObjctToDic(_resultDict, errorMsg, @"message");
         EncodeUnEmptyStrObjctToDic(_resultDict, errorCode, @"code");
         EncodeUnEmptyDicObjctToDic(_resultDict, [self getParamsWrap], @"content");
         
-        
         [self tradeReturn];
+        
         [[MOPHUDCenter shareInstance]removeHUD];
     } controller:self];
     
@@ -166,9 +177,6 @@
         default:
             break;
     }
-    
-    
-    
 }
 
 -(void)Back{
@@ -195,7 +203,7 @@
             [alertView setHidden:YES];
             payStatus = PayStatus_PAYCANCEL;
         
-            EncodeUnEmptyStrObjctToDic(_resultDict, @"交易取消", @"message");
+            EncodeUnEmptyStrObjctToDic(_resultDict, TRADESUCCESS, @"message");
             EncodeUnEmptyStrObjctToDic(_resultDict, @"0001", @"code");
             EncodeUnEmptyDicObjctToDic(_resultDict, [self getParamsWrap], @"content");
             [self tradeReturn];
@@ -208,6 +216,7 @@
 }
 
 -(UIButton *)payButton{
+    
     if (_payButton == nil) {
         _payButton = [[UIButton alloc]initWithFrame:CGRectMake(30, self.view.height - 70, self.view.width - 60, 50)];
         NSString *money = [self moneyTran:self.payAmount ownType:1];
@@ -217,8 +226,6 @@
         _payButton.layer.cornerRadius = 3.5;
         _payButton.clipsToBounds = YES;
         [_payButton addTarget:self action:@selector(payButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-        
-        
     }
     
     return _payButton;
@@ -296,24 +303,27 @@
             [_headView addSubview:memoLabel];
             
         }else{
+            
             memoLabel = [[UILabel alloc]initWithFrame:CGRectMake(payAmountLabel.left, orderNOLabel.bottom, payAmountLabel.width, 0)];
         }
+        
         if (!IsStrEmpty(self.redPocket)&&[self.redPocket intValue]>0) {
             redPocketLabel = [[UILabel alloc]initWithFrame:CGRectMake(payAmountLabel.left, memoLabel.bottom, payAmountLabel.width, goodsNameLabel.height)];
             redPocketLabel.textAlignment = NSTextAlignmentLeft;
             redPocketLabel.font = [UIFont systemFontOfSize:16];
-            redPocketLabel.text = [NSString stringWithFormat:@"红包抵扣：%f",[self.redPocket intValue]];
+            redPocketLabel.text = [NSString stringWithFormat:@"红包抵扣：%d",[self.redPocket intValue]];
             [_headView addSubview:redPocketLabel];
             
             _headView.frame = CGRectMake(0, 0, self.view.width, redPocketLabel.bottom+10);
         }else{
             redPocketLabel = [[UILabel alloc]initWithFrame:CGRectMake(payAmountLabel.left, memoLabel.bottom, payAmountLabel.width, 0)];
         }
+        
         if (!IsStrEmpty(self.memberPoints)&&[self.memberPoints intValue]>0) {
             pointLabel = [[UILabel alloc]initWithFrame:CGRectMake(payAmountLabel.left, redPocketLabel.bottom, payAmountLabel.width, goodsNameLabel.height)];
             pointLabel.textAlignment = NSTextAlignmentLeft;
             pointLabel.font = [UIFont systemFontOfSize:16];
-            pointLabel.text = [NSString stringWithFormat:@"积分抵扣：%f",[self.memberPoints intValue]];
+            pointLabel.text = [NSString stringWithFormat:@"积分抵扣：%d",[self.memberPoints intValue]];
             [_headView addSubview:pointLabel];
             
             _headView.frame = CGRectMake(0, 0, self.view.width, redPocketLabel.bottom+10);
@@ -348,6 +358,7 @@
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
     static NSString  *identify = @"payTypeCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identify];
     if (cell == nil) {
@@ -376,13 +387,11 @@
     
     cell.backgroundColor = [UIColor whiteColor];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
     UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, 59, self.view.frame.size.width, 1)];
     line.backgroundColor = HEX_RGB(0xe4e4e4);
     [cell addSubview:line];
-    
     return cell;
-    
-    
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -394,7 +403,6 @@
     selectedIndex = indexPath.row;
    
     [tableView reloadData];
-   
 }
 
 #pragma mark tableView end
@@ -411,29 +419,28 @@
 
     @try{
         [[[UIApplication sharedApplication] windows] objectAtIndex:0].hidden = NO;
+        
         [[AlipaySDK defaultService] payOrder:OrderString fromScheme:self.appScheme callback:^(NSDictionary *result) {
             
             NSString *resultStatus = EncodeStringFromDic(result, @"resultStatus");
             if ([resultStatus isEqualToString:@"9000"]) {
                 payStatus = PayStatus_PAYSUCCESS;
-                EncodeUnEmptyStrObjctToDic(_resultDict, @"支付成功", @"message");
+                EncodeUnEmptyStrObjctToDic(_resultDict, TRADESUCCESS, @"message");
                 EncodeUnEmptyStrObjctToDic(_resultDict, @"0000", @"code");
                 EncodeUnEmptyDicObjctToDic(_resultDict, [self getParamsWrap], @"content");
                 
             }else if ([resultStatus isEqualToString:@"6001"]){
                 payStatus = PayStatus_PAYCANCEL;
-                EncodeUnEmptyStrObjctToDic(_resultDict, @"交易取消", @"message");
+                EncodeUnEmptyStrObjctToDic(_resultDict, TRADECANCEL, @"message");
                 EncodeUnEmptyStrObjctToDic(_resultDict, resultStatus, @"code");
                 EncodeUnEmptyDicObjctToDic(_resultDict, [self getParamsWrap], @"content");
                 
                 
             }else{
                 payStatus = PayStatus_PAYFAIL;
-                EncodeUnEmptyStrObjctToDic(_resultDict, @"支付失败", @"message");
+                EncodeUnEmptyStrObjctToDic(_resultDict, TRADEFAILED, @"message");
                 EncodeUnEmptyStrObjctToDic(_resultDict, resultStatus, @"code");
                 EncodeUnEmptyDicObjctToDic(_resultDict, [self getParamsWrap], @"content");
-                
-                
             }
             
             
@@ -457,6 +464,7 @@
     
 //    OrderString = @"{\"appid\":\"wxd74f10be104372ab\",\"package\":\"Sign=WXPay\",\"partnerid\":\"1391276302\",\"noncestr\":\"201609211755412159251494\",\"timestamp\":\"1474451741\",\"prepayid\":\"wx201609211755403eafc71e6a0694025503\",\"sign\":\"B65F04F54911515697F88711CF3DB886\"}";
 //    "{\"appid\":\"wxd74f10be104372ab\",\"package\":\"Sign=WXPay\",\"partnerid\":\"1391276302\",\"noncestr\":\"201609221322534043900560\",\"timestamp\":\"1474521773\",\"prepayid\":\"wx20160922132253e23d44d1e50249159091\",\"sign\":\"E5E7F53D2DFC4C90006F8F458038DCC2\"}"
+    
     NSData *jsonData = [OrderString dataUsingEncoding:NSUTF8StringEncoding];
     NSError *err;
     NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData
@@ -474,7 +482,6 @@
     request.sign= EncodeStringFromDic(dic, @"sign");
     [WXApi sendReq:request];
     
-    
 }
 
 -(void)onResp:(BaseResp*)resp{
@@ -483,10 +490,9 @@
         
         switch(response.errCode){
             case WXSuccess:
-                //服务器端查询支付通知或查询API返回的结果再提示成功
             {
                 payStatus = PayStatus_PAYSUCCESS;
-                EncodeUnEmptyStrObjctToDic(_resultDict, @"支付成功", @"message");
+                EncodeUnEmptyStrObjctToDic(_resultDict, TRADESUCCESS, @"message");
                 EncodeUnEmptyStrObjctToDic(_resultDict, @"0000", @"code");
                 EncodeUnEmptyDicObjctToDic(_resultDict, [self getParamsWrap], @"content");
                 
@@ -495,7 +501,7 @@
             case WXErrCodeUserCancel:
             {
                 payStatus = PayStatus_PAYCANCEL;
-                EncodeUnEmptyStrObjctToDic(_resultDict, @"交易取消", @"message");
+                EncodeUnEmptyStrObjctToDic(_resultDict, TRADECANCEL, @"message");
                 EncodeUnEmptyStrObjctToDic(_resultDict, [NSString stringWithFormat:@"%d",response.errCode], @"code");
                 EncodeUnEmptyDicObjctToDic(_resultDict, [self getParamsWrap], @"content");
                 
@@ -505,7 +511,7 @@
             default:
             {
                 payStatus = PayStatus_PAYFAIL;
-                EncodeUnEmptyStrObjctToDic(_resultDict, [NSString stringWithFormat:@"交易失败:%@",response.errStr], @"message");
+                EncodeUnEmptyStrObjctToDic(_resultDict, [NSString stringWithFormat:@"%@:%@",TRADEFAILED,response.errStr], @"message");
                 EncodeUnEmptyStrObjctToDic(_resultDict, [NSString stringWithFormat:@"%d",response.errCode], @"code");
                 EncodeUnEmptyDicObjctToDic(_resultDict, [self getParamsWrap], @"content");
                 
@@ -533,9 +539,8 @@
     order.launchType = launchTypePay1;
     order.scheme = self.appScheme;
     
-    //调用sdk的方法
     [BestpaySDK payWithOrder:order fromViewController:self callback:^(NSDictionary *resultDic) {
-        //支付成功后回调结果
+        
         NSLog(@"result == %@", resultDic);
         
     }];
@@ -561,23 +566,22 @@
                 NSString *resultCode = EncodeStringFromDic(resultDic, @"resultCode");
                 if ([resultCode isEqualToString:@"00"]) {
                     payStatus = PayStatus_PAYSUCCESS;
-                    EncodeUnEmptyStrObjctToDic(_resultDict, @"支付成功", @"message");
+                    EncodeUnEmptyStrObjctToDic(_resultDict, TRADESUCCESS, @"message");
                     EncodeUnEmptyStrObjctToDic(_resultDict, @"0000", @"code");
                     EncodeUnEmptyDicObjctToDic(_resultDict, [self getParamsWrap], @"content");
                 }else if([resultCode isEqualToString:@"01"]){
                     payStatus = PayStatus_PAYFAIL;
-                    EncodeUnEmptyStrObjctToDic(_resultDict, @"支付失败", @"message");
+                    EncodeUnEmptyStrObjctToDic(_resultDict, TRADEFAILED, @"message");
                     EncodeUnEmptyStrObjctToDic(_resultDict, @"0010", @"code");
                     EncodeUnEmptyDicObjctToDic(_resultDict, [self getParamsWrap], @"content");
                     
                 }else if([resultCode isEqualToString:@"02"]){
                     
                     payStatus = PayStatus_PAYCANCEL;
-                    EncodeUnEmptyStrObjctToDic(_resultDict, @"用户取消", @"message");
+                    EncodeUnEmptyStrObjctToDic(_resultDict,TRADECANCEL, @"message");
                     EncodeUnEmptyStrObjctToDic(_resultDict, @"6001", @"code");
                     EncodeUnEmptyDicObjctToDic(_resultDict, [self getParamsWrap], @"content");
                 }
-                
             }];
         }
             break;
@@ -585,26 +589,26 @@
             
             if ([url.host isEqualToString:@"safepay"]) {
                 
-                //跳转支付宝钱包进行支付，处理支付结果
+                //跳转支付宝钱包进行支付，处理支付结果
                 [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
                     
                     NSLog(@"result = %@",resultDic);
                     NSString *resultStatus = EncodeStringFromDic(resultDic, @"resultStatus");
                     if ([resultStatus isEqualToString:@"9000"]) {
                         payStatus = PayStatus_PAYSUCCESS;
-                        EncodeUnEmptyStrObjctToDic(_resultDict, @"支付成功", @"message");
+                        EncodeUnEmptyStrObjctToDic(_resultDict, TRADESUCCESS, @"message");
                         EncodeUnEmptyStrObjctToDic(_resultDict, @"0000", @"code");
                         EncodeUnEmptyDicObjctToDic(_resultDict, [self getParamsWrap], @"content");
                         
                     }else if ([resultStatus isEqualToString:@"6001"]){
                         payStatus = PayStatus_PAYCANCEL;
-                        EncodeUnEmptyStrObjctToDic(_resultDict, @"用户取消", @"message");
+                        EncodeUnEmptyStrObjctToDic(_resultDict, TRADECANCEL, @"message");
                         EncodeUnEmptyStrObjctToDic(_resultDict, resultStatus, @"code");
                         EncodeUnEmptyDicObjctToDic(_resultDict, [self getParamsWrap], @"content");
                         
                     }else{
                         payStatus = PayStatus_PAYFAIL;
-                        EncodeUnEmptyStrObjctToDic(_resultDict, @"支付失败", @"message");
+                        EncodeUnEmptyStrObjctToDic(_resultDict, TRADEFAILED, @"message");
                         EncodeUnEmptyStrObjctToDic(_resultDict, @"0010", @"code");
                         EncodeUnEmptyDicObjctToDic(_resultDict, [self getParamsWrap], @"content");
                     }
@@ -613,10 +617,11 @@
                     
                     
                 }];
-                    
+                
             }
         }
         case PayType_WeichatPay:{
+            
             [WXApi handleOpenURL:url delegate:self];
         }
         default:
@@ -644,16 +649,14 @@
     
     return dict;
     
-    
-    
 }
 
 -(void)tradeReturn{
     
-    
     if (self.thirdPayDelegate && [self.thirdPayDelegate respondsToSelector:@selector(onPayResult:withInfo:)]) {
         [self.thirdPayDelegate onPayResult:payStatus withInfo:_resultDict];
     }
+    
     if (![_viewType isEqualToString:@"NOVIEW"]) {
         [self.navigationController popViewControllerAnimated:YES];
     }
@@ -666,32 +669,31 @@
 -(void)queryOrder{
     
     
-    [[MOPHUDCenter shareInstance]showHUDWithTitle:@"交易查询中"
-                                             type:MOPHUDCenterHUDTypeNetWorkLoading
-                                       controller:self
-                                   showBackground:YES];
-    QueryOrderRequest *request = [[QueryOrderRequest alloc]init];
-    request.merchantNO = self.merchantNO;
-    request.orderNO = self.orderNO;
-    //    reque
-    BaseResponse *response = [[BaseResponse alloc]init];
-    [CommonService beginService:request response:response success:^(BaseResponse *response) {
-        NSLog(@"response.json......%@",response.jsonDict);
-        NSDictionary *dict = @{@"message":@"查询成功"};
-        [[MOPHUDCenter shareInstance]removeHUD];
-        
-        
-        
-    } failed:^(NSString *errorCode, NSString *errorMsg) {
-        [[MOPHUDCenter shareInstance]removeHUD];
-        NSDictionary *dict = @{@"message":@"查询失败",@"code":@"0001"};
-        
-    } controller:self];
-    
-    
+//    [[MOPHUDCenter shareInstance]showHUDWithTitle:@"交易查询中"
+//                                             type:MOPHUDCenterHUDTypeNetWorkLoading
+//                                       controller:self
+//                                   showBackground:YES];
+//    QueryOrderRequest *request = [[QueryOrderRequest alloc]init];
+//    request.merchantNO = self.merchantNO;
+//    request.orderNO = self.orderNO;
+//    //    reque
+//    BaseResponse *response = [[BaseResponse alloc]init];
+//    [CommonService beginService:request response:response success:^(BaseResponse *response) {
+//        NSLog(@"response.json......%@",response.jsonDict);
+//        NSDictionary *dict = @{@"message":@"查询成功"};
+//        [[MOPHUDCenter shareInstance]removeHUD];
+//        
+//    } failed:^(NSString *errorCode, NSString *errorMsg) {
+//        [[MOPHUDCenter shareInstance]removeHUD];
+//        NSDictionary *dict = @{@"message":@"查询失败",@"code":@"0001"};
+//        
+//    } controller:self];
+//    
+//    
 }
 
 -(NSString *)moneyTran:(NSString *)yM ownType:(int)type{
+    
     if (!yM) return @"0";
     NSNumberFormatter *nf = [[NSNumberFormatter alloc] init];
     
@@ -718,11 +720,21 @@
     else return @"";
 }
 
+-(void)scanCode:(UIViewController *)controller {
+    
+    QRCodeViewController *qrcode = [[QRCodeViewController alloc]init];
+    qrcode.delegate = self;
+    [controller presentViewController:qrcode animated:YES completion:nil];
+    
+}
 
-
-
-
-
+-(void)QRCode:(NSString *)code
+{
+    //[self.webView resetCallback:@"getBarCode"];
+    NSDictionary *respDic = @{@"barCode": [NSString stringWithFormat:@"%@",code]};
+    
+    
+}
 
 
 - (void)didReceiveMemoryWarning {

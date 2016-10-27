@@ -38,7 +38,10 @@
 #import "QueryOrderRequest.h"
 
 #import "OrderInfo.h"
-@interface ThirdPay()
+
+#import "QRCodeViewController.h"
+
+@interface ThirdPay()<QRCodeDelegate>
 
 @property(nonatomic, weak)id<ThirdPayDelegate> thirdPayDelegate;
 @property(nonatomic, strong) NSString *orderNO;
@@ -71,10 +74,10 @@ static ShowPayTypeViewController *payController;
     if ([ThirdPay checkParams:tradeInfo delegate:delegate]) {
         
         [ThirdPay assignParams:tradeInfo delegate:delegate];
-        
+        payController.payType = payType;
+        [payController bookOrder];
     }
-    payController.payType = payType;
-    [payController bookOrder];
+    
     
 }
 
@@ -85,6 +88,7 @@ static ShowPayTypeViewController *payController;
 //    NSString *memberNO = EncodeStringFromDic(tradeInfo, @"memberNo");
     NSString *orderNO = EncodeStringFromDic(tradeInfo, @"orderNO");
     NSString *resultInfo = @"";
+    
     if (IsStrEmpty(merchantNO)) {
         resultInfo = @"商户号不能为空";
     }else if (IsStrEmpty(orderNO)){
@@ -106,16 +110,14 @@ static ShowPayTypeViewController *payController;
     QueryOrderRequest *request = [[QueryOrderRequest alloc]init];
     request.merchantNO = merchantNO;
     request.orderNO = orderNO;
-//    reque
+    
     BaseResponse *response = [[BaseResponse alloc]init];
+    
     [CommonService beginService:request response:response success:^(BaseResponse *response) {
+        
         NSLog(@"response.json......%@",response.jsonDict);
         
-        
-        
         NSDictionary *dict = [self combilParams:response.jsonDict];
-        
-        
         
         [[MOPHUDCenter shareInstance]removeHUD];
         
@@ -124,18 +126,17 @@ static ShowPayTypeViewController *payController;
             return;
         }
         
-        
     } failed:^(NSString *errorCode, NSString *errorMsg) {
+        
         [[MOPHUDCenter shareInstance]removeHUD];
+        
         NSDictionary *dict = @{@"message":errorMsg,@"code":errorCode};
+        
         if (delegate && [delegate respondsToSelector:@selector(onQueryOrder:)]) {
             [delegate onQueryOrder:dict];
             return;
         }
     } controller:controller];
-    
-
-    
     
 }
 
@@ -155,10 +156,10 @@ static ShowPayTypeViewController *payController;
     NSString *orderDate = EncodeStringFromDic(data, @"orderDate");
     NSString *orderTime = EncodeStringFromDic(data, @"orderTime");
     NSString *payTime = EncodeStringFromDic(data, @"payTime");
-    NSString *transStatus = EncodeStringFromDic(data, @"transStatus");
+//    NSString *transStatus = EncodeStringFromDic(data, @"transStatus");
     NSString *totalAmount = EncodeStringFromDic(data, @"orderSubject");
     NSString *payAmount = EncodeStringFromDic(data, @"orderAmount");
-    NSArray *transInfo = EncodeArrayFromDic(data, @"transInfo");
+//    NSArray *transInfo = EncodeArrayFromDic(data, @"transInfo");
     NSString *memo = EncodeStringFromDic(data, @"attach");
     
     NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
@@ -200,6 +201,7 @@ static ShowPayTypeViewController *payController;
     NSString *point = EncodeStringFromDic(tradeInfo, @"point");
     NSString *notifyURL = EncodeStringFromDic(tradeInfo, @"notifyURL");
     NSString *appSchemeStr = EncodeStringFromDic(tradeInfo, @"appSchemeStr");
+    
     NSString *resultInfo = @"";
     
     if (IsStrEmpty(memberNO)) {
@@ -223,8 +225,11 @@ static ShowPayTypeViewController *payController;
     }else{
         resultInfo = @"";
     }
+    
     if (!IsStrEmpty(resultInfo)) {
+        
         tradeInfo = @{@"resultInfo":resultInfo};
+        
         if (delegate && [delegate respondsToSelector:@selector(onPayResult:withInfo:)]) {
             [delegate onPayResult:PayStatus_PAYFAIL withInfo:tradeInfo];
             return;
@@ -255,21 +260,6 @@ static ShowPayTypeViewController *payController;
 }
 
 +(BOOL)checkParams:(NSDictionary *)tradeInfo delegate:(id<ThirdPayDelegate>)delegate{
-    
-    OrderInfo *order = [[OrderInfo alloc]init];
-    order.merchantNO;
-    order.memberNO;
-    order.merchantOrderNO;
-    order.goodsName;
-    order.goodsDetail;
-    order.memo;
-    order.totalAmount;
-    order.payAmount;
-    order.redPocket;
-    order.memberPoints;
-    order.appSchemeStr;
-    order.notifyURL;
-    
     
     NSString *merchantNO = EncodeStringFromDic(tradeInfo, @"merchantNO");
     NSString *memberNO = EncodeStringFromDic(tradeInfo, @"memberNo");
@@ -304,8 +294,11 @@ static ShowPayTypeViewController *payController;
     }else{
         resultInfo = @"";
     }
+    
     if (!IsStrEmpty(resultInfo)) {
+        
         tradeInfo = @{@"resultInfo":resultInfo};
+        
         if (delegate && [delegate respondsToSelector:@selector(onPayResult:withInfo:)]) {
             [delegate onPayResult:PayStatus_PAYFAIL withInfo:tradeInfo];
             return NO;
@@ -330,7 +323,6 @@ static ShowPayTypeViewController *payController;
     NSString *notifyURL = EncodeStringFromDic(tradeInfo, @"notifyURL");
     NSString *appSchemeStr = EncodeStringFromDic(tradeInfo, @"appSchemeStr");
     
-    
     payController = [[ShowPayTypeViewController alloc]init];
     
     payController.memberNO = memberNO;
@@ -350,18 +342,18 @@ static ShowPayTypeViewController *payController;
     payController.viewType = @"NOVIEW";
 }
 
-//下单
-
-+(void)bookOrder:(id<ThirdPayDelegate>)delegate
-{
-        
-}
-
 +(Boolean)handleOpenURL:(NSURL *)url withCompletion:(ThirdPayCompletion)complete{
     
     [payController handleOpenURL:url withCompletion:complete];
     return YES;
 }
+
+
++(void)scanQRCode:(UIViewController *)controller{
+    payController = [[ShowPayTypeViewController alloc]init];
+    [payController scanCode:controller];
+}
+
 
 
 

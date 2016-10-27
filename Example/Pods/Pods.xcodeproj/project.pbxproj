@@ -246,6 +246,25 @@
 		BE948CB71D939BA200736EF1 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BE948CB41D939BA200736EF1 /* libWeChatSDK.a */; };
 		BE948CB81D939BA200736EF1 /* WXApi.h in Headers */ = {isa = PBXBuildFile; fileRef = BE948CB51D939BA200736EF1 /* WXApi.h */; };
 		BE948CB91D939BA200736EF1 /* WXApiObject.h in Headers */ = {isa = PBXBuildFile; fileRef = BE948CB61D939BA200736EF1 /* WXApiObject.h */; };
+		BEB06C0C1DC050CD00588628 /* bitstream.c in Sources */ = {isa = PBXBuildFile; fileRef = BEB06BFC1DC050CD00588628 /* bitstream.c */; };
+		BEB06C0D1DC050CD00588628 /* bitstream.h in Headers */ = {isa = PBXBuildFile; fileRef = BEB06BFD1DC050CD00588628 /* bitstream.h */; };
+		BEB06C0E1DC050CD00588628 /* mask.c in Sources */ = {isa = PBXBuildFile; fileRef = BEB06BFE1DC050CD00588628 /* mask.c */; };
+		BEB06C0F1DC050CD00588628 /* mask.h in Headers */ = {isa = PBXBuildFile; fileRef = BEB06BFF1DC050CD00588628 /* mask.h */; };
+		BEB06C101DC050CD00588628 /* QRCodeGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = BEB06C001DC050CD00588628 /* QRCodeGenerator.h */; };
+		BEB06C111DC050CD00588628 /* QRCodeGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB06C011DC050CD00588628 /* QRCodeGenerator.m */; };
+		BEB06C121DC050CD00588628 /* qrencode.c in Sources */ = {isa = PBXBuildFile; fileRef = BEB06C021DC050CD00588628 /* qrencode.c */; };
+		BEB06C131DC050CD00588628 /* qrencode.h in Headers */ = {isa = PBXBuildFile; fileRef = BEB06C031DC050CD00588628 /* qrencode.h */; };
+		BEB06C141DC050CD00588628 /* qrinput.c in Sources */ = {isa = PBXBuildFile; fileRef = BEB06C041DC050CD00588628 /* qrinput.c */; };
+		BEB06C151DC050CD00588628 /* qrinput.h in Headers */ = {isa = PBXBuildFile; fileRef = BEB06C051DC050CD00588628 /* qrinput.h */; };
+		BEB06C161DC050CD00588628 /* qrspec.c in Sources */ = {isa = PBXBuildFile; fileRef = BEB06C061DC050CD00588628 /* qrspec.c */; };
+		BEB06C171DC050CD00588628 /* qrspec.h in Headers */ = {isa = PBXBuildFile; fileRef = BEB06C071DC050CD00588628 /* qrspec.h */; };
+		BEB06C181DC050CD00588628 /* rscode.c in Sources */ = {isa = PBXBuildFile; fileRef = BEB06C081DC050CD00588628 /* rscode.c */; };
+		BEB06C191DC050CD00588628 /* rscode.h in Headers */ = {isa = PBXBuildFile; fileRef = BEB06C091DC050CD00588628 /* rscode.h */; };
+		BEB06C1A1DC050CD00588628 /* split.c in Sources */ = {isa = PBXBuildFile; fileRef = BEB06C0A1DC050CD00588628 /* split.c */; };
+		BEB06C1B1DC050CD00588628 /* split.h in Headers */ = {isa = PBXBuildFile; fileRef = BEB06C0B1DC050CD00588628 /* split.h */; };
+		BEB06C1E1DC0510600588628 /* QRCodeViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = BEB06C1C1DC0510600588628 /* QRCodeViewController.h */; };
+		BEB06C1F1DC0510600588628 /* QRCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB06C1D1DC0510600588628 /* QRCodeViewController.m */; };
+		BEB06C211DC051A400588628 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEB06C201DC051A400588628 /* AVFoundation.framework */; };
 		BEEDA7871D8E31E700B0E397 /* BestpayNativeModel.h in Headers */ = {isa = PBXBuildFile; fileRef = BEEDA7801D8E31E700B0E397 /* BestpayNativeModel.h */; };
 		BEEDA7881D8E31E700B0E397 /* BestpaySDK.h in Headers */ = {isa = PBXBuildFile; fileRef = BEEDA7811D8E31E700B0E397 /* BestpaySDK.h */; };
 		BEEDA78A1D8E31E700B0E397 /* bestpay_error.html in Resources */ = {isa = PBXBuildFile; fileRef = BEEDA7841D8E31E700B0E397 /* bestpay_error.html */; };
@@ -642,6 +661,25 @@
 		BE948CB41D939BA200736EF1 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
 		BE948CB51D939BA200736EF1 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
 		BE948CB61D939BA200736EF1 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
+		BEB06BFC1DC050CD00588628 /* bitstream.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bitstream.c; sourceTree = "<group>"; };
+		BEB06BFD1DC050CD00588628 /* bitstream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bitstream.h; sourceTree = "<group>"; };
+		BEB06BFE1DC050CD00588628 /* mask.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mask.c; sourceTree = "<group>"; };
+		BEB06BFF1DC050CD00588628 /* mask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mask.h; sourceTree = "<group>"; };
+		BEB06C001DC050CD00588628 /* QRCodeGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeGenerator.h; sourceTree = "<group>"; };
+		BEB06C011DC050CD00588628 /* QRCodeGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCodeGenerator.m; sourceTree = "<group>"; };
+		BEB06C021DC050CD00588628 /* qrencode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = qrencode.c; sourceTree = "<group>"; };
+		BEB06C031DC050CD00588628 /* qrencode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = qrencode.h; sourceTree = "<group>"; };
+		BEB06C041DC050CD00588628 /* qrinput.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = qrinput.c; sourceTree = "<group>"; };
+		BEB06C051DC050CD00588628 /* qrinput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = qrinput.h; sourceTree = "<group>"; };
+		BEB06C061DC050CD00588628 /* qrspec.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = qrspec.c; sourceTree = "<group>"; };
+		BEB06C071DC050CD00588628 /* qrspec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = qrspec.h; sourceTree = "<group>"; };
+		BEB06C081DC050CD00588628 /* rscode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rscode.c; sourceTree = "<group>"; };
+		BEB06C091DC050CD00588628 /* rscode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rscode.h; sourceTree = "<group>"; };
+		BEB06C0A1DC050CD00588628 /* split.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = split.c; sourceTree = "<group>"; };
+		BEB06C0B1DC050CD00588628 /* split.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = split.h; sourceTree = "<group>"; };
+		BEB06C1C1DC0510600588628 /* QRCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeViewController.h; sourceTree = "<group>"; };
+		BEB06C1D1DC0510600588628 /* QRCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCodeViewController.m; sourceTree = "<group>"; };
+		BEB06C201DC051A400588628 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/AVFoundation.framework; sourceTree = DEVELOPER_DIR; };
 		BEEDA7801D8E31E700B0E397 /* BestpayNativeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BestpayNativeModel.h; sourceTree = "<group>"; };
 		BEEDA7811D8E31E700B0E397 /* BestpaySDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BestpaySDK.h; sourceTree = "<group>"; };
 		BEEDA7821D8E31E700B0E397 /* libH5ContainerStaticLib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libH5ContainerStaticLib.a; sourceTree = "<group>"; };
@@ -801,6 +839,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BEB06C211DC051A400588628 /* AVFoundation.framework in Frameworks */,
 				BE948CAA1D937E6400736EF1 /* libH5ContainerStaticLib.a in Frameworks */,
 				BEEDA7A91D8E348500B0E397 /* AudioToolbox.framework in Frameworks */,
 				BEEDA7A71D8E347400B0E397 /* libsqlite3.0.tbd in Frameworks */,
@@ -829,6 +868,7 @@
 		0089D1CDB7E4FBCCF766BD7C813784F6 /* addition */ = {
 			isa = PBXGroup;
 			children = (
+				BEB06BFB1DC050CD00588628 /* QRCode */,
 				B64B520D9EA546195EDBFE14F09B849F /* Color */,
 				AA4FFAFA327DFDDF54CB4CCEC667A596 /* HUD */,
 				D29E3227B64E8A4AA4E66E23A68468DE /* Image */,
@@ -850,6 +890,7 @@
 		0490604202E32853E6D039C300F14E31 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BEB06C201DC051A400588628 /* AVFoundation.framework */,
 				BE948CA91D937E6400736EF1 /* libH5ContainerStaticLib.a */,
 				BE948CA71D937E2F00736EF1 /* libH5ContainerStaticLib.a */,
 				BEEDA7A81D8E348500B0E397 /* AudioToolbox.framework */,
@@ -1404,6 +1445,29 @@
 			path = wxSDK;
 			sourceTree = "<group>";
 		};
+		BEB06BFB1DC050CD00588628 /* QRCode */ = {
+			isa = PBXGroup;
+			children = (
+				BEB06BFC1DC050CD00588628 /* bitstream.c */,
+				BEB06BFD1DC050CD00588628 /* bitstream.h */,
+				BEB06BFE1DC050CD00588628 /* mask.c */,
+				BEB06BFF1DC050CD00588628 /* mask.h */,
+				BEB06C001DC050CD00588628 /* QRCodeGenerator.h */,
+				BEB06C011DC050CD00588628 /* QRCodeGenerator.m */,
+				BEB06C021DC050CD00588628 /* qrencode.c */,
+				BEB06C031DC050CD00588628 /* qrencode.h */,
+				BEB06C041DC050CD00588628 /* qrinput.c */,
+				BEB06C051DC050CD00588628 /* qrinput.h */,
+				BEB06C061DC050CD00588628 /* qrspec.c */,
+				BEB06C071DC050CD00588628 /* qrspec.h */,
+				BEB06C081DC050CD00588628 /* rscode.c */,
+				BEB06C091DC050CD00588628 /* rscode.h */,
+				BEB06C0A1DC050CD00588628 /* split.c */,
+				BEB06C0B1DC050CD00588628 /* split.h */,
+			);
+			path = QRCode;
+			sourceTree = "<group>";
+		};
 		BEEDA77E1D8E31E700B0E397 /* BestPaySDK-V3.0.0 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1464,6 +1528,8 @@
 				38CB5AFA4C54D2EF13A13BC86BD6C07E /* ThirdPay.h */,
 				E4E388CCC39CD3B5E7A4683A15B21A7F /* ThirdPay.m */,
 				E9F30D07670DC2378C54C3D4650F43BB /* common */,
+				BEB06C1C1DC0510600588628 /* QRCodeViewController.h */,
+				BEB06C1D1DC0510600588628 /* QRCodeViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1589,6 +1655,8 @@
 				52FB304F0F28B54C587DC5525DD7B133 /* CommonDTO.h in Headers */,
 				4FFFF2A2F98DCAA1BEAC841CF4AB7910 /* CommonService.h in Headers */,
 				22929EC786AC8E2C5557E5C3C2BEC458 /* CommonViewController.h in Headers */,
+				BEB06C0F1DC050CD00588628 /* mask.h in Headers */,
+				BEB06C171DC050CD00588628 /* qrspec.h in Headers */,
 				BE948CB91D939BA200736EF1 /* WXApiObject.h in Headers */,
 				F469A9D6F429780ADA5645B1203D8687 /* Constant.h in Headers */,
 				2DABC271EE194AD72DD4F8CA4ED4CFF6 /* EnvironmentConfig.h in Headers */,
@@ -1597,12 +1665,16 @@
 				DB7559EDCFEFC0CD77DC7F17FDD295AA /* GlobleDefine.h in Headers */,
 				BE948CB81D939BA200736EF1 /* WXApi.h in Headers */,
 				4BA8D5C638D6D6885198C77B22B21A09 /* IPAddress.h in Headers */,
+				BEB06C1B1DC050CD00588628 /* split.h in Headers */,
 				55C73B4D1ADB8EDCE2E064AC4163FD3E /* LJSecurityUtils.h in Headers */,
 				BF84F14297C5E8EAD5F5969FBEB77801 /* LJTimer.h in Headers */,
 				C5CD7027F412109AEDD749432298596E /* MBProgressHUD.h in Headers */,
 				D1E26A1F9B7928A23E6288AC9AD77F08 /* MOPCustomStatueBar.h in Headers */,
 				8A647E95DE46C4A85DED4F633C87A8F0 /* MOPHUDCenter.h in Headers */,
+				BEB06C191DC050CD00588628 /* rscode.h in Headers */,
 				9D8996AA4F45BA591645F1CECC25CC8D /* NSData+Base64.h in Headers */,
+				BEB06C1E1DC0510600588628 /* QRCodeViewController.h in Headers */,
+				BEB06C151DC050CD00588628 /* qrinput.h in Headers */,
 				438E99E4874C43B591D8B159D8286183 /* NSData+Utils.h in Headers */,
 				6AD081DFA7394B97428561AF2D24AFD7 /* NSString+Additions.h in Headers */,
 				0DC619A3D217D38A9D23A8E698B99853 /* NSString+DES.h in Headers */,
@@ -1618,7 +1690,10 @@
 				A5C3EB5FBBDB7FE87CA59324799004CC /* ThirdPay.h in Headers */,
 				D73144481A8A58423F57994BC42F81C8 /* ThirdPayLib-umbrella.h in Headers */,
 				9B443782216F8B32A43AEEE68460CF23 /* UIColor+SNAdditions.h in Headers */,
+				BEB06C0D1DC050CD00588628 /* bitstream.h in Headers */,
+				BEB06C101DC050CD00588628 /* QRCodeGenerator.h in Headers */,
 				0503E9E6D2F0D823E1A7BB5E0614EC5C /* UIImage+SNAdditions.h in Headers */,
+				BEB06C131DC050CD00588628 /* qrencode.h in Headers */,
 				C33C571E71167DB933902E87DDD2042F /* UIView+Category.h in Headers */,
 				05E50905136B2A2740BAE0725D187062 /* UIView+MBProgressHUD.h in Headers */,
 			);
@@ -1959,30 +2034,39 @@
 				7A63F3CAB029C43EF8731E52F3F3836F /* BBCyclingLabel.m in Sources */,
 				A73EE3B19D13DB397570E22028CB1580 /* BookOrderRequest.m in Sources */,
 				20A228D327662FD786960CEAE3DB0C69 /* CommonDTO.m in Sources */,
+				BEB06C141DC050CD00588628 /* qrinput.c in Sources */,
 				197081CBE07850AB1B8F2C630C3CAC15 /* CommonService.m in Sources */,
 				B5D888E1066C8A67F63CACFA48083392 /* CommonViewController.m in Sources */,
+				BEB06C0C1DC050CD00588628 /* bitstream.c in Sources */,
 				B640D627EE330CBA2D5A9B524260A5CE /* GlobleDefine.m in Sources */,
 				0296487B2DEFD28135192F396D5FA5A6 /* IPAddress.c in Sources */,
 				719B98A6F0EFA8A5F871BB4C67DD24B2 /* LJTimer.m in Sources */,
 				D032B7B40FCC8E7C89899D4798930914 /* MBProgressHUD.m in Sources */,
 				BF86CB696ABFFDF7D80C59DCF2716CE4 /* MOPCustomStatueBar.m in Sources */,
 				A832B850A13F1CBD43C2D0833EE489CD /* MOPHUDCenter.m in Sources */,
+				BEB06C181DC050CD00588628 /* rscode.c in Sources */,
 				C9B5FF34A940CCBBC0158F752E997E58 /* NSData+Base64.m in Sources */,
 				416FDA825C3771756021B06EBB44B9A1 /* NSData+Utils.m in Sources */,
 				CC7DF0B6E993B834642BF5EEDFBA9AB9 /* NSString+Additions.m in Sources */,
+				BEB06C111DC050CD00588628 /* QRCodeGenerator.m in Sources */,
 				83DB4F2DC9C9C181053CB25E0921394C /* NSString+DES.m in Sources */,
 				C718C2768B8C10F7B02E5DC52D6DD753 /* NSString+Hashes.m in Sources */,
+				BEB06C161DC050CD00588628 /* qrspec.c in Sources */,
 				0B3414F26C07EC911045EE78D8E91B44 /* NSString+MD5.m in Sources */,
 				18D7E90A986564410DDA6BFA54F590B4 /* NSString+NULL.m in Sources */,
+				BEB06C0E1DC050CD00588628 /* mask.c in Sources */,
 				BD8372529689BDDFC081BF17BC2B3E0E /* NSString+SEL.m in Sources */,
 				EFEA9173BE089EE45EB57BF88BE5A2F7 /* OrderInfo.m in Sources */,
 				C36C84148829D4D3D51E6FE4719C4D04 /* QueryOrderRequest.m in Sources */,
 				6A83FD5D8569A2803DFC40D20EDD2EF2 /* ShowPayTypeViewController.m in Sources */,
+				BEB06C1F1DC0510600588628 /* QRCodeViewController.m in Sources */,
+				BEB06C1A1DC050CD00588628 /* split.c in Sources */,
 				69A3F2A2F24CE2E7CC6C73A67ED656FD /* SystemInfo.m in Sources */,
 				B188F7FD1DF2A5236A9CF2BFE8DC07E7 /* ThirdPay.m in Sources */,
 				0D6894F31EA836A1E2E5331CAD7EEB20 /* ThirdPayLib-dummy.m in Sources */,
 				BFE913A510CB60927C7BC95FB595DDF2 /* UIColor+SNAdditions.m in Sources */,
 				E6683A4AAC821C12C1CE71C5303E3F37 /* UIImage+SNAdditions.m in Sources */,
+				BEB06C121DC050CD00588628 /* qrencode.c in Sources */,
 				D398E1339523B99CD9EFAC07C2942EF1 /* UIView+Category.m in Sources */,
 				7F8BA9A4D6666BABA9938BCB973D4387 /* UIView+MBProgressHUD.m in Sources */,
 			);

@@ -9,12 +9,15 @@
 #import "PNRMainViewController.h"
 #import "PNRViewController.h"
 #import "PNRAboutUSViewController.h"
+#import <ThirdPayLib/ThirdPay.h>
+
 @interface PNRMainViewController ()
 
 @property (nonatomic,strong)UIButton *queryButton;
 @property (nonatomic,strong)UIButton *orderButton;
 @property (nonatomic,strong)UIButton *orderButton2;
 @property (nonatomic,strong)UIButton *aboutButton;
+@property (nonatomic,strong)UIButton *scanButton;
 @end
 
 @implementation PNRMainViewController
@@ -28,7 +31,7 @@
     [self.view addSubview:self.orderButton];
     [self.view addSubview:self.orderButton2];
     [self.view addSubview:self.aboutButton];
-    
+    [self.view addSubview:self.scanButton];
     // Do any additional setup after loading the view.
 }
 
@@ -50,10 +53,7 @@
     
     return _queryButton;
     
-    
 }
-
-
 
 -(UIButton *)orderButton{
     if (_orderButton == nil) {
@@ -108,10 +108,30 @@
     }
     
     return _aboutButton;
-    
-    
 }
 
+-(UIButton *)scanButton{
+    if (_scanButton == nil) {
+        _scanButton = [[UIButton alloc]initWithFrame:CGRectMake(self.view.frame.size.width/6, 390, self.view.frame.size.width*2/3, 40)];
+        [_scanButton setTitle:@"二维码扫描" forState:UIControlStateNormal];
+        [_scanButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        
+        [_scanButton setBackgroundColor:[UIColor orangeColor]];
+        
+        _scanButton.clipsToBounds = YES;
+        _scanButton.layer.cornerRadius = 20;
+        _scanButton.tag = 0;
+        [_scanButton addTarget:self action:@selector(scanQRCode) forControlEvents:UIControlEventTouchUpInside];
+        
+    }
+    
+    return _scanButton;
+}
+
+-(void)scanQRCode{
+    [ThirdPay scanQRCode:self];
+
+}
 
 -(void)aboutUS{
     PNRAboutUSViewController *about = [[PNRAboutUSViewController alloc]init];

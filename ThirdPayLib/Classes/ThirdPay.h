@@ -120,7 +120,7 @@ typedef void (^ThirdPayCompletion)(NSDictionary *result);
 
 +(Boolean)handleOpenURL:(NSURL *)url withCompletion:(ThirdPayCompletion )complete;
 
-
++(void)scanQRCode:(UIViewController *)controller;
 
 
 @end

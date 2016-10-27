@@ -31,6 +31,11 @@ typedef void (^CallBackFailedWithResult)(NSString *errorCode,NSString *errorMsg,
 
 #endif
 
+
+#define TRADESUCCESS @"支付成功"
+#define TRADEFAILED @"支付失败"
+#define TRADECANCEL @"交易取消"
+
 //第一次进入app侧滑菜单提示=====
 #define FIRSTUSEAPP @"firstuseappMenu"//第一点击menu图标
 
