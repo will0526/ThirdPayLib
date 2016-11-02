@@ -2346,6 +2346,7 @@
 					"\"${PODS_ROOT}/Headers/Private\"",
 					"\"${PODS_ROOT}/Headers/Public\"",
 					"$(PROJECT_DIR)/wxSDK",
+					"$(PROJECT_DIR)/alipay",
 				);
 				INFOPLIST_FILE = "Target Support Files/ThirdPayLib/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -2355,6 +2356,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Bestpaylib",
 					"$(PROJECT_DIR)/wxSDK",
+					"$(PROJECT_DIR)/alipay",
 				);
 				MODULEMAP_FILE = "Target Support Files/ThirdPayLib/ThirdPayLib.modulemap";
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -2564,6 +2566,7 @@
 					"\"${PODS_ROOT}/Headers/Private\"",
 					"\"${PODS_ROOT}/Headers/Public\"",
 					"$(PROJECT_DIR)/wxSDK",
+					"$(PROJECT_DIR)/alipay",
 				);
 				INFOPLIST_FILE = "Target Support Files/ThirdPayLib/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -2573,6 +2576,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Bestpaylib",
 					"$(PROJECT_DIR)/wxSDK",
+					"$(PROJECT_DIR)/alipay",
 				);
 				MODULEMAP_FILE = "Target Support Files/ThirdPayLib/ThirdPayLib.modulemap";
 				MTL_ENABLE_DEBUG_INFO = NO;

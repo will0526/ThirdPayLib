@@ -33,7 +33,6 @@
 
 #import <AFNetworking/AFNetworking.h>
 
-#import <AlipaySDK/AlipaySDK.h>
 #import "CommonService.h"
 #import "QueryOrderRequest.h"
 

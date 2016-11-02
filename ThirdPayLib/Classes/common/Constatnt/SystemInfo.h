@@ -35,8 +35,7 @@
 /*硬件版本*/
 + (NSString *)platform;
 
-/*appName 本应用与后台约定为MOPS*/
-+ (NSString *)appName;
+//+ (NSString *)appName;
 
 /*硬件版本名称*/
 + (NSString *)platformString;
