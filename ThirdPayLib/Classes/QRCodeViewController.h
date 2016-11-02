@@ -8,7 +8,7 @@
 
 #import "CommonViewController.h"
 #import <AVFoundation/AVFoundation.h>
-
+#import "UIView+Category.h"
 @protocol QRCodeDelegate <NSObject>
 -(void)QRCode:(NSString*)code;
 @end

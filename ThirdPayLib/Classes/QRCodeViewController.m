@@ -7,7 +7,7 @@
 //
 
 #import "QRCodeViewController.h"
-
+#import "UIImage+SNAdditions.h"
 @interface QRCodeViewController ()
 
 @end

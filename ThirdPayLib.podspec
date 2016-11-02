@@ -18,7 +18,8 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+    To provide a sdk which used to pay online for other app.
+    easy to pay.
                        DESC
 
   s.homepage         = 'https://github.com/will0526/ThirdPayLib'
@@ -36,8 +37,8 @@ TODO: Add long description of the pod here.
   }
 
     s.public_header_files = 'ThirdPayLib/Classes/ThirdPay.h'
-    s.frameworks = 'UIKit', 'MapKit'
+    s.frameworks = 'UIKit', 'CoreGraphics', 'AVFoundation', 'AudioToolbox','CoreMotion','CFNetwork','CoreText','QuartzCore','CoreTelephony','SystemConfiguration','Foundation'
+    s.libraries = 'z','c++','stdc++','sqlite3.0'
     s.dependency 'AFNetworking', '~> 3.0'
 
-#s.dependency 'JSONKit', '~> 1.5pre'
 end

@@ -35,6 +35,7 @@ typedef void (^CallBackFailedWithResult)(NSString *errorCode,NSString *errorMsg,
 #define TRADESUCCESS @"支付成功"
 #define TRADEFAILED @"支付失败"
 #define TRADECANCEL @"交易取消"
+#define BOOKORDERFAILED @"下单失败"
 
 //第一次进入app侧滑菜单提示=====
 #define FIRSTUSEAPP @"firstuseappMenu"//第一点击menu图标
@@ -178,6 +179,6 @@ __REF = nil;\
 #endif
 
 #define CustomLocalizedString(key, comment) \
-[[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"userLanguage"]] ofType:@"lproj"]] localizedStringForKey:(key) value:@"" table:@"AppLanguage"]
+[[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"userLanguage"]] ofType:@"lproj"]] localizedStringForKey:(key) value:@"" table:@"AppLanguage"];
 
-#define UserLanguageIsEn  [[[NSUserDefaults standardUserDefaults] objectForKey:@"userLanguage"] isEqualToString:@"en”]
+#define UserLanguageIsEn  [[[NSUserDefaults standardUserDefaults] objectForKey:@"userLanguage"] isEqualToString:@"en”];

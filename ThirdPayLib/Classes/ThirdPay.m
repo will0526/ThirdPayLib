@@ -30,7 +30,7 @@
 #import "EnvironmentConfig.h"
 #import "GlobleConstant.h"
 #import "GlobleDefine.h"
-#import "ShowPayTypeViewController.h"
+
 #import <AFNetworking/AFNetworking.h>
 
 #import <AlipaySDK/AlipaySDK.h>
@@ -136,7 +136,7 @@ static ShowPayTypeViewController *payController;
             [delegate onQueryOrder:dict];
             return;
         }
-    } controller:controller];
+    } controller:controller showProgressBar:NO];
     
 }
 
@@ -350,6 +350,7 @@ static ShowPayTypeViewController *payController;
 
 
 +(void)scanQRCode:(UIViewController *)controller{
+    
     payController = [[ShowPayTypeViewController alloc]init];
     [payController scanCode:controller];
 }

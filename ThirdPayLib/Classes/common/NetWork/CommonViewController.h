@@ -14,24 +14,24 @@ typedef void (^CompleteBlock)();
 
 
 
--(void)changeLanguageRefreshView:(NSNotification *)note;
+//-(void)changeLanguageRefreshView:(NSNotification *)note;
 
 -(void) showLoadingView;
 
--(void) requestServer;
+//-(void) requestServer;
 /**
  *	hidden loading view
  */
 -(void) hidingLoadingView;
 
 
-- (void)presentViewControllerWithNav:(UIViewController *)controller
-                            animated:(BOOL)flag
-                          completion:(void (^)(void))completion;
+//- (void)presentViewControllerWithNav:(UIViewController *)controller
+//                            animated:(BOOL)flag
+//                          completion:(void (^)(void))completion;
 
 - (void)presentSheet:(NSString *)indiTitle complete:(BasicBlock)callBack;
 -(void) showErrorMsg:(NSString*) message;//提示语用这个方法
 - (void)presentSheet:(NSString *)indiTitle;
-- (CGRect)visibleBoundsShowNav:(BOOL)hasNav showTabBar:(BOOL)hasTabBar;
+//- (CGRect)visibleBoundsShowNav:(BOOL)hasNav showTabBar:(BOOL)hasTabBar;
 @end
 

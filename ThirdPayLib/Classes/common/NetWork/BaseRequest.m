@@ -38,8 +38,8 @@
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:@"yyMMdd"];
         NSString *currentDateStr = [dateFormatter stringFromDate:datenow];
-        NSString *timeSp = [NSString stringWithFormat:@"%d", (long)[datenow timeIntervalSince1970]];
-        NSString *uuid = [SystemInfo getUUID];
+        NSString *timeSp = [NSString stringWithFormat:@"%ld",(long)([datenow timeIntervalSince1970]*1000)];
+        
         EncodeUnEmptyStrObjctToDic(_requestParamDic, [NSString stringWithFormat:@"%@",timeSp], @"seqNo");
         
         EncodeUnEmptyStrObjctToDic(_requestParamDic, timeSp, @"time");

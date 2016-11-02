@@ -29,7 +29,8 @@
             response:(BaseResponse *)response
              success:(CallBackSuccess)SuccessBlock
               failed:(CallBackFailed)FailedBlock
-          controller:(CommonViewController *)ctl;
+          controller:(CommonViewController *)ctl
+     showProgressBar:(BOOL)background;
 //非强制性动画
 + (void)optionalBeginService:(BaseRequest *)request
                     response:(BaseResponse *)response

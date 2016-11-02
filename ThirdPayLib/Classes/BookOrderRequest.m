@@ -72,8 +72,7 @@
     NSString *ipAdrress = [self getIPAddress];
     EncodeUnEmptyStrObjctToDic(dic, uuid, @"uuid");
     EncodeUnEmptyStrObjctToDic(dic, VERSION, @"sdkVer");
-    EncodeUnEmptyStrObjctToDic(dic, @"121.48", @"xlocation");
-    EncodeUnEmptyStrObjctToDic(dic, @"31.22", @"ylocation");
+    
     EncodeUnEmptyStrObjctToDic(dic, ipAdrress, @"ip");
     EncodeUnEmptyStrObjctToDic(dic, [NSString stringWithFormat:@"%@",OS], @"osVer");
     EncodeUnEmptyStrObjctToDic(dic, [NSString stringWithFormat:@"%@",device], @"device");
@@ -84,7 +83,7 @@
     EncodeUnEmptyStrObjctToDic(dic, self.merchantOrderNO, @"orderNo");
     EncodeUnEmptyStrObjctToDic(dic, self.goodsName, @"orderSubject");
     EncodeUnEmptyStrObjctToDic(dic, self.goodsDetail, @"orderDescription");
-    EncodeUnEmptyStrObjctToDic(dic, @"", @"goodsInfo");
+    EncodeUnEmptyStrObjctToDic(dic, @" ", @"goodsInfo");
     EncodeUnEmptyStrObjctToDic(dic, self.tradeTpye, @"tradeType");
     EncodeUnEmptyStrObjctToDic(dic, self.memberNO, @"accountNo");
     EncodeUnEmptyStrObjctToDic(dic, self.redPocket, @"redPocket");

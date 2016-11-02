@@ -9,8 +9,9 @@
 #import "MOPHUDCenter.h"
 #import <QuartzCore/QuartzCore.h>
 #import "SystemInfo.h"
-
+#import "UIImage+SNAdditions.h"
 #import "CommonViewController.h"
+#import "UIColor+SNAdditions.h"
 
 //单例对象
 static MOPHUDCenter *shareInstance;

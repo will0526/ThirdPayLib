@@ -2,7 +2,7 @@
   "name": "ThirdPayLib",
   "version": "0.1.1",
   "summary": "A short description of ThirdPayLib.",
-  "description": "TODO: Add long description of the pod here.",
+  "description": "To provide a sdk which used to pay online for other app.\neasy to pay.",
   "homepage": "https://github.com/will0526/ThirdPayLib",
   "license": {
     "type": "MIT",
@@ -27,7 +27,22 @@
   "public_header_files": "ThirdPayLib/Classes/ThirdPay.h",
   "frameworks": [
     "UIKit",
-    "MapKit"
+    "CoreGraphics",
+    "AVFoundation",
+    "AudioToolbox",
+    "CoreMotion",
+    "CFNetwork",
+    "CoreText",
+    "QuartzCore",
+    "CoreTelephony",
+    "SystemConfiguration",
+    "Foundation"
+  ],
+  "libraries": [
+    "z",
+    "c++",
+    "stdc++",
+    "sqlite3.0"
   ],
   "dependencies": {
     "AFNetworking": [

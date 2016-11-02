@@ -10,6 +10,8 @@
 #import "PNRViewController.h"
 #import "PNRAboutUSViewController.h"
 #import <ThirdPayLib/ThirdPay.h>
+#import "PNRMerchantViewController.h"
+
 
 @interface PNRMainViewController ()
 
@@ -134,8 +136,12 @@
 }
 
 -(void)aboutUS{
-    PNRAboutUSViewController *about = [[PNRAboutUSViewController alloc]init];
-    [self.navigationController pushViewController:about animated:YES];
+    
+    
+    //PNRAboutUSViewController *about = [[PNRAboutUSViewController alloc]init];
+    PNRMerchantViewController *merchant = [[PNRMerchantViewController alloc]init];
+    
+    [self.navigationController pushViewController:merchant animated:YES];
     
     
 }

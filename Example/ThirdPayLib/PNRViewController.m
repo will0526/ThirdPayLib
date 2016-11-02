@@ -53,7 +53,7 @@
         case 1:
         {
             dataSource = @[@"用户号",@"商户号",@"商户订单号",@"商品名称",@"商品详情",@"订单金额(分)",@"实付金额(分)",@"红包",@"积分",@"备注",@"通知地址"];
-            defaultSource = @[@"0001",@"000000000000001",merchantOrder,@"苹果手机6s",@"苹果手机6s 正品行货 64G 假一赔十",@"5400",@"1",@"0",@"0",@"不支持货到付款",@"http://www.baidu.com"];
+            defaultSource = @[@"0001",@"000000000000001",merchantOrder,@"苹果手机 6s",@"苹果手机6s 正品行货 64G 假一赔十",@"540000",@"530000",@"0",@"0",@"不支持货到付款",@"http://www.baidu.com"];
         }
             break;
         case 2:
@@ -80,12 +80,12 @@
     
     self.params = [[NSMutableDictionary alloc]init];
     
-    backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-64)];
+    backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.tableView.frame.origin.y+10 +40+10)];
     [backView addSubview:self.tableView];
     [backView addSubview:self.bookOrder];
     
-    [backView addSubview:_pickerView];
     
+    backView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.tableView.frame.size.height +40 +20);
     
     [self.bookOrder addTarget:self action:@selector(bookOrder:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -95,6 +95,7 @@
     
     UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(keyboardDown)];
     [self.view addGestureRecognizer:gesture];
+    [self.view addSubview:_pickerView];
     
     
 }
@@ -354,14 +355,16 @@
     }
     cell.accessoryType = UITableViewCellAccessoryNone;
     
-    UILabel *textLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 5, 100, 40)];
+    UILabel *textLabel = [[UILabel alloc]initWithFrame:CGRectMake(5, 5, 50, 40)];
     textLabel.text = dataSource[indexPath.row];
+    textLabel.font = [UIFont systemFontOfSize:12];
     textLabel.textAlignment = NSTextAlignmentLeft;
+    textLabel.adjustsFontSizeToFitWidth = YES;
     [cell addSubview:textLabel];
     
     if (_viewType == 2 && indexPath.row == 10 ) {
         
-        payTypeLabel = [[UILabel alloc]initWithFrame:CGRectMake(110, 5, 250, 40)];
+        payTypeLabel = [[UILabel alloc]initWithFrame:CGRectMake(70, 5, 250, 40)];
         payTypeLabel.text = @"支付宝";
         paytype = PayType_Alipay;
         payTypeLabel.textAlignment = NSTextAlignmentLeft;
@@ -373,7 +376,7 @@
        
         [self.params setValue:@"http\\:www.baidu.com" forKey:@"notifyURL"];
     }else{
-        UITextField *textField = [[UITextField alloc]initWithFrame:CGRectMake(110, 5, 250, 40)];
+        UITextField *textField = [[UITextField alloc]initWithFrame:CGRectMake(55, 5, self.view.frame.size.width - 60, 40)];
         textField.placeholder = dataSource[indexPath.row];
         textField.text = defaultSource[indexPath.row];
         textField.borderStyle = UITextBorderStyleRoundedRect;
@@ -540,7 +543,7 @@
     }
     
     [UIView animateWithDuration:0.5 animations:^{
-        _pickerView.frame = CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width, 260);
+        _pickerView.frame = CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width, 160);
     }];
     
 }
@@ -549,7 +552,7 @@
 //    _pickerView.hidden = NO;
     
     [UIView animateWithDuration:0.5 animations:^{
-        _pickerView.frame = CGRectMake(0, self.view.frame.size.height-260, self.view.frame.size.width, 260);
+        _pickerView.frame = CGRectMake(0, self.view.frame.size.height-160, self.view.frame.size.width, 160);
     }];
 }
 

@@ -56,6 +56,7 @@
              success:(CallBackSuccess)SuccessBlock
               failed:(CallBackFailed)FailedBlock
           controller:(CommonViewController *)ctl
+     showProgressBar:(BOOL)background
 {
     
     [self beginService:request
@@ -64,7 +65,7 @@
                 failed:FailedBlock
  withOptionalAnimation:MOPHUDCenterHUDTypeNetWorkLoading
                timeout:Request_Timeout_Default
-       showProgressBar:NO
+       showProgressBar:background
              withTitle:@""
         withController:ctl];
     
@@ -145,10 +146,11 @@ withOptionalAnimation:(MOPHUDCenterHUDType)hudtype
                 response.jsonDict = dic;
                 
                 dispatch_async(dispatch_get_main_queue(), ^ {
-                    //                    if(showProgressBar){
-                    ////                        [[MOPHUDCenter shareInstance]removeHUD];
-                    //                        [ctl hidingLoadingView];
-                    //                    }
+                    if(showProgressBar){
+                        //                        [[MOPHUDCenter shareInstance]removeHUD];
+                        [ctl hidingLoadingView];
+                        
+                    }
                     
                     NSString *respcode = EncodeStringFromDic(response.jsonDict, @"code");
                     NSString *msg = EncodeStringFromDic(response.jsonDict, @"message");
@@ -189,11 +191,12 @@ withOptionalAnimation:(MOPHUDCenterHUDType)hudtype
                 NSString *errorCode = [NSString stringWithFormat:@"%ld", (long)error.code];
                 NSString *errorInfo = error.userInfo[@"NSLocalizedDescription"];
                 dispatch_async(dispatch_get_main_queue(), ^ {
-                    //                    if(showProgressBar){
+                    
+                    if(showProgressBar){
                     //                        [[MOPHUDCenter shareInstance]removeHUD];
-                    //                        [ctl hidingLoadingView];
-                    //
-                    //                    }
+                        [ctl hidingLoadingView];
+                    
+                    }
                     if (FailedBlock)
                     {
                         
@@ -210,7 +213,7 @@ withOptionalAnimation:(MOPHUDCenterHUDType)hudtype
         {
             dispatch_async(dispatch_get_main_queue(), ^ {
                 if(showProgressBar){
-                    [[MOPHUDCenter shareInstance]removeHUD];
+                   // [[MOPHUDCenter shareInstance]removeHUD];
                     [ctl hidingLoadingView];
                 }
                 if (FailedBlock)

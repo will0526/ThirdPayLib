@@ -9,16 +9,20 @@
 #import "ShowPayTypeViewController.h"
 #import "BookOrderRequest.h"
 #import "CommonService.h"
-#import "LJSecurityUtils.h"
+#import "UIColor+SNAdditions.h"
+#import "UIImage+SNAdditions.h"
 #import "QueryOrderRequest.h"
 #import <AlipaySDK/AlipaySDK.h>
 #import "BestpaySDK.h"
 #import "BestpayNativeModel.h"
 #import "WXApi.h"
 #import "QRCodeViewController.h"
+#import "MerchantViewController.h"
+
 @interface ShowPayTypeViewController ()<UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate,WXApiDelegate,QRCodeDelegate>
 
 @property(nonatomic, strong)UITableView *tableView;
+@property(nonatomic, strong)UITableView *backtableView;
 @property(nonatomic, strong)UIView *headView;
 @property(nonatomic, strong)UIButton *payButton;
 @property(nonatomic, strong)NSString *orderNO;
@@ -50,7 +54,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"支付订单";
+    self.title = @"订单确认";
     
     self.view.backgroundColor =HEX_RGB(0xeeeeee);
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(Back)];
@@ -62,9 +66,11 @@
     _resultDict = [[NSMutableDictionary alloc]init];
     
     
-    [self.view addSubview:self.tableView];
     
     self.tableView.tableHeaderView = self.headView;
+    self.backtableView.tableHeaderView = self.tableView;
+    
+    [self.view addSubview:self.backtableView];
     [self.view addSubview:self.payButton];
     
 }
@@ -73,6 +79,10 @@
 //        OrderString = @"MERCHANTID=02440201030132107&SUBMERCHANTID=000000000000001&MERCHANTPWD=975388&ORDERSEQ=0000000000000511&ORDERAMOUNT=0.01&ORDERTIME=20160914162734&ORDERVALIDITYTIME=&PRODUCTDESC=pay&CUSTOMERID=&PRODUCTAMOUNT=0.01&ATTACHAMOUNT=0&CURTYPE=RMB&BACKMERCHANTURL=http://pay.pnrtec.com/receiver/0004/0005/01.html&ATTACH=&PRODUCTID=04&USERIP=192.168.11.130&DIVDETAILS=&ACCOUNTID=&BUSITYPE=04&ORDERREQTRANSEQ=0000000000000511&SERVICE=mobile.security.pay&SIGNTYPE=MD5&SIGN=68AB7FB3EDCA18380D17DF1C27598857&SUBJECT=6&SWTICHACC=true&SESSIONKEY=&OTHERFLOW=&ACCESSTOKEN=";
 //    [self weixinpay];
 //    return;
+    BOOL background = YES;
+    if ([_viewType isEqualToString:@"NOVIEW"]) {
+        background = NO;
+    }
     
     BookOrderRequest *request = [[BookOrderRequest alloc]init];
     request.merchantNO = self.merchantNO;
@@ -95,7 +105,7 @@
     [[MOPHUDCenter shareInstance]showHUDWithTitle:@""
                                              type:MOPHUDCenterHUDTypeNetWorkLoading
                                        controller:self
-                                   showBackground:YES];
+                                   showBackground:background];
     
     [CommonService beginService:request response:response success:^(BaseResponse *response) {
         
@@ -128,7 +138,7 @@
         [self tradeReturn];
         
         [[MOPHUDCenter shareInstance]removeHUD];
-    } controller:self];
+    } controller:self showProgressBar:NO];
     
     
     
@@ -203,7 +213,7 @@
             [alertView setHidden:YES];
             payStatus = PayStatus_PAYCANCEL;
         
-            EncodeUnEmptyStrObjctToDic(_resultDict, TRADESUCCESS, @"message");
+            EncodeUnEmptyStrObjctToDic(_resultDict, TRADECANCEL, @"message");
             EncodeUnEmptyStrObjctToDic(_resultDict, @"0001", @"code");
             EncodeUnEmptyDicObjctToDic(_resultDict, [self getParamsWrap], @"content");
             [self tradeReturn];
@@ -218,7 +228,7 @@
 -(UIButton *)payButton{
     
     if (_payButton == nil) {
-        _payButton = [[UIButton alloc]initWithFrame:CGRectMake(30, self.view.height - 70, self.view.width - 60, 50)];
+        _payButton = [[UIButton alloc]initWithFrame:CGRectMake(30, self.view.height - 60, self.view.width - 60, 50)];
         NSString *money = [self moneyTran:self.payAmount ownType:1];
         [_payButton setTitle:[NSString stringWithFormat:@"确认支付￥%@元",money] forState:UIControlStateNormal];
         [_payButton setBackgroundImage:[UIImage imageWithColor:HEX_RGB(0xff9e05)] forState:UIControlStateNormal];
@@ -335,6 +345,16 @@
     return _headView;
     
 }
+
+-(UITableView *)backtableView{
+    if (_backtableView == nil) {
+        self.backtableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.height) style:UITableViewStylePlain];
+        
+        self.backtableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    }
+    return _backtableView;
+}
+
 
 #pragma mark tableView start
 
@@ -473,14 +493,34 @@
     
     [WXApi registerApp:weixinAppID withDescription:@"demo 2.0"];
     
-    PayReq *request = [[PayReq alloc] init];
-    request.partnerId = EncodeStringFromDic(dic, @"partnerid");
-    request.prepayId= EncodeStringFromDic(dic, @"prepayid");
-    request.package = EncodeStringFromDic(dic, @"package");
-    request.nonceStr= EncodeStringFromDic(dic, @"noncestr");
-    request.timeStamp= [EncodeStringFromDic(dic, @"timestamp") intValue];
-    request.sign= EncodeStringFromDic(dic, @"sign");
-    [WXApi sendReq:request];
+    NSString *partnerId = EncodeStringFromDic(dic, @"partnerid");
+    
+    NSString *prepayId = EncodeStringFromDic(dic, @"prepayid");
+    NSString *package = EncodeStringFromDic(dic, @"package");
+    NSString *nonceStr= EncodeStringFromDic(dic, @"noncestr");
+    NSString *timeSp = EncodeStringFromDic(dic, @"timestamp");
+    
+    NSString *sign= EncodeStringFromDic(dic, @"sign");
+    
+    if (IsStrEmpty(partnerId) || IsStrEmpty(prepayId) || IsStrEmpty(package) || IsStrEmpty(nonceStr) || IsStrEmpty(timeSp) || IsStrEmpty(sign)) {
+        payStatus = PayStatus_PAYFAIL;
+        EncodeUnEmptyStrObjctToDic(_resultDict, BOOKORDERFAILED, @"message");
+        EncodeUnEmptyStrObjctToDic(_resultDict, @"9000", @"code");
+        EncodeUnEmptyDicObjctToDic(_resultDict, [self getParamsWrap], @"content");
+        [self tradeReturn];
+    }else{
+        
+        PayReq *request = [[PayReq alloc] init];
+        request.partnerId = partnerId;
+        request.prepayId= prepayId;
+        request.package = package;
+        request.nonceStr= nonceStr;
+        request.timeStamp= [timeSp intValue];
+        request.sign= sign;
+        [WXApi sendReq:request];
+    }
+    
+    
     
 }
 
@@ -534,16 +574,17 @@
 
     DDLog(@"跳转支付页面带入信息:", OrderString);
     
-    BestpayNativeModel *order =[[BestpayNativeModel alloc]init];
-    order.orderInfo = OrderString;
-    order.launchType = launchTypePay1;
-    order.scheme = self.appScheme;
+    NSString *scheml = @"bestpayDemo";
+    NSString *orderStr = @"SERVICE=mobile.security.pay&MERCHANTID=01320103025740000&MERCHANTPWD=288330&SUBMERCHANTID=&BACKMERCHANTURL=http://127.0.0.1:8040/wapBgNotice.action=yzf&SIGNTYPE=MD5&MAC=A540F34032ECA7E9245DA0C5B7517F58&ORDERSEQ=2016110118425134&ORDERREQTRNSEQ=20161101184251340001&ORDERTIME=20161101184251&ORDERVALIDITYTIME=&ORDERAMOUNT=0.01&CURTYPE=RMB&PRODUCTID=04&PRODUCTDESC=联想手机&PRODUCTAMOUNT=0.01&ATTACHAMOUNT=0.00&ATTACH=88888&DIVDETAILS=&ACCOUNTID=&CUSTOMERID=gehudedengluzhanghao&USERIP=228.112.116.118&BUSITYPE=04";
     
-    [BestpaySDK payWithOrder:order fromViewController:self callback:^(NSDictionary *resultDic) {
-        
-        NSLog(@"result == %@", resultDic);
-        
-    }];
+    BestpayNativeModel *order =[[BestpayNativeModel alloc]init];
+    //order.orderInfo = OrderString;
+    order.orderInfo = orderStr;
+    order.launchType = launchTypePay1;
+    order.scheme = scheml;
+    UIViewController *view = [[UIViewController alloc]init];
+    
+    [BestpaySDK payWithOrder:order fromViewController:view];
     
 }
 
@@ -560,10 +601,9 @@
     [payingAlert setHidden:YES];
     switch (self.payType) {
         case PayType_YiPay:{
-            [BestpaySDK processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
-                DDLog(@"bestpay result", resultDic);
-                
-                NSString *resultCode = EncodeStringFromDic(resultDic, @"resultCode");
+                NSString* params =[url absoluteString];
+                NSDictionary *dic = [[self class] paramsFromString:params];
+                NSString *resultCode = EncodeStringFromDic(dic, @"resultCode");
                 if ([resultCode isEqualToString:@"00"]) {
                     payStatus = PayStatus_PAYSUCCESS;
                     EncodeUnEmptyStrObjctToDic(_resultDict, TRADESUCCESS, @"message");
@@ -582,7 +622,7 @@
                     EncodeUnEmptyStrObjctToDic(_resultDict, @"6001", @"code");
                     EncodeUnEmptyDicObjctToDic(_resultDict, [self getParamsWrap], @"content");
                 }
-            }];
+            
         }
             break;
         case PayType_Alipay:{
@@ -631,6 +671,69 @@
     
     return YES;
     
+}
+
++ (NSDictionary *)paramsFromString:(NSString *)urlStr
+{
+    urlStr = [urlStr stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    if (urlStr == nil || [urlStr isEqualToString:@""] || ![urlStr hasPrefix:@"bestpayDemo"])
+    {
+        return nil;
+    }
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    
+    NSString *str = [urlStr stringByReplacingOccurrencesOfString:@"bestpayDemo" withString:@""];
+    
+    if ([str isEqualToString:@""])
+    {
+        return nil;
+    }
+    
+    NSArray *array = [str componentsSeparatedByString:@"&"];
+    
+    
+    
+    //此处针对2.0.0版本及后续版本的数据处理
+    if ([array count])
+    {
+        NSDictionary *tmpDic = [[self class] paramsFromKeyValueStr:str];
+        [dic setDictionary:tmpDic];
+    }
+    
+    return dic;
+}
+
++ (NSDictionary *)paramsFromKeyValueStr:(NSString *)str
+{
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    
+    NSArray *array = [str componentsSeparatedByString:@"&"];
+    
+    if ([array count]) {
+        for (int i = 0; i < [array count]; i ++) {
+            NSString *pStr = [array objectAtIndex:i];
+            NSArray *kvArray = [pStr componentsSeparatedByString:@"="];
+            if ([kvArray count] != 2) {
+                continue;
+            }
+            NSString *key = [kvArray objectAtIndex:0];
+            key = [key stringByReplacingOccurrencesOfString:@"\b" withString:@""];
+            key = [key stringByReplacingOccurrencesOfString:@"\r" withString:@""];
+            key = [key stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+            key = [key stringByReplacingOccurrencesOfString:@"\t" withString:@""];
+            key = [key stringByReplacingOccurrencesOfString:@"\0" withString:@""];
+            NSString *value = [kvArray objectAtIndex:1];
+            value = [value stringByReplacingOccurrencesOfString:@"\b" withString:@""];
+            value = [value stringByReplacingOccurrencesOfString:@"\r" withString:@""];
+            value = [value stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+            value = [value stringByReplacingOccurrencesOfString:@"\t" withString:@""];
+            value = [value stringByReplacingOccurrencesOfString:@"\0" withString:@""];
+            
+            [dic setObject:value forKey:key];
+        }
+    }
+    
+    return dic;
 }
 
 -(NSDictionary *)getParamsWrap{
@@ -722,9 +825,13 @@
 
 -(void)scanCode:(UIViewController *)controller {
     
-    QRCodeViewController *qrcode = [[QRCodeViewController alloc]init];
-    qrcode.delegate = self;
-    [controller presentViewController:qrcode animated:YES completion:nil];
+    //QRCodeViewController *qrcode = [[QRCodeViewController alloc]init];
+    //qrcode.delegate = self;
+    MerchantViewController *merchant = [[MerchantViewController alloc]init];
+    
+    
+    [controller.navigationController pushViewController:merchant animated:YES];
+    
     
 }
 
