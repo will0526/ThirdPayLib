@@ -262,6 +262,7 @@
 		BE3757941DC9BFF200E95CF6 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = BE37576A1DC9BAD600E95CF6 /* libz.tbd */; };
 		BE3757951DC9BFFF00E95CF6 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = BE3757701DC9BB0500E95CF6 /* libsqlite3.0.tbd */; };
 		BE3757961DC9C00F00E95CF6 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = BE37576C1DC9BAE500E95CF6 /* libc++.tbd */; };
+		BE37579A1DC9DBF100E95CF6 /* AlipaySDK.h in Headers */ = {isa = PBXBuildFile; fileRef = BE3757991DC9DBF100E95CF6 /* AlipaySDK.h */; };
 		BF0A583C4365FC0558CA072DA5B30173 /* BaseResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DBD5415716558DFC0420A89B6D22C87 /* BaseResponse.m */; };
 		BFD1E60DE3BE78A3438C35F0E2A2A778 /* KWBackgroundTask.h in Headers */ = {isa = PBXBuildFile; fileRef = 88600BD88035B88D57499A446EE28D2D /* KWBackgroundTask.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BFE10F2EA970BC90A5E9CC47469DE969 /* checked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F6D5F2E78424DF62A302BCE935038F8 /* checked@2x.png */; };
@@ -694,6 +695,7 @@
 		BE3757851DC9BC7200E95CF6 /* bestpay_nowifi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bestpay_nowifi.png; sourceTree = "<group>"; };
 		BE3757861DC9BC7200E95CF6 /* PassGuardCtrlBundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = PassGuardCtrlBundle.bundle; sourceTree = "<group>"; };
 		BE3757921DC9BFE700E95CF6 /* libstdc++.6.0.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.0.9.tbd"; path = "Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.1.sdk/usr/lib/libstdc++.6.0.9.tbd"; sourceTree = DEVELOPER_DIR; };
+		BE3757991DC9DBF100E95CF6 /* AlipaySDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlipaySDK.h; sourceTree = "<group>"; };
 		C00175E55F791A1F11DB52AC43B79C61 /* KWContextNode.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = KWContextNode.m; path = Classes/Nodes/KWContextNode.m; sourceTree = "<group>"; };
 		C03958B260F4944D6162C27FF61D1024 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C0C17A71D9C292BFA1CCD31DCD8F969F /* KWMock.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = KWMock.h; path = Classes/Mocking/KWMock.h; sourceTree = "<group>"; };
@@ -1570,6 +1572,7 @@
 				9B4D50152A2188F03EB968193C231A03 /* ShowPayTypeViewController.m */,
 				02E48090CEB0EEA80FA93FD448B95956 /* ThirdPay.h */,
 				A65CEBE96574ED3F2399F656D42D4567 /* ThirdPay.m */,
+				BE3757991DC9DBF100E95CF6 /* AlipaySDK.h */,
 				C855E65117B62CC2A905FFB57E963C79 /* common */,
 			);
 			path = Classes;
@@ -1617,6 +1620,7 @@
 				F41290C1C838302264F0B35E15A5AA66 /* BookOrderRequest.h in Headers */,
 				57B7675F6AEA960A9DE1473C326E4763 /* CommonDTO.h in Headers */,
 				30BA319FABBCB0D054D0BDD7505AED7B /* CommonService.h in Headers */,
+				BE37579A1DC9DBF100E95CF6 /* AlipaySDK.h in Headers */,
 				BE3757871DC9BC7200E95CF6 /* BestpayNativeModel.h in Headers */,
 				31255730780D57298700DB77F09C22D4 /* CommonViewController.h in Headers */,
 				84225E0330BCDC880518B0D7DD68382C /* Constant.h in Headers */,

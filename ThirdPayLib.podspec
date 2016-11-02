@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'ThirdPayLib'
-  s.version          = '1.0'
+  s.version          = '1.0.2'
   s.summary          = 'To provide a sdk which used to pay online for other app'
 
 # This description is used to generate tags and improve search results.
