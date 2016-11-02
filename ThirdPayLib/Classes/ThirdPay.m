@@ -31,8 +31,6 @@
 #import "GlobleConstant.h"
 #import "GlobleDefine.h"
 
-#import <AFNetworking/AFNetworking.h>
-
 #import "CommonService.h"
 #import "QueryOrderRequest.h"
 
