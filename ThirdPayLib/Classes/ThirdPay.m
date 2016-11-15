@@ -51,8 +51,8 @@
     NSString *merchantNO;
     NSString *memberNO;
     NSString *merchantOrderNO;
-    NSString *goodsName;
-    NSString *goodsDetail;
+    NSString *orderTitle;
+    NSString *orderDetail;
     NSString *memo;
     NSString *totalAmount ;
     NSString *payAmount;
@@ -189,8 +189,8 @@ static ShowPayTypeViewController *payController;
     
     NSString *memberNO = EncodeStringFromDic(tradeInfo, @"memberNo");
     NSString *merchantOrderNO = EncodeStringFromDic(tradeInfo, @"merchantOrderNO");
-    NSString *goodsName = EncodeStringFromDic(tradeInfo, @"goodsName");
-    NSString *goodsDetail = EncodeStringFromDic(tradeInfo, @"goodsDetail");
+    NSString *orderTitle = EncodeStringFromDic(tradeInfo, @"orderTitle");
+    NSString *orderDetail = EncodeStringFromDic(tradeInfo, @"orderDetail");
     NSString *memo = EncodeStringFromDic(tradeInfo, @"memo");
     NSString *totalAmount = EncodeStringFromDic(tradeInfo, @"totalAmount");
     NSString *payAmount = EncodeStringFromDic(tradeInfo, @"payAmount");
@@ -207,9 +207,9 @@ static ShowPayTypeViewController *payController;
         resultInfo = @"商户号不能为空";
     }else if (IsStrEmpty(merchantOrderNO)){
         resultInfo = @"商户订单号不能为空";
-    }else if (IsStrEmpty(goodsName)){
+    }else if (IsStrEmpty(orderTitle)){
         resultInfo = @"商品名称不能为空";
-    }else if (IsStrEmpty(goodsDetail)){
+    }else if (IsStrEmpty(orderDetail)){
         resultInfo = @"商品详情不能为空";
     }else if (IsStrEmpty(totalAmount)){
         resultInfo = @"订单金额不能为空";
@@ -240,8 +240,8 @@ static ShowPayTypeViewController *payController;
     payController.memberNO = memberNO;
     payController.merchantNO = merchantNO;
     payController.merchantOrderNO = merchantOrderNO;
-    payController.goodsName = goodsName;
-    payController.goodsDetail = goodsDetail;
+    payController.orderTitle = orderTitle;
+    payController.orderDetail = orderDetail;
     payController.memo = memo;
     payController.totalAmount = totalAmount;
     payController.payAmount = payAmount;
@@ -261,8 +261,8 @@ static ShowPayTypeViewController *payController;
     NSString *merchantNO = EncodeStringFromDic(tradeInfo, @"merchantNO");
     NSString *memberNO = EncodeStringFromDic(tradeInfo, @"memberNo");
     NSString *merchantOrderNO = EncodeStringFromDic(tradeInfo, @"merchantOrderNO");
-    NSString *goodsName = EncodeStringFromDic(tradeInfo, @"goodsName");
-    NSString *goodsDetail = EncodeStringFromDic(tradeInfo, @"goodsDetail");
+    NSString *orderTitle = EncodeStringFromDic(tradeInfo, @"orderTitle");
+    NSString *orderDetail = EncodeStringFromDic(tradeInfo, @"orderDetail");
     NSString *memo = EncodeStringFromDic(tradeInfo, @"memo");
     NSString *totalAmount = EncodeStringFromDic(tradeInfo, @"totalAmount");
     NSString *payAmount = EncodeStringFromDic(tradeInfo, @"payAmount");
@@ -276,9 +276,9 @@ static ShowPayTypeViewController *payController;
         resultInfo = @"商户号不能为空";
     }else if (IsStrEmpty(merchantOrderNO)){
         resultInfo = @"商户订单号不能为空";
-    }else if (IsStrEmpty(goodsName)){
+    }else if (IsStrEmpty(orderTitle)){
         resultInfo = @"商品名称不能为空";
-    }else if (IsStrEmpty(goodsDetail)){
+    }else if (IsStrEmpty(orderDetail)){
         resultInfo = @"商品详情不能为空";
     }else if (IsStrEmpty(totalAmount)){
         resultInfo = @"订单金额不能为空";
@@ -310,8 +310,8 @@ static ShowPayTypeViewController *payController;
     NSString *merchantNO = EncodeStringFromDic(tradeInfo, @"merchantNO");
     NSString *memberNO = EncodeStringFromDic(tradeInfo, @"memberNo");
     NSString *merchantOrderNO = EncodeStringFromDic(tradeInfo, @"merchantOrderNO");
-    NSString *goodsName = EncodeStringFromDic(tradeInfo, @"goodsName");
-    NSString *goodsDetail = EncodeStringFromDic(tradeInfo, @"goodsDetail");
+    NSString *orderTitle = EncodeStringFromDic(tradeInfo, @"orderTitle");
+    NSString *orderDetail = EncodeStringFromDic(tradeInfo, @"orderDetail");
     NSString *memo = EncodeStringFromDic(tradeInfo, @"memo");
     NSString *totalAmount = EncodeStringFromDic(tradeInfo, @"totalAmount");
     NSString *payAmount = EncodeStringFromDic(tradeInfo, @"payAmount");
@@ -325,8 +325,8 @@ static ShowPayTypeViewController *payController;
     payController.memberNO = memberNO;
     payController.merchantNO = merchantNO;
     payController.merchantOrderNO = merchantOrderNO;
-    payController.goodsName = goodsName;
-    payController.goodsDetail = goodsDetail;
+    payController.orderTitle = orderTitle;
+    payController.orderDetail = orderDetail;
     payController.memo = memo;
     payController.totalAmount = totalAmount;
     payController.payAmount = payAmount;
@@ -346,10 +346,12 @@ static ShowPayTypeViewController *payController;
 }
 
 
-+(void)scanQRCode:(UIViewController *)controller{
++(void)scanQRCode:(UIViewController *)controller Delegate:(id<ThirdPayDelegate>)delegate{
     
-    payController = [[ShowPayTypeViewController alloc]init];
-    [payController scanCode:controller];
+    
+    QRCodeViewController *qrcode = [[QRCodeViewController alloc]init];
+    qrcode.thirdPayDelegate = delegate;
+    [controller.navigationController pushViewController:qrcode animated:YES];
 }
 
 

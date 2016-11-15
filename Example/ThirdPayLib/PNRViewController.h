@@ -12,5 +12,6 @@
 
 @property (nonatomic, assign)NSInteger viewType;
 
+-(void)scanQRCode:(UIViewController *)controller;
 
 @end

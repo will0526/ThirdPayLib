@@ -81,8 +81,8 @@
     EncodeUnEmptyStrObjctToDic(dic, self.payAmount, @"tradeAmount");
     EncodeUnEmptyStrObjctToDic(dic, self.tradeCurrency, @"currency");
     EncodeUnEmptyStrObjctToDic(dic, self.merchantOrderNO, @"orderNo");
-    EncodeUnEmptyStrObjctToDic(dic, self.goodsName, @"orderSubject");
-    EncodeUnEmptyStrObjctToDic(dic, self.goodsDetail, @"orderDescription");
+    EncodeUnEmptyStrObjctToDic(dic, self.orderTitle, @"orderSubject");
+    EncodeUnEmptyStrObjctToDic(dic, self.orderDetail, @"orderDescription");
     EncodeUnEmptyStrObjctToDic(dic, @" ", @"goodsInfo");
     EncodeUnEmptyStrObjctToDic(dic, self.tradeTpye, @"tradeType");
     EncodeUnEmptyStrObjctToDic(dic, self.memberNO, @"accountNo");

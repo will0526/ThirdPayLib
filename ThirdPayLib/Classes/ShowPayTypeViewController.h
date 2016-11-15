@@ -17,8 +17,8 @@
  *  @param memberNo         用户号
  *  @param merchantID       商户号
  *  @param merchantOrderID  商户订单号
- *  @param goodsName        商品名称
- *  @param goodsDetail      商品详情
+ *  @param orderTitle        商品名称
+ *  @param orderDetail      商品详情
  *  @param memo             备注
  
  *  @param totalAmount      订单总金额（分）
@@ -35,8 +35,8 @@
 @property(nonatomic,strong)NSString *merchantNO;
 @property(nonatomic,strong)NSString *memberNO;
 @property(nonatomic,strong)NSString *merchantOrderNO;
-@property(nonatomic,strong)NSString *goodsName;
-@property(nonatomic,strong)NSString *goodsDetail;
+@property(nonatomic,strong)NSString *orderTitle;
+@property(nonatomic,strong)NSString *orderDetail;
 @property(nonatomic,strong)NSString *memo;
 @property(nonatomic,strong)NSString *totalAmount;
 @property(nonatomic,strong)NSString *payAmount;
@@ -51,6 +51,7 @@
 
 
 @property(nonatomic, weak)id<ThirdPayDelegate> thirdPayDelegate;
+@property(nonatomic, weak)UIViewController *viewController;
 
 -(void)bookOrder;
 

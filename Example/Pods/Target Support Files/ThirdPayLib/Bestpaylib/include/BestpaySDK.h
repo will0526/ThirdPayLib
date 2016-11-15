@@ -10,7 +10,7 @@
 #import "BestpayNativeModel.h"
 
 @interface BestpaySDK : NSObject
-
+typedef void(^CompletionBlock)(NSDictionary *resultDic);
 
 
 /**
@@ -19,7 +19,8 @@
  *  @param order  订单请求所需的数据模型
  *  @param hostvc 源Controller
  */
-+(void)payWithOrder:(BestpayNativeModel *)order fromViewController:(UIViewController *)hostvc;
++(void)payWithOrder:(BestpayNativeModel *)order fromViewController:(UIViewController *)hostvc callback:(CompletionBlock)completionBlock;
 
-
++(void)processOrderWithPaymentResult:(NSURL *)resultUrl
+                     standbyCallback:(CompletionBlock)completionBlock;
 @end

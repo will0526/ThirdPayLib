@@ -72,8 +72,8 @@ typedef void (^ThirdPayCompletion)(NSDictionary *result);
  *  @param memberNO         用户号    （非必传）
  *  @param merchantNO       商户号
  *  @param merchantOrderNO  商户订单号
- *  @param goodsName        商品名称
- *  @param goodsDetail      商品详情
+ *  @param orderTitle        商品名称
+ *  @param orderDetail      商品详情
  *  @param memo             备注      （非必传）
  *  @param totalAmount      订单总金额（分）
  *  @param payAmount        待支付金额（分）
@@ -106,8 +106,8 @@ typedef void (^ThirdPayCompletion)(NSDictionary *result);
  *  @param memberNo         用户号       （非必传）
  *  @param merchantNO       商户号
  *  @param merchantOrderNO  商户订单号
- *  @param goodsName        商户号
- *  @param goodsDetail      商户号
+ *  @param orderTitle       订单标题
+ *  @param orderDetail      订单详情
  *  @param memo             备注         （非必传）
  *  @param totalAmount      订单总金额
  *  @param payAmount        待支付总金额
@@ -120,7 +120,7 @@ typedef void (^ThirdPayCompletion)(NSDictionary *result);
 
 +(Boolean)handleOpenURL:(NSURL *)url withCompletion:(ThirdPayCompletion )complete;
 
-+(void)scanQRCode:(UIViewController *)controller;
++(void)scanQRCode:(UIViewController *)controller Delegate:(id<ThirdPayDelegate>)delegate;
 
 
 @end

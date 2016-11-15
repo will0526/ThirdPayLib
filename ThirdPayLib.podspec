@@ -37,8 +37,7 @@ Pod::Spec.new do |s|
   }
 
     s.public_header_files = 'ThirdPayLib/Classes/ThirdPay.h'
-    s.frameworks = 'UIKit', 'CoreGraphics', 'AVFoundation', 'AudioToolbox','CoreMotion','CFNetwork','CoreText','QuartzCore','CoreTelephony','SystemConfiguration','Foundation','AlipaySDK'
+    s.frameworks = 'UIKit', 'CoreGraphics', 'AVFoundation', 'AudioToolbox','CoreMotion','CFNetwork','CoreText','QuartzCore','CoreTelephony','SystemConfiguration','Foundation'
     s.libraries = 'z','c++','stdc++','sqlite3.0'
     s.dependency 'AFNetworking', '~> 3.0'
-
 end

@@ -24,12 +24,14 @@
 #import "ShowPayTypeViewController.h"
 #import "MerchantViewController.h"
 
-@interface MerchantViewController ()
+@interface MerchantViewController  ()<UITextFieldDelegate,ThirdPayDelegate>
 @property(nonatomic, strong)UITableView *tableView;
 @property(nonatomic, strong)UITableView *backtableView;
 @property(nonatomic, strong)UIView *headView;
 @property(nonatomic, strong)UIButton *payButton;
 @property(nonatomic, strong)NSString *orderNO;
+@property(nonatomic, strong)UITextField *amountTextField;
+
 @end
 
 @implementation MerchantViewController
@@ -58,7 +60,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"订单确认";
+    
     
     self.view.backgroundColor = HEX_RGB(0xeeeeee);
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(Back)];
@@ -82,6 +84,39 @@
 -(void)bookOrder{
     
     BOOL background = YES;
+    
+    
+    
+    
+    NSDate *datenow = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyMMddHHmmss"];
+    NSString *merchantOrderNO = [dateFormatter stringFromDate:datenow];
+    
+    
+    
+    float amout = [_amountTextField.text floatValue];
+    amout = amout*100;
+    NSString * intAmout = [NSString stringWithFormat:@"%d", (int)amout];
+    NSMutableDictionary *tradeInfo = [[NSMutableDictionary alloc]init];
+    
+    [tradeInfo setValue:@"000001" forKey:@"memberNo"];
+    [tradeInfo setValue:@"000000000000001" forKey:@"merchantNO"];
+    [tradeInfo setValue:merchantOrderNO forKey:@"merchantOrderNO"];
+    [tradeInfo setValue:@"望湘园餐饮费用" forKey:@"orderTitle"];
+    [tradeInfo setValue:@"望湘园餐饮费用测试" forKey:@"orderDetail"];
+    [tradeInfo setValue:intAmout forKey:@"totalAmount"];
+    [tradeInfo setValue:intAmout forKey:@"payAmount"];
+    [tradeInfo setValue:@"0" forKey:@"redPocket"];
+    [tradeInfo setValue:@"0" forKey:@"point"];
+    [tradeInfo setValue:@"扫码付" forKey:@"memo"];
+    [tradeInfo setValue:@"http//:www.baidu.com" forKey:@"notifyURL"];
+    [tradeInfo setValue:@"ThirdPayDemo" forKey:@"appSchemeStr"];
+    
+    
+    
+    [ThirdPay payWithTradeInfo:tradeInfo ViewController:self Delegate:self PayType:self.payType];
+    
     
     
     
@@ -111,11 +146,14 @@
     if (_payButton == nil) {
         _payButton = [[UIButton alloc]initWithFrame:CGRectMake(30, self.view.height - 60, self.view.width - 60, 50)];
         NSString *money = [self moneyTran:self.payAmount ownType:1];
-        [_payButton setTitle:[NSString stringWithFormat:@"确认支付￥100元"] forState:UIControlStateNormal];
+        [_payButton setTitle:[NSString stringWithFormat:@"确认支付￥0元"] forState:UIControlStateNormal];
         [_payButton setBackgroundImage:[UIImage imageWithColor:HEX_RGB(0xff9e05)] forState:UIControlStateNormal];
         [_payButton setBackgroundImage:[UIImage imageWithColor:HEX_RGB(0xff9e05)] forState:UIControlStateHighlighted];
+        [_payButton setBackgroundImage:[UIImage imageWithColor:[UIColor lightGrayColor]] forState:UIControlStateDisabled];
+        
         _payButton.layer.cornerRadius = 3.5;
         _payButton.clipsToBounds = YES;
+        _payButton.enabled = NO;
         [_payButton addTarget:self action:@selector(payButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     }
     
@@ -127,28 +165,28 @@
     switch (selectedIndex) {
         case 0:
         {
-            self.payType = PayType_YiPay;
+            self.payType = PayType_WeichatPay;
             
         }
             break;
         case 1:
         {
-            self.payType = PayType_WeichatPay;
+            self.payType = PayType_Alipay;
         }
             break;
         case 2:
         {
-            self.payType = PayType_Alipay;
+            self.payType = PayType_BaiduPay;
         }
             break;
         case 3:
         {
-            self.payType = PayType_BaiduPay;
+            self.payType = PayType_ApplePay;
         }
             break;
         case 4:
         {
-            self.payType = PayType_ApplePay;
+            self.payType = PayType_YiPay;
         }
             break;
             
@@ -159,8 +197,8 @@
     [self bookOrder];
 }
 
--(UIView *)headView{
-    
+-(UIView *)headViews{
+    self.title = @"订单确认";
     if (_headView == nil) {
         _headView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 200)];
         _headView.backgroundColor = HEX_RGB(0xf9f9fc);
@@ -207,8 +245,8 @@
 
 
 
--(UIView *)headViews{
-    
+-(UIView *)headView{
+    self.title = @"望湘园（万象城店）";
     if (_headView == nil) {
         _headView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 200)];
         _headView.backgroundColor = HEX_RGB(0xf9f9fc);
@@ -219,14 +257,14 @@
         goodsNameLabel.text = [NSString stringWithFormat:@"商户名称：%@",@"望湘园"];
        // [_headView addSubview:goodsNameLabel];
         
-        payAmountLabel = [[UILabel alloc]initWithFrame:CGRectMake(30, 30, 90, 30)];
+        payAmountLabel = [[UILabel alloc]initWithFrame:CGRectMake(30, 30, 100, 40)];
         payAmountLabel.textAlignment = NSTextAlignmentLeft;
-        payAmountLabel.font = [UIFont systemFontOfSize:17];
+        payAmountLabel.font = [UIFont systemFontOfSize:18];
         NSString *money = [self moneyTran:self.payAmount ownType:1];
         payAmountLabel.text = [NSString stringWithFormat:@"消费金额："];
         [_headView addSubview:payAmountLabel];
         
-        UITextField *textField = [[UITextField alloc]initWithFrame:CGRectMake(payAmountLabel.right, 30, self.view.width - payAmountLabel.right- 30, 30)];
+        UITextField *textField = [[UITextField alloc]initWithFrame:CGRectMake(payAmountLabel.right, 30, self.view.width - payAmountLabel.right- 30, 40)];
         textField.placeholder = @"询问服务员后输入";
         textField.returnKeyType = UIReturnKeyDone;
         textField.borderStyle = UITextBorderStyleRoundedRect;
@@ -235,7 +273,10 @@
         lab.textAlignment = NSTextAlignmentLeft;
         textField.rightView = lab;
         textField.rightViewMode = UITextFieldViewModeAlways;
-        [_headView addSubview:textField];
+        textField.keyboardType = UIKeyboardTypeDecimalPad;
+        _amountTextField = textField;
+        _amountTextField.delegate = self;
+        [_headView addSubview:_amountTextField];
         
         orderNOLabel = [[UILabel alloc]initWithFrame:CGRectMake(payAmountLabel.left, payAmountLabel.bottom, self.view.width-payAmountLabel.left- 30,20)];
         orderNOLabel.textAlignment = NSTextAlignmentRight;
@@ -243,8 +284,6 @@
         orderNOLabel.textColor = [UIColor lightGrayColor];
         orderNOLabel.text = [NSString stringWithFormat:@"(输入不参与优惠金额)"];
         [_headView addSubview:orderNOLabel];
-        
-        
             
         _headView.frame = CGRectMake(0, 0, self.view.width, orderNOLabel.bottom+10);
         
@@ -252,6 +291,25 @@
     }
     return _headView;
     
+}
+
+
+-(void)textFieldDidEndEditing:(UITextField *)textField{
+
+    NSString *str = textField.text;
+    if (!IsStrEmpty(str)) {
+        _payButton.enabled = YES;
+        [_payButton setTitle:[NSString stringWithFormat:@"确认支付￥%@元",str] forState:UIControlStateNormal];
+    }
+    
+    
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    
+    return  YES;
 }
 
 
@@ -264,6 +322,7 @@
     }
     return _backtableView;
 }
+
 
 
 #pragma mark tableView start
@@ -332,6 +391,7 @@
     
     selectedIndex = indexPath.row;
     
+    [_amountTextField resignFirstResponder];
     [tableView reloadData];
 }
 
@@ -365,6 +425,92 @@
     }
     else return @"";
 }
+
+
+
+-(void)onPayResult:(PayStatus)payStatus withInfo:(NSDictionary *)dict{
+    NSLog(@"%u.......%@",payStatus,dict);
+    NSString *title = @"";
+    NSString *content = [self combieTitle:dict];
+    NSLog(@"content%@",content);
+    switch (payStatus) {
+        case PayStatus_PAYSUCCESS:
+        {
+            title = @"支付成功";
+            
+        }
+            break;
+        case PayStatus_PAYFAIL:
+        {
+            title = @"交易失败";
+            
+        }
+            break;
+        case PayStatus_PAYTIMEOUT:
+        {
+            title = @"交易超时";
+            
+        }
+            break;
+        case PayStatus_PAYCANCEL:
+        {
+            title = @"交易取消";
+            
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:title message:content delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil, nil];
+    
+    [alert show];
+    
+    
+}
+
+
+-(NSString *)combieTitle:(NSDictionary *)dict{
+    NSArray *keys = [dict allKeys];
+    NSString *key;
+    NSString *retString;
+    for (key in keys)
+    {
+        if (retString == nil) {
+            
+            retString = [NSString stringWithFormat:@"\"%@\":\"%@\"",key,[dict valueForKey:key]];
+            [retString cStringUsingEncoding:NSUnicodeStringEncoding];
+        }else{
+            NSString *val = [NSString stringWithFormat:@",\n\"%@\":\"%@\"",key,[dict valueForKey:key]];
+            
+            retString = [retString stringByAppendingString:val];
+        }
+    }
+    
+    if (!retString) {
+        retString = @"";
+    }
+    retString = [self replaceUnicode:retString];
+    
+    
+    return retString;
+    
+}
+- (NSString *)replaceUnicode:(NSString *)unicodeStr
+{
+    
+    NSString *tempStr1 = [unicodeStr stringByReplacingOccurrencesOfString:@"\\u"withString:@"\\U"];
+    NSString *tempStr2 = [tempStr1 stringByReplacingOccurrencesOfString:@"\""withString:@"\\\""];
+    NSString *tempStr3 = [[@"\""stringByAppendingString:tempStr2] stringByAppendingString:@"\""];
+    NSData *tempData = [tempStr3 dataUsingEncoding:NSUTF8StringEncoding];
+    NSString* returnStr = [NSPropertyListSerialization propertyListFromData:tempData
+                                                           mutabilityOption:NSPropertyListImmutable
+                                                                     format:NULL
+                                                           errorDescription:NULL];
+    return [returnStr stringByReplacingOccurrencesOfString:@"\\r\\n"withString:@"\n"];
+}
+
 
 
 - (void)didReceiveMemoryWarning {

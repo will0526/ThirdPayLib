@@ -35,7 +35,7 @@
     NSArray * payTypeIcon;
     int selectedIndex;
     
-    UILabel *goodsNameLabel;
+    UILabel *orderTitleLabel;
     UILabel *payAmountLabel;
     UILabel *orderNOLabel;
     UILabel *memoLabel;
@@ -90,8 +90,8 @@
     
     request.memberNO = self.memberNO;
     request.memo = self.memo;
-    request.goodsName = self.goodsName;
-    request.goodsDetail = self.goodsDetail;
+    request.orderTitle = self.orderTitle;
+    request.orderDetail = self.orderDetail;
     request.totalAmount = self.totalAmount;
     request.payAmount = self.payAmount;
     request.memberPoints = self.memberPoints;
@@ -229,6 +229,7 @@
     
     if (_payButton == nil) {
         _payButton = [[UIButton alloc]initWithFrame:CGRectMake(30, self.view.height - 60, self.view.width - 60, 50)];
+        
         NSString *money = [self moneyTran:self.payAmount ownType:1];
         [_payButton setTitle:[NSString stringWithFormat:@"确认支付￥%@元",money] forState:UIControlStateNormal];
         [_payButton setBackgroundImage:[UIImage imageWithColor:HEX_RGB(0xff9e05)] forState:UIControlStateNormal];
@@ -285,13 +286,13 @@
         _headView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 200)];
         _headView.backgroundColor = HEX_RGB(0xf9f9fc);
         
-        goodsNameLabel = [[UILabel alloc]initWithFrame:CGRectMake(30, 20, self.view.width - 60, 40)];
-        goodsNameLabel.textAlignment = NSTextAlignmentLeft;
-        goodsNameLabel.font = [UIFont systemFontOfSize:16];
-        goodsNameLabel.text = [NSString stringWithFormat:@"订单详情：%@",self.goodsName];
-        [_headView addSubview:goodsNameLabel];
+        orderTitleLabel = [[UILabel alloc]initWithFrame:CGRectMake(30, 20, self.view.width - 60, 40)];
+        orderTitleLabel.textAlignment = NSTextAlignmentLeft;
+        orderTitleLabel.font = [UIFont systemFontOfSize:16];
+        orderTitleLabel.text = [NSString stringWithFormat:@"订单详情：%@",self.orderTitle];
+        [_headView addSubview:orderTitleLabel];
         
-        payAmountLabel = [[UILabel alloc]initWithFrame:CGRectMake(goodsNameLabel.left, goodsNameLabel.bottom, goodsNameLabel.width, goodsNameLabel.height)];
+        payAmountLabel = [[UILabel alloc]initWithFrame:CGRectMake(orderTitleLabel.left, orderTitleLabel.bottom, orderTitleLabel.width, orderTitleLabel.height)];
         payAmountLabel.textAlignment = NSTextAlignmentLeft;
         payAmountLabel.font = [UIFont systemFontOfSize:16];
         NSString *money = [self moneyTran:self.payAmount ownType:1];
@@ -299,14 +300,14 @@
         [_headView addSubview:payAmountLabel];
         
         
-        orderNOLabel = [[UILabel alloc]initWithFrame:CGRectMake(payAmountLabel.left, payAmountLabel.bottom, payAmountLabel.width, goodsNameLabel.height)];
+        orderNOLabel = [[UILabel alloc]initWithFrame:CGRectMake(payAmountLabel.left, payAmountLabel.bottom, payAmountLabel.width, orderTitleLabel.height)];
         orderNOLabel.textAlignment = NSTextAlignmentLeft;
         orderNOLabel.font = [UIFont systemFontOfSize:16];
         orderNOLabel.text = [NSString stringWithFormat:@"订单编号：%@",self.merchantOrderNO];
         [_headView addSubview:orderNOLabel];
         
         if (!IsStrEmpty(self.memo)) {
-            memoLabel = [[UILabel alloc]initWithFrame:CGRectMake(payAmountLabel.left, orderNOLabel.bottom, payAmountLabel.width, goodsNameLabel.height)];
+            memoLabel = [[UILabel alloc]initWithFrame:CGRectMake(payAmountLabel.left, orderNOLabel.bottom, payAmountLabel.width, orderTitleLabel.height)];
             memoLabel.textAlignment = NSTextAlignmentLeft;
             memoLabel.font = [UIFont systemFontOfSize:16];
             memoLabel.text = [NSString stringWithFormat:@"备        注：%@",self.memo];
@@ -318,7 +319,7 @@
         }
         
         if (!IsStrEmpty(self.redPocket)&&[self.redPocket intValue]>0) {
-            redPocketLabel = [[UILabel alloc]initWithFrame:CGRectMake(payAmountLabel.left, memoLabel.bottom, payAmountLabel.width, goodsNameLabel.height)];
+            redPocketLabel = [[UILabel alloc]initWithFrame:CGRectMake(payAmountLabel.left, memoLabel.bottom, payAmountLabel.width, orderTitleLabel.height)];
             redPocketLabel.textAlignment = NSTextAlignmentLeft;
             redPocketLabel.font = [UIFont systemFontOfSize:16];
             redPocketLabel.text = [NSString stringWithFormat:@"红包抵扣：%d",[self.redPocket intValue]];
@@ -330,7 +331,7 @@
         }
         
         if (!IsStrEmpty(self.memberPoints)&&[self.memberPoints intValue]>0) {
-            pointLabel = [[UILabel alloc]initWithFrame:CGRectMake(payAmountLabel.left, redPocketLabel.bottom, payAmountLabel.width, goodsNameLabel.height)];
+            pointLabel = [[UILabel alloc]initWithFrame:CGRectMake(payAmountLabel.left, redPocketLabel.bottom, payAmountLabel.width, orderTitleLabel.height)];
             pointLabel.textAlignment = NSTextAlignmentLeft;
             pointLabel.font = [UIFont systemFontOfSize:16];
             pointLabel.text = [NSString stringWithFormat:@"积分抵扣：%d",[self.memberPoints intValue]];
@@ -574,17 +575,28 @@
 
     DDLog(@"跳转支付页面带入信息:", OrderString);
     
-    NSString *scheml = @"bestpayDemo";
-    NSString *orderStr = @"SERVICE=mobile.security.pay&MERCHANTID=01320103025740000&MERCHANTPWD=288330&SUBMERCHANTID=&BACKMERCHANTURL=http://127.0.0.1:8040/wapBgNotice.action=yzf&SIGNTYPE=MD5&MAC=A540F34032ECA7E9245DA0C5B7517F58&ORDERSEQ=2016110118425134&ORDERREQTRNSEQ=20161101184251340001&ORDERTIME=20161101184251&ORDERVALIDITYTIME=&ORDERAMOUNT=0.01&CURTYPE=RMB&PRODUCTID=04&PRODUCTDESC=联想手机&PRODUCTAMOUNT=0.01&ATTACHAMOUNT=0.00&ATTACH=88888&DIVDETAILS=&ACCOUNTID=&CUSTOMERID=gehudedengluzhanghao&USERIP=228.112.116.118&BUSITYPE=04";
+    NSString *scheml = self.appScheme;
+//    NSString *orderStr = @"SERVICE=mobile.security.pay&MERCHANTID=01320103025740000&MERCHANTPWD=288330&SUBMERCHANTID=&BACKMERCHANTURL=http://127.0.0.1:8040/wapBgNotice.action=yzf&SIGNTYPE=MD5&MAC=A540F34032ECA7E9245DA0C5B7517F58&ORDERSEQ=2016110118425134&ORDERREQTRNSEQ=20161101184251340001&ORDERTIME=20161101184251&ORDERVALIDITYTIME=&ORDERAMOUNT=0.01&CURTYPE=RMB&PRODUCTID=04&PRODUCTDESC=联想手机&PRODUCTAMOUNT=0.01&ATTACHAMOUNT=0.00&ATTACH=88888&DIVDETAILS=&ACCOUNTID=&CUSTOMERID=gehudedengluzhanghao&USERIP=228.112.116.118&BUSITYPE=04";
     
     BestpayNativeModel *order =[[BestpayNativeModel alloc]init];
-    //order.orderInfo = OrderString;
-    order.orderInfo = orderStr;
+    order.orderInfo = OrderString;
+//    order.orderInfo = orderStr;
     order.launchType = launchTypePay1;
     order.scheme = scheml;
-    UIViewController *view = [[UIViewController alloc]init];
     
-    [BestpaySDK payWithOrder:order fromViewController:view];
+    
+    @try {
+        [BestpaySDK payWithOrder:order fromViewController:self callback:^(NSDictionary *resultDic) {
+            NSLog(@"%@",resultDic);
+        }];
+
+    } @catch (NSException *exception) {
+        NSLog(@"exception%@",exception);
+        
+    } @finally {
+        
+    }
+    
     
 }
 
@@ -601,8 +613,12 @@
     [payingAlert setHidden:YES];
     switch (self.payType) {
         case PayType_YiPay:{
+            [BestpaySDK processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
+                NSLog(@"确保结果显示不会出错：%@",resultDic);
+            }];
+
                 NSString* params =[url absoluteString];
-                NSDictionary *dic = [[self class] paramsFromString:params];
+                NSDictionary *dic = [self paramsFromString:params];
                 NSString *resultCode = EncodeStringFromDic(dic, @"resultCode");
                 if ([resultCode isEqualToString:@"00"]) {
                     payStatus = PayStatus_PAYSUCCESS;
@@ -673,16 +689,16 @@
     
 }
 
-+ (NSDictionary *)paramsFromString:(NSString *)urlStr
+- (NSDictionary *)paramsFromString:(NSString *)urlStr
 {
     urlStr = [urlStr stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    if (urlStr == nil || [urlStr isEqualToString:@""] || ![urlStr hasPrefix:@"bestpayDemo"])
+    if (urlStr == nil || [urlStr isEqualToString:@""] || ![urlStr hasPrefix:self.appScheme])
     {
         return nil;
     }
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     
-    NSString *str = [urlStr stringByReplacingOccurrencesOfString:@"bestpayDemo" withString:@""];
+    NSString *str = [urlStr stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%@://",self.appScheme] withString:@""];
     
     if ([str isEqualToString:@""])
     {
@@ -742,8 +758,8 @@
     EncodeUnEmptyStrObjctToDic(dict, self.merchantNO, @"merchantNO");
     EncodeUnEmptyStrObjctToDic(dict, self.merchantOrderNO, @"merchantOrderNO");
     EncodeUnEmptyStrObjctToDic(dict, self.memberPoints, @"memberPoints");
-    EncodeUnEmptyStrObjctToDic(dict, self.goodsName, @"goodsName");
-    EncodeUnEmptyStrObjctToDic(dict, self.goodsDetail, @"goodsDetail");
+    EncodeUnEmptyStrObjctToDic(dict, self.orderTitle, @"orderTitle");
+    EncodeUnEmptyStrObjctToDic(dict, self.orderDetail, @"orderDetail");
     EncodeUnEmptyStrObjctToDic(dict, self.memo, @"memo");
     EncodeUnEmptyStrObjctToDic(dict, self.totalAmount, @"totalAmount");
     EncodeUnEmptyStrObjctToDic(dict, self.payAmount, @"payAmount");
@@ -761,7 +777,12 @@
     }
     
     if (![_viewType isEqualToString:@"NOVIEW"]) {
-        [self.navigationController popViewControllerAnimated:YES];
+        if (_viewController) {
+            [_viewController.navigationController popViewControllerAnimated:YES];
+        }else{
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+        
     }
     
 }
@@ -825,12 +846,12 @@
 
 -(void)scanCode:(UIViewController *)controller {
     
-    //QRCodeViewController *qrcode = [[QRCodeViewController alloc]init];
-    //qrcode.delegate = self;
-    MerchantViewController *merchant = [[MerchantViewController alloc]init];
+    QRCodeViewController *qrcode = [[QRCodeViewController alloc]init];
     
-    
-    [controller.navigationController pushViewController:merchant animated:YES];
+//    MerchantViewController *merchant = [[MerchantViewController alloc]init];
+//    
+//    
+    [controller.navigationController pushViewController:qrcode animated:YES];
     
     
 }
@@ -839,6 +860,10 @@
 {
     //[self.webView resetCallback:@"getBarCode"];
     NSDictionary *respDic = @{@"barCode": [NSString stringWithFormat:@"%@",code]};
+    
+    MerchantViewController *merchant = [[MerchantViewController alloc]init];
+    [self.navigationController pushViewController:merchant animated:YES];
+    
     
     
 }

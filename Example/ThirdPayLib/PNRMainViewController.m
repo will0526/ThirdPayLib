@@ -32,7 +32,7 @@
     [self.view addSubview:self.queryButton];
     [self.view addSubview:self.orderButton];
     [self.view addSubview:self.orderButton2];
-    [self.view addSubview:self.aboutButton];
+//    [self.view addSubview:self.aboutButton];
     [self.view addSubview:self.scanButton];
     // Do any additional setup after loading the view.
 }
@@ -96,7 +96,7 @@
 
 -(UIButton *)aboutButton{
     if (_aboutButton == nil) {
-        _aboutButton = [[UIButton alloc]initWithFrame:CGRectMake(self.view.frame.size.width/6, 320, self.view.frame.size.width*2/3, 40)];
+        _aboutButton = [[UIButton alloc]initWithFrame:CGRectMake(self.view.frame.size.width/6, 390, self.view.frame.size.width*2/3, 40)];
         [_aboutButton setTitle:@"关于我们" forState:UIControlStateNormal];
         [_aboutButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         
@@ -114,7 +114,7 @@
 
 -(UIButton *)scanButton{
     if (_scanButton == nil) {
-        _scanButton = [[UIButton alloc]initWithFrame:CGRectMake(self.view.frame.size.width/6, 390, self.view.frame.size.width*2/3, 40)];
+        _scanButton = [[UIButton alloc]initWithFrame:CGRectMake(self.view.frame.size.width/6, 320, self.view.frame.size.width*2/3, 40)];
         [_scanButton setTitle:@"二维码扫描" forState:UIControlStateNormal];
         [_scanButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         
@@ -131,7 +131,9 @@
 }
 
 -(void)scanQRCode{
-    [ThirdPay scanQRCode:self];
+    
+    PNRViewController *pnr = [[PNRViewController alloc]init];
+    [pnr scanQRCode:self];
 
 }
 

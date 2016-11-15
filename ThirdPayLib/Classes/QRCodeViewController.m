@@ -8,7 +8,8 @@
 
 #import "QRCodeViewController.h"
 #import "UIImage+SNAdditions.h"
-@interface QRCodeViewController ()
+#import "MerchantViewController.h"
+@interface QRCodeViewController ()<ThirdPayDelegate>
 
 @end
 
@@ -21,16 +22,24 @@
     UIButton * scanButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [scanButton setTitle:@"取消" forState:UIControlStateNormal];
     scanButton.titleLabel.font = [UIFont systemFontOfSize: 18.0];
-    scanButton.backgroundColor = [UIColor whiteColor];
-    scanButton.frame = CGRectMake(100, 430, self.view.width - 200, 40);
+    
+    [scanButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    
+    [scanButton setBackgroundColor:[UIColor orangeColor]];
+    
+    scanButton.clipsToBounds = YES;
+    scanButton.layer.cornerRadius = 22.5;
+    scanButton.frame = CGRectMake(50, 440, self.view.width - 100, 45);
     [scanButton addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
+    
     [self.view addSubview:scanButton];
     
-    UILabel * labIntroudction= [[UILabel alloc] initWithFrame:CGRectMake(15, 44+20, self.view.width - 30, 50)];
+    UILabel * labIntroudction= [[UILabel alloc] initWithFrame:CGRectMake(15, scanButton.bottom+20, self.view.width - 30, 30)];
     labIntroudction.backgroundColor = [UIColor clearColor];
-    labIntroudction.numberOfLines=2;
+    labIntroudction.adjustsFontSizeToFitWidth = YES;
     labIntroudction.textColor=[UIColor whiteColor];
-    labIntroudction.text=@"将二维码图像置于矩形方框内，离手机摄像头10CM左右，系统会自动识别。";
+    labIntroudction.textAlignment = NSTextAlignmentCenter;
+    labIntroudction.text=@"请扫描商户二维码";
     [self.view addSubview:labIntroudction];
     
     
@@ -71,12 +80,19 @@
 
 -(void)backAction
 {
-    [self dismissViewControllerAnimated:YES completion:^{
-        [timer invalidate];
-        [_session stopRunning];
-        _session = nil;
-        [_preview removeFromSuperlayer];
-    }];
+    MerchantViewController *merchant = [[MerchantViewController alloc]init];
+    
+    [timer invalidate];
+    [_preview removeFromSuperlayer];
+    //         if ([self.delegate respondsToSelector:@selector(QRCode:) ])
+    //         {
+    //             [self.delegate QRCode:QRCode];
+    //         }
+    //
+//    NSLog(@"barCode:%@",QRCode);
+    
+    [self.navigationController pushViewController:merchant animated:YES];
+//    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -148,19 +164,108 @@
     }
     
     [_session stopRunning];
-    [self dismissViewControllerAnimated:YES completion:^
-     {
-         [timer invalidate];
-         [_preview removeFromSuperlayer];
-         if ([self.delegate respondsToSelector:@selector(QRCode:) ])
-         {
-             [self.delegate QRCode:QRCode];
-         }
-         
-         NSLog(@"barCode:%@",QRCode);
-     }];
+    
+    MerchantViewController *merchant = [[MerchantViewController alloc]init];
+    merchant.thirdPayDelegate = self;
+    
+    [timer invalidate];
+    [_preview removeFromSuperlayer];
+    //         if ([self.delegate respondsToSelector:@selector(QRCode:) ])
+    //         {
+    //             [self.delegate QRCode:QRCode];
+    //         }
+    //
+    NSLog(@"barCode:%@",QRCode);
+    
+    [self.navigationController pushViewController:merchant animated:YES];
+    
+    
+    
 }
 
+
+-(void)onPayResult:(PayStatus)payStatus withInfo:(NSDictionary *)dict{
+    NSLog(@"%u.......%@",payStatus,dict);
+    NSString *title = @"";
+    NSString *content = [self combieTitle:dict];
+    NSLog(@"content%@",content);
+    switch (payStatus) {
+        case PayStatus_PAYSUCCESS:
+        {
+            title = @"支付成功";
+            
+        }
+            break;
+        case PayStatus_PAYFAIL:
+        {
+            title = @"交易失败";
+            
+        }
+            break;
+        case PayStatus_PAYTIMEOUT:
+        {
+            title = @"交易超时";
+            
+        }
+            break;
+        case PayStatus_PAYCANCEL:
+        {
+            title = @"交易取消";
+            
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:title message:content delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil, nil];
+    
+    [alert show];
+    
+    
+}
+
+
+-(NSString *)combieTitle:(NSDictionary *)dict{
+    NSArray *keys = [dict allKeys];
+    NSString *key;
+    NSString *retString;
+    for (key in keys)
+    {
+        if (retString == nil) {
+            
+            retString = [NSString stringWithFormat:@"\"%@\":\"%@\"",key,[dict valueForKey:key]];
+            [retString cStringUsingEncoding:NSUnicodeStringEncoding];
+        }else{
+            NSString *val = [NSString stringWithFormat:@",\n\"%@\":\"%@\"",key,[dict valueForKey:key]];
+            
+            retString = [retString stringByAppendingString:val];
+        }
+    }
+    
+    if (!retString) {
+        retString = @"";
+    }
+    retString = [self replaceUnicode:retString];
+    
+    
+    return retString;
+    
+}
+- (NSString *)replaceUnicode:(NSString *)unicodeStr
+{
+    
+    NSString *tempStr1 = [unicodeStr stringByReplacingOccurrencesOfString:@"\\u"withString:@"\\U"];
+    NSString *tempStr2 = [tempStr1 stringByReplacingOccurrencesOfString:@"\""withString:@"\\\""];
+    NSString *tempStr3 = [[@"\""stringByAppendingString:tempStr2] stringByAppendingString:@"\""];
+    NSData *tempData = [tempStr3 dataUsingEncoding:NSUTF8StringEncoding];
+    NSString* returnStr = [NSPropertyListSerialization propertyListFromData:tempData
+                                                           mutabilityOption:NSPropertyListImmutable
+                                                                     format:NULL
+                                                           errorDescription:NULL];
+    return [returnStr stringByReplacingOccurrencesOfString:@"\\r\\n"withString:@"\n"];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

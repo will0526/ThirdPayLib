@@ -53,7 +53,7 @@
         case 1:
         {
             dataSource = @[@"用户号",@"商户号",@"商户订单号",@"商品名称",@"商品详情",@"订单金额(分)",@"实付金额(分)",@"红包",@"积分",@"备注",@"通知地址"];
-            defaultSource = @[@"0001",@"000000000000001",merchantOrder,@"苹果手机 6s",@"苹果手机6s 正品行货 64G 假一赔十",@"540000",@"530000",@"0",@"0",@"不支持货到付款",@"http://www.baidu.com"];
+            defaultSource = @[@"0001",@"000000000000001",merchantOrder,@"苹果手机 6s",@"苹果手机6s 正品行货 64G 假一赔十",@"540000",@"1",@"0",@"0",@"不支持货到付款",@"http://www.baidu.com"];
         }
             break;
         case 2:
@@ -133,8 +133,8 @@
      @param memberNo         用户号
      *  @param merchantNO       商户号
      *  @param merchantOrderNO  商户订单号
-     *  @param goodsName        商品名称
-     *  @param goodsDetail      商品详情
+     *  @param orderTitle       订单标题
+     *  @param orderDetail      订单详情
      *  @param memo             备注
      *  @param totalAmount      订单总金额（分）
      *  @param payAmount        待支付金额（分）
@@ -174,12 +174,12 @@
             break;
         case 3:
         {
-            [self.params setValue:textField.text forKey:@"goodsName"];
+            [self.params setValue:textField.text forKey:@"orderTitle"];
         }
             break;
         case 4:
         {
-            [self.params setValue:textField.text forKey:@"goodsDetail"];
+            [self.params setValue:textField.text forKey:@"orderDetail"];
         }
             break;
         case 5:
@@ -209,9 +209,8 @@
             break;
         case 10:
         {
-            [self.params setValue:@"http\\:www.baidu.com" forKey:@"notifyURL"];
+            [self.params setValue:@"http//:www.baidu.com" forKey:@"notifyURL"];
         }
-            break;
             break;
         default:
             break;
@@ -420,12 +419,12 @@
                 break;
             case 3:
             {
-                [self.params setValue:textField.text forKey:@"goodsName"];
+                [self.params setValue:textField.text forKey:@"orderTitle"];
             }
                 break;
             case 4:
             {
-                [self.params setValue:textField.text forKey:@"goodsDetail"];
+                [self.params setValue:textField.text forKey:@"orderDetail"];
             }
                 break;
             case 5:
@@ -659,6 +658,10 @@
                                                                      format:NULL
                                                            errorDescription:NULL];
     return [returnStr stringByReplacingOccurrencesOfString:@"\\r\\n"withString:@"\n"];
+}
+
+-(void)scanQRCode:(UIViewController *)controller{
+    [ThirdPay scanQRCode:controller Delegate:self];
 }
 
 - (void)didReceiveMemoryWarning
