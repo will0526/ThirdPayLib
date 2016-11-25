@@ -47,6 +47,7 @@
 
 @property(nonatomic, assign)PayType payType;
 
+@property(nonatomic, strong)NSString *QRcontent;
 
 
 @property(nonatomic, weak)id<ThirdPayDelegate> thirdPayDelegate;

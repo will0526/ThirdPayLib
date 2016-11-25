@@ -71,11 +71,21 @@
     //    self.payType = PayType_Alipay;
     _resultDict = [[NSMutableDictionary alloc]init];
     
+    UIView *labelView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 80)];
     
+    UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(30, 15, self.tableView.width - 60, 60)];
+    titleLabel.textAlignment = NSTextAlignmentLeft;
+    titleLabel.numberOfLines = 0;
+    titleLabel.contentMode = NSLineBreakByWordWrapping;
+    titleLabel.text = self.QRcontent;
+    titleLabel.font = [UIFont systemFontOfSize:16];
+    [labelView addSubview:titleLabel];
+    
+    self.tableView.tableFooterView = labelView;
     
     self.tableView.tableHeaderView = self.headView;
     self.backtableView.tableHeaderView = self.tableView;
-    
+    self.backtableView.showsVerticalScrollIndicator = NO;
     [self.view addSubview:self.backtableView];
     [self.view addSubview:self.payButton];
     
@@ -353,6 +363,8 @@
     if (cell == nil) {
         cell= [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identify];
     }
+    
+    
     cell.accessoryType = UITableViewCellAccessoryNone;
     
     UIImageView *iconView = [[UIImageView alloc]initWithFrame:CGRectMake(30, 16, 28, 28)];

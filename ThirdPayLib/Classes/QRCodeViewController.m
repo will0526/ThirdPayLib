@@ -80,19 +80,19 @@
 
 -(void)backAction
 {
-    MerchantViewController *merchant = [[MerchantViewController alloc]init];
-    
-    [timer invalidate];
-    [_preview removeFromSuperlayer];
-    //         if ([self.delegate respondsToSelector:@selector(QRCode:) ])
-    //         {
-    //             [self.delegate QRCode:QRCode];
-    //         }
-    //
-//    NSLog(@"barCode:%@",QRCode);
-    
-    [self.navigationController pushViewController:merchant animated:YES];
-//    [self.navigationController popViewControllerAnimated:YES];
+//    MerchantViewController *merchant = [[MerchantViewController alloc]init];
+//    
+//    [timer invalidate];
+//    [_preview removeFromSuperlayer];
+//    //         if ([self.delegate respondsToSelector:@selector(QRCode:) ])
+//    //         {
+//    //             [self.delegate QRCode:QRCode];
+//    //         }
+//    //
+////    NSLog(@"barCode:%@",QRCode);
+//    
+//    [self.navigationController pushViewController:merchant animated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -166,7 +166,7 @@
     [_session stopRunning];
     
     MerchantViewController *merchant = [[MerchantViewController alloc]init];
-    merchant.thirdPayDelegate = self;
+    merchant.QRcontent = QRCode;
     
     [timer invalidate];
     [_preview removeFromSuperlayer];
