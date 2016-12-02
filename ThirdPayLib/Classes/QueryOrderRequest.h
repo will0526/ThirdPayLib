@@ -12,7 +12,7 @@
 
 
 
-@property(nonatomic,strong)NSString *merchantNO;        //商户号
+@property(nonatomic,strong)NSString *merchantNo;        //商户号
 
 @property(nonatomic,strong)NSString *orderNO;   //订单号
 

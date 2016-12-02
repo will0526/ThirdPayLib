@@ -48,9 +48,9 @@
 
 @implementation ThirdPay
 {
-    NSString *merchantNO;
-    NSString *memberNO;
-    NSString *merchantOrderNO;
+    NSString *merchantNo;
+    NSString *accountNo;
+    NSString *merchantOrderNo;
     NSString *orderTitle;
     NSString *orderDetail;
     NSString *memo;
@@ -81,12 +81,12 @@ static ShowPayTypeViewController *payController;
 //查询
 +(void)queryOrderInfo:(NSDictionary *)tradeInfo ViewController:(UIViewController *)controller Delegate:(id<ThirdPayDelegate>)delegate{
     
-    NSString *merchantNO = EncodeStringFromDic(tradeInfo, @"merchantNO");
-//    NSString *memberNO = EncodeStringFromDic(tradeInfo, @"memberNo");
+    NSString *merchantNo = EncodeStringFromDic(tradeInfo, @"merchantNo");
+    
     NSString *orderNO = EncodeStringFromDic(tradeInfo, @"orderNO");
     NSString *resultInfo = @"";
     
-    if (IsStrEmpty(merchantNO)) {
+    if (IsStrEmpty(merchantNo)) {
         resultInfo = @"商户号不能为空";
     }else if (IsStrEmpty(orderNO)){
         resultInfo = @"订单号不能为空";
@@ -105,7 +105,7 @@ static ShowPayTypeViewController *payController;
                                        controller:controller
                                    showBackground:YES];
     QueryOrderRequest *request = [[QueryOrderRequest alloc]init];
-    request.merchantNO = merchantNO;
+    request.merchantNo = merchantNo;
     request.orderNO = orderNO;
     
     BaseResponse *response = [[BaseResponse alloc]init];
@@ -139,13 +139,13 @@ static ShowPayTypeViewController *payController;
 
 +(NSDictionary *)combilParams:(NSDictionary *)dic{
     
-    NSString *merchantNO = EncodeStringFromDic(dic, @"merchantNo");
+    NSString *merchantNo = EncodeStringFromDic(dic, @"merchantNo");
     NSString *batchNo = EncodeStringFromDic(dic, @"batchNo");
     
     NSDictionary *data = EncodeDicFromDic(dic, @"data");
     
     NSString *merchantName = EncodeStringFromDic(data, @"sellerName");
-    NSString *merchantOrderNO = EncodeStringFromDic(data, @"orderNo");
+    NSString *merchantOrderNo = EncodeStringFromDic(data, @"orderNo");
     NSString *ippOrderNo = EncodeStringFromDic(data, @"ippOrderNo");
     NSString *payMethod = EncodeStringFromDic(data, @"payMethod");
     
@@ -161,12 +161,12 @@ static ShowPayTypeViewController *payController;
     
     NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
     
-    EncodeDefaultStrObjctToDic(dict, merchantNO, @"merchantNO",@"");
+    EncodeDefaultStrObjctToDic(dict, merchantNo, @"merchantNo",@"");
     EncodeDefaultStrObjctToDic(dict, merchantName, @"merchantName",@"");
     
     EncodeDefaultStrObjctToDic(dict, batchNo, @"batchNo",@"");
-    EncodeDefaultStrObjctToDic(dict, merchantOrderNO, @"merchantOrderNO",@"");
-    EncodeDefaultStrObjctToDic(dict, ippOrderNo, @"ippOrderNO",@"");
+    EncodeDefaultStrObjctToDic(dict, merchantOrderNo, @"merchantOrderNo",@"");
+    EncodeDefaultStrObjctToDic(dict, ippOrderNo, @"ippOrderNo",@"");
     
     EncodeDefaultStrObjctToDic(dict, totalAmount, @"totalAmount",@"");
     EncodeDefaultStrObjctToDic(dict, payAmount, @"payAmount",@"");
@@ -185,10 +185,10 @@ static ShowPayTypeViewController *payController;
 //展示支付方式选择页面支付
 +(void)showPayTypeWithTradeInfo:(NSDictionary *)tradeInfo ViewController:(UIViewController *)controller Delegate:(id<ThirdPayDelegate>)delegate{
     
-    NSString *merchantNO = EncodeStringFromDic(tradeInfo, @"merchantNO");
+    NSString *merchantNo = EncodeStringFromDic(tradeInfo, @"merchantNo");
     
-    NSString *memberNO = EncodeStringFromDic(tradeInfo, @"memberNo");
-    NSString *merchantOrderNO = EncodeStringFromDic(tradeInfo, @"merchantOrderNO");
+    NSString *accountNo = EncodeStringFromDic(tradeInfo, @"accountNo");
+    NSString *merchantOrderNo = EncodeStringFromDic(tradeInfo, @"merchantOrderNo");
     NSString *orderTitle = EncodeStringFromDic(tradeInfo, @"orderTitle");
     NSString *orderDetail = EncodeStringFromDic(tradeInfo, @"orderDetail");
     NSString *memo = EncodeStringFromDic(tradeInfo, @"memo");
@@ -201,11 +201,11 @@ static ShowPayTypeViewController *payController;
     
     NSString *resultInfo = @"";
     
-    if (IsStrEmpty(memberNO)) {
+    if (IsStrEmpty(accountNo)) {
         resultInfo = @"用户号不能为空";
-    }else if (IsStrEmpty(merchantNO)) {
+    }else if (IsStrEmpty(merchantNo)) {
         resultInfo = @"商户号不能为空";
-    }else if (IsStrEmpty(merchantOrderNO)){
+    }else if (IsStrEmpty(merchantOrderNo)){
         resultInfo = @"商户订单号不能为空";
     }else if (IsStrEmpty(orderTitle)){
         resultInfo = @"商品名称不能为空";
@@ -233,13 +233,13 @@ static ShowPayTypeViewController *payController;
         }
     }
     
-    DDLog(@"test", merchantNO);
+    DDLog(@"test", merchantNo);
     
     payController = [[ShowPayTypeViewController alloc]init];
     
-    payController.memberNO = memberNO;
-    payController.merchantNO = merchantNO;
-    payController.merchantOrderNO = merchantOrderNO;
+    payController.accountNo = accountNo;
+    payController.merchantNo = merchantNo;
+    payController.merchantOrderNo = merchantOrderNo;
     payController.orderTitle = orderTitle;
     payController.orderDetail = orderDetail;
     payController.memo = memo;
@@ -258,9 +258,9 @@ static ShowPayTypeViewController *payController;
 
 +(BOOL)checkParams:(NSDictionary *)tradeInfo delegate:(id<ThirdPayDelegate>)delegate{
     
-    NSString *merchantNO = EncodeStringFromDic(tradeInfo, @"merchantNO");
-    NSString *memberNO = EncodeStringFromDic(tradeInfo, @"memberNo");
-    NSString *merchantOrderNO = EncodeStringFromDic(tradeInfo, @"merchantOrderNO");
+    NSString *merchantNo = EncodeStringFromDic(tradeInfo, @"merchantNo");
+    NSString *accountNo = EncodeStringFromDic(tradeInfo, @"accountNo");
+    NSString *merchantOrderNo = EncodeStringFromDic(tradeInfo, @"merchantOrderNo");
     NSString *orderTitle = EncodeStringFromDic(tradeInfo, @"orderTitle");
     NSString *orderDetail = EncodeStringFromDic(tradeInfo, @"orderDetail");
     NSString *memo = EncodeStringFromDic(tradeInfo, @"memo");
@@ -272,9 +272,9 @@ static ShowPayTypeViewController *payController;
     NSString *appSchemeStr = EncodeStringFromDic(tradeInfo, @"appSchemeStr");
     NSString *resultInfo = @"";
     
-    if (IsStrEmpty(merchantNO)) {
+    if (IsStrEmpty(merchantNo)) {
         resultInfo = @"商户号不能为空";
-    }else if (IsStrEmpty(merchantOrderNO)){
+    }else if (IsStrEmpty(merchantOrderNo)){
         resultInfo = @"商户订单号不能为空";
     }else if (IsStrEmpty(orderTitle)){
         resultInfo = @"商品名称不能为空";
@@ -307,9 +307,9 @@ static ShowPayTypeViewController *payController;
 
 +(void)assignParams:(NSDictionary *)tradeInfo delegate:(id<ThirdPayDelegate>)delegate{
     
-    NSString *merchantNO = EncodeStringFromDic(tradeInfo, @"merchantNO");
-    NSString *memberNO = EncodeStringFromDic(tradeInfo, @"memberNo");
-    NSString *merchantOrderNO = EncodeStringFromDic(tradeInfo, @"merchantOrderNO");
+    NSString *merchantNo = EncodeStringFromDic(tradeInfo, @"merchantNo");
+    NSString *accountNo = EncodeStringFromDic(tradeInfo, @"accountNo");
+    NSString *merchantOrderNo = EncodeStringFromDic(tradeInfo, @"merchantOrderNo");
     NSString *orderTitle = EncodeStringFromDic(tradeInfo, @"orderTitle");
     NSString *orderDetail = EncodeStringFromDic(tradeInfo, @"orderDetail");
     NSString *memo = EncodeStringFromDic(tradeInfo, @"memo");
@@ -322,9 +322,9 @@ static ShowPayTypeViewController *payController;
     
     payController = [[ShowPayTypeViewController alloc]init];
     
-    payController.memberNO = memberNO;
-    payController.merchantNO = merchantNO;
-    payController.merchantOrderNO = merchantOrderNO;
+    payController.accountNo = accountNo;
+    payController.merchantNo = merchantNo;
+    payController.merchantOrderNo = merchantOrderNo;
     payController.orderTitle = orderTitle;
     payController.orderDetail = orderDetail;
     payController.memo = memo;

@@ -26,7 +26,7 @@
 {
     [super dtoToDictionary];
     
-    EncodeUnEmptyStrObjctToDic(self.requestParamDic, self.merchantNO, @"merchantNo");
+    EncodeUnEmptyStrObjctToDic(self.requestParamDic, self.merchantNo, @"merchantNo");
     EncodeUnEmptyStrObjctToDic(self.requestParamDic, @"0010", @"transType");
     EncodeUnEmptyStrObjctToDic(self.requestParamDic, @"0000", @"payType");
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];

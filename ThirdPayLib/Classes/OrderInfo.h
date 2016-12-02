@@ -11,9 +11,9 @@
 @interface OrderInfo : NSObject
 
 
-@property(nonatomic,strong)NSString *merchantNO;        //商户号
-@property(nonatomic,strong)NSString *memberNO;          //用户号
-@property(nonatomic,strong)NSString *merchantOrderNO;   //商户订单号
+@property(nonatomic,strong)NSString *merchantNo;        //商户号
+@property(nonatomic,strong)NSString *accountNo;          //用户号
+@property(nonatomic,strong)NSString *merchantOrderNo;   //商户订单号
 @property(nonatomic,strong)NSString *goodsName;         //商品名称
 @property(nonatomic,strong)NSString *goodsDetail;       //商品详情
 @property(nonatomic,strong)NSString *memo;              //订单备注

@@ -85,10 +85,10 @@
     }
     
     BookOrderRequest *request = [[BookOrderRequest alloc]init];
-    request.merchantNO = self.merchantNO;
-    request.merchantOrderNO = self.merchantOrderNO;
+    request.merchantNo = self.merchantNo;
+    request.merchantOrderNo = self.merchantOrderNo;
     
-    request.memberNO = self.memberNO;
+    request.accountNo = self.accountNo;
     request.memo = self.memo;
     request.orderTitle = self.orderTitle;
     request.orderDetail = self.orderDetail;
@@ -303,7 +303,7 @@
         orderNOLabel = [[UILabel alloc]initWithFrame:CGRectMake(payAmountLabel.left, payAmountLabel.bottom, payAmountLabel.width, orderTitleLabel.height)];
         orderNOLabel.textAlignment = NSTextAlignmentLeft;
         orderNOLabel.font = [UIFont systemFontOfSize:16];
-        orderNOLabel.text = [NSString stringWithFormat:@"订单编号：%@",self.merchantOrderNO];
+        orderNOLabel.text = [NSString stringWithFormat:@"订单编号：%@",self.merchantOrderNo];
         [_headView addSubview:orderNOLabel];
         
         if (!IsStrEmpty(self.memo)) {
@@ -755,8 +755,8 @@
 -(NSDictionary *)getParamsWrap{
     
     NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
-    EncodeUnEmptyStrObjctToDic(dict, self.merchantNO, @"merchantNO");
-    EncodeUnEmptyStrObjctToDic(dict, self.merchantOrderNO, @"merchantOrderNO");
+    EncodeUnEmptyStrObjctToDic(dict, self.merchantNo, @"merchantNo");
+    EncodeUnEmptyStrObjctToDic(dict, self.merchantOrderNo, @"merchantOrderNo");
     EncodeUnEmptyStrObjctToDic(dict, self.memberPoints, @"memberPoints");
     EncodeUnEmptyStrObjctToDic(dict, self.orderTitle, @"orderTitle");
     EncodeUnEmptyStrObjctToDic(dict, self.orderDetail, @"orderDetail");
@@ -764,7 +764,7 @@
     EncodeUnEmptyStrObjctToDic(dict, self.totalAmount, @"totalAmount");
     EncodeUnEmptyStrObjctToDic(dict, self.payAmount, @"payAmount");
     EncodeUnEmptyStrObjctToDic(dict, self.redPocket, @"redPocket");
-    EncodeUnEmptyStrObjctToDic(dict, self.orderNO, @"ippOrderNO");
+    EncodeUnEmptyStrObjctToDic(dict, self.orderNO, @"ippOrderNo");
     
     return dict;
     
@@ -798,7 +798,7 @@
 //                                       controller:self
 //                                   showBackground:YES];
 //    QueryOrderRequest *request = [[QueryOrderRequest alloc]init];
-//    request.merchantNO = self.merchantNO;
+//    request.merchantNo = self.merchantNo;
 //    request.orderNO = self.orderNO;
 //    //    reque
 //    BaseResponse *response = [[BaseResponse alloc]init];

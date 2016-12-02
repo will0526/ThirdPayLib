@@ -69,9 +69,9 @@ typedef void (^ThirdPayCompletion)(NSDictionary *result);
 /**
  *  订单支付，无支付方式选择，支付方式通过payType传递
  *  字典tradeinfo 内字段如下
- *  @param memberNO         用户号    （非必传）
- *  @param merchantNO       商户号
- *  @param merchantOrderNO  商户订单号
+ *  @param accountNo         用户号    （非必传）
+ *  @param merchantNo       商户号
+ *  @param merchantOrderNo  商户订单号
  *  @param orderTitle        商品名称
  *  @param orderDetail      商品详情
  *  @param memo             备注      （非必传）
@@ -103,9 +103,9 @@ typedef void (^ThirdPayCompletion)(NSDictionary *result);
 /**
  *  订单支付，展示支付方式选择页面
  *  字典tradeinfo 内字段如下
- *  @param memberNo         用户号       （非必传）
- *  @param merchantNO       商户号
- *  @param merchantOrderNO  商户订单号
+ *  @param accountNo         用户号       （非必传）
+ *  @param merchantNo       商户号
+ *  @param merchantOrderNo  商户订单号
  *  @param orderTitle       订单标题
  *  @param orderDetail      订单详情
  *  @param memo             备注         （非必传）

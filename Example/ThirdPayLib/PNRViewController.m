@@ -130,9 +130,9 @@
     
     
     /*
-     @param memberNo         用户号
-     *  @param merchantNO       商户号
-     *  @param merchantOrderNO  商户订单号
+     @param accountNo         用户号
+     *  @param merchantNo       商户号
+     *  @param merchantOrderNo  商户订单号
      *  @param orderTitle       订单标题
      *  @param orderDetail      订单详情
      *  @param memo             备注
@@ -144,12 +144,12 @@
     switch (textField.tag) {
         case 0:
         {
-            [self.params setValue:textField.text forKey:@"memberNo"];
+            [self.params setValue:textField.text forKey:@"accountNo"];
         }
             break;
         case 1:
         {
-            [self.params setValue:textField.text forKey:@"merchantNO"];
+            [self.params setValue:textField.text forKey:@"merchantNo"];
         }
             break;
         case 2:
@@ -162,7 +162,7 @@
                     break;
                 case 1:
                 {
-                    [self.params setValue:textField.text forKey:@"merchantOrderNO"];
+                    [self.params setValue:textField.text forKey:@"merchantOrderNo"];
                 }
                     break;
                     
@@ -389,12 +389,12 @@
             case 0:
             {
                 NSString *temp = textField.text;
-                [self.params setValue:temp forKey:@"memberNo"];
+                [self.params setValue:temp forKey:@"accountNo"];
             }
                 break;
             case 1:
             {
-                [self.params setValue:textField.text forKey:@"merchantNO"];
+                [self.params setValue:textField.text forKey:@"merchantNo"];
             }
                 break;
             case 2:
@@ -408,7 +408,7 @@
                     case 1:
                     case 2:
                     {
-                        [self.params setValue:textField.text forKey:@"merchantOrderNO"];
+                        [self.params setValue:textField.text forKey:@"merchantOrderNo"];
                     }
                         break;
                         

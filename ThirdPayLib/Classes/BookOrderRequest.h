@@ -13,7 +13,7 @@
 /**
  *  订单支付，无支付方式选择，支付方式通过payType传递
  *  字典tradeinfo 内字段如下
- *  @param memberNo         用户号
+ *  @param accountNo         用户号
  *  @param merchantID       商户号
  *  @param merchantOrderID  商户订单号
  *  @param orderTitle        商品名称
@@ -30,9 +30,9 @@
  *  @param payType          支付类型
  */
 
-@property(nonatomic,strong)NSString *merchantNO;        //商户号
-@property(nonatomic,strong)NSString *memberNO;          //用户号
-@property(nonatomic,strong)NSString *merchantOrderNO;   //商户订单号
+@property(nonatomic,strong)NSString *merchantNo;        //商户号
+@property(nonatomic,strong)NSString *accountNo;          //用户号
+@property(nonatomic,strong)NSString *merchantOrderNo;   //商户订单号
 @property(nonatomic,strong)NSString *orderTitle;         //商品名称
 @property(nonatomic,strong)NSString *orderDetail;       //商品详情
 @property(nonatomic,strong)NSString *memo;              //订单备注

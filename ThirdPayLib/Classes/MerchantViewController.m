@@ -101,7 +101,7 @@
     NSDate *datenow = [NSDate date];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyMMddHHmmss"];
-    NSString *merchantOrderNO = [dateFormatter stringFromDate:datenow];
+    NSString *merchantOrderNo = [dateFormatter stringFromDate:datenow];
     
     
     
@@ -110,9 +110,9 @@
     NSString * intAmout = [NSString stringWithFormat:@"%d", (int)amout];
     NSMutableDictionary *tradeInfo = [[NSMutableDictionary alloc]init];
     
-    [tradeInfo setValue:@"000001" forKey:@"memberNo"];
-    [tradeInfo setValue:@"000000000000001" forKey:@"merchantNO"];
-    [tradeInfo setValue:merchantOrderNO forKey:@"merchantOrderNO"];
+    [tradeInfo setValue:@"000001" forKey:@"accountNo"];
+    [tradeInfo setValue:@"000000000000001" forKey:@"merchantNo"];
+    [tradeInfo setValue:merchantOrderNo forKey:@"merchantOrderNo"];
     [tradeInfo setValue:@"望湘园餐饮费用" forKey:@"orderTitle"];
     [tradeInfo setValue:@"望湘园餐饮费用测试" forKey:@"orderDetail"];
     [tradeInfo setValue:intAmout forKey:@"totalAmount"];

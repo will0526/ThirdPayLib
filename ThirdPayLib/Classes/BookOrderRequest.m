@@ -26,7 +26,7 @@
 {
     [super dtoToDictionary];
     
-    EncodeUnEmptyStrObjctToDic(self.requestParamDic, self.merchantNO, @"merchantNo");
+    EncodeUnEmptyStrObjctToDic(self.requestParamDic, self.merchantNo, @"merchantNo");
     
     NSString *payTypeStr = @"";
     switch (self.payType) {
@@ -80,12 +80,12 @@
     EncodeUnEmptyStrObjctToDic(dic, self.totalAmount, @"orderAmount");
     EncodeUnEmptyStrObjctToDic(dic, self.payAmount, @"tradeAmount");
     EncodeUnEmptyStrObjctToDic(dic, self.tradeCurrency, @"currency");
-    EncodeUnEmptyStrObjctToDic(dic, self.merchantOrderNO, @"orderNo");
+    EncodeUnEmptyStrObjctToDic(dic, self.merchantOrderNo, @"orderNo");
     EncodeUnEmptyStrObjctToDic(dic, self.orderTitle, @"orderSubject");
     EncodeUnEmptyStrObjctToDic(dic, self.orderDetail, @"orderDescription");
     EncodeUnEmptyStrObjctToDic(dic, @" ", @"goodsInfo");
     EncodeUnEmptyStrObjctToDic(dic, self.tradeTpye, @"tradeType");
-    EncodeUnEmptyStrObjctToDic(dic, self.memberNO, @"accountNo");
+    EncodeUnEmptyStrObjctToDic(dic, self.accountNo, @"accountNo");
     EncodeUnEmptyStrObjctToDic(dic, self.redPocket, @"redPocket");
     EncodeUnEmptyStrObjctToDic(dic, self.memberPoints, @"memberPoints");
     
