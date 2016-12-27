@@ -248,6 +248,14 @@
 		BD7BF297A0A78BEBE999068706ADDE08 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65FDB2BF887D1DFD0BEBA99B87AC5C1D /* Foundation.framework */; };
 		BE1977271DDC0439009C3343 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BAC7419F314A4D17AF3ADFC6609662B /* AFNetworking.framework */; };
 		BE19772A1DDC0531009C3343 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BE1977291DDC0531009C3343 /* libWeChatSDK.a */; };
+		BE215DDD1E0BB78E00C779A3 /* PNROtherPayInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = BE8965201DFE7AC3000104C9 /* PNROtherPayInfo.m */; };
+		BE215DDE1E0BB7A600C779A3 /* PNRGoodsInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = BE9414901DFA98E4004222C9 /* PNRGoodsInfo.m */; };
+		BE271AF01E11047000959F37 /* QueryMemberRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = BE271AEE1E11047000959F37 /* QueryMemberRequest.h */; };
+		BE271AF11E11047000959F37 /* QueryMemberRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = BE271AEF1E11047000959F37 /* QueryMemberRequest.m */; };
+		BE271AF21E123A2200959F37 /* PNRMemberInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = BE215DE01E0D14AE00C779A3 /* PNRMemberInfo.m */; };
+		BE271AF41E123A2A00959F37 /* PNRMemberInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = BE215DDF1E0D14AE00C779A3 /* PNRMemberInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BE271AF71E123FAE00959F37 /* QueryMemberAllRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = BE271AF51E123FAE00959F37 /* QueryMemberAllRequest.h */; };
+		BE271AF81E123FAE00959F37 /* QueryMemberAllRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = BE271AF61E123FAE00959F37 /* QueryMemberAllRequest.m */; };
 		BE3757771DC9BC6000E95CF6 /* WXApi.h in Headers */ = {isa = PBXBuildFile; fileRef = BE3757741DC9BC6000E95CF6 /* WXApi.h */; };
 		BE3757781DC9BC6000E95CF6 /* WXApiObject.h in Headers */ = {isa = PBXBuildFile; fileRef = BE3757751DC9BC6000E95CF6 /* WXApiObject.h */; };
 		BE37577C1DC9BC6A00E95CF6 /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BE37577A1DC9BC6A00E95CF6 /* AlipaySDK.bundle */; };
@@ -262,6 +270,9 @@
 		BE6108B01DD9A64F007DAE8E /* bestpay_nowifi.png in Resources */ = {isa = PBXBuildFile; fileRef = BE6108AA1DD9A64F007DAE8E /* bestpay_nowifi.png */; };
 		BE6108B11DD9A64F007DAE8E /* PassGuardCtrlBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BE6108AB1DD9A64F007DAE8E /* PassGuardCtrlBundle.bundle */; };
 		BE6B4A931DDC06EB00752702 /* libH5ContainerStaticLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BE6B4A921DDC06EB00752702 /* libH5ContainerStaticLib.a */; };
+		BE8965241DFE94D0000104C9 /* PNROtherPayInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = BE89651F1DFE7AC3000104C9 /* PNROtherPayInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BE8965251DFE94DB000104C9 /* PNRGoodsInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = BE94148F1DFA98E4004222C9 /* PNRGoodsInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BE8965261DFFE2EF000104C9 /* PNROrderInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 230A35D592F240F75E47A4DDBE659D21 /* PNROrderInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BF0A583C4365FC0558CA072DA5B30173 /* BaseResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DBD5415716558DFC0420A89B6D22C87 /* BaseResponse.m */; };
 		BFD1E60DE3BE78A3438C35F0E2A2A778 /* KWBackgroundTask.h in Headers */ = {isa = PBXBuildFile; fileRef = 88600BD88035B88D57499A446EE28D2D /* KWBackgroundTask.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BFE10F2EA970BC90A5E9CC47469DE969 /* checked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F6D5F2E78424DF62A302BCE935038F8 /* checked@2x.png */; };
@@ -288,7 +299,6 @@
 		D15BA5B424F9B1227656A708AE472668 /* KWAny.m in Sources */ = {isa = PBXBuildFile; fileRef = D8F1AE9FEA54D50E09F2FBD8007B4A80 /* KWAny.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		D1DE498BCF6BAFC99ACAE6DFE30240DF /* ThirdPayLib-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4652F9573B2847440C9B168158F2B822 /* ThirdPayLib-dummy.m */; };
 		D39A72DF27AE7C327520FF20E4D841A6 /* KWHaveMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 2B0E7E8C5CC106B05AA474824ABFC79F /* KWHaveMatcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D3C1DBA34B6854F2344B2888E327B6B7 /* OrderInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 230A35D592F240F75E47A4DDBE659D21 /* OrderInfo.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		D3CC584ECC40A6BBFC23EACA4DF15C97 /* BBCyclingLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = E3575A691966035151829176156BB931 /* BBCyclingLabel.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		D4B2E267168C03A7AF17F2596876A1EF /* QueryOrderRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5971186752C403821B5E4685D04B376A /* QueryOrderRequest.m */; };
 		D4D25E3DC1D8B567BF9B1B9A5567BF29 /* KWBeIdenticalToMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 550A9471DDB893200EFC4D6CF6AB6855 /* KWBeIdenticalToMatcher.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
@@ -328,7 +338,7 @@
 		EB7645869AC01EFCF97890D638882359 /* KWRespondToSelectorMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = F7DB652B6375218D8DAE8D9B24150B57 /* KWRespondToSelectorMatcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EBC07284CCF4DE10B8D23C89B102C282 /* KWSuiteConfigurationBase.m in Sources */ = {isa = PBXBuildFile; fileRef = ABBE20FBD0FCCCAB25472BF21C7F8E1D /* KWSuiteConfigurationBase.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		EBE30621FE52DF502336345E97DE98AA /* BaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = FDE04D8FA36D804D7D47FB82056DD308 /* BaseRequest.m */; };
-		EC774903DEFBF78E2FA64469D06D1B10 /* OrderInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B603FAD843CCF174DAB16AD142BD3B /* OrderInfo.m */; };
+		EC774903DEFBF78E2FA64469D06D1B10 /* PNROrderInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B603FAD843CCF174DAB16AD142BD3B /* PNROrderInfo.m */; };
 		EED63A266D9747513B0DB428A4EA6434 /* IPAddress.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D6F68E5FDF40B0E9D8BBF2834E7379F /* IPAddress.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		EF00E91C93E9D6C93F7BF7B43951EB50 /* KWChangeMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 22A3D74B6A2C2715852EF9895A531F28 /* KWChangeMatcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EF787460589440DF143C814F84CA64C8 /* KWRegisterMatchersNode.h in Headers */ = {isa = PBXBuildFile; fileRef = D1E52C1DB4E2753C1E65771B8A99570A /* KWRegisterMatchersNode.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -449,7 +459,7 @@
 		21B721A43635A50C5E660573B4BA6217 /* KWBlock.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = KWBlock.m; path = Classes/Core/KWBlock.m; sourceTree = "<group>"; };
 		22A3D74B6A2C2715852EF9895A531F28 /* KWChangeMatcher.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = KWChangeMatcher.h; path = Classes/Matchers/KWChangeMatcher.h; sourceTree = "<group>"; };
 		22F678C183D314C905BB44762829B42C /* KWBackgroundTask.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = KWBackgroundTask.m; path = Classes/Core/KWBackgroundTask.m; sourceTree = "<group>"; };
-		230A35D592F240F75E47A4DDBE659D21 /* OrderInfo.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = OrderInfo.h; sourceTree = "<group>"; };
+		230A35D592F240F75E47A4DDBE659D21 /* PNROrderInfo.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = PNROrderInfo.h; sourceTree = "<group>"; };
 		23F4C879B584854B777FC034F7A4AF4A /* KWProbe.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = KWProbe.h; path = Classes/Core/KWProbe.h; sourceTree = "<group>"; };
 		247C97598EF8E41E21B0ABB7BEAE6AED /* UIProgressView+AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIProgressView+AFNetworking.h"; path = "UIKit+AFNetworking/UIProgressView+AFNetworking.h"; sourceTree = "<group>"; };
 		24DC27D076C1BEE034C8A25712F8EEA1 /* UIView+MBProgressHUD.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UIView+MBProgressHUD.h"; sourceTree = "<group>"; };
@@ -675,6 +685,12 @@
 		BCCBD59290E580CE157BEA93189D567C /* KWInvocationCapturer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = KWInvocationCapturer.h; path = Classes/Core/KWInvocationCapturer.h; sourceTree = "<group>"; };
 		BD955070AF99A0BD7645C0508243A643 /* GlobleDefine.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = GlobleDefine.h; sourceTree = "<group>"; };
 		BE1977291DDC0531009C3343 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libWeChatSDK.a; path = wxSDK/libWeChatSDK.a; sourceTree = "<group>"; };
+		BE215DDF1E0D14AE00C779A3 /* PNRMemberInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNRMemberInfo.h; sourceTree = "<group>"; };
+		BE215DE01E0D14AE00C779A3 /* PNRMemberInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNRMemberInfo.m; sourceTree = "<group>"; };
+		BE271AEE1E11047000959F37 /* QueryMemberRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryMemberRequest.h; sourceTree = "<group>"; };
+		BE271AEF1E11047000959F37 /* QueryMemberRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryMemberRequest.m; sourceTree = "<group>"; };
+		BE271AF51E123FAE00959F37 /* QueryMemberAllRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryMemberAllRequest.h; sourceTree = "<group>"; };
+		BE271AF61E123FAE00959F37 /* QueryMemberAllRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryMemberAllRequest.m; sourceTree = "<group>"; };
 		BE2E00E1C23ED078BD2AB67E1584D072 /* KWBeKindOfClassMatcher.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = KWBeKindOfClassMatcher.h; path = Classes/Matchers/KWBeKindOfClassMatcher.h; sourceTree = "<group>"; };
 		BE3757641DC9BAAF00E95CF6 /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlipaySDK.framework; path = alipay/AlipaySDK.framework; sourceTree = "<group>"; };
 		BE37576A1DC9BAD600E95CF6 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.1.sdk/usr/lib/libz.tbd; sourceTree = DEVELOPER_DIR; };
@@ -694,6 +710,10 @@
 		BE6108AA1DD9A64F007DAE8E /* bestpay_nowifi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bestpay_nowifi.png; sourceTree = "<group>"; };
 		BE6108AB1DD9A64F007DAE8E /* PassGuardCtrlBundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = PassGuardCtrlBundle.bundle; sourceTree = "<group>"; };
 		BE6B4A921DDC06EB00752702 /* libH5ContainerStaticLib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libH5ContainerStaticLib.a; path = Bestpaylib/libH5ContainerStaticLib.a; sourceTree = "<group>"; };
+		BE89651F1DFE7AC3000104C9 /* PNROtherPayInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNROtherPayInfo.h; sourceTree = "<group>"; };
+		BE8965201DFE7AC3000104C9 /* PNROtherPayInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNROtherPayInfo.m; sourceTree = "<group>"; };
+		BE94148F1DFA98E4004222C9 /* PNRGoodsInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNRGoodsInfo.h; sourceTree = "<group>"; };
+		BE9414901DFA98E4004222C9 /* PNRGoodsInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNRGoodsInfo.m; sourceTree = "<group>"; };
 		C00175E55F791A1F11DB52AC43B79C61 /* KWContextNode.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = KWContextNode.m; path = Classes/Nodes/KWContextNode.m; sourceTree = "<group>"; };
 		C03958B260F4944D6162C27FF61D1024 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C0C17A71D9C292BFA1CCD31DCD8F969F /* KWMock.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = KWMock.h; path = Classes/Mocking/KWMock.h; sourceTree = "<group>"; };
@@ -725,7 +745,7 @@
 		CFF283C032AC529D3BFCDE3B80FA577B /* KWAny.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = KWAny.h; path = Classes/Core/KWAny.h; sourceTree = "<group>"; };
 		D00436CD037BCCE441ACF19217C8304D /* KWItNode.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = KWItNode.m; path = Classes/Nodes/KWItNode.m; sourceTree = "<group>"; };
 		D095ECD90CDFDE5AC95E1144249C8EEF /* AFURLSessionManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AFURLSessionManager.m; path = AFNetworking/AFURLSessionManager.m; sourceTree = "<group>"; };
-		D0B603FAD843CCF174DAB16AD142BD3B /* OrderInfo.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = OrderInfo.m; sourceTree = "<group>"; };
+		D0B603FAD843CCF174DAB16AD142BD3B /* PNROrderInfo.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = PNROrderInfo.m; sourceTree = "<group>"; };
 		D194FB71A1ED3A2CBDD8AF0017378288 /* KWBeSubclassOfClassMatcher.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = KWBeSubclassOfClassMatcher.h; path = Classes/Matchers/KWBeSubclassOfClassMatcher.h; sourceTree = "<group>"; };
 		D1E52C1DB4E2753C1E65771B8A99570A /* KWRegisterMatchersNode.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = KWRegisterMatchersNode.h; path = Classes/Nodes/KWRegisterMatchersNode.h; sourceTree = "<group>"; };
 		D2261683EC6BBC18AE1D6031683153D0 /* ThirdPayLib-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ThirdPayLib-umbrella.h"; sourceTree = "<group>"; };
@@ -1453,6 +1473,29 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		BE8965231DFE7ACE000104C9 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				BE89651F1DFE7AC3000104C9 /* PNROtherPayInfo.h */,
+				BE8965201DFE7AC3000104C9 /* PNROtherPayInfo.m */,
+				932625A2143ECC9E773CE826B76E9B23 /* QueryOrderRequest.h */,
+				5971186752C403821B5E4685D04B376A /* QueryOrderRequest.m */,
+				230A35D592F240F75E47A4DDBE659D21 /* PNROrderInfo.h */,
+				D0B603FAD843CCF174DAB16AD142BD3B /* PNROrderInfo.m */,
+				BE94148F1DFA98E4004222C9 /* PNRGoodsInfo.h */,
+				BE9414901DFA98E4004222C9 /* PNRGoodsInfo.m */,
+				F4727AA57F87E73ACE4514749F14C29B /* BookOrderRequest.h */,
+				6F45EE8A52708883E4457520B52E1139 /* BookOrderRequest.m */,
+				BE215DDF1E0D14AE00C779A3 /* PNRMemberInfo.h */,
+				BE215DE01E0D14AE00C779A3 /* PNRMemberInfo.m */,
+				BE271AEE1E11047000959F37 /* QueryMemberRequest.h */,
+				BE271AEF1E11047000959F37 /* QueryMemberRequest.m */,
+				BE271AF51E123FAE00959F37 /* QueryMemberAllRequest.h */,
+				BE271AF61E123FAE00959F37 /* QueryMemberAllRequest.m */,
+			);
+			name = model;
+			sourceTree = "<group>";
+		};
 		C855E65117B62CC2A905FFB57E963C79 /* common */ = {
 			isa = PBXGroup;
 			children = (
@@ -1554,16 +1597,11 @@
 		F463AE63ABF7CAC025C9F1A32F4E6642 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				F4727AA57F87E73ACE4514749F14C29B /* BookOrderRequest.h */,
-				6F45EE8A52708883E4457520B52E1139 /* BookOrderRequest.m */,
+				BE8965231DFE7ACE000104C9 /* model */,
 				AC8CFBE01E27EC1DE93FE18177F69342 /* MerchantViewController.h */,
 				FFD4DFFB9A9FD66EC4B698D7157A5B9E /* MerchantViewController.m */,
-				230A35D592F240F75E47A4DDBE659D21 /* OrderInfo.h */,
-				D0B603FAD843CCF174DAB16AD142BD3B /* OrderInfo.m */,
 				5125984A2245B2538EEC35F146446DC6 /* QRCodeViewController.h */,
 				7BCC4D1276F0B8870D6EA0A845FA1C70 /* QRCodeViewController.m */,
-				932625A2143ECC9E773CE826B76E9B23 /* QueryOrderRequest.h */,
-				5971186752C403821B5E4685D04B376A /* QueryOrderRequest.m */,
 				AE0ECA40DC3B8F8C1ECA05B1BB1A3131 /* ShowPayTypeViewController.h */,
 				9B4D50152A2188F03EB968193C231A03 /* ShowPayTypeViewController.m */,
 				02E48090CEB0EEA80FA93FD448B95956 /* ThirdPay.h */,
@@ -1608,10 +1646,14 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE271AF41E123A2A00959F37 /* PNRMemberInfo.h in Headers */,
 				37416534E4167DEE6B95F3F585ABE43C /* BaseRequest.h in Headers */,
+				BE8965251DFE94DB000104C9 /* PNRGoodsInfo.h in Headers */,
+				BE8965241DFE94D0000104C9 /* PNROtherPayInfo.h in Headers */,
 				153E7A0A1932BECC82ED2A7166DDF4DD /* BaseResponse.h in Headers */,
 				D3CC584ECC40A6BBFC23EACA4DF15C97 /* BBCyclingLabel.h in Headers */,
 				F91EFB777B4021D07669C1563B6C651D /* bitstream.h in Headers */,
+				BE271AF71E123FAE00959F37 /* QueryMemberAllRequest.h in Headers */,
 				F41290C1C838302264F0B35E15A5AA66 /* BookOrderRequest.h in Headers */,
 				57B7675F6AEA960A9DE1473C326E4763 /* CommonDTO.h in Headers */,
 				30BA319FABBCB0D054D0BDD7505AED7B /* CommonService.h in Headers */,
@@ -1623,8 +1665,10 @@
 				E49C9EF3B512B62709AE93DE9436BCCD /* GlobleDefine.h in Headers */,
 				EED63A266D9747513B0DB428A4EA6434 /* IPAddress.h in Headers */,
 				DFD129F70BC2CD6C69BEFE5441595EE6 /* LJTimer.h in Headers */,
+				BE271AF01E11047000959F37 /* QueryMemberRequest.h in Headers */,
 				0BFF76DF5DF08C491CF1E4984DC370BD /* mask.h in Headers */,
 				9128BE5A54AFEB455544695D788C4FA9 /* MBProgressHUD.h in Headers */,
+				BE8965261DFFE2EF000104C9 /* PNROrderInfo.h in Headers */,
 				35FAF97ABD1FA7584BC36CCEDB274DF9 /* MerchantViewController.h in Headers */,
 				BE3757781DC9BC6000E95CF6 /* WXApiObject.h in Headers */,
 				7182BC4E14E54A857CCFE793EAB1C513 /* MOPCustomStatueBar.h in Headers */,
@@ -1637,7 +1681,6 @@
 				8A07A51C6898AE37263BADCBE00527B2 /* NSString+MD5.h in Headers */,
 				90DCDCA20DA16056CDEDA8FC685B35D9 /* NSString+NULL.h in Headers */,
 				99145758957F52945369F82AEC835EFE /* NSString+SEL.h in Headers */,
-				D3C1DBA34B6854F2344B2888E327B6B7 /* OrderInfo.h in Headers */,
 				3E4C70B6E8EAC4C73D5BF4391208E287 /* QRCodeGenerator.h in Headers */,
 				8DCBFDE274D140B82D113DCE9B0AA30F /* QRCodeViewController.h in Headers */,
 				54C116A73AD32442526F0BC0EEA0917F /* qrencode.h in Headers */,
@@ -2123,6 +2166,7 @@
 				042B98E0EEA240428065078D45C0E5E0 /* bitstream.c in Sources */,
 				DE398ECDCCD67AEDD868D97C99C0A0B4 /* BookOrderRequest.m in Sources */,
 				3111A149132C07E88BAA4FFDC0F8404E /* CommonDTO.m in Sources */,
+				BE215DDE1E0BB7A600C779A3 /* PNRGoodsInfo.m in Sources */,
 				2065EA770B48734320EE382409D0CF99 /* CommonService.m in Sources */,
 				F03679FE3EBDAA36E83133C83BE3A976 /* CommonViewController.m in Sources */,
 				D9A232EB53211120D8C263798A8182F2 /* GlobleDefine.m in Sources */,
@@ -2141,7 +2185,7 @@
 				FA161355BF6A86D93F5A86A7F662AAA7 /* NSString+MD5.m in Sources */,
 				8A14513331E2F1688C5A6CF3853E38C8 /* NSString+NULL.m in Sources */,
 				CF59813757EBB570912F246770741283 /* NSString+SEL.m in Sources */,
-				EC774903DEFBF78E2FA64469D06D1B10 /* OrderInfo.m in Sources */,
+				EC774903DEFBF78E2FA64469D06D1B10 /* PNROrderInfo.m in Sources */,
 				2A4C8F3F0BF12F143592C1DDB612A940 /* QRCodeGenerator.m in Sources */,
 				861C105EC48E35C69EC5190329CFDDA0 /* QRCodeViewController.m in Sources */,
 				7C8D69F5399B327F1BAEDE8A35E5DAC8 /* qrencode.c in Sources */,
@@ -2152,11 +2196,15 @@
 				B04219E0684B5DA403AEB37DEA5C27FD /* ShowPayTypeViewController.m in Sources */,
 				9A0D4B07ED7ED866FDF9D244588268C7 /* split.c in Sources */,
 				96ADCD7FF1861DA7B84EBC6823646D9A /* SystemInfo.m in Sources */,
+				BE271AF11E11047000959F37 /* QueryMemberRequest.m in Sources */,
 				02784CA771356B14E964DBE4917D4027 /* ThirdPay.m in Sources */,
 				D1DE498BCF6BAFC99ACAE6DFE30240DF /* ThirdPayLib-dummy.m in Sources */,
 				7AF499683E821E10FA0902219543BFE0 /* UIColor+SNAdditions.m in Sources */,
+				BE271AF21E123A2200959F37 /* PNRMemberInfo.m in Sources */,
+				BE215DDD1E0BB78E00C779A3 /* PNROtherPayInfo.m in Sources */,
 				A1445D5CAEBECCA4DE0B5AEA039081B5 /* UIImage+SNAdditions.m in Sources */,
 				1A4AFA0D9D418E1261CB7EC80C55BB1F /* UIView+Category.m in Sources */,
+				BE271AF81E123FAE00959F37 /* QueryMemberAllRequest.m in Sources */,
 				E215FF9C663215A034BC236349915C73 /* UIView+MBProgressHUD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2354,7 +2402,6 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Bestpaylib",
 					"$(PROJECT_DIR)/wxSDK",
-					"$(PROJECT_DIR)/alipay",
 				);
 				MODULEMAP_FILE = "Target Support Files/ThirdPayLib/ThirdPayLib.modulemap";
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -2603,7 +2650,6 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Bestpaylib",
 					"$(PROJECT_DIR)/wxSDK",
-					"$(PROJECT_DIR)/alipay",
 				);
 				MODULEMAP_FILE = "Target Support Files/ThirdPayLib/ThirdPayLib.modulemap";
 				MTL_ENABLE_DEBUG_INFO = NO;

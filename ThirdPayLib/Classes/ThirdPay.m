@@ -34,9 +34,10 @@
 #import "CommonService.h"
 #import "QueryOrderRequest.h"
 
-#import "OrderInfo.h"
-
+#import "PNROrderInfo.h"
+#import "PNRMemberInfo.h"
 #import "QRCodeViewController.h"
+#import "QueryMemberRequest.h"
 
 @interface ThirdPay()<QRCodeDelegate>
 
@@ -66,12 +67,16 @@
 }
 static ShowPayTypeViewController *payController;
 //下单
-+(void)payWithTradeInfo:(NSDictionary *)tradeInfo ViewController:(UIViewController *)controller Delegate:(id<ThirdPayDelegate>)delegate PayType:(PayType)payType
++(void)payWithTradeInfo:(PNROrderInfo *)orderInfo ViewController:(UIViewController *)controller Delegate:(id<ThirdPayDelegate>)delegate
 {
-    if ([ThirdPay checkParams:tradeInfo delegate:delegate]) {
+    if ([ThirdPay checkParams:orderInfo delegate:delegate]) {
         
-        [ThirdPay assignParams:tradeInfo delegate:delegate];
-        payController.payType = payType;
+        payController = [[ShowPayTypeViewController alloc]init];
+        
+        payController.thirdPayDelegate = delegate;
+        payController.orderInfo = orderInfo;
+        payController.payType = orderInfo.paytype;
+        payController.viewType = @"NOVIEW";
         [payController bookOrder];
     }
     
@@ -79,11 +84,11 @@ static ShowPayTypeViewController *payController;
 }
 
 //查询
-+(void)queryOrderInfo:(NSDictionary *)tradeInfo ViewController:(UIViewController *)controller Delegate:(id<ThirdPayDelegate>)delegate{
++(void)queryOrderInfo:(PNROrderInfo *)tradeInfo ViewController:(UIViewController *)controller Delegate:(id<ThirdPayDelegate>)delegate{
     
-    NSString *merchantNo = EncodeStringFromDic(tradeInfo, @"merchantNo");
+    NSString *merchantNo = tradeInfo.merchantNo;
     
-    NSString *orderNO = EncodeStringFromDic(tradeInfo, @"orderNO");
+    NSString *orderNO = tradeInfo.ippOrderNo;
     NSString *resultInfo = @"";
     
     if (IsStrEmpty(merchantNo)) {
@@ -91,11 +96,11 @@ static ShowPayTypeViewController *payController;
     }else if (IsStrEmpty(orderNO)){
         resultInfo = @"订单号不能为空";
     }
-    
+    NSDictionary *dict = [[NSDictionary alloc]init];
     if (!IsStrEmpty(resultInfo)) {
-        tradeInfo = @{@"resultInfo":resultInfo};
+        dict = @{@"resultInfo":resultInfo};
         if (delegate && [delegate respondsToSelector:@selector(onQueryOrder:)]) {
-            [delegate onQueryOrder:tradeInfo];
+            [delegate onQueryOrder:dict];
             return;
         }
     }
@@ -182,42 +187,95 @@ static ShowPayTypeViewController *payController;
     
 }
 
-//展示支付方式选择页面支付
-+(void)showPayTypeWithTradeInfo:(NSDictionary *)tradeInfo ViewController:(UIViewController *)controller Delegate:(id<ThirdPayDelegate>)delegate{
-    
-    NSString *merchantNo = EncodeStringFromDic(tradeInfo, @"merchantNo");
-    
-    NSString *accountNo = EncodeStringFromDic(tradeInfo, @"accountNo");
-    NSString *merchantOrderNo = EncodeStringFromDic(tradeInfo, @"merchantOrderNo");
-    NSString *orderTitle = EncodeStringFromDic(tradeInfo, @"orderTitle");
-    NSString *orderDetail = EncodeStringFromDic(tradeInfo, @"orderDetail");
-    NSString *memo = EncodeStringFromDic(tradeInfo, @"memo");
-    NSString *totalAmount = EncodeStringFromDic(tradeInfo, @"totalAmount");
-    NSString *payAmount = EncodeStringFromDic(tradeInfo, @"payAmount");
-    NSString *redPocket = EncodeStringFromDic(tradeInfo, @"redPocket");
-    NSString *point = EncodeStringFromDic(tradeInfo, @"point");
-    NSString *notifyURL = EncodeStringFromDic(tradeInfo, @"notifyURL");
-    NSString *appSchemeStr = EncodeStringFromDic(tradeInfo, @"appSchemeStr");
++(void)queryMemberInfo:(PNRMemberInfo *)memberInfo ViewController:(UIViewController *)controller Delegate:(id<ThirdPayDelegate>)delegate{
+
+    NSString *merchantNo = memberInfo.merchantNo;
+    NSString *orderAmount = memberInfo.orderAmount;
+    NSString *accountNo = memberInfo.accountNo;
+    NSString *accountType = memberInfo.accountType;
     
     NSString *resultInfo = @"";
     
-    if (IsStrEmpty(accountNo)) {
-        resultInfo = @"用户号不能为空";
-    }else if (IsStrEmpty(merchantNo)) {
+    if (IsStrEmpty(merchantNo)) {
         resultInfo = @"商户号不能为空";
-    }else if (IsStrEmpty(merchantOrderNo)){
-        resultInfo = @"商户订单号不能为空";
-    }else if (IsStrEmpty(orderTitle)){
-        resultInfo = @"商品名称不能为空";
-    }else if (IsStrEmpty(orderDetail)){
-        resultInfo = @"商品详情不能为空";
-    }else if (IsStrEmpty(totalAmount)){
+    }else if (IsStrEmpty(orderAmount)){
         resultInfo = @"订单金额不能为空";
-    }else if (IsStrEmpty(payAmount)){
+    }else if (IsStrEmpty(accountNo)){
+        resultInfo = @"用户账号号不能为空";
+    }else if (IsStrEmpty(accountType)){
+        resultInfo = @"账号类型不能为空";
+    }
+    
+    NSDictionary *dict = [[NSDictionary alloc]init];
+    if (!IsStrEmpty(resultInfo)) {
+        dict = @{@"resultInfo":resultInfo};
+        if (delegate && [delegate respondsToSelector:@selector(onQueryOrder:)]) {
+            [delegate onQueryMember:dict];
+            return;
+        }
+    }
+    
+    [[MOPHUDCenter shareInstance]showHUDWithTitle:@""
+                                             type:MOPHUDCenterHUDTypeNetWorkLoading
+                                       controller:controller
+                                   showBackground:YES];
+    QueryMemberRequest *request = [[QueryMemberRequest alloc]init];
+    request.merchantNo = merchantNo;
+    request.accountType = accountType;
+    request.accountNo = accountNo;
+    request.orderAmount = orderAmount;
+    
+    BaseResponse *response = [[BaseResponse alloc]init];
+    
+    [CommonService beginService:request response:response success:^(BaseResponse *response) {
+        
+        NSLog(@"response.json......%@",response.jsonDict);
+        
+        NSDictionary *dict = response.jsonDict;
+        
+        [[MOPHUDCenter shareInstance]removeHUD];
+        
+        if (delegate && [delegate respondsToSelector:@selector(onQueryOrder:)]) {
+            [delegate onQueryOrder:dict];
+            return;
+        }
+        
+    } failed:^(NSString *errorCode, NSString *errorMsg) {
+        
+        [[MOPHUDCenter shareInstance]removeHUD];
+        
+        NSDictionary *dict = @{@"message":errorMsg,@"code":errorCode};
+        
+        if (delegate && [delegate respondsToSelector:@selector(onQueryOrder:)]) {
+            [delegate onQueryOrder:dict];
+            return;
+        }
+    } controller:controller showProgressBar:NO];
+    
+}
+
+
+//展示支付方式选择页面支付
++(void)showPayTypeWithTradeInfo:(PNROrderInfo *)orderInfo ViewController:(UIViewController *)controller Delegate:(id<ThirdPayDelegate>)delegate{
+    
+   
+    NSString *resultInfo = @"";
+    
+    if (IsStrEmpty(orderInfo.merchantNo)) {
+        resultInfo = @"商户号不能为空";
+    }else if (IsStrEmpty(orderInfo.merchantOrderNo)){
+        resultInfo = @"商户订单号不能为空";
+    }else if (IsStrEmpty(orderInfo.orderSubject)){
+        resultInfo = @"订单名称不能为空";
+    }else if (IsStrEmpty(orderInfo.orderDescription)){
+        resultInfo = @"订单描述不能为空";
+    }else if (IsStrEmpty(orderInfo.totalAmount)){
+        resultInfo = @"订单金额不能为空";
+    }else if (IsStrEmpty(orderInfo.payAmount)){
         resultInfo = @"支付金额不能为空";
-    }else if (IsStrEmpty(notifyURL)){
+    }else if (IsStrEmpty(orderInfo.notifyURL)){
         resultInfo = @"后台通知地址不能为空";
-    }else if (IsStrEmpty(appSchemeStr)){
+    }else if (IsStrEmpty(orderInfo.appSchemeStr)){
         resultInfo = @"appSchemeStr不能为空";
     }else{
         resultInfo = @"";
@@ -225,7 +283,7 @@ static ShowPayTypeViewController *payController;
     
     if (!IsStrEmpty(resultInfo)) {
         
-        tradeInfo = @{@"resultInfo":resultInfo};
+        NSDictionary * tradeInfo = @{@"resultInfo":resultInfo};
         
         if (delegate && [delegate respondsToSelector:@selector(onPayResult:withInfo:)]) {
             [delegate onPayResult:PayStatus_PAYFAIL withInfo:tradeInfo];
@@ -233,60 +291,38 @@ static ShowPayTypeViewController *payController;
         }
     }
     
-    DDLog(@"test", merchantNo);
     
     payController = [[ShowPayTypeViewController alloc]init];
     
-    payController.accountNo = accountNo;
-    payController.merchantNo = merchantNo;
-    payController.merchantOrderNo = merchantOrderNo;
-    payController.orderTitle = orderTitle;
-    payController.orderDetail = orderDetail;
-    payController.memo = memo;
-    payController.totalAmount = totalAmount;
-    payController.payAmount = payAmount;
-    payController.redPocket = redPocket;
-    payController.memberPoints = point;
-    payController.notifyURL = notifyURL;
-    payController.appScheme = appSchemeStr;
+    
     payController.thirdPayDelegate = delegate;
+    payController.orderInfo = orderInfo;
     payController.viewType = @"VIEW";
     
     [controller.navigationController pushViewController:payController animated:YES];
     
 }
 
-+(BOOL)checkParams:(NSDictionary *)tradeInfo delegate:(id<ThirdPayDelegate>)delegate{
++(BOOL)checkParams:(PNROrderInfo *)orderInfo delegate:(id<ThirdPayDelegate>)delegate{
     
-    NSString *merchantNo = EncodeStringFromDic(tradeInfo, @"merchantNo");
-    NSString *accountNo = EncodeStringFromDic(tradeInfo, @"accountNo");
-    NSString *merchantOrderNo = EncodeStringFromDic(tradeInfo, @"merchantOrderNo");
-    NSString *orderTitle = EncodeStringFromDic(tradeInfo, @"orderTitle");
-    NSString *orderDetail = EncodeStringFromDic(tradeInfo, @"orderDetail");
-    NSString *memo = EncodeStringFromDic(tradeInfo, @"memo");
-    NSString *totalAmount = EncodeStringFromDic(tradeInfo, @"totalAmount");
-    NSString *payAmount = EncodeStringFromDic(tradeInfo, @"payAmount");
-    NSString *redPocket = EncodeStringFromDic(tradeInfo, @"redPocket");
-    NSString *point = EncodeStringFromDic(tradeInfo, @"point");
-    NSString *notifyURL = EncodeStringFromDic(tradeInfo, @"notifyURL");
-    NSString *appSchemeStr = EncodeStringFromDic(tradeInfo, @"appSchemeStr");
+  
     NSString *resultInfo = @"";
     
-    if (IsStrEmpty(merchantNo)) {
+    if (IsStrEmpty(orderInfo.merchantNo)) {
         resultInfo = @"商户号不能为空";
-    }else if (IsStrEmpty(merchantOrderNo)){
+    }else if (IsStrEmpty(orderInfo.merchantOrderNo)){
         resultInfo = @"商户订单号不能为空";
-    }else if (IsStrEmpty(orderTitle)){
-        resultInfo = @"商品名称不能为空";
-    }else if (IsStrEmpty(orderDetail)){
-        resultInfo = @"商品详情不能为空";
-    }else if (IsStrEmpty(totalAmount)){
+    }else if (IsStrEmpty(orderInfo.orderSubject)){
+        resultInfo = @"订单名称不能为空";
+    }else if (IsStrEmpty(orderInfo.orderDescription)){
+        resultInfo = @"订单描述不能为空";
+    }else if (IsStrEmpty(orderInfo.totalAmount)){
         resultInfo = @"订单金额不能为空";
-    }else if (IsStrEmpty(payAmount)){
+    }else if (IsStrEmpty(orderInfo.payAmount)){
         resultInfo = @"支付金额不能为空";
-    }else if (IsStrEmpty(notifyURL)){
+    }else if (IsStrEmpty(orderInfo.notifyURL)){
         resultInfo = @"后台通知地址不能为空";
-    }else if (IsStrEmpty(appSchemeStr)){
+    }else if (IsStrEmpty(orderInfo.appSchemeStr)){
         resultInfo = @"appSchemeStr不能为空";
     }else{
         resultInfo = @"";
@@ -294,7 +330,7 @@ static ShowPayTypeViewController *payController;
     
     if (!IsStrEmpty(resultInfo)) {
         
-        tradeInfo = @{@"resultInfo":resultInfo};
+        NSDictionary * tradeInfo = @{@"resultInfo":resultInfo};
         
         if (delegate && [delegate respondsToSelector:@selector(onPayResult:withInfo:)]) {
             [delegate onPayResult:PayStatus_PAYFAIL withInfo:tradeInfo];
@@ -305,39 +341,6 @@ static ShowPayTypeViewController *payController;
     
 }
 
-+(void)assignParams:(NSDictionary *)tradeInfo delegate:(id<ThirdPayDelegate>)delegate{
-    
-    NSString *merchantNo = EncodeStringFromDic(tradeInfo, @"merchantNo");
-    NSString *accountNo = EncodeStringFromDic(tradeInfo, @"accountNo");
-    NSString *merchantOrderNo = EncodeStringFromDic(tradeInfo, @"merchantOrderNo");
-    NSString *orderTitle = EncodeStringFromDic(tradeInfo, @"orderTitle");
-    NSString *orderDetail = EncodeStringFromDic(tradeInfo, @"orderDetail");
-    NSString *memo = EncodeStringFromDic(tradeInfo, @"memo");
-    NSString *totalAmount = EncodeStringFromDic(tradeInfo, @"totalAmount");
-    NSString *payAmount = EncodeStringFromDic(tradeInfo, @"payAmount");
-    NSString *redPocket = EncodeStringFromDic(tradeInfo, @"redPocket");
-    NSString *point = EncodeStringFromDic(tradeInfo, @"point");
-    NSString *notifyURL = EncodeStringFromDic(tradeInfo, @"notifyURL");
-    NSString *appSchemeStr = EncodeStringFromDic(tradeInfo, @"appSchemeStr");
-    
-    payController = [[ShowPayTypeViewController alloc]init];
-    
-    payController.accountNo = accountNo;
-    payController.merchantNo = merchantNo;
-    payController.merchantOrderNo = merchantOrderNo;
-    payController.orderTitle = orderTitle;
-    payController.orderDetail = orderDetail;
-    payController.memo = memo;
-    payController.totalAmount = totalAmount;
-    payController.payAmount = payAmount;
-    payController.redPocket = redPocket;
-    payController.memberPoints = point;
-    payController.notifyURL = notifyURL;
-    payController.appScheme = appSchemeStr;
-    payController.thirdPayDelegate = delegate;
-    
-    payController.viewType = @"NOVIEW";
-}
 
 +(Boolean)handleOpenURL:(NSURL *)url withCompletion:(ThirdPayCompletion)complete{
     
@@ -353,9 +356,5 @@ static ShowPayTypeViewController *payController;
     qrcode.thirdPayDelegate = delegate;
     [controller.navigationController pushViewController:qrcode animated:YES];
 }
-
-
-
-
 
 @end

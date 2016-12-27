@@ -10,6 +10,9 @@
 #define weixinAppSecret @"16361bdf5841fbb95a42376101febdd1"
 
 #import <Foundation/Foundation.h>
+@class PNROrderInfo;
+
+@class PNRMemberInfo;
 
 typedef enum{
     PayStatus_PAYFAIL,                 //交易失败
@@ -55,6 +58,10 @@ typedef void (^ThirdPayCompletion)(NSDictionary *result);
 -(void)onQueryOrder:(NSDictionary *)dict;
 
 
+//订单查询回调
+-(void)onQueryMember:(NSDictionary *)dict;
+
+
 @end
 
 
@@ -83,7 +90,8 @@ typedef void (^ThirdPayCompletion)(NSDictionary *result);
  *  @param delegate         回调代理
  *  @param payType          支付方式
  */
-+(void)payWithTradeInfo:(NSDictionary *)tradeInfo ViewController:(UIViewController *)controller Delegate:(id<ThirdPayDelegate>)delegate PayType:(PayType)payType;
++(void)payWithTradeInfo:(PNROrderInfo *)orderInfo ViewController:(UIViewController *)controller Delegate:(id<ThirdPayDelegate>)delegate ;
+
 
 
 /**
@@ -97,7 +105,20 @@ typedef void (^ThirdPayCompletion)(NSDictionary *result);
  *  @param controller       调用接口的UIViewController
  *  @param delegate         回调代理
  */
-+(void)queryOrderInfo:(NSDictionary *)tradeInfo ViewController:(UIViewController *)controller Delegate:(id<ThirdPayDelegate>)delegate;
+
++(void)queryOrderInfo:(PNROrderInfo *)orderInfo ViewController:(UIViewController *)controller Delegate:(id<ThirdPayDelegate>)delegate;
+
+
+/**
+ *  用户权益查询
+ *
+ *  memberInfo下单用户账户信息，下单前查询用户可用权益
+ 
+ *  @param controller       调用接口的UIViewController
+ *  @param delegate         回调代理
+ */
+
++(void)queryMemberInfo:(PNRMemberInfo *)memberInfo ViewController:(UIViewController *)controller Delegate:(id<ThirdPayDelegate>)delegate;
 
 
 /**
@@ -115,7 +136,7 @@ typedef void (^ThirdPayCompletion)(NSDictionary *result);
  *  @param controller       调用接口的view
  *  @param delegate         回调代理
  */
-+(void)showPayTypeWithTradeInfo:(NSDictionary *)tradeInfo ViewController:(UIViewController *)controller Delegate:(id<ThirdPayDelegate>)delegate;
++(void)showPayTypeWithTradeInfo:(PNROrderInfo *)orderInfo ViewController:(UIViewController *)controller Delegate:(id<ThirdPayDelegate>)delegate;
 
 
 +(Boolean)handleOpenURL:(NSURL *)url withCompletion:(ThirdPayCompletion )complete;

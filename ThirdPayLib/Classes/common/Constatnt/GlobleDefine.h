@@ -158,6 +158,7 @@ UMS_EXTERN void EncodeUnEmptyStrObjctToDic(NSMutableDictionary *dic,NSString *ob
 UMS_EXTERN void EncodeUnEmptyObjctToArray(NSMutableArray *arr,id object);
 UMS_EXTERN void EncodeDefaultStrObjctToDic(NSMutableDictionary *dic,NSString *object, NSString *key,NSString * defaultStr);
 UMS_EXTERN void EncodeUnEmptyDicObjctToDic(NSMutableDictionary *dic,NSDictionary *object, NSString *key);
+UMS_EXTERN void EncodeUnEmptyArrToDic(NSMutableDictionary *dic,NSArray *object, NSString *key);
 
 //----------------------------------------------------------------------------------------------
 /*safe release*/

@@ -6,8 +6,8 @@
 //
 //
 
-#import "OrderInfo.h"
+#import "PNROrderInfo.h"
 
-@implementation OrderInfo
+@implementation PNROrderInfo
 
 @end

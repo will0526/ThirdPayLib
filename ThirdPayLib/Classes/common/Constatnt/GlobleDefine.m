@@ -183,6 +183,27 @@ UMS_EXTERN void EncodeUnEmptyDicObjctToDic(NSMutableDictionary *dic,NSDictionary
     [dic setObject:object forKey:key];
 }
 
+UMS_EXTERN void EncodeUnEmptyArrToDic(NSMutableDictionary *dic,NSArray *object, NSString *key)
+{
+    if (IsNilOrNull(dic))
+    {
+        return;
+    }
+    
+    if (IsNilOrNull(object))
+    {
+        return;
+    }
+    
+    if (IsStrEmpty(key))
+    {
+        return;
+    }
+    
+    [dic setObject:object forKey:key];
+}
+
+
 
 UMS_EXTERN void EncodeDefaultStrObjctToDic(NSMutableDictionary *dic,NSString *object, NSString *key,NSString * defaultStr)
 {

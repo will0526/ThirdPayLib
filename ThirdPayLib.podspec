@@ -30,8 +30,7 @@ Pod::Spec.new do |s|
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '8.0'
-
-  s.source_files = 'ThirdPayLib/Classes/**/*'
+  s.source_files = 'ThirdPayLib/Classes/**/*','Alipay.framework/Headers/*.h'
   s.resource_bundles = {
     'ThirdPayLib' => ['ThirdPayLib/Assets/*.png']
   }
@@ -40,4 +39,8 @@ Pod::Spec.new do |s|
     s.frameworks = 'UIKit', 'CoreGraphics', 'AVFoundation', 'AudioToolbox','CoreMotion','CFNetwork','CoreText','QuartzCore','CoreTelephony','SystemConfiguration','Foundation'
     s.libraries = 'z','c++','stdc++','sqlite3.0'
     s.dependency 'AFNetworking', '~> 3.0'
+    s.vendored_libraries = 'Example/ThirdPayLib/wxSDK/libWeChatSDK.a','Example/ThirdPayLib/Bestpaylib/libH5ContainerStaticLib.a'
+
+
+
 end

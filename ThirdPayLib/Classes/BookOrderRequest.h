@@ -8,6 +8,8 @@
 
 #import "BaseRequest.h"
 #import "ThirdPay.h"
+#import "PNRGoodsInfo.h"
+#import "PNROtherPayInfo.h"
 @interface BookOrderRequest : BaseRequest
 
 /**
@@ -32,6 +34,9 @@
 
 @property(nonatomic,strong)NSString *merchantNo;        //商户号
 @property(nonatomic,strong)NSString *accountNo;          //用户号
+@property(nonatomic,strong)NSString *accountType;        //用户号类型
+
+
 @property(nonatomic,strong)NSString *merchantOrderNo;   //商户订单号
 @property(nonatomic,strong)NSString *orderTitle;         //商品名称
 @property(nonatomic,strong)NSString *orderDetail;       //商品详情
@@ -41,12 +46,17 @@
 
 @property(nonatomic,assign)PayType payType;         //订单支付方式
 
-
-
+@property(nonatomic,strong)NSString *appVer;         //app版本号
+@property(nonatomic,strong)NSString *appType;        //app类型
 @property(nonatomic,strong)NSString *tradeTpye;         //调用类型(线上)
 @property(nonatomic,strong)NSString *redPocket;         //红包金额
 @property(nonatomic,strong)NSString *memberPoints;      //积分金额
 @property(nonatomic,strong)NSString *tradeCurrency;     //币种 （RMB）
-@property(nonatomic,strong)NSString *notifyURL;     //币种 （RMB）
+@property(nonatomic,strong)NSString *notifyURL;     //通知地址
+@property(nonatomic,strong)NSArray *goodsInfo;     //商品信息
+@property(nonatomic,strong)NSArray *otherPayInfo;     //其他支付信息
+
+
+    
 
 @end

@@ -661,6 +661,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: yiwen lu (3H34FLDBJ3)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: yiwen lu (3H34FLDBJ3)";
+				DEVELOPMENT_TEAM = 69CTN459HT;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -694,7 +695,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.huifu.thirdPay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7262882a-425b-4f0e-ab67-c9f43f1e2ca7";
+				PROVISIONING_PROFILE = "38b61ba7-c8db-4c7d-a2b8-8f1ec8d44f28";
 				PROVISIONING_PROFILE_SPECIFIER = iOSDevelopNor;
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
@@ -708,6 +709,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: yiwen lu (3H34FLDBJ3)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: yiwen lu (3H34FLDBJ3)";
+				DEVELOPMENT_TEAM = 69CTN459HT;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -741,7 +743,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.huifu.thirdPay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7262882a-425b-4f0e-ab67-c9f43f1e2ca7";
+				PROVISIONING_PROFILE = "38b61ba7-c8db-4c7d-a2b8-8f1ec8d44f28";
 				PROVISIONING_PROFILE_SPECIFIER = iOSDevelopNor;
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;

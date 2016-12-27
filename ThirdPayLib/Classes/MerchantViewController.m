@@ -125,7 +125,7 @@
     
     
     
-    [ThirdPay payWithTradeInfo:tradeInfo ViewController:self Delegate:self PayType:self.payType];
+    //[ThirdPay payWithTradeInfo:tradeInfo ViewController:self Delegate:self PayType:self.payType];
     
     
     

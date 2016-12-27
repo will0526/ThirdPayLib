@@ -16,7 +16,7 @@
     self = [super init];
     if (self) {
         _tradeCurrency = @"CNY";
-        _tradeTpye = @"online";
+        _tradeTpye = @"01";
         
     }
     return self;
@@ -77,17 +77,59 @@
     EncodeUnEmptyStrObjctToDic(dic, [NSString stringWithFormat:@"%@",OS], @"osVer");
     EncodeUnEmptyStrObjctToDic(dic, [NSString stringWithFormat:@"%@",device], @"device");
     EncodeUnEmptyStrObjctToDic(dic, [self getResolution], @"resolution");
+    EncodeUnEmptyStrObjctToDic(dic, @"01", @"appType");
+    EncodeUnEmptyStrObjctToDic(dic, self.appVer, @"appVer");
+    
+    
+    
     EncodeUnEmptyStrObjctToDic(dic, self.totalAmount, @"orderAmount");
     EncodeUnEmptyStrObjctToDic(dic, self.payAmount, @"tradeAmount");
     EncodeUnEmptyStrObjctToDic(dic, self.tradeCurrency, @"currency");
     EncodeUnEmptyStrObjctToDic(dic, self.merchantOrderNo, @"orderNo");
     EncodeUnEmptyStrObjctToDic(dic, self.orderTitle, @"orderSubject");
     EncodeUnEmptyStrObjctToDic(dic, self.orderDetail, @"orderDescription");
-    EncodeUnEmptyStrObjctToDic(dic, @" ", @"goodsInfo");
+    
     EncodeUnEmptyStrObjctToDic(dic, self.tradeTpye, @"tradeType");
     EncodeUnEmptyStrObjctToDic(dic, self.accountNo, @"accountNo");
     EncodeUnEmptyStrObjctToDic(dic, self.redPocket, @"redPocket");
     EncodeUnEmptyStrObjctToDic(dic, self.memberPoints, @"memberPoints");
+    
+    if(IsArrEmpty(self.goodsInfo)){
+        EncodeDefaultStrObjctToDic(dic, @"", @"goodsInfo",@"");
+    }else{
+        
+        NSMutableArray *tempGoodsArr = [[NSMutableArray alloc]init];
+        for (PNRGoodsInfo *temp in self.goodsInfo) {
+            NSMutableDictionary *goods = [[NSMutableDictionary alloc]init];
+            EncodeUnEmptyStrObjctToDic(goods, temp.goodsNo, @"goodsNo");
+            EncodeUnEmptyStrObjctToDic(goods, temp.goodsName, @"goodsName");
+            EncodeUnEmptyStrObjctToDic(goods, temp.goodsPrice, @"goodsPrice");
+            EncodeUnEmptyStrObjctToDic(goods, temp.goodsBody, @"goodsBody");
+            EncodeUnEmptyStrObjctToDic(goods, temp.goodsNumber, @"goodsNumber");
+            [tempGoodsArr addObject:goods];
+        }
+        
+        EncodeUnEmptyArrToDic(dic, tempGoodsArr, @"goodsInfo");
+        
+    }
+    
+    if(IsArrEmpty(self.otherPayInfo)){
+        EncodeDefaultStrObjctToDic(dic, @"", @"otherPayInfo",@"");
+    }else{
+        
+        NSMutableArray *tempPayArr = [[NSMutableArray alloc]init];
+        for (PNROtherPayInfo *temp in self.otherPayInfo) {
+            NSMutableDictionary *pay = [[NSMutableDictionary alloc]init];
+            EncodeUnEmptyStrObjctToDic(pay, temp.voucherType, @"voucherType");
+            EncodeUnEmptyStrObjctToDic(pay, temp.voucherId, @"voucherId");
+            EncodeUnEmptyStrObjctToDic(pay, temp.voucherPayAmount, @"voucherPayAmount");
+            
+            [tempPayArr addObject:pay];
+        }
+        
+        EncodeUnEmptyArrToDic(dic, tempPayArr, @"otherPayInfo");
+        
+    }
     
     EncodeUnEmptyStrObjctToDic(dic, self.notifyURL, @"backURL");
     

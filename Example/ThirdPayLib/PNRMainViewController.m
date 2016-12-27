@@ -20,6 +20,7 @@
 @property (nonatomic,strong)UIButton *orderButton2;
 @property (nonatomic,strong)UIButton *aboutButton;
 @property (nonatomic,strong)UIButton *scanButton;
+@property (nonatomic,strong)UIButton *queryMemberButton;
 @end
 
 @implementation PNRMainViewController
@@ -30,6 +31,7 @@
     self.title = @"测试demo";
     
     [self.view addSubview:self.queryButton];
+    [self.view addSubview:self.queryMemberButton];
     [self.view addSubview:self.orderButton];
     [self.view addSubview:self.orderButton2];
 //    [self.view addSubview:self.aboutButton];
@@ -96,7 +98,7 @@
 
 -(UIButton *)aboutButton{
     if (_aboutButton == nil) {
-        _aboutButton = [[UIButton alloc]initWithFrame:CGRectMake(self.view.frame.size.width/6, 390, self.view.frame.size.width*2/3, 40)];
+        _aboutButton = [[UIButton alloc]initWithFrame:CGRectMake(self.view.frame.size.width/6, 380, self.view.frame.size.width*2/3, 40)];
         [_aboutButton setTitle:@"关于我们" forState:UIControlStateNormal];
         [_aboutButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         
@@ -104,7 +106,7 @@
         
         _aboutButton.clipsToBounds = YES;
         _aboutButton.layer.cornerRadius = 20;
-        _aboutButton.tag = 0;
+        _aboutButton.tag = 3;
         [_aboutButton addTarget:self action:@selector(aboutUS) forControlEvents:UIControlEventTouchUpInside];
         
     }
@@ -114,7 +116,7 @@
 
 -(UIButton *)scanButton{
     if (_scanButton == nil) {
-        _scanButton = [[UIButton alloc]initWithFrame:CGRectMake(self.view.frame.size.width/6, 320, self.view.frame.size.width*2/3, 40)];
+        _scanButton = [[UIButton alloc]initWithFrame:CGRectMake(self.view.frame.size.width/6, 310, self.view.frame.size.width*2/3, 40)];
         [_scanButton setTitle:@"二维码扫描" forState:UIControlStateNormal];
         [_scanButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         
@@ -122,12 +124,31 @@
         
         _scanButton.clipsToBounds = YES;
         _scanButton.layer.cornerRadius = 20;
-        _scanButton.tag = 0;
+        _scanButton.tag = 4;
         [_scanButton addTarget:self action:@selector(scanQRCode) forControlEvents:UIControlEventTouchUpInside];
         
     }
     
     return _scanButton;
+}
+
+-(UIButton *)queryMemberButton{
+    if (_queryMemberButton == nil) {
+        _queryMemberButton = [[UIButton alloc]initWithFrame:CGRectMake(self.view.frame.size.width/6, 380, self.view.frame.size.width*2/3, 40)];
+        [_queryMemberButton setTitle:@"查询权益" forState:UIControlStateNormal];
+        [_queryMemberButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        
+        [_queryMemberButton setBackgroundColor:[UIColor orangeColor]];
+        
+        _queryMemberButton.clipsToBounds = YES;
+        _queryMemberButton.layer.cornerRadius = 20;
+        _queryMemberButton.tag = 5;
+        [_queryMemberButton addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        
+    }
+    
+    return _queryMemberButton;
+    
 }
 
 -(void)scanQRCode{
