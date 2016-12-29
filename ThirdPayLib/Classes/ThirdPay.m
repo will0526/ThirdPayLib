@@ -38,6 +38,7 @@
 #import "PNRMemberInfo.h"
 #import "QRCodeViewController.h"
 #import "QueryMemberRequest.h"
+#import "QueryAllMemberInfoRequest.h"
 
 @interface ThirdPay()<QRCodeDelegate>
 
@@ -187,7 +188,7 @@ static ShowPayTypeViewController *payController;
     
 }
 
-+(void)queryMemberInfo:(PNRMemberInfo *)memberInfo ViewController:(UIViewController *)controller Delegate:(id<ThirdPayDelegate>)delegate{
++(void)queryMemberInfoForOrder:(PNRMemberInfo *)memberInfo ViewController:(UIViewController *)controller Delegate:(id<ThirdPayDelegate>)delegate{
 
     NSString *merchantNo = memberInfo.merchantNo;
     NSString *orderAmount = memberInfo.orderAmount;
@@ -210,7 +211,7 @@ static ShowPayTypeViewController *payController;
     if (!IsStrEmpty(resultInfo)) {
         dict = @{@"resultInfo":resultInfo};
         if (delegate && [delegate respondsToSelector:@selector(onQueryOrder:)]) {
-            [delegate onQueryMember:dict];
+            [delegate onQueryMemberForOrder:dict];
             return;
         }
     }
@@ -224,6 +225,69 @@ static ShowPayTypeViewController *payController;
     request.accountType = accountType;
     request.accountNo = accountNo;
     request.orderAmount = orderAmount;
+    
+    BaseResponse *response = [[BaseResponse alloc]init];
+    
+    [CommonService beginService:request response:response success:^(BaseResponse *response) {
+        
+        NSLog(@"response.json......%@",response.jsonDict);
+        
+        NSDictionary *dict = response.jsonDict;
+        
+        [[MOPHUDCenter shareInstance]removeHUD];
+        
+        if (delegate && [delegate respondsToSelector:@selector(onQueryOrder:)]) {
+            [delegate onQueryOrder:dict];
+            return;
+        }
+        
+    } failed:^(NSString *errorCode, NSString *errorMsg) {
+        
+        [[MOPHUDCenter shareInstance]removeHUD];
+        
+        NSDictionary *dict = @{@"message":errorMsg,@"code":errorCode};
+        
+        if (delegate && [delegate respondsToSelector:@selector(onQueryOrder:)]) {
+            [delegate onQueryOrder:dict];
+            return;
+        }
+    } controller:controller showProgressBar:NO];
+    
+}
+
++(void)queryMemberInfo:(PNRMemberInfo *)memberInfo ViewController:(UIViewController *)controller Delegate:(id<ThirdPayDelegate>)delegate{
+    
+    NSString *merchantNo = memberInfo.merchantNo;
+    NSString *accountNo = memberInfo.accountNo;
+    NSString *accountType = memberInfo.accountType;
+    
+    NSString *resultInfo = @"";
+    
+    if (IsStrEmpty(merchantNo)) {
+        resultInfo = @"商户号不能为空";
+    }else if (IsStrEmpty(accountNo)){
+        resultInfo = @"用户账号号不能为空";
+    }else if (IsStrEmpty(accountType)){
+        resultInfo = @"账号类型不能为空";
+    }
+    
+    NSDictionary *dict = [[NSDictionary alloc]init];
+    if (!IsStrEmpty(resultInfo)) {
+        dict = @{@"resultInfo":resultInfo};
+        if (delegate && [delegate respondsToSelector:@selector(onQueryOrder:)]) {
+            [delegate onQueryMemberForOrder:dict];
+            return;
+        }
+    }
+    
+    [[MOPHUDCenter shareInstance]showHUDWithTitle:@""
+                                             type:MOPHUDCenterHUDTypeNetWorkLoading
+                                       controller:controller
+                                   showBackground:YES];
+    QueryAllMemberInfoRequest *request = [[QueryAllMemberInfoRequest alloc]init];
+    request.merchantNo = merchantNo;
+    request.accountType = accountType;
+    request.accountNo = accountNo;
     
     BaseResponse *response = [[BaseResponse alloc]init];
     

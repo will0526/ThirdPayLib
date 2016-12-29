@@ -21,6 +21,7 @@
 @property (nonatomic,strong)UIButton *aboutButton;
 @property (nonatomic,strong)UIButton *scanButton;
 @property (nonatomic,strong)UIButton *queryMemberButton;
+@property (nonatomic,strong)UIButton *queryAllMemberButton;
 @end
 
 @implementation PNRMainViewController
@@ -32,6 +33,7 @@
     
     [self.view addSubview:self.queryButton];
     [self.view addSubview:self.queryMemberButton];
+    [self.view addSubview:self.queryAllMemberButton];
     [self.view addSubview:self.orderButton];
     [self.view addSubview:self.orderButton2];
 //    [self.view addSubview:self.aboutButton];
@@ -135,7 +137,7 @@
 -(UIButton *)queryMemberButton{
     if (_queryMemberButton == nil) {
         _queryMemberButton = [[UIButton alloc]initWithFrame:CGRectMake(self.view.frame.size.width/6, 380, self.view.frame.size.width*2/3, 40)];
-        [_queryMemberButton setTitle:@"查询权益" forState:UIControlStateNormal];
+        [_queryMemberButton setTitle:@"订单权益查询" forState:UIControlStateNormal];
         [_queryMemberButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         
         [_queryMemberButton setBackgroundColor:[UIColor orangeColor]];
@@ -148,6 +150,25 @@
     }
     
     return _queryMemberButton;
+    
+}
+
+-(UIButton *)queryAllMemberButton{
+    if (_queryAllMemberButton == nil) {
+        _queryAllMemberButton = [[UIButton alloc]initWithFrame:CGRectMake(self.view.frame.size.width/6, 450, self.view.frame.size.width*2/3, 40)];
+        [_queryAllMemberButton setTitle:@"所有权益查询" forState:UIControlStateNormal];
+        [_queryAllMemberButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        
+        [_queryAllMemberButton setBackgroundColor:[UIColor orangeColor]];
+        
+        _queryAllMemberButton.clipsToBounds = YES;
+        _queryAllMemberButton.layer.cornerRadius = 20;
+        _queryAllMemberButton.tag = 6;
+        [_queryAllMemberButton addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        
+    }
+    
+    return _queryAllMemberButton;
     
 }
 

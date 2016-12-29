@@ -254,8 +254,8 @@
 		BE271AF11E11047000959F37 /* QueryMemberRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = BE271AEF1E11047000959F37 /* QueryMemberRequest.m */; };
 		BE271AF21E123A2200959F37 /* PNRMemberInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = BE215DE01E0D14AE00C779A3 /* PNRMemberInfo.m */; };
 		BE271AF41E123A2A00959F37 /* PNRMemberInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = BE215DDF1E0D14AE00C779A3 /* PNRMemberInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		BE271AF71E123FAE00959F37 /* QueryMemberAllRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = BE271AF51E123FAE00959F37 /* QueryMemberAllRequest.h */; };
-		BE271AF81E123FAE00959F37 /* QueryMemberAllRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = BE271AF61E123FAE00959F37 /* QueryMemberAllRequest.m */; };
+		BE271AFB1E1264BF00959F37 /* QueryAllMemberInfoRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = BE271AF91E1264BF00959F37 /* QueryAllMemberInfoRequest.h */; };
+		BE271AFC1E1264BF00959F37 /* QueryAllMemberInfoRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = BE271AFA1E1264BF00959F37 /* QueryAllMemberInfoRequest.m */; };
 		BE3757771DC9BC6000E95CF6 /* WXApi.h in Headers */ = {isa = PBXBuildFile; fileRef = BE3757741DC9BC6000E95CF6 /* WXApi.h */; };
 		BE3757781DC9BC6000E95CF6 /* WXApiObject.h in Headers */ = {isa = PBXBuildFile; fileRef = BE3757751DC9BC6000E95CF6 /* WXApiObject.h */; };
 		BE37577C1DC9BC6A00E95CF6 /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BE37577A1DC9BC6A00E95CF6 /* AlipaySDK.bundle */; };
@@ -689,8 +689,8 @@
 		BE215DE01E0D14AE00C779A3 /* PNRMemberInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNRMemberInfo.m; sourceTree = "<group>"; };
 		BE271AEE1E11047000959F37 /* QueryMemberRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryMemberRequest.h; sourceTree = "<group>"; };
 		BE271AEF1E11047000959F37 /* QueryMemberRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryMemberRequest.m; sourceTree = "<group>"; };
-		BE271AF51E123FAE00959F37 /* QueryMemberAllRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryMemberAllRequest.h; sourceTree = "<group>"; };
-		BE271AF61E123FAE00959F37 /* QueryMemberAllRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryMemberAllRequest.m; sourceTree = "<group>"; };
+		BE271AF91E1264BF00959F37 /* QueryAllMemberInfoRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryAllMemberInfoRequest.h; sourceTree = "<group>"; };
+		BE271AFA1E1264BF00959F37 /* QueryAllMemberInfoRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryAllMemberInfoRequest.m; sourceTree = "<group>"; };
 		BE2E00E1C23ED078BD2AB67E1584D072 /* KWBeKindOfClassMatcher.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = KWBeKindOfClassMatcher.h; path = Classes/Matchers/KWBeKindOfClassMatcher.h; sourceTree = "<group>"; };
 		BE3757641DC9BAAF00E95CF6 /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlipaySDK.framework; path = alipay/AlipaySDK.framework; sourceTree = "<group>"; };
 		BE37576A1DC9BAD600E95CF6 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.1.sdk/usr/lib/libz.tbd; sourceTree = DEVELOPER_DIR; };
@@ -1490,8 +1490,8 @@
 				BE215DE01E0D14AE00C779A3 /* PNRMemberInfo.m */,
 				BE271AEE1E11047000959F37 /* QueryMemberRequest.h */,
 				BE271AEF1E11047000959F37 /* QueryMemberRequest.m */,
-				BE271AF51E123FAE00959F37 /* QueryMemberAllRequest.h */,
-				BE271AF61E123FAE00959F37 /* QueryMemberAllRequest.m */,
+				BE271AF91E1264BF00959F37 /* QueryAllMemberInfoRequest.h */,
+				BE271AFA1E1264BF00959F37 /* QueryAllMemberInfoRequest.m */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -1653,7 +1653,6 @@
 				153E7A0A1932BECC82ED2A7166DDF4DD /* BaseResponse.h in Headers */,
 				D3CC584ECC40A6BBFC23EACA4DF15C97 /* BBCyclingLabel.h in Headers */,
 				F91EFB777B4021D07669C1563B6C651D /* bitstream.h in Headers */,
-				BE271AF71E123FAE00959F37 /* QueryMemberAllRequest.h in Headers */,
 				F41290C1C838302264F0B35E15A5AA66 /* BookOrderRequest.h in Headers */,
 				57B7675F6AEA960A9DE1473C326E4763 /* CommonDTO.h in Headers */,
 				30BA319FABBCB0D054D0BDD7505AED7B /* CommonService.h in Headers */,
@@ -1687,6 +1686,7 @@
 				3D523AC126D99DB3607D7FEC2E10DE47 /* qrinput.h in Headers */,
 				11FFAF43EDBEBAE48C4FB2399E3432D2 /* qrspec.h in Headers */,
 				65800793F8712F39AD2FAE602403A8DF /* QueryOrderRequest.h in Headers */,
+				BE271AFB1E1264BF00959F37 /* QueryAllMemberInfoRequest.h in Headers */,
 				89655AAB1E7D219E394EE2890C5AC61A /* rscode.h in Headers */,
 				7EE0B72520C0B263EF7CF1BAE503E45F /* ShowPayTypeViewController.h in Headers */,
 				5357B08D26F5E1B44238858F94215009 /* split.h in Headers */,
@@ -2161,6 +2161,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EBE30621FE52DF502336345E97DE98AA /* BaseRequest.m in Sources */,
+				BE271AFC1E1264BF00959F37 /* QueryAllMemberInfoRequest.m in Sources */,
 				BF0A583C4365FC0558CA072DA5B30173 /* BaseResponse.m in Sources */,
 				B70FF369EC28CC782F32570C6F4B93EA /* BBCyclingLabel.m in Sources */,
 				042B98E0EEA240428065078D45C0E5E0 /* bitstream.c in Sources */,
@@ -2204,7 +2205,6 @@
 				BE215DDD1E0BB78E00C779A3 /* PNROtherPayInfo.m in Sources */,
 				A1445D5CAEBECCA4DE0B5AEA039081B5 /* UIImage+SNAdditions.m in Sources */,
 				1A4AFA0D9D418E1261CB7EC80C55BB1F /* UIView+Category.m in Sources */,
-				BE271AF81E123FAE00959F37 /* QueryMemberAllRequest.m in Sources */,
 				E215FF9C663215A034BC236349915C73 /* UIView+MBProgressHUD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

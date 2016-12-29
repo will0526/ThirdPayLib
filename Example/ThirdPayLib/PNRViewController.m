@@ -79,13 +79,13 @@
         case 1:
         {
             dataSource = @[@"用户号",@"商户号",@"商户订单号",@"订单标题",@"订单详情",@"订单金额(分)",@"实付金额(分)",@"商品号1",@"商品名称1",@"商品数量1",@"商品单价1",@"商品描述1",@"商品号2",@"商品名称2",@"商品数量2",@"商品单价2",@"商品描述2",@"支付方式1(积分)",@"支付方式ID",@"支付金额",@"(优惠券)",@"优惠券ID",@"优惠券金额",@"备注",@"通知地址"];
-            defaultSource = @[@"8888888881121",@"000000000000001",merchantOrder,@"手机订单标题",@"苹果手机6s和iPhone7 正品行货",@"540000",@"1",@"0000001",@"iPhone6s 灰色",@"1",@"1",@"灰色64G全网",@"0000002",@"iPhone7 灰色",@"1",@"1",@"灰色128G全网",@"",@"",@"1",@"2",@"6b37f177fe1b435fa1ec0027b69627bb",@"1000",@"不支持货到付款",@"http://www.baidu.com"];
+            defaultSource = @[@"8888888881121",@"000000000000001",merchantOrder,@"手机订单标题",@"苹果手机6s和iPhone7 正品行货",@"540000",@"1",@"0000001",@"iPhone6s 灰色",@"1",@"1",@"灰色64G全网",@"0000002",@"iPhone7 灰色",@"1",@"1",@"灰色128G全网",@"",@"",@"1",@"2",@"771b984ee16f444bb97c2919a9de3693",@"1000",@"不支持货到付款",@"http://www.baidu.com"];
         }
             break;
         case 2:
         {
             dataSource = @[@"用户号",@"商户号",@"商户订单号",@"订单标题",@"订单详情",@"订单金额(分)",@"实付金额(分)",@"商品号1",@"商品名称1",@"商品数量1",@"商品单价1",@"商品描述1",@"商品号2",@"商品名称2",@"商品数量2",@"商品单价2",@"商品描述2",@"支付方式1(积分)",@"支付方式ID",@"支付金额",@"(优惠券)",@"优惠券ID",@"优惠券金额",@"备注",@"通知地址",@"支付方式"];
-            defaultSource = @[@"8888888881121",@"000000000000001",merchantOrder,@"手机订单标题",@"苹果手机6s和iPhone7 正品行货",@"540000",@"1",@"0000001",@"iPhone6s 灰色",@"1",@"1",@"灰色64G全网",@"0000002",@"iPhone7 灰色",@"1",@"1",@"灰色128G全网",@"",@"",@"1",@"2",@"6b37f177fe1b435fa1ec0027b69627bb",@"1000",@"不支持货到付款",@"http://www.baidu.com"];
+            defaultSource = @[@"8888888881121",@"000000000000001",merchantOrder,@"手机订单标题",@"苹果手机6s和iPhone7 正品行货",@"540000",@"1",@"0000001",@"iPhone6s 灰色",@"1",@"1",@"灰色64G全网",@"0000002",@"iPhone7 灰色",@"1",@"1",@"灰色128G全网",@"",@"",@"1",@"2",@"771b984ee16f444bb97c2919a9de3693",@"1000",@"不支持货到付款",@"http://www.baidu.com"];
             
             
             pickerData = @[@"支付宝",@"微信",@"翼支付",@"Apple Pay",@"百度钱包"];
@@ -100,8 +100,15 @@
         }
             break;
         case 5:{
-            dataSource = @[@"用户号",@"商户号",@"商户订单金额",@"用户类型"];
-            defaultSource = @[@"8888888881121",@"000000000000001",@"10",@"1"];
+            dataSource = @[@"用户号",@"商户号",@"用户类型",@"商户订单金额"];
+            defaultSource = @[@"8888888881121",@"000000000000001",@"1",@"10"];
+            
+            
+        }
+            break;
+        case 6:{
+            dataSource = @[@"用户号",@"商户号",@"用户类型"];
+            defaultSource = @[@"8888888881121",@"000000000000001",@"1"];
             
             
         }
@@ -177,7 +184,7 @@
      
      */
     
-    if(_viewType == 5){
+    if(_viewType == 5 || _viewType == 6){
         
         switch (textField.tag) {
             case 0:
@@ -193,12 +200,12 @@
                 break;
             case 2:
             {
-                self.memberInfo.orderAmount = textField.text;
+                self.memberInfo.accountType = textField.text;
             }
                 break;
             case 3:
             {
-                self.memberInfo.accountType = textField.text;
+                self.memberInfo.orderAmount = textField.text;
             }
                 break;
             default:{
@@ -208,6 +215,7 @@
         
         return;
     }
+    
     
     
     switch (textField.tag) {
@@ -428,7 +436,11 @@
             }
                 break;
             case 5:{
-                [_bookOrder setTitle:@"查询权益" forState:UIControlStateNormal];
+                [_bookOrder setTitle:@"订单权益查询" forState:UIControlStateNormal];
+            }
+                break;
+            case 6:{
+                [_bookOrder setTitle:@"所有权益查询" forState:UIControlStateNormal];
             }
                 break;
                 
@@ -494,6 +506,10 @@
         }
             break;
         case 5:{
+            [ThirdPay queryMemberInfoForOrder:self.memberInfo ViewController:self Delegate:self];
+        }
+            break;
+        case 6:{
             [ThirdPay queryMemberInfo:self.memberInfo ViewController:self Delegate:self];
         }
             break;
@@ -580,7 +596,7 @@
         textField.leftView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"test"]];
         textField.leftViewMode = UITextFieldViewModeAlways;
         [cell addSubview:textField];
-        if(_viewType == 5){
+        if(_viewType == 5 || _viewType == 6){
             switch (textField.tag) {
                 case 0:
                 {
@@ -595,12 +611,12 @@
                     break;
                 case 2:
                 {
-                    self.memberInfo.orderAmount = textField.text;
+                    self.memberInfo.accountType = textField.text;
                 }
                     break;
                 case 3:
                 {
-                    self.memberInfo.accountType = textField.text;
+                    self.memberInfo.orderAmount = textField.text;
                 }
                     break;
                 default:{
@@ -887,6 +903,18 @@
 
 #pragma mark thirdPayDelegate
 
+
+-(void)onQueryMemberForOrder:(NSDictionary *)dict{
+    
+    NSString *title = @"查询结果";
+    NSString *content = [self combieTitle:dict];
+    NSLog(@"content%@",content);
+    
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:title message:content delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil, nil];
+    
+    [alert show];
+    
+}
 
 -(void)onQueryMember:(NSDictionary *)dict{
 

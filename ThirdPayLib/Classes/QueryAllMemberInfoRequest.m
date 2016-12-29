@@ -1,16 +1,14 @@
 //
-//  QueryMemberRequest.m
+//  QueryAllMemberInfoRequest.m
 //  Pods
 //
-//  Created by will on 2016/12/26.
+//  Created by will on 2016/12/27.
 //
 //
 
-#import "QueryMemberRequest.h"
+#import "QueryAllMemberInfoRequest.h"
 
-@implementation QueryMemberRequest
-
-
+@implementation QueryAllMemberInfoRequest
 
 - (instancetype)init
 {
@@ -27,15 +25,12 @@
     [super dtoToDictionary];
     
     EncodeUnEmptyStrObjctToDic(self.requestParamDic, self.merchantNo, @"merchantNo");
-    EncodeUnEmptyStrObjctToDic(self.requestParamDic, @"1006", @"transType");
+    EncodeUnEmptyStrObjctToDic(self.requestParamDic, @"1002", @"transType");
     EncodeUnEmptyStrObjctToDic(self.requestParamDic, @"0000", @"payType");
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
     
-    
-    EncodeUnEmptyStrObjctToDic(dic, self.orderAmount, @"orderAmount");
     EncodeUnEmptyStrObjctToDic(dic, self.accountNo, @"accountNo");
     EncodeUnEmptyStrObjctToDic(dic, self.accountType, @"accountType");
-    EncodeUnEmptyStrObjctToDic(dic, self.merchantNo, @"merchantNo");
     EncodeUnEmptyDicObjctToDic(self.requestParamDic, dic, @"params");
     
     return self.requestParamDic;

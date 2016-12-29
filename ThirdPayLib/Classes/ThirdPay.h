@@ -58,7 +58,10 @@ typedef void (^ThirdPayCompletion)(NSDictionary *result);
 -(void)onQueryOrder:(NSDictionary *)dict;
 
 
-//订单查询回调
+//针对订单用户权益查询查询回调
+-(void)onQueryMemberForOrder:(NSDictionary *)dict;
+
+//用户所有权益查询
 -(void)onQueryMember:(NSDictionary *)dict;
 
 
@@ -111,6 +114,17 @@ typedef void (^ThirdPayCompletion)(NSDictionary *result);
 
 /**
  *  用户权益查询
+ *
+ *  memberInfo下单用户账户信息，下单前查询用户可用权益
+ 
+ *  @param controller       调用接口的UIViewController
+ *  @param delegate         回调代理
+ */
+
++(void)queryMemberInfoForOrder:(PNRMemberInfo *)memberInfo ViewController:(UIViewController *)controller Delegate:(id<ThirdPayDelegate>)delegate;
+
+/**
+ *  用户所有权益查询
  *
  *  memberInfo下单用户账户信息，下单前查询用户可用权益
  
