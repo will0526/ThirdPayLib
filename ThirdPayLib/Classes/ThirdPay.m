@@ -39,6 +39,8 @@
 #import "QRCodeViewController.h"
 #import "QueryMemberRequest.h"
 #import "QueryAllMemberInfoRequest.h"
+#import "PNROtherPayInfo.h"
+#import "PNRGoodsInfo.h"
 
 @interface ThirdPay()<QRCodeDelegate>
 
@@ -388,9 +390,37 @@ static ShowPayTypeViewController *payController;
         resultInfo = @"后台通知地址不能为空";
     }else if (IsStrEmpty(orderInfo.appSchemeStr)){
         resultInfo = @"appSchemeStr不能为空";
+    }else if (!IsArrEmpty(orderInfo.goodsInfo)) {
+        for (PNRGoodsInfo *temp in orderInfo.goodsInfo) {
+            if (IsStrEmpty(temp.goodsNo)) {
+                resultInfo = @"商品信息格式不正确";
+            }else if (IsStrEmpty(temp.goodsName)){
+                resultInfo = @"商品信息格式不正确";
+            }else if (IsStrEmpty(temp.goodsBody)){
+                resultInfo = @"商品信息格式不正确";
+            }else if (IsStrEmpty(temp.goodsPrice)){
+                resultInfo = @"商品信息格式不正确";
+            }else if (IsStrEmpty(temp.goodsNumber)){
+                resultInfo = @"商品信息格式不正确";
+            }
+        }
+        
+        
+    }else if (IsArrEmpty(orderInfo.otherPayInfo)){
+        for (PNROtherPayInfo *temp in orderInfo.otherPayInfo) {
+            if (IsStrEmpty(temp.voucherType)) {
+                resultInfo =@"优惠券信息格式不正确";
+            }else if(IsStrEmpty(temp.voucherId)){
+                resultInfo =@"优惠券信息格式不正确";
+            }else if(IsStrEmpty(temp.voucherPayAmount)){
+                resultInfo =@"优惠券信息格式不正确";
+            }
+        }
     }else{
-        resultInfo = @"";
+        resultInfo =@"";
+        
     }
+    
     
     if (!IsStrEmpty(resultInfo)) {
         
