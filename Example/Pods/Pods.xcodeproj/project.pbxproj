@@ -248,7 +248,7 @@
 		BD7BF297A0A78BEBE999068706ADDE08 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65FDB2BF887D1DFD0BEBA99B87AC5C1D /* Foundation.framework */; };
 		BE1977271DDC0439009C3343 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BAC7419F314A4D17AF3ADFC6609662B /* AFNetworking.framework */; };
 		BE19772A1DDC0531009C3343 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BE1977291DDC0531009C3343 /* libWeChatSDK.a */; };
-		BE215DDD1E0BB78E00C779A3 /* PNROtherPayInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = BE8965201DFE7AC3000104C9 /* PNROtherPayInfo.m */; };
+		BE215DDD1E0BB78E00C779A3 /* PNRVoucherInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = BE8965201DFE7AC3000104C9 /* PNRVoucherInfo.m */; };
 		BE215DDE1E0BB7A600C779A3 /* PNRGoodsInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = BE9414901DFA98E4004222C9 /* PNRGoodsInfo.m */; };
 		BE271AF01E11047000959F37 /* QueryMemberRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = BE271AEE1E11047000959F37 /* QueryMemberRequest.h */; };
 		BE271AF11E11047000959F37 /* QueryMemberRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = BE271AEF1E11047000959F37 /* QueryMemberRequest.m */; };
@@ -264,18 +264,27 @@
 		BE3757941DC9BFF200E95CF6 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = BE37576A1DC9BAD600E95CF6 /* libz.tbd */; };
 		BE3757951DC9BFFF00E95CF6 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = BE3757701DC9BB0500E95CF6 /* libsqlite3.0.tbd */; };
 		BE3757961DC9C00F00E95CF6 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = BE37576C1DC9BAE500E95CF6 /* libc++.tbd */; };
+		BE50C24D1E51BAA5007BD629 /* checked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BE50C24C1E51BAA5007BD629 /* checked@2x.png */; };
+		BE50C2541E530664007BD629 /* NSAttributedString+Attributes.h in Headers */ = {isa = PBXBuildFile; fileRef = BE50C2501E530664007BD629 /* NSAttributedString+Attributes.h */; };
+		BE50C2551E530664007BD629 /* NSAttributedString+Attributes.m in Sources */ = {isa = PBXBuildFile; fileRef = BE50C2511E530664007BD629 /* NSAttributedString+Attributes.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		BE50C2561E530664007BD629 /* OHAttributedLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = BE50C2521E530664007BD629 /* OHAttributedLabel.h */; };
+		BE50C2571E530664007BD629 /* OHAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = BE50C2531E530664007BD629 /* OHAttributedLabel.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		BE6108AC1DD9A64F007DAE8E /* BestpayNativeModel.h in Headers */ = {isa = PBXBuildFile; fileRef = BE6108A51DD9A64F007DAE8E /* BestpayNativeModel.h */; };
 		BE6108AD1DD9A64F007DAE8E /* BestpaySDK.h in Headers */ = {isa = PBXBuildFile; fileRef = BE6108A61DD9A64F007DAE8E /* BestpaySDK.h */; };
 		BE6108AF1DD9A64F007DAE8E /* bestpay_error.html in Resources */ = {isa = PBXBuildFile; fileRef = BE6108A91DD9A64F007DAE8E /* bestpay_error.html */; };
 		BE6108B01DD9A64F007DAE8E /* bestpay_nowifi.png in Resources */ = {isa = PBXBuildFile; fileRef = BE6108AA1DD9A64F007DAE8E /* bestpay_nowifi.png */; };
 		BE6108B11DD9A64F007DAE8E /* PassGuardCtrlBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BE6108AB1DD9A64F007DAE8E /* PassGuardCtrlBundle.bundle */; };
 		BE6B4A931DDC06EB00752702 /* libH5ContainerStaticLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BE6B4A921DDC06EB00752702 /* libH5ContainerStaticLib.a */; };
-		BE8965241DFE94D0000104C9 /* PNROtherPayInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = BE89651F1DFE7AC3000104C9 /* PNROtherPayInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BE8965241DFE94D0000104C9 /* PNRVoucherInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = BE89651F1DFE7AC3000104C9 /* PNRVoucherInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BE8965251DFE94DB000104C9 /* PNRGoodsInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = BE94148F1DFA98E4004222C9 /* PNRGoodsInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BE8965261DFFE2EF000104C9 /* PNROrderInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 230A35D592F240F75E47A4DDBE659D21 /* PNROrderInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BEE4AE741E4B1A1B00E00B67 /* VoucherTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = BEE4AE721E4B1A1B00E00B67 /* VoucherTableViewCell.h */; };
+		BEE4AE751E4B1A1B00E00B67 /* VoucherTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE4AE731E4B1A1B00E00B67 /* VoucherTableViewCell.m */; };
+		BEE4AE781E4B1A7700E00B67 /* VoucherData.h in Headers */ = {isa = PBXBuildFile; fileRef = BEE4AE761E4B1A7700E00B67 /* VoucherData.h */; };
+		BEE4AE791E4B1A7700E00B67 /* VoucherData.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE4AE771E4B1A7700E00B67 /* VoucherData.m */; };
 		BF0A583C4365FC0558CA072DA5B30173 /* BaseResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DBD5415716558DFC0420A89B6D22C87 /* BaseResponse.m */; };
 		BFD1E60DE3BE78A3438C35F0E2A2A778 /* KWBackgroundTask.h in Headers */ = {isa = PBXBuildFile; fileRef = 88600BD88035B88D57499A446EE28D2D /* KWBackgroundTask.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		BFE10F2EA970BC90A5E9CC47469DE969 /* checked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F6D5F2E78424DF62A302BCE935038F8 /* checked@2x.png */; };
+		BFE10F2EA970BC90A5E9CC47469DE969 /* checked1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F6D5F2E78424DF62A302BCE935038F8 /* checked1@2x.png */; };
 		C246405BFF9EB0DAD55B212D7A7555ED /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 907F036ADFB23866D26B4B04AEE47D6B /* CoreGraphics.framework */; };
 		C36451542704BC745CBB1FFA23922ED3 /* KWStub.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C27F1F4DAE6F048CADB018DABDCBBE2 /* KWStub.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C412C17E999025542E8EA3990BF58E3D /* KWLetNode.m in Sources */ = {isa = PBXBuildFile; fileRef = B51ABAF6B90E8423580605A83A76D621 /* KWLetNode.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
@@ -433,7 +442,7 @@
 		0CB347C8156D57F91E631009A412A8E8 /* AFNetworkActivityIndicatorManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFNetworkActivityIndicatorManager.h; path = "UIKit+AFNetworking/AFNetworkActivityIndicatorManager.h"; sourceTree = "<group>"; };
 		0DEBC538ED7EB3584D15A97589FB7A77 /* NSObject+KiwiStubAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSObject+KiwiStubAdditions.m"; path = "Classes/Stubbing/NSObject+KiwiStubAdditions.m"; sourceTree = "<group>"; };
 		0E663BDF1C0D0C521C55EB0E2BE97DE7 /* KWSymbolicator.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = KWSymbolicator.h; path = Classes/Core/KWSymbolicator.h; sourceTree = "<group>"; };
-		0F6D5F2E78424DF62A302BCE935038F8 /* checked@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; path = "checked@2x.png"; sourceTree = "<group>"; };
+		0F6D5F2E78424DF62A302BCE935038F8 /* checked1@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; path = "checked1@2x.png"; sourceTree = "<group>"; };
 		10AECB2DB55091682466D8C07D01AEDF /* KWSharedExample.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = KWSharedExample.m; path = "Classes/Shared Examples/KWSharedExample.m"; sourceTree = "<group>"; };
 		11B55FE805D30C7908126B03EE4C7313 /* NSNumber+KiwiAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSNumber+KiwiAdditions.m"; path = "Classes/Core/NSNumber+KiwiAdditions.m"; sourceTree = "<group>"; };
 		11D787586B778A56C1DB2DE5F4AF14FE /* Pods-ThirdPayLib_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ThirdPayLib_Example.release.xcconfig"; sourceTree = "<group>"; };
@@ -703,6 +712,11 @@
 		BE37577A1DC9BC6A00E95CF6 /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlipaySDK.bundle; sourceTree = "<group>"; };
 		BE37577B1DC9BC6A00E95CF6 /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
 		BE3757921DC9BFE700E95CF6 /* libstdc++.6.0.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.0.9.tbd"; path = "Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.1.sdk/usr/lib/libstdc++.6.0.9.tbd"; sourceTree = DEVELOPER_DIR; };
+		BE50C24C1E51BAA5007BD629 /* checked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checked@2x.png"; sourceTree = "<group>"; };
+		BE50C2501E530664007BD629 /* NSAttributedString+Attributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+Attributes.h"; sourceTree = "<group>"; };
+		BE50C2511E530664007BD629 /* NSAttributedString+Attributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+Attributes.m"; sourceTree = "<group>"; };
+		BE50C2521E530664007BD629 /* OHAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OHAttributedLabel.h; sourceTree = "<group>"; };
+		BE50C2531E530664007BD629 /* OHAttributedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OHAttributedLabel.m; sourceTree = "<group>"; };
 		BE6108A51DD9A64F007DAE8E /* BestpayNativeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BestpayNativeModel.h; sourceTree = "<group>"; };
 		BE6108A61DD9A64F007DAE8E /* BestpaySDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BestpaySDK.h; sourceTree = "<group>"; };
 		BE6108A71DD9A64F007DAE8E /* libH5ContainerStaticLib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libH5ContainerStaticLib.a; sourceTree = "<group>"; };
@@ -710,10 +724,14 @@
 		BE6108AA1DD9A64F007DAE8E /* bestpay_nowifi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bestpay_nowifi.png; sourceTree = "<group>"; };
 		BE6108AB1DD9A64F007DAE8E /* PassGuardCtrlBundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = PassGuardCtrlBundle.bundle; sourceTree = "<group>"; };
 		BE6B4A921DDC06EB00752702 /* libH5ContainerStaticLib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libH5ContainerStaticLib.a; path = Bestpaylib/libH5ContainerStaticLib.a; sourceTree = "<group>"; };
-		BE89651F1DFE7AC3000104C9 /* PNROtherPayInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNROtherPayInfo.h; sourceTree = "<group>"; };
-		BE8965201DFE7AC3000104C9 /* PNROtherPayInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNROtherPayInfo.m; sourceTree = "<group>"; };
+		BE89651F1DFE7AC3000104C9 /* PNRVoucherInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNRVoucherInfo.h; sourceTree = "<group>"; };
+		BE8965201DFE7AC3000104C9 /* PNRVoucherInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNRVoucherInfo.m; sourceTree = "<group>"; };
 		BE94148F1DFA98E4004222C9 /* PNRGoodsInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNRGoodsInfo.h; sourceTree = "<group>"; };
 		BE9414901DFA98E4004222C9 /* PNRGoodsInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNRGoodsInfo.m; sourceTree = "<group>"; };
+		BEE4AE721E4B1A1B00E00B67 /* VoucherTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoucherTableViewCell.h; sourceTree = "<group>"; };
+		BEE4AE731E4B1A1B00E00B67 /* VoucherTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VoucherTableViewCell.m; sourceTree = "<group>"; };
+		BEE4AE761E4B1A7700E00B67 /* VoucherData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoucherData.h; sourceTree = "<group>"; };
+		BEE4AE771E4B1A7700E00B67 /* VoucherData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VoucherData.m; sourceTree = "<group>"; };
 		C00175E55F791A1F11DB52AC43B79C61 /* KWContextNode.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = KWContextNode.m; path = Classes/Nodes/KWContextNode.m; sourceTree = "<group>"; };
 		C03958B260F4944D6162C27FF61D1024 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C0C17A71D9C292BFA1CCD31DCD8F969F /* KWMock.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = KWMock.h; path = Classes/Mocking/KWMock.h; sourceTree = "<group>"; };
@@ -1405,7 +1423,8 @@
 				14DA689AE94CB12CD9F11161E9DBAA5D /* alipayIcon@2x.png */,
 				87D436F2703888436559B5F9BA1ADC42 /* applepayIcon@2x.png */,
 				62AD197307A5057D138CB8199286BD3C /* baiIcon@2x.png */,
-				0F6D5F2E78424DF62A302BCE935038F8 /* checked@2x.png */,
+				BE50C24C1E51BAA5007BD629 /* checked@2x.png */,
+				0F6D5F2E78424DF62A302BCE935038F8 /* checked1@2x.png */,
 				7347E76248524897481AFE0B481468DA /* networkLoadImage@2x.png */,
 				3328BB07682A34235F6DED6DE5AC2201 /* weixinIcon@2x.png */,
 				7D84496FD3F51A3AEC701EFD143CA6E8 /* YipayIcon@2x.png */,
@@ -1444,6 +1463,17 @@
 			path = alipay;
 			sourceTree = "<group>";
 		};
+		BE50C24F1E530664007BD629 /* Label */ = {
+			isa = PBXGroup;
+			children = (
+				BE50C2501E530664007BD629 /* NSAttributedString+Attributes.h */,
+				BE50C2511E530664007BD629 /* NSAttributedString+Attributes.m */,
+				BE50C2521E530664007BD629 /* OHAttributedLabel.h */,
+				BE50C2531E530664007BD629 /* OHAttributedLabel.m */,
+			);
+			path = Label;
+			sourceTree = "<group>";
+		};
 		BE6108A31DD9A64F007DAE8E /* Bestpaylib */ = {
 			isa = PBXGroup;
 			children = (
@@ -1476,8 +1506,8 @@
 		BE8965231DFE7ACE000104C9 /* model */ = {
 			isa = PBXGroup;
 			children = (
-				BE89651F1DFE7AC3000104C9 /* PNROtherPayInfo.h */,
-				BE8965201DFE7AC3000104C9 /* PNROtherPayInfo.m */,
+				BE89651F1DFE7AC3000104C9 /* PNRVoucherInfo.h */,
+				BE8965201DFE7AC3000104C9 /* PNRVoucherInfo.m */,
 				932625A2143ECC9E773CE826B76E9B23 /* QueryOrderRequest.h */,
 				5971186752C403821B5E4685D04B376A /* QueryOrderRequest.m */,
 				230A35D592F240F75E47A4DDBE659D21 /* PNROrderInfo.h */,
@@ -1492,6 +1522,10 @@
 				BE271AEF1E11047000959F37 /* QueryMemberRequest.m */,
 				BE271AF91E1264BF00959F37 /* QueryAllMemberInfoRequest.h */,
 				BE271AFA1E1264BF00959F37 /* QueryAllMemberInfoRequest.m */,
+				BEE4AE721E4B1A1B00E00B67 /* VoucherTableViewCell.h */,
+				BEE4AE731E4B1A1B00E00B67 /* VoucherTableViewCell.m */,
+				BEE4AE761E4B1A7700E00B67 /* VoucherData.h */,
+				BEE4AE771E4B1A7700E00B67 /* VoucherData.m */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -1531,6 +1565,7 @@
 		D5B367687FED25B7372685F1C54E8B88 /* addition */ = {
 			isa = PBXGroup;
 			children = (
+				BE50C24F1E530664007BD629 /* Label */,
 				962E375FEC9F82BBD52F14B21AF00B66 /* Color */,
 				7A239DE793038D5BD858187503E619A2 /* HUD */,
 				5B71FD33382646B5A2D279932BBC0740 /* Image */,
@@ -1649,12 +1684,14 @@
 				BE271AF41E123A2A00959F37 /* PNRMemberInfo.h in Headers */,
 				37416534E4167DEE6B95F3F585ABE43C /* BaseRequest.h in Headers */,
 				BE8965251DFE94DB000104C9 /* PNRGoodsInfo.h in Headers */,
-				BE8965241DFE94D0000104C9 /* PNROtherPayInfo.h in Headers */,
+				BE8965241DFE94D0000104C9 /* PNRVoucherInfo.h in Headers */,
+				BEE4AE781E4B1A7700E00B67 /* VoucherData.h in Headers */,
 				153E7A0A1932BECC82ED2A7166DDF4DD /* BaseResponse.h in Headers */,
 				D3CC584ECC40A6BBFC23EACA4DF15C97 /* BBCyclingLabel.h in Headers */,
 				F91EFB777B4021D07669C1563B6C651D /* bitstream.h in Headers */,
 				F41290C1C838302264F0B35E15A5AA66 /* BookOrderRequest.h in Headers */,
 				57B7675F6AEA960A9DE1473C326E4763 /* CommonDTO.h in Headers */,
+				BEE4AE741E4B1A1B00E00B67 /* VoucherTableViewCell.h in Headers */,
 				30BA319FABBCB0D054D0BDD7505AED7B /* CommonService.h in Headers */,
 				BE6108AC1DD9A64F007DAE8E /* BestpayNativeModel.h in Headers */,
 				31255730780D57298700DB77F09C22D4 /* CommonViewController.h in Headers */,
@@ -1680,9 +1717,11 @@
 				8A07A51C6898AE37263BADCBE00527B2 /* NSString+MD5.h in Headers */,
 				90DCDCA20DA16056CDEDA8FC685B35D9 /* NSString+NULL.h in Headers */,
 				99145758957F52945369F82AEC835EFE /* NSString+SEL.h in Headers */,
+				BE50C2561E530664007BD629 /* OHAttributedLabel.h in Headers */,
 				3E4C70B6E8EAC4C73D5BF4391208E287 /* QRCodeGenerator.h in Headers */,
 				8DCBFDE274D140B82D113DCE9B0AA30F /* QRCodeViewController.h in Headers */,
 				54C116A73AD32442526F0BC0EEA0917F /* qrencode.h in Headers */,
+				BE50C2541E530664007BD629 /* NSAttributedString+Attributes.h in Headers */,
 				3D523AC126D99DB3607D7FEC2E10DE47 /* qrinput.h in Headers */,
 				11FFAF43EDBEBAE48C4FB2399E3432D2 /* qrspec.h in Headers */,
 				65800793F8712F39AD2FAE602403A8DF /* QueryOrderRequest.h in Headers */,
@@ -2003,6 +2042,7 @@
 				BE37577C1DC9BC6A00E95CF6 /* AlipaySDK.bundle in Resources */,
 				BE6108B11DD9A64F007DAE8E /* PassGuardCtrlBundle.bundle in Resources */,
 				2BFC72DB530196C91D4DD1234D009252 /* ThirdPayLib.bundle in Resources */,
+				BE50C24D1E51BAA5007BD629 /* checked@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2013,7 +2053,7 @@
 				E9EE8F2AE0A6CE1C14AB2F75BDC45BB4 /* alipayIcon@2x.png in Resources */,
 				F0DA016F50A2EC20060D4B858BC1C91B /* applepayIcon@2x.png in Resources */,
 				5ED802DF9020F1DEBFCAAE6FA892CF9A /* baiIcon@2x.png in Resources */,
-				BFE10F2EA970BC90A5E9CC47469DE969 /* checked@2x.png in Resources */,
+				BFE10F2EA970BC90A5E9CC47469DE969 /* checked1@2x.png in Resources */,
 				9C5A942DBEEAB5AD6CC72D41E7E9DF99 /* networkLoadImage@2x.png in Resources */,
 				6CD5324F5528E8DF34107014EF21E9D4 /* weixinIcon@2x.png in Resources */,
 				D84B674178B0E974DED5E781C20E3771 /* YipayIcon@2x.png in Resources */,
@@ -2171,6 +2211,7 @@
 				2065EA770B48734320EE382409D0CF99 /* CommonService.m in Sources */,
 				F03679FE3EBDAA36E83133C83BE3A976 /* CommonViewController.m in Sources */,
 				D9A232EB53211120D8C263798A8182F2 /* GlobleDefine.m in Sources */,
+				BE50C2571E530664007BD629 /* OHAttributedLabel.m in Sources */,
 				EA8BF0BF9362E087E5EDBCE9DDDE6266 /* IPAddress.c in Sources */,
 				FA019EE874A233CD9DC625FDF11FFEF4 /* LJTimer.m in Sources */,
 				44AFB5DF350C7DAAD977AFF495A0C3B0 /* mask.c in Sources */,
@@ -2190,6 +2231,7 @@
 				2A4C8F3F0BF12F143592C1DDB612A940 /* QRCodeGenerator.m in Sources */,
 				861C105EC48E35C69EC5190329CFDDA0 /* QRCodeViewController.m in Sources */,
 				7C8D69F5399B327F1BAEDE8A35E5DAC8 /* qrencode.c in Sources */,
+				BEE4AE791E4B1A7700E00B67 /* VoucherData.m in Sources */,
 				14CFB93139B104775FFD622986A22F15 /* qrinput.c in Sources */,
 				E7307BD63BE9E8F5D37ABA6863E26057 /* qrspec.c in Sources */,
 				D4B2E267168C03A7AF17F2596876A1EF /* QueryOrderRequest.m in Sources */,
@@ -2199,10 +2241,12 @@
 				96ADCD7FF1861DA7B84EBC6823646D9A /* SystemInfo.m in Sources */,
 				BE271AF11E11047000959F37 /* QueryMemberRequest.m in Sources */,
 				02784CA771356B14E964DBE4917D4027 /* ThirdPay.m in Sources */,
+				BE50C2551E530664007BD629 /* NSAttributedString+Attributes.m in Sources */,
 				D1DE498BCF6BAFC99ACAE6DFE30240DF /* ThirdPayLib-dummy.m in Sources */,
 				7AF499683E821E10FA0902219543BFE0 /* UIColor+SNAdditions.m in Sources */,
 				BE271AF21E123A2200959F37 /* PNRMemberInfo.m in Sources */,
-				BE215DDD1E0BB78E00C779A3 /* PNROtherPayInfo.m in Sources */,
+				BEE4AE751E4B1A1B00E00B67 /* VoucherTableViewCell.m in Sources */,
+				BE215DDD1E0BB78E00C779A3 /* PNRVoucherInfo.m in Sources */,
 				A1445D5CAEBECCA4DE0B5AEA039081B5 /* UIImage+SNAdditions.m in Sources */,
 				1A4AFA0D9D418E1261CB7EC80C55BB1F /* UIView+Category.m in Sources */,
 				E215FF9C663215A034BC236349915C73 /* UIView+MBProgressHUD.m in Sources */,

@@ -6,9 +6,9 @@
 //
 //
 
-#import "PNROtherPayInfo.h"
+#import "PNRVoucherInfo.h"
 
-@implementation PNROtherPayInfo
+@implementation PNRVoucherInfo
 
 
 @end

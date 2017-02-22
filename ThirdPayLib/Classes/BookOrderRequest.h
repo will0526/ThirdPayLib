@@ -9,7 +9,7 @@
 #import "BaseRequest.h"
 #import "ThirdPay.h"
 #import "PNRGoodsInfo.h"
-#import "PNROtherPayInfo.h"
+#import "PNRVoucherInfo.h"
 @interface BookOrderRequest : BaseRequest
 
 /**
@@ -54,7 +54,7 @@
 @property(nonatomic,strong)NSString *tradeCurrency;     //币种 （RMB）
 @property(nonatomic,strong)NSString *notifyURL;     //通知地址
 @property(nonatomic,strong)NSArray *goodsInfo;     //商品信息
-@property(nonatomic,strong)NSArray *otherPayInfo;     //其他支付信息
+@property(nonatomic,strong)NSArray *voucherInfo;     //其他支付信息
 
 
     

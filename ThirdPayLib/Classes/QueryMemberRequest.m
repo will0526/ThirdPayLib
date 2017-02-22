@@ -33,6 +33,7 @@
     
     
     EncodeUnEmptyStrObjctToDic(dic, self.orderAmount, @"orderAmount");
+    
     EncodeUnEmptyStrObjctToDic(dic, self.accountNo, @"accountNo");
     EncodeUnEmptyStrObjctToDic(dic, self.accountType, @"accountType");
     EncodeUnEmptyStrObjctToDic(dic, self.merchantNo, @"merchantNo");

@@ -73,8 +73,6 @@ typedef void (^ThirdPayCompletion)(NSDictionary *result);
 @interface ThirdPay : NSObject
 
 
-//积分金币等用户信息查询
-
 
 /**
  *  订单支付，无支付方式选择，支付方式通过payType传递

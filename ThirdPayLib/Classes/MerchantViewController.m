@@ -62,7 +62,6 @@
     [super viewDidLoad];
     
     
-    self.view.backgroundColor = HEX_RGB(0xeeeeee);
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(Back)];
     
     dataSource = @[@"微信支付",@"支付宝支付",@"百度钱包支付",@"Apple Pay",@"翼支付"];
@@ -157,8 +156,8 @@
         _payButton = [[UIButton alloc]initWithFrame:CGRectMake(30, self.view.height - 60, self.view.width - 60, 50)];
         NSString *money = [self moneyTran:self.payAmount ownType:1];
         [_payButton setTitle:[NSString stringWithFormat:@"确认支付￥0元"] forState:UIControlStateNormal];
-        [_payButton setBackgroundImage:[UIImage imageWithColor:HEX_RGB(0xff9e05)] forState:UIControlStateNormal];
-        [_payButton setBackgroundImage:[UIImage imageWithColor:HEX_RGB(0xff9e05)] forState:UIControlStateHighlighted];
+        [_payButton setBackgroundImage:[UIImage imageWithColor:HEX_RGB(0xf6a31c)] forState:UIControlStateNormal];
+        [_payButton setBackgroundImage:[UIImage imageWithColor:HEX_RGB(0xf6a31c)] forState:UIControlStateHighlighted];
         [_payButton setBackgroundImage:[UIImage imageWithColor:[UIColor lightGrayColor]] forState:UIControlStateDisabled];
         
         _payButton.layer.cornerRadius = 3.5;

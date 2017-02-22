@@ -12,7 +12,8 @@
 
 
 @property(nonatomic,strong)NSString *merchantNo;        //商户号
-@property(nonatomic,strong)NSString *accountNo;          //用户号
+@property(nonatomic,strong)NSString *accountNo;         //用户号
+@property(nonatomic,strong)NSString *accountType;
 @property(nonatomic,strong)NSString *merchantOrderNo;   //商户订单号
 
 @property(nonatomic,strong)NSString *ippOrderNo;         //平台订单号
@@ -27,7 +28,7 @@
 
 @property(nonatomic,strong)NSArray *goodsInfo;          //商品信息数组
 
-@property(nonatomic,strong)NSArray *otherPayInfo;       //其他支付类型信息
+@property(nonatomic,strong)NSArray *voucherInfo;       //其他支付类型信息
 
 
 @property(nonatomic,strong)NSString *notifyURL;         //后台通知地址

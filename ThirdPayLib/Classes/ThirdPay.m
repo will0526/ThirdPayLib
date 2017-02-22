@@ -26,11 +26,6 @@
 #import "SystemInfo.h"
 #import "IPAddress.h"
 
-#import "Constant.h"
-#import "EnvironmentConfig.h"
-#import "GlobleConstant.h"
-#import "GlobleDefine.h"
-
 #import "CommonService.h"
 #import "QueryOrderRequest.h"
 
@@ -39,7 +34,7 @@
 #import "QRCodeViewController.h"
 #import "QueryMemberRequest.h"
 #import "QueryAllMemberInfoRequest.h"
-#import "PNROtherPayInfo.h"
+#import "PNRVoucherInfo.h"
 #import "PNRGoodsInfo.h"
 
 @interface ThirdPay()<QRCodeDelegate>
@@ -406,13 +401,11 @@ static ShowPayTypeViewController *payController;
         }
         
         
-    }else if (IsArrEmpty(orderInfo.otherPayInfo)){
-        for (PNROtherPayInfo *temp in orderInfo.otherPayInfo) {
+    }else if (IsArrEmpty(orderInfo.voucherInfo)){
+        for (PNRVoucherInfo *temp in orderInfo.voucherInfo) {
             if (IsStrEmpty(temp.voucherType)) {
                 resultInfo =@"优惠券信息格式不正确";
             }else if(IsStrEmpty(temp.voucherId)){
-                resultInfo =@"优惠券信息格式不正确";
-            }else if(IsStrEmpty(temp.voucherPayAmount)){
                 resultInfo =@"优惠券信息格式不正确";
             }
         }

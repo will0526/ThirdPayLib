@@ -91,6 +91,7 @@
     
     EncodeUnEmptyStrObjctToDic(dic, self.tradeTpye, @"tradeType");
     EncodeUnEmptyStrObjctToDic(dic, self.accountNo, @"accountNo");
+    EncodeUnEmptyStrObjctToDic(dic, self.accountType, @"accountType");
     EncodeUnEmptyStrObjctToDic(dic, self.redPocket, @"redPocket");
     EncodeUnEmptyStrObjctToDic(dic, self.memberPoints, @"memberPoints");
     
@@ -102,10 +103,12 @@
         for (PNRGoodsInfo *temp in self.goodsInfo) {
             NSMutableDictionary *goods = [[NSMutableDictionary alloc]init];
             EncodeUnEmptyStrObjctToDic(goods, temp.goodsNo, @"goodsNo");
+            EncodeUnEmptyStrObjctToDic(goods, temp.itemNo, @"itemNo");
             EncodeUnEmptyStrObjctToDic(goods, temp.goodsName, @"goodsName");
             EncodeUnEmptyStrObjctToDic(goods, temp.goodsPrice, @"goodsPrice");
             EncodeUnEmptyStrObjctToDic(goods, temp.goodsBody, @"goodsBody");
-            EncodeUnEmptyStrObjctToDic(goods, temp.goodsNumber, @"goodsNumber");
+            EncodeUnEmptyStrObjctToDic(goods, temp.goodsNumber, @"goodsQuantity");
+            EncodeUnEmptyStrObjctToDic(goods, temp.goodsAmount, @"goodsAmount");
             [tempGoodsArr addObject:goods];
         }
         
@@ -113,28 +116,27 @@
         
     }
     
-    if(IsArrEmpty(self.otherPayInfo)){
-        EncodeDefaultStrObjctToDic(dic, @"", @"otherPayInfo",@"");
+    if(IsArrEmpty(self.voucherInfo)){
+        EncodeDefaultStrObjctToDic(dic, @"", @"voucherInfo",@"");
     }else{
         
         NSMutableArray *tempPayArr = [[NSMutableArray alloc]init];
-        for (PNROtherPayInfo *temp in self.otherPayInfo) {
+        for (PNRVoucherInfo *temp in self.voucherInfo) {
             NSMutableDictionary *pay = [[NSMutableDictionary alloc]init];
             EncodeUnEmptyStrObjctToDic(pay, temp.voucherType, @"voucherType");
             EncodeUnEmptyStrObjctToDic(pay, temp.voucherId, @"voucherId");
-            EncodeUnEmptyStrObjctToDic(pay, temp.voucherPayAmount, @"voucherPayAmount");
+            EncodeUnEmptyStrObjctToDic(pay, temp.voucherAmount, @"voucherAmount");
+            
             
             [tempPayArr addObject:pay];
         }
         
-        EncodeUnEmptyArrToDic(dic, tempPayArr, @"otherPayInfo");
+        EncodeUnEmptyArrToDic(dic, tempPayArr, @"voucherInfo");
         
     }
     
     EncodeUnEmptyStrObjctToDic(dic, self.notifyURL, @"backURL");
-    
     EncodeUnEmptyStrObjctToDic(dic, self.memo, @"attach");
-    
     EncodeUnEmptyDicObjctToDic(self.requestParamDic, dic, @"params");
     
     return self.requestParamDic;

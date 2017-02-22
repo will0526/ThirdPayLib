@@ -18,11 +18,16 @@
 #import "WXApi.h"
 #import "QRCodeViewController.h"
 #import "MerchantViewController.h"
+#import "VoucherTableViewCell.h"
+#import "QueryMemberRequest.h"
 
 @interface ShowPayTypeViewController ()<UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate,WXApiDelegate,QRCodeDelegate>
 
 @property(nonatomic, strong)UITableView *tableView;
 @property(nonatomic, strong)UITableView *backtableView;
+@property(nonatomic, strong)UITableView *vouchertableView;
+
+
 @property(nonatomic, strong)UIView *headView;
 @property(nonatomic, strong)UIButton *payButton;
 @property(nonatomic, strong)NSString *orderNO;
@@ -31,12 +36,15 @@
 @implementation ShowPayTypeViewController
 {
     
-    NSArray * dataSource;
+    NSArray * payDataSource;
     NSArray * payTypeIcon;
-    int selectedIndex;
+    int payCellHeight;
+    int voucherHeight;
+    NSInteger selectedPayType;
     
     UILabel *orderTitleLabel;
     UILabel *payAmountLabel;
+    int payAmount;
     UILabel *orderNOLabel;
     UILabel *memoLabel;
     UILabel *redPocketLabel;
@@ -45,9 +53,10 @@
     NSString *OrderString;
     NSMutableDictionary *_resultDict;
     BOOL isCancel;
-    
+    BOOL hasSelected;//是否选择可重用优惠券
     UIAlertView *cancelAlert;
     UIAlertView *payingAlert;
+    NSMutableArray *vouchDataSource;
     
 }
 
@@ -55,30 +64,92 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"订单确认";
+    payCellHeight = 50;
+    voucherHeight = 100;
     
-    self.view.backgroundColor =HEX_RGB(0xeeeeee);
+    payAmount = [self.orderInfo.totalAmount intValue];
+    vouchDataSource = [[NSMutableArray alloc]init];
+    
+    
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(Back)];
     
-    dataSource = @[@"翼支付",@"微信支付",@"支付宝支付",@"百度钱包支付",@"Apple Pay"];
+//    payDataSource = @[@"翼支付",@"微信支付",@"支付宝支付",@"百度钱包支付",@"Apple Pay"];
+    payDataSource = @[@"翼支付",@"微信支付",@"支付宝支付"];
     payTypeIcon = @[@"YipayIcon",@"weixinIcon",@"alipayIcon",@"baiIcon",@"applepayIcon"];
-    selectedIndex = 0;
-//    self.payType = PayType_Alipay;
+    selectedPayType = 0;
     _resultDict = [[NSMutableDictionary alloc]init];
     
-    
-    
-    self.tableView.tableHeaderView = self.headView;
-    self.backtableView.tableHeaderView = self.tableView;
-    
-    [self.view addSubview:self.backtableView];
-    [self.view addSubview:self.payButton];
+    [self queryVoucherInfo];
     
 }
 
+-(void)queryVoucherInfo{
+    
+    
+    NSString *merchantNo = self.orderInfo.merchantNo;
+    NSString *orderAmount = self.orderInfo.totalAmount;
+    NSString *accountNo = self.orderInfo.accountNo;
+    NSString *accountType = self.orderInfo.accountType;
+    
+    [[MOPHUDCenter shareInstance]showHUDWithTitle:@"订单生成中"
+                                             type:MOPHUDCenterHUDTypeNetWorkLoading
+                                       controller:self
+                                   showBackground:YES];
+    QueryMemberRequest *request = [[QueryMemberRequest alloc]init];
+    request.merchantNo = merchantNo;
+    request.accountType = accountType;
+    request.accountNo = accountNo;
+    request.orderAmount = orderAmount;
+    
+    BaseResponse *response = [[BaseResponse alloc]init];
+    
+    [CommonService beginService:request response:response success:^(BaseResponse *response) {
+        
+        NSLog(@"response.json......%@",response.jsonDict);
+        
+        NSDictionary *dict = response.jsonDict;
+        
+        NSArray *tempArr = EncodeArrayFromDic(EncodeDicFromDic(dict, @"data"), @"voucherInfo");
+        
+        for (NSDictionary *temp in tempArr) {
+            VoucherData *voucher = [VoucherData initWithDict:temp];
+            [vouchDataSource addObject:voucher];
+        }
+        
+        [[MOPHUDCenter shareInstance]removeHUD];
+        
+        [self showView];
+        
+    } failed:^(NSString *errorCode, NSString *errorMsg) {
+        
+        [[MOPHUDCenter shareInstance]removeHUD];
+        [self showView];
+        
+    } controller:self showProgressBar:NO];
+
+
+    
+
+}
+
+
+-(void)showView{
+    
+    UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 500)];
+    backView.backgroundColor = [UIColor clearColor];
+    [backView addSubview:self.headView];
+    self.tableView.frame = CGRectMake(0, self.headView.bottom, self.view.width, self.tableView.height);
+    [backView addSubview:self.tableView];
+    backView.frame = CGRectMake(0, 0, self.view.width, self.tableView.bottom);
+    self.backtableView.tableHeaderView = backView;
+    
+    [self.view addSubview:self.backtableView];
+    [self.view addSubview:self.payButton];
+}
+
+
 -(void)bookOrder{
-//        OrderString = @"MERCHANTID=02440201030132107&SUBMERCHANTID=000000000000001&MERCHANTPWD=975388&ORDERSEQ=0000000000000511&ORDERAMOUNT=0.01&ORDERTIME=20160914162734&ORDERVALIDITYTIME=&PRODUCTDESC=pay&CUSTOMERID=&PRODUCTAMOUNT=0.01&ATTACHAMOUNT=0&CURTYPE=RMB&BACKMERCHANTURL=http://pay.pnrtec.com/receiver/0004/0005/01.html&ATTACH=&PRODUCTID=04&USERIP=192.168.11.130&DIVDETAILS=&ACCOUNTID=&BUSITYPE=04&ORDERREQTRANSEQ=0000000000000511&SERVICE=mobile.security.pay&SIGNTYPE=MD5&SIGN=68AB7FB3EDCA18380D17DF1C27598857&SUBJECT=6&SWTICHACC=true&SESSIONKEY=&OTHERFLOW=&ACCESSTOKEN=";
-//    [self weixinpay];
-//    return;
+    
     BOOL background = YES;
     if ([_viewType isEqualToString:@"NOVIEW"]) {
         background = NO;
@@ -88,20 +159,21 @@
     
     request.merchantNo = self.orderInfo.merchantNo;
     request.merchantOrderNo = self.orderInfo.merchantOrderNo;
+    // TODO 修改APPver
     
+    request.appVer = @"1.0";
     request.accountNo = self.orderInfo.accountNo;
     request.memo = self.orderInfo.memo;
     request.orderTitle = self.orderInfo.orderSubject;
     request.orderDetail = self.orderInfo.orderDescription;
     request.totalAmount = self.orderInfo.totalAmount;
-    request.payAmount = self.orderInfo.payAmount;
-    request.otherPayInfo = self.orderInfo.otherPayInfo;
-    request.goodsInfo   = self.orderInfo.goodsInfo;
+    request.payAmount = [NSString stringWithFormat:@"%d",payAmount] ;
+//    request.voucherInfo = self.orderInfo.voucherInfo;
+//    request.goodsInfo   = self.orderInfo.goodsInfo;
     request.payType = self.payType;
     request.notifyURL = self.orderInfo.notifyURL;
     
     BaseResponse *response = [[BaseResponse alloc]init];
-    
     [[MOPHUDCenter shareInstance]showHUDWithTitle:@""
                                              type:MOPHUDCenterHUDTypeNetWorkLoading
                                        controller:self
@@ -226,14 +298,14 @@
 -(UIButton *)payButton{
     
     if (_payButton == nil) {
-        _payButton = [[UIButton alloc]initWithFrame:CGRectMake(30, self.view.height - 60, self.view.width - 60, 50)];
+        _payButton = [[UIButton alloc]initWithFrame:CGRectMake(0, self.view.height - 50, self.view.width, 50)];
         
-        NSString *money = [self moneyTran:self.orderInfo.payAmount ownType:1];
+        NSString *money = [self moneyTran:self.orderInfo.totalAmount ownType:1];
         [_payButton setTitle:[NSString stringWithFormat:@"确认支付￥%@元",money] forState:UIControlStateNormal];
-        [_payButton setBackgroundImage:[UIImage imageWithColor:HEX_RGB(0xff9e05)] forState:UIControlStateNormal];
-        [_payButton setBackgroundImage:[UIImage imageWithColor:HEX_RGB(0xff9e05)] forState:UIControlStateHighlighted];
-        _payButton.layer.cornerRadius = 3.5;
-        _payButton.clipsToBounds = YES;
+        [_payButton setBackgroundImage:[UIImage imageWithColor:HEX_RGB(0xf6a31c)] forState:UIControlStateNormal];
+        [_payButton setBackgroundImage:[UIImage imageWithColor:HEX_RGB(0xf6a31c)] forState:UIControlStateHighlighted];
+//        _payButton.layer.cornerRadius = 3.5;
+//        _payButton.clipsToBounds = YES;
         [_payButton addTarget:self action:@selector(payButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     }
     
@@ -242,7 +314,7 @@
 
 -(void)payButtonPressed:(UIButton *)button{
     
-    switch (selectedIndex) {
+    switch (selectedPayType) {
         case 0:
         {
             self.payType = PayType_YiPay;
@@ -284,7 +356,7 @@
         _headView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 200)];
         _headView.backgroundColor = HEX_RGB(0xf9f9fc);
         
-        orderTitleLabel = [[UILabel alloc]initWithFrame:CGRectMake(30, 20, self.view.width - 60, 40)];
+        orderTitleLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, 5, self.view.width - 60, 30)];
         orderTitleLabel.textAlignment = NSTextAlignmentLeft;
         orderTitleLabel.font = [UIFont systemFontOfSize:16];
         orderTitleLabel.text = [NSString stringWithFormat:@"订单详情：%@",self.orderInfo.orderSubject];
@@ -293,7 +365,7 @@
         payAmountLabel = [[UILabel alloc]initWithFrame:CGRectMake(orderTitleLabel.left, orderTitleLabel.bottom, orderTitleLabel.width, orderTitleLabel.height)];
         payAmountLabel.textAlignment = NSTextAlignmentLeft;
         payAmountLabel.font = [UIFont systemFontOfSize:16];
-        NSString *money = [self moneyTran:self.orderInfo.payAmount ownType:1];
+        NSString *money = [self moneyTran:self.orderInfo.totalAmount ownType:1];
         payAmountLabel.text = [NSString stringWithFormat:@"订单金额：￥%@元",money];
         [_headView addSubview:payAmountLabel];
         
@@ -304,50 +376,32 @@
         orderNOLabel.text = [NSString stringWithFormat:@"订单编号：%@",self.orderInfo.merchantOrderNo];
         [_headView addSubview:orderNOLabel];
         
-        if (!IsStrEmpty(self.orderInfo.memo)) {
-            memoLabel = [[UILabel alloc]initWithFrame:CGRectMake(payAmountLabel.left, orderNOLabel.bottom, payAmountLabel.width, orderTitleLabel.height)];
-            memoLabel.textAlignment = NSTextAlignmentLeft;
-            memoLabel.font = [UIFont systemFontOfSize:16];
-            memoLabel.text = [NSString stringWithFormat:@"备        注：%@",self.orderInfo.memo];
-            [_headView addSubview:memoLabel];
-            
-        }else{
-            
-            memoLabel = [[UILabel alloc]initWithFrame:CGRectMake(payAmountLabel.left, orderNOLabel.bottom, payAmountLabel.width, 0)];
-        }
         
-        if (IsArrEmpty(self.orderInfo.goodsInfo)) {
-            redPocketLabel = [[UILabel alloc]initWithFrame:CGRectMake(payAmountLabel.left, memoLabel.bottom, payAmountLabel.width, orderTitleLabel.height)];
-            redPocketLabel.textAlignment = NSTextAlignmentLeft;
-            redPocketLabel.font = [UIFont systemFontOfSize:16];
-           // redPocketLabel.text = [NSString stringWithFormat:@"红包抵扣：%d",[self.redPocket intValue]];
-            [_headView addSubview:redPocketLabel];
-            
-            _headView.frame = CGRectMake(0, 0, self.view.width, redPocketLabel.bottom+10);
-        }else{
-            redPocketLabel = [[UILabel alloc]initWithFrame:CGRectMake(payAmountLabel.left, memoLabel.bottom, payAmountLabel.width, 0)];
-        }
+        [_headView addSubview: self.vouchertableView];
         
-        if (IsArrEmpty(self.orderInfo.otherPayInfo)) {
-            pointLabel = [[UILabel alloc]initWithFrame:CGRectMake(payAmountLabel.left, redPocketLabel.bottom, payAmountLabel.width, orderTitleLabel.height)];
-            pointLabel.textAlignment = NSTextAlignmentLeft;
-            pointLabel.font = [UIFont systemFontOfSize:16];
-            //pointLabel.text = [NSString stringWithFormat:@"积分抵扣：%d",[self.memberPoints intValue]];
-            [_headView addSubview:pointLabel];
-            
-            _headView.frame = CGRectMake(0, 0, self.view.width, redPocketLabel.bottom+10);
-        }else{
-            pointLabel = [[UILabel alloc]initWithFrame:CGRectMake(payAmountLabel.left, redPocketLabel.bottom, payAmountLabel.width, 0)];
-        }
-        
+        _headView.frame = CGRectMake(0, 0, self.view.width, self.vouchertableView.bottom+10);
     }
     return _headView;
     
 }
 
+-(UITableView *)vouchertableView{
+    if (_vouchertableView == nil) {
+        _vouchertableView = [[UITableView alloc]initWithFrame:CGRectMake(0, orderNOLabel.bottom, self.view.width, voucherHeight*vouchDataSource.count)];
+        _vouchertableView.dataSource = self;
+        _vouchertableView.delegate = self;
+        _vouchertableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        
+        
+    }
+    return _vouchertableView;
+    
+}
+
+
 -(UITableView *)backtableView{
     if (_backtableView == nil) {
-        self.backtableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.height) style:UITableViewStylePlain];
+        self.backtableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.height - 50 -64) style:UITableViewStylePlain];
         
         self.backtableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     }
@@ -357,9 +411,11 @@
 
 #pragma mark tableView start
 
+
+
 -(UITableView *)tableView{
     if (_tableView == nil) {
-        self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.height) style:UITableViewStylePlain];
+        self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, payCellHeight*payDataSource.count) style:UITableViewStylePlain];
         self.tableView.dataSource = self;
         self.tableView.delegate = self;
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -368,60 +424,161 @@
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    
     return 1;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    
-    return dataSource.count;
+    if (tableView != self.tableView) {
+        return vouchDataSource.count;
+    }
+    return payDataSource.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    static NSString  *identify = @"payTypeCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identify];
-    if (cell == nil) {
-        cell= [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identify];
-    }
-    cell.accessoryType = UITableViewCellAccessoryNone;
-    
-    UIImageView *iconView = [[UIImageView alloc]initWithFrame:CGRectMake(30, 16, 28, 28)];
-    iconView.image = [UIImage getImageFromBundle:[NSString stringWithFormat:@"%@",payTypeIcon[indexPath.row]]];
-    iconView.contentMode = UIViewContentModeScaleAspectFit;
-    [cell addSubview:iconView];
-    
-    UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(iconView.right + 20, 15, self.view.width -120, 30)];
-    titleLabel.textAlignment = NSTextAlignmentLeft;
-    titleLabel.text = dataSource[indexPath.row];
-    titleLabel.font = [UIFont systemFontOfSize:18];
-    [cell addSubview:titleLabel];
-    
-    if (indexPath.row == selectedIndex ) {
-        UIImageView *selectView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 23, 23)];
-        selectView.image = [UIImage getImageFromBundle:@"checked"];
-        cell.accessoryView = selectView;
+    if (tableView != self.tableView) {
+        //优惠券列表
+        static NSString  *vouchidentify = @"voucherInfoCell";
+        VoucherTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:vouchidentify];
+        if (cell == nil) {
+            cell= [[VoucherTableViewCell alloc ]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:vouchidentify];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+        cell.accessoryType = UITableViewCellAccessoryNone;
+        
+        
+        cell.voucher = (VoucherData*)vouchDataSource[indexPath.row];
+        [cell loadContent];
+        
+        return cell;
     }else{
-        cell.accessoryView = nil;
+        //支付方式列表
+        static NSString  *identify = @"payTypeCell";
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identify];
+        if (cell == nil) {
+            cell= [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identify];
+            cell.backgroundColor = [UIColor clearColor];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.accessoryType = UITableViewCellAccessoryNone;
+            
+            UIImageView *iconView = [[UIImageView alloc]initWithFrame:CGRectMake(30, 16, 25, 25)];
+            iconView.image = [UIImage getImageFromBundle:[NSString stringWithFormat:@"%@",payTypeIcon[indexPath.row]]];
+            iconView.contentMode = UIViewContentModeScaleAspectFit;
+            [cell addSubview:iconView];
+            
+            UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(iconView.right + 20, 15, self.view.width -120, 30)];
+            titleLabel.textAlignment = NSTextAlignmentLeft;
+            titleLabel.text = payDataSource[indexPath.row];
+            titleLabel.font = [UIFont systemFontOfSize:16];
+            [cell addSubview:titleLabel];
+            UIView *line = [[UIView alloc]initWithFrame:CGRectMake(15, 49, self.view.frame.size.width, 1)];
+            line.backgroundColor = HEX_RGB(0xebebeb);
+            [cell addSubview:line];
+            
+            
+        }
+        UIView *back = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 50, 50)];
+        if (indexPath.row == selectedPayType ) {
+            
+            UIImageView *selectView = [[UIImageView alloc]initWithFrame:CGRectMake(25, 10, 30, 30)];
+            selectView.contentMode = UIViewContentModeScaleAspectFit;
+            selectView.image = [UIImage getImageFromBundle:@"checked"];
+            [back addSubview:selectView];
+            cell.accessoryView = back;
+        }else{
+            cell.accessoryView = nil;
+        }
+        
+        
+        return cell;
+    
     }
-    
-    cell.backgroundColor = [UIColor whiteColor];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
-    UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, 59, self.view.frame.size.width, 1)];
-    line.backgroundColor = HEX_RGB(0xe4e4e4);
-    [cell addSubview:line];
-    return cell;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 60;
+    if (tableView != self.tableView) {
+        return voucherHeight;
+    }
+    return payCellHeight;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    selectedIndex = indexPath.row;
-   
-    [tableView reloadData];
+    if (tableView != self.tableView) {
+        VoucherTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        
+        VoucherData *voucher = cell.voucher;
+        
+        if (voucher.selected) {
+            return;
+        }
+        
+        if (voucher.superposeType) {//可以重用优惠券
+            
+            if (!(payAmount>[voucher.satisfyOrderAmount intValue]) && hasSelected) {
+                [self presentSheet:@"不满足优惠券使用条件"];
+                return;
+            }
+            
+            for (VoucherData *temp in vouchDataSource) {
+                
+                
+                if (temp.superposeType == NO) {
+                    temp.selected = NO;
+                }
+            }
+            voucher.selected = YES;
+            hasSelected = YES;
+            
+        }else{
+            NSInteger i=0;
+            hasSelected = NO;
+            for (VoucherData *temp in vouchDataSource) {
+                if (i != indexPath.row) {
+                    temp.selected = NO;
+                }else{
+                    temp.selected = YES;
+                }
+                i++;
+            }
+        }
+        [tableView reloadData];
+        [self resetPayAmount];
+        
+        
+    
+    }else{
+        if (selectedPayType != indexPath.row) {
+            selectedPayType = indexPath.row;
+            
+            [tableView reloadData];
+        }
+        
+    }
+    
+}
+
+-(void)resetPayAmount{
+    
+    payAmount = [self.orderInfo.totalAmount intValue];;
+    for (VoucherData *temp in vouchDataSource) {
+        
+        if (temp.selected) {
+            
+            if (temp.superposeType) {
+                payAmount = payAmount - [temp.voucherAmount intValue];
+            }else{
+                payAmount = payAmount*[temp.discount floatValue];
+                break;
+            }
+        }
+        
+    }
+    NSString *money = [self moneyTran:[NSString stringWithFormat:@"%d",payAmount] ownType:1];
+    [_payButton setTitle:[NSString stringWithFormat:@"确认支付￥%@元",money] forState:UIControlStateNormal];
+
+
 }
 
 #pragma mark tableView end
@@ -481,16 +638,13 @@
 //微信
 -(void)weixinpay{
     
-//    OrderString = @"{\"appid\":\"wxd74f10be104372ab\",\"package\":\"Sign=WXPay\",\"partnerid\":\"1391276302\",\"noncestr\":\"201609211755412159251494\",\"timestamp\":\"1474451741\",\"prepayid\":\"wx201609211755403eafc71e6a0694025503\",\"sign\":\"B65F04F54911515697F88711CF3DB886\"}";
-//    "{\"appid\":\"wxd74f10be104372ab\",\"package\":\"Sign=WXPay\",\"partnerid\":\"1391276302\",\"noncestr\":\"201609221322534043900560\",\"timestamp\":\"1474521773\",\"prepayid\":\"wx20160922132253e23d44d1e50249159091\",\"sign\":\"E5E7F53D2DFC4C90006F8F458038DCC2\"}"
-    
     NSData *jsonData = [OrderString dataUsingEncoding:NSUTF8StringEncoding];
     NSError *err;
     NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData
                                                         options:NSJSONReadingMutableContainers
                                                           error:&err];
     
-    [WXApi registerApp:weixinAppID withDescription:@"demo 2.0"];
+    [WXApi registerApp:weixinAppID withDescription:@"thirdPay"];
     
     NSString *partnerId = EncodeStringFromDic(dic, @"partnerid");
     
@@ -544,7 +698,6 @@
                 EncodeUnEmptyStrObjctToDic(_resultDict, [NSString stringWithFormat:@"%d",response.errCode], @"code");
                 EncodeUnEmptyDicObjctToDic(_resultDict, [self getParamsWrap], @"content");
                 
-                
             }
                 break;
             default:
@@ -553,7 +706,6 @@
                 EncodeUnEmptyStrObjctToDic(_resultDict, [NSString stringWithFormat:@"%@:%@",TRADEFAILED,response.errStr], @"message");
                 EncodeUnEmptyStrObjctToDic(_resultDict, [NSString stringWithFormat:@"%d",response.errCode], @"code");
                 EncodeUnEmptyDicObjctToDic(_resultDict, [self getParamsWrap], @"content");
-                
                 DDLog(@"支付失败", response.errStr);
             }
                 break;
@@ -578,7 +730,6 @@
     
     BestpayNativeModel *order =[[BestpayNativeModel alloc]init];
     order.orderInfo = OrderString;
-//    order.orderInfo = orderStr;
     order.launchType = launchTypePay1;
     order.scheme = scheml;
     
@@ -705,9 +856,6 @@
     
     NSArray *array = [str componentsSeparatedByString:@"&"];
     
-    
-    
-    //此处针对2.0.0版本及后续版本的数据处理
     if ([array count])
     {
         NSDictionary *tmpDic = [[self class] paramsFromKeyValueStr:str];

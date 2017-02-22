@@ -46,6 +46,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+//    self.view.backgroundColor = HEX_RGB(0xf8f8f8);
     
 }
 
@@ -78,7 +79,7 @@
     [self.view showTextHUD:indiTitle];
     
     //每个字0.3s, 最低3秒
-    CGFloat showTime = SHOWTIME;// MAX([indiTitle length] * 0.3, 3);
+    CGFloat showTime = MAX([indiTitle length] * 0.3, 3);
     [self hideHUDafterDelay:showTime];
 }
 

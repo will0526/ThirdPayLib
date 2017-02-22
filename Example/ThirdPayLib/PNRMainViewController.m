@@ -22,6 +22,8 @@
 @property (nonatomic,strong)UIButton *scanButton;
 @property (nonatomic,strong)UIButton *queryMemberButton;
 @property (nonatomic,strong)UIButton *queryAllMemberButton;
+@property (nonatomic, strong)UIButton *transButton;
+
 @end
 
 @implementation PNRMainViewController
@@ -32,10 +34,11 @@
     self.title = @"测试demo";
     
     [self.view addSubview:self.queryButton];
-    [self.view addSubview:self.queryMemberButton];
+//    [self.view addSubview:self.queryMemberButton];
     [self.view addSubview:self.queryAllMemberButton];
     [self.view addSubview:self.orderButton];
-    [self.view addSubview:self.orderButton2];
+//    [self.view addSubview:self.orderButton2];
+    
 //    [self.view addSubview:self.aboutButton];
     [self.view addSubview:self.scanButton];
     // Do any additional setup after loading the view.
@@ -118,7 +121,7 @@
 
 -(UIButton *)scanButton{
     if (_scanButton == nil) {
-        _scanButton = [[UIButton alloc]initWithFrame:CGRectMake(self.view.frame.size.width/6, 310, self.view.frame.size.width*2/3, 40)];
+        _scanButton = [[UIButton alloc]initWithFrame:CGRectMake(self.view.frame.size.width/6, 240, self.view.frame.size.width*2/3, 40)];
         [_scanButton setTitle:@"二维码扫描" forState:UIControlStateNormal];
         [_scanButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         
@@ -155,7 +158,7 @@
 
 -(UIButton *)queryAllMemberButton{
     if (_queryAllMemberButton == nil) {
-        _queryAllMemberButton = [[UIButton alloc]initWithFrame:CGRectMake(self.view.frame.size.width/6, 450, self.view.frame.size.width*2/3, 40)];
+        _queryAllMemberButton = [[UIButton alloc]initWithFrame:CGRectMake(self.view.frame.size.width/6, 310, self.view.frame.size.width*2/3, 40)];
         [_queryAllMemberButton setTitle:@"所有权益查询" forState:UIControlStateNormal];
         [_queryAllMemberButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         
@@ -169,6 +172,24 @@
     }
     
     return _queryAllMemberButton;
+    
+}
+-(UIButton *)transButton{
+    if (_transButton == nil) {
+        _transButton = [[UIButton alloc]initWithFrame:CGRectMake(self.view.frame.size.width/6, 520, self.view.frame.size.width*2/3, 40)];
+        [_transButton setTitle:@"转增优惠券" forState:UIControlStateNormal];
+        [_transButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        
+        [_transButton setBackgroundColor:[UIColor orangeColor]];
+        
+        _transButton.clipsToBounds = YES;
+        _transButton.layer.cornerRadius = 20;
+        _transButton.tag = 7;
+        [_transButton addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        
+    }
+    
+    return _transButton;
     
 }
 

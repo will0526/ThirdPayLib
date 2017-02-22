@@ -11,7 +11,7 @@
 #import <AFNetworking/AFNetworking.h>
 #import <ThirdPayLib/ThirdPay.h>
 #import <ThirdPayLib/PNROrderInfo.h>
-#import <ThirdPayLib/PNROtherPayInfo.h>
+#import <ThirdPayLib/PNRVoucherInfo.h>
 #import <ThirdPayLib/PNRGoodsInfo.h>
 #import <ThirdPayLib/PNRMemberInfo.h>
 
@@ -36,9 +36,9 @@
 
 @property (nonatomic,strong)PNRGoodsInfo *goodsInfo2;
 
-@property (nonatomic,strong)PNROtherPayInfo *otherPay1;
+@property (nonatomic,strong)PNRVoucherInfo *otherPay1;
 
-@property (nonatomic,strong)PNROtherPayInfo *otherPay2;
+@property (nonatomic,strong)PNRVoucherInfo *otherPay2;
 @end
 
 @implementation PNRViewController
@@ -66,26 +66,26 @@
     self.goodsInfo1 = [[PNRGoodsInfo alloc]init];
     self.goodsInfo2 = [[PNRGoodsInfo alloc]init];
     
-    self.otherPay1 = [[PNROtherPayInfo alloc]init];
-    self.otherPay2 = [[PNROtherPayInfo alloc]init];
+    self.otherPay1 = [[PNRVoucherInfo alloc]init];
+    self.otherPay2 = [[PNRVoucherInfo alloc]init];
     //测试数据
     switch (_viewType) {
         case 0:
         {
             dataSource = @[@"用户号",@"商户号",@"订单号"];
-            defaultSource = @[@"8888888881121",@"000000000000001",@"20160923091858000551"];
+            defaultSource = @[@"00001",@"000000000000001",@"20160923091858000551"];
         }
             break;
         case 1:
         {
-            dataSource = @[@"用户号",@"商户号",@"商户订单号",@"订单标题",@"订单详情",@"订单金额(分)",@"实付金额(分)",@"商品号1",@"商品名称1",@"商品数量1",@"商品单价1",@"商品描述1",@"商品号2",@"商品名称2",@"商品数量2",@"商品单价2",@"商品描述2",@"支付方式1(积分)",@"支付方式ID",@"支付金额",@"(优惠券)",@"优惠券ID",@"优惠券金额",@"备注",@"通知地址"];
-            defaultSource = @[@"8888888881121",@"000000000000001",merchantOrder,@"手机订单标题",@"苹果手机6s和iPhone7 正品行货",@"540000",@"1000",@"0000001",@"iPhone6s 灰色",@"1",@"1",@"灰色64G全网",@"0000002",@"iPhone7 灰色",@"1",@"1",@"灰色128G全网",@"",@"",@"1",@"2",@"771b984ee16f444bb97c2919a9de3693",@"1000",@"不支持货到付款",@"http://www.baidu.com"];
+            dataSource = @[@"用户号",@"商户号",@"商户订单号",@"订单标题",@"订单详情",@"订单金额(分)",@"实付金额(分)",@"商品号1",@"货号1",@"商品名称1",@"商品数量1",@"商品单价1",@"商品描述1",@"实付金额1",@"商品号2",@"货号2",@"商品名称2",@"商品数量2",@"商品单价2",@"商品描述2",@"实付金额2",@"备注",@"通知地址",@"用户类型"];
+            defaultSource = @[@"00001",@"000000000000001",merchantOrder,@"手机订单标题",@"苹果手机6s和iPhone7 正品行货",@"120",@"2",@"0000001",@"00011",@"iPhone6s 灰色",@"1",@"1",@"灰色64G全网",@"1",@"0000002",@"00012",@"iPhone7 灰色",@"1",@"1",@"灰色128G全网",@"1",@"不支持货到付款",@"http://www.baidu.com",@"1"];
         }
             break;
         case 2:
         {
-            dataSource = @[@"用户号",@"商户号",@"商户订单号",@"订单标题",@"订单详情",@"订单金额(分)",@"实付金额(分)",@"商品号1",@"商品名称1",@"商品数量1",@"商品单价1",@"商品描述1",@"商品号2",@"商品名称2",@"商品数量2",@"商品单价2",@"商品描述2",@"支付方式1(积分)",@"支付方式ID",@"支付金额",@"(优惠券)",@"优惠券ID",@"优惠券金额",@"备注",@"通知地址",@"支付方式"];
-            defaultSource = @[@"8888888881121",@"000000000000001",merchantOrder,@"手机订单标题",@"苹果手机6s和iPhone7 正品行货",@"540000",@"1000",@"0000001",@"iPhone6s 灰色",@"1",@"1",@"灰色64G全网",@"0000002",@"iPhone7 灰色",@"1",@"1",@"灰色128G全网",@"",@"",@"1",@"2",@"771b984ee16f444bb97c2919a9de3693",@"1000",@"不支持货到付款",@"http://www.baidu.com"];
+            dataSource = @[@"用户号",@"商户号",@"商户订单号",@"订单标题",@"订单详情",@"订单金额(分)",@"实付金额(分)",@"商品号1",@"货号1",@"商品名称1",@"商品数量1",@"商品单价1",@"商品描述1",@"实付金额1",@"商品号2",@"货号2",@"商品名称2",@"商品数量2",@"商品单价2",@"商品描述2",@"实付金额2",@"支付类型1",@"优惠券金额1",@"支付ID1",@"支付类型2",@"优惠券金额2",@"支付ID2",@"备注",@"通知地址",@"支付方式"];
+            defaultSource = @[@"00001",@"000000000000001",merchantOrder,@"手机订单标题",@"苹果手机6s和iPhone7 正品行货",@"540000",@"2",@"0000001",@"00011",@"iPhone6s 灰色",@"1",@"1",@"灰色64G全网",@"1",@"0000002",@"00012",@"iPhone7 灰色",@"1",@"1",@"灰色128G全网",@"1",@"",@"",@"",@"771b984ee16f444bb97c2919a9de3693",@"不支持货到付款",@"http://www.baidu.com"];
             
             
             pickerData = @[@"支付宝",@"微信",@"翼支付",@"Apple Pay",@"百度钱包"];
@@ -101,15 +101,21 @@
             break;
         case 5:{
             dataSource = @[@"用户号",@"商户号",@"用户类型",@"商户订单金额"];
-            defaultSource = @[@"8888888881121",@"000000000000001",@"1",@"10"];
+            defaultSource = @[@"00001",@"000000000000001",@"1",@"10"];
             
             
         }
             break;
         case 6:{
             dataSource = @[@"用户号",@"商户号",@"用户类型"];
-            defaultSource = @[@"8888888881121",@"000000000000001",@"1"];
+            defaultSource = @[@"00001",@"000000000000001",@"1"];
             
+            
+        }
+            break;
+        case 7:{
+            dataSource = @[@"转增用户号",@"商户号",@"转增用户类型",@"优惠券编号"];
+            defaultSource = @[@"00001",@"000000000000001",@"1",@"771b984ee16f444bb97c2919a9de3693"];
             
         }
             break;
@@ -284,103 +290,129 @@
             break;
         case 8:
         {
+            self.goodsInfo1.itemNo = textField.text;
+            
+        }
+            break;
+        case 9:
+        {
             self.goodsInfo1.goodsName = textField.text;
          
         }
             break;
-        case 9:
+        case 10:
         {
             self.goodsInfo1.goodsNumber = textField.text;
             
         }
             break;
-        case 10:
+        case 11:
         {
             self.goodsInfo1.goodsPrice = textField.text;
             
         }
             break;
-        case 11:
+        case 12:
         {
             self.goodsInfo1.goodsBody = textField.text;
             
         }
             break;
-        case 12:
+        case 13:
+        {
+            self.goodsInfo1.goodsAmount =textField.text;
+        }
+            break;
+        case 14:
         {
             self.goodsInfo2.goodsNo = textField.text;
             
             
         }
             break;
-        case 13:
+        case 15:
+        {
+            self.goodsInfo2.itemNo = textField.text;
+            
+        }
+            break;
+        case 16:
         {
             self.goodsInfo2.goodsName = textField.text;
             
         }
             break;
-        case 14:
+        case 17:
         {
             self.goodsInfo2.goodsNumber = textField.text;
         }
             break;
-        case 15:
+        case 18:
         {
             self.goodsInfo2.goodsPrice = textField.text;
          
         }
             break;
-        case 16:
+        case 19:
         {
             self.goodsInfo2.goodsBody = textField.text;
             
         }
-            break;
-        case 17:
-        {
-            self.otherPay1.voucherType = textField.text;
-            
-        }
-            break;
-        case 18:
-        {
-            self.otherPay1.voucherId = textField.text;
-            
-        }
-            break;
-        case 19:
-        {
-            self.otherPay1.voucherPayAmount = textField.text;
-            
-        }
-            break;
         case 20:
         {
-            self.otherPay2.voucherType = textField.text;
+            self.goodsInfo2.goodsAmount = textField.text;
             
         }
             break;
+//        case 21:
+//        {
+//            self.otherPay1.voucherType = textField.text;
+//            
+//        }
+//            break;
+//        case 22:{
+//            self.otherPay1.voucherAmount = textField.text;
+//        }
+//            break;
+//        case 23:
+//        {
+//            self.otherPay1.voucherId = textField.text;
+//            
+//        }
+//            break;
+//        
+//        case 24:
+//        {
+//            self.otherPay2.voucherType = textField.text;
+//            
+//        }
+//            break;
+//        case 25:{
+//            self.otherPay2.voucherAmount = textField.text;
+//        }
+//            break;
+//        case 26:
+//        {
+//            self.otherPay2.voucherId = textField.text;
+//            
+//        }
+//            break;
+        
         case 21:
-        {
-            self.otherPay2.voucherId = textField.text;
-            
-        }
-            break;
-        case 22:
-        {
-            self.otherPay2.voucherPayAmount = textField.text;
-            
-        }
-            break;
-        case 23:
         {
             self.orderInfo.memo = textField.text;
             
         }
             break;
-        case 24:
+        case 22:
         {
             self.orderInfo.notifyURL = textField.text;
+            
+        }
+            break;
+        case 23:
+        {
+            self.orderInfo.accountType = textField.text;
             
         }
             break;
@@ -443,6 +475,10 @@
                 [_bookOrder setTitle:@"所有权益查询" forState:UIControlStateNormal];
             }
                 break;
+            case 7:{
+                [_bookOrder setTitle:@"转增" forState:UIControlStateNormal];
+            }
+                break;
                 
             default:
                 break;
@@ -483,7 +519,7 @@
     }
     
     
-    self.orderInfo.otherPayInfo = tempPay;
+    self.orderInfo.voucherInfo = tempPay;
     
     
     switch (_viewType) {
@@ -510,6 +546,10 @@
         }
             break;
         case 6:{
+            [ThirdPay queryMemberInfo:self.memberInfo ViewController:self Delegate:self];
+        }
+            break;
+        case 7:{
             [ThirdPay queryMemberInfo:self.memberInfo ViewController:self Delegate:self];
         }
             break;
@@ -564,7 +604,7 @@
     textLabel.adjustsFontSizeToFitWidth = YES;
     [cell addSubview:textLabel];
     
-    if (_viewType == 2 && indexPath.row == 25 ) {
+    if (_viewType == 2 && indexPath.row == 27 ) {
         NSLog(@"%ld",(long)indexPath.row);
         NSLog(@"text.......%@",dataSource[indexPath.row]);
         
@@ -691,103 +731,129 @@
                     break;
                 case 8:
                 {
-                    self.goodsInfo1.goodsName = textField.text;
+                    self.goodsInfo1.itemNo = textField.text;
                     
                 }
                     break;
                 case 9:
                 {
-                    self.goodsInfo1.goodsNumber = textField.text;
+                    self.goodsInfo1.goodsName = textField.text;
                     
                 }
                     break;
                 case 10:
                 {
-                    self.goodsInfo1.goodsPrice = textField.text;
+                    self.goodsInfo1.goodsNumber = textField.text;
                     
                 }
                     break;
                 case 11:
                 {
-                    self.goodsInfo1.goodsBody = textField.text;
+                    self.goodsInfo1.goodsPrice = textField.text;
                     
                 }
                     break;
                 case 12:
+                {
+                    self.goodsInfo1.goodsBody = textField.text;
+                    
+                }
+                    break;
+                case 13:
+                {
+                    self.goodsInfo1.goodsAmount =textField.text;
+                }
+                    break;
+                case 14:
                 {
                     self.goodsInfo2.goodsNo = textField.text;
                     
                     
                 }
                     break;
-                case 13:
-                {
-                    self.goodsInfo2.goodsName = textField.text;
-                    
-                }
-                    break;
-                case 14:
-                {
-                    self.goodsInfo2.goodsNumber = textField.text;
-                }
-                    break;
                 case 15:
                 {
-                    self.goodsInfo2.goodsPrice = textField.text;
+                    self.goodsInfo2.itemNo = textField.text;
                     
                 }
                     break;
                 case 16:
                 {
-                    self.goodsInfo2.goodsBody = textField.text;
+                    self.goodsInfo2.goodsName = textField.text;
                     
                 }
                     break;
                 case 17:
                 {
-                    self.otherPay1.voucherType = textField.text;
-                    
+                    self.goodsInfo2.goodsNumber = textField.text;
                 }
                     break;
                 case 18:
                 {
-                    self.otherPay1.voucherId = textField.text;
+                    self.goodsInfo2.goodsPrice = textField.text;
                     
                 }
                     break;
                 case 19:
                 {
-                    self.otherPay1.voucherPayAmount = textField.text;
+                    self.goodsInfo2.goodsBody = textField.text;
                     
                 }
-                    break;
                 case 20:
                 {
-                    self.otherPay2.voucherType = textField.text;
+                    self.goodsInfo2.goodsAmount = textField.text;
                     
                 }
                     break;
+//                case 21:
+//                {
+//                    self.otherPay1.voucherType = textField.text;
+//                    
+//                }
+//                    break;
+//                case 22:{
+//                    self.otherPay1.voucherAmount = textField.text;
+//                }
+//                    break;
+//                case 23:
+//                {
+//                    self.otherPay1.voucherId = textField.text;
+//                    
+//                }
+//                    break;
+//                    
+//                case 24:
+//                {
+//                    self.otherPay2.voucherType = textField.text;
+//                    
+//                }
+//                    break;
+//                case 25:{
+//                    self.otherPay2.voucherAmount = textField.text;
+//                }
+//                    break;
+//                case 26:
+//                {
+//                    self.otherPay2.voucherId = textField.text;
+//                    
+//                }
+//                    break;
+                    
                 case 21:
-                {
-                    self.otherPay2.voucherId = textField.text;
-                    
-                }
-                    break;
-                case 22:
-                {
-                    self.otherPay2.voucherPayAmount = textField.text;
-                    
-                }
-                    break;
-                case 23:
                 {
                     self.orderInfo.memo = textField.text;
                     
                 }
                     break;
-                case 24:
+                case 22:
                 {
                     self.orderInfo.notifyURL = textField.text;
+                    
+                }
+                    break;
+                case 23:
+                {
+                    self.orderInfo.accountType = textField.text;
                     
                 }
                     break;
