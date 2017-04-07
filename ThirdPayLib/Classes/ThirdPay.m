@@ -36,6 +36,7 @@
 #import "QueryAllMemberInfoRequest.h"
 #import "PNRVoucherInfo.h"
 #import "PNRGoodsInfo.h"
+#import "QureyCampainRequest.h"
 
 @interface ThirdPay()<QRCodeDelegate>
 
@@ -73,7 +74,6 @@ static ShowPayTypeViewController *payController;
         
         payController.thirdPayDelegate = delegate;
         payController.orderInfo = orderInfo;
-        payController.payType = orderInfo.paytype;
         payController.viewType = @"NOVIEW";
         [payController bookOrder];
     }
@@ -199,7 +199,7 @@ static ShowPayTypeViewController *payController;
     }else if (IsStrEmpty(orderAmount)){
         resultInfo = @"订单金额不能为空";
     }else if (IsStrEmpty(accountNo)){
-        resultInfo = @"用户账号号不能为空";
+        resultInfo = @"用户账号不能为空";
     }else if (IsStrEmpty(accountType)){
         resultInfo = @"账号类型不能为空";
     }
@@ -263,7 +263,7 @@ static ShowPayTypeViewController *payController;
     if (IsStrEmpty(merchantNo)) {
         resultInfo = @"商户号不能为空";
     }else if (IsStrEmpty(accountNo)){
-        resultInfo = @"用户账号号不能为空";
+        resultInfo = @"用户账号不能为空";
     }else if (IsStrEmpty(accountType)){
         resultInfo = @"账号类型不能为空";
     }
@@ -364,6 +364,49 @@ static ShowPayTypeViewController *payController;
     
 }
 
++(void)queryCampaign:(NSString *)merchantNo ViewController:(UIViewController *)controller Delegate:(id<ThirdPayDelegate>)delegate{
+    
+    QureyCampainRequest *request = [[QureyCampainRequest alloc]init];
+    request.merchantNo = merchantNo;
+    
+    [[MOPHUDCenter shareInstance]showHUDWithTitle:@""
+                                             type:MOPHUDCenterHUDTypeNetWorkLoading
+                                       controller:controller
+                                   showBackground:YES];
+    
+    
+    BaseResponse *response = [[BaseResponse alloc]init];
+    
+    [CommonService beginService:request response:response success:^(BaseResponse *response) {
+        
+        NSLog(@"response.json......%@",response.jsonDict);
+        
+        NSDictionary *dict = response.jsonDict;
+        
+        [[MOPHUDCenter shareInstance]removeHUD];
+        
+        if (delegate && [delegate respondsToSelector:@selector(onQueryCampain:)]) {
+            [delegate onQueryCampain:dict];
+            return;
+        }
+        
+    } failed:^(NSString *errorCode, NSString *errorMsg) {
+        
+        [[MOPHUDCenter shareInstance]removeHUD];
+        
+        NSDictionary *dict = @{@"message":errorMsg,@"code":errorCode};
+        
+        if (delegate && [delegate respondsToSelector:@selector(onQueryCampain:)]) {
+            [delegate onQueryCampain:dict];
+            return;
+        }
+    } controller:controller showProgressBar:NO];
+    
+    
+    
+
+}
+
 +(BOOL)checkParams:(PNROrderInfo *)orderInfo delegate:(id<ThirdPayDelegate>)delegate{
     
   
@@ -387,11 +430,13 @@ static ShowPayTypeViewController *payController;
         resultInfo = @"appSchemeStr不能为空";
     }else if (!IsArrEmpty(orderInfo.goodsInfo)) {
         for (PNRGoodsInfo *temp in orderInfo.goodsInfo) {
-            if (IsStrEmpty(temp.goodsNo)) {
+            if(IsStrEmpty(temp.itemNo)){
+                
+            }else if (IsStrEmpty(temp.goodsNo)) {
                 resultInfo = @"商品信息格式不正确";
             }else if (IsStrEmpty(temp.goodsName)){
                 resultInfo = @"商品信息格式不正确";
-            }else if (IsStrEmpty(temp.goodsBody)){
+            }else if (IsStrEmpty(temp.itemNo)){
                 resultInfo = @"商品信息格式不正确";
             }else if (IsStrEmpty(temp.goodsPrice)){
                 resultInfo = @"商品信息格式不正确";
@@ -400,12 +445,16 @@ static ShowPayTypeViewController *payController;
             }
         }
         
-        
+    }else if(IsArrEmpty(orderInfo.goodsInfo)){
+        resultInfo = @"商品信息不能为空";
+    
     }else if (IsArrEmpty(orderInfo.voucherInfo)){
         for (PNRVoucherInfo *temp in orderInfo.voucherInfo) {
             if (IsStrEmpty(temp.voucherType)) {
                 resultInfo =@"优惠券信息格式不正确";
             }else if(IsStrEmpty(temp.voucherId)){
+                resultInfo =@"优惠券信息格式不正确";
+            }else if(IsStrEmpty(temp.voucherAmount)){
                 resultInfo =@"优惠券信息格式不正确";
             }
         }

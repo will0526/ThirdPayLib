@@ -57,6 +57,8 @@ typedef void (^ThirdPayCompletion)(NSDictionary *result);
 //订单查询回调
 -(void)onQueryOrder:(NSDictionary *)dict;
 
+//营销查询
+-(void)onQueryCampain:(NSDictionary *)dict;
 
 //针对订单用户权益查询查询回调
 -(void)onQueryMemberForOrder:(NSDictionary *)dict;
@@ -99,9 +101,8 @@ typedef void (^ThirdPayCompletion)(NSDictionary *result);
  *  订单查询 (推荐使用)
  *
  *  tradeInfo内容包含以下字段
- *  @param merchantOrderID 商户订单号
- *  @param orderID    订单号
- *  @param merchantID   商户号
+ *  @param ippOrderNo    订单号
+ *  @param merchantNo   商户号
  
  *  @param controller       调用接口的UIViewController
  *  @param delegate         回调代理
@@ -149,6 +150,9 @@ typedef void (^ThirdPayCompletion)(NSDictionary *result);
  *  @param delegate         回调代理
  */
 +(void)showPayTypeWithTradeInfo:(PNROrderInfo *)orderInfo ViewController:(UIViewController *)controller Delegate:(id<ThirdPayDelegate>)delegate;
+
+
++(void)queryCampaign:(NSString *)merchantNo ViewController:(UIViewController *)controller Delegate:(id<ThirdPayDelegate>)delegate;
 
 
 +(Boolean)handleOpenURL:(NSURL *)url withCompletion:(ThirdPayCompletion )complete;

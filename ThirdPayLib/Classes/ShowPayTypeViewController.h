@@ -18,7 +18,6 @@
 @property(nonatomic,strong)PNROrderInfo *orderInfo;
 
 
-@property(nonatomic, assign)PayType payType;
 
 
 

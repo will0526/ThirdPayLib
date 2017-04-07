@@ -23,6 +23,7 @@
 @property (nonatomic,strong)UIButton *queryMemberButton;
 @property (nonatomic,strong)UIButton *queryAllMemberButton;
 @property (nonatomic, strong)UIButton *transButton;
+@property (nonatomic, strong)UIButton *queryCampain;
 
 @end
 
@@ -33,14 +34,21 @@
     
     self.title = @"测试demo";
     
-    [self.view addSubview:self.queryButton];
-//    [self.view addSubview:self.queryMemberButton];
+    NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
+    [userDef setObject:@"测试" forKey:@"environment"];
+    
+    UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithCustomView:self.transButton];
+    self.navigationItem.rightBarButtonItem = menuButton;
+    
+    //    [self.view addSubview:self.queryButton];
+    [self.view addSubview:self.queryMemberButton];
     [self.view addSubview:self.queryAllMemberButton];
     [self.view addSubview:self.orderButton];
-//    [self.view addSubview:self.orderButton2];
+    [self.view addSubview:self.orderButton2];
+    [self.view addSubview:self.queryCampain];
     
 //    [self.view addSubview:self.aboutButton];
-    [self.view addSubview:self.scanButton];
+//    [self.view addSubview:self.scanButton];
     // Do any additional setup after loading the view.
 }
 
@@ -66,7 +74,7 @@
 
 -(UIButton *)orderButton{
     if (_orderButton == nil) {
-        _orderButton = [[UIButton alloc]initWithFrame:CGRectMake(self.view.frame.size.width/6, 170, self.view.frame.size.width*2/3, 40)];
+        _orderButton = [[UIButton alloc]initWithFrame:CGRectMake(self.view.frame.size.width/6, 100, self.view.frame.size.width*2/3, 40)];
         [_orderButton setTitle:@"下单" forState:UIControlStateNormal];
         [_orderButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         
@@ -84,7 +92,7 @@
 
 -(UIButton *)orderButton2{
     if (_orderButton2 == nil) {
-        _orderButton2 = [[UIButton alloc]initWithFrame:CGRectMake(self.view.frame.size.width/6, 240, self.view.frame.size.width*2/3, 40)];
+        _orderButton2 = [[UIButton alloc]initWithFrame:CGRectMake(self.view.frame.size.width/6, 170, self.view.frame.size.width*2/3, 40)];
         [_orderButton2 setTitle:@"下单（无页面）" forState:UIControlStateNormal];
         [_orderButton2 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         
@@ -139,7 +147,7 @@
 
 -(UIButton *)queryMemberButton{
     if (_queryMemberButton == nil) {
-        _queryMemberButton = [[UIButton alloc]initWithFrame:CGRectMake(self.view.frame.size.width/6, 380, self.view.frame.size.width*2/3, 40)];
+        _queryMemberButton = [[UIButton alloc]initWithFrame:CGRectMake(self.view.frame.size.width/6, 240, self.view.frame.size.width*2/3, 40)];
         [_queryMemberButton setTitle:@"订单权益查询" forState:UIControlStateNormal];
         [_queryMemberButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         
@@ -176,20 +184,37 @@
 }
 -(UIButton *)transButton{
     if (_transButton == nil) {
-        _transButton = [[UIButton alloc]initWithFrame:CGRectMake(self.view.frame.size.width/6, 520, self.view.frame.size.width*2/3, 40)];
-        [_transButton setTitle:@"转增优惠券" forState:UIControlStateNormal];
-        [_transButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        _transButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 60, 30)];
+        [_transButton setTitle:@"测试" forState:UIControlStateNormal];
+        [_transButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         
-        [_transButton setBackgroundColor:[UIColor orangeColor]];
+//        [_transButton setBackgroundColor:[UIColor orangeColor]];
         
         _transButton.clipsToBounds = YES;
-        _transButton.layer.cornerRadius = 20;
         _transButton.tag = 7;
         [_transButton addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
         
     }
     
     return _transButton;
+    
+}
+-(UIButton *)queryCampain{
+    if (_queryCampain == nil) {
+        _queryCampain = [[UIButton alloc]initWithFrame:CGRectMake(self.view.frame.size.width/6, 380, self.view.frame.size.width*2/3, 40)];
+        [_queryCampain setTitle:@"营销活动查询" forState:UIControlStateNormal];
+        [_queryCampain setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        
+        [_queryCampain setBackgroundColor:[UIColor orangeColor]];
+        
+        _queryCampain.clipsToBounds = YES;
+        _queryCampain.layer.cornerRadius = 20;
+        _queryCampain.tag = 8;
+        [_queryCampain addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    
+    return _queryCampain;
+    
     
 }
 
@@ -214,7 +239,29 @@
 
 -(void)buttonPressed:(UIButton *)button{
     
-    
+    if (button.tag == 7) {
+        
+        
+        
+        NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
+        NSString *environment = (NSString *)[userDef objectForKey:@"environment"];
+        
+        if (environment) {
+            if ([environment isEqualToString:@"测试"]) {
+                [self.transButton setTitle:@"准生产" forState:UIControlStateNormal];
+                [userDef setObject:@"准生产" forKey:@"environment"];
+            }else{
+                [userDef setObject:@"测试" forKey:@"environment"];
+                [self.transButton setTitle:@"测试" forState:UIControlStateNormal];
+            }
+            
+        }else{
+            
+        }
+        
+        
+        return;
+    }
     
     
     PNRViewController *pnr = [[PNRViewController alloc]init];

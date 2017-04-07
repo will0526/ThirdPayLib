@@ -31,6 +31,7 @@
 @property(nonatomic, strong)UIView *headView;
 @property(nonatomic, strong)UIButton *payButton;
 @property(nonatomic, strong)NSString *orderNO;
+@property(nonatomic, strong)NSMutableArray *voucherArr;
 @end
 
 @implementation ShowPayTypeViewController
@@ -69,7 +70,7 @@
     
     payAmount = [self.orderInfo.totalAmount intValue];
     vouchDataSource = [[NSMutableArray alloc]init];
-    
+    _voucherArr = [[NSMutableArray alloc]init];
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(Back)];
     
@@ -78,8 +79,10 @@
     payTypeIcon = @[@"YipayIcon",@"weixinIcon",@"alipayIcon",@"baiIcon",@"applepayIcon"];
     selectedPayType = 0;
     _resultDict = [[NSMutableDictionary alloc]init];
-    
-    [self queryVoucherInfo];
+    if (![_viewType isEqualToString:@"NOVIEW"]) {
+        [self queryVoucherInfo];
+    }
+   
     
 }
 
@@ -159,18 +162,27 @@
     
     request.merchantNo = self.orderInfo.merchantNo;
     request.merchantOrderNo = self.orderInfo.merchantOrderNo;
-    // TODO 修改APPver
     
-    request.appVer = @"1.0";
+    request.orderAmount = self.orderInfo.orderAmount;
+    request.appVer = self.orderInfo.appVer;
     request.accountNo = self.orderInfo.accountNo;
+    request.accountType = self.orderInfo.accountType;
     request.memo = self.orderInfo.memo;
     request.orderTitle = self.orderInfo.orderSubject;
     request.orderDetail = self.orderInfo.orderDescription;
     request.totalAmount = self.orderInfo.totalAmount;
-    request.payAmount = [NSString stringWithFormat:@"%d",payAmount] ;
-//    request.voucherInfo = self.orderInfo.voucherInfo;
-//    request.goodsInfo   = self.orderInfo.goodsInfo;
-    request.payType = self.payType;
+    if([_viewType isEqualToString:@"NOVIEW"]){
+        request.payAmount = self.orderInfo.payAmount;
+        request.voucherInfo = self.orderInfo.voucherInfo;
+    }else{
+        request.payAmount = [NSString stringWithFormat:@"%d",payAmount] ;
+        request.voucherInfo = self.voucherArr;
+    }
+    
+    request.goodsInfo   = self.orderInfo.goodsInfo;
+    request.campaignsInfo = self.orderInfo.campaignsInfo;
+    
+    request.payType = self.orderInfo.paytype;
     request.notifyURL = self.orderInfo.notifyURL;
     
     BaseResponse *response = [[BaseResponse alloc]init];
@@ -184,11 +196,18 @@
         NSLog(@"response.json......%@",response.jsonDict);
         
         NSDictionary *data = EncodeDicFromDic(response.jsonDict, @"data");
-        
+        NSString *respcode = EncodeStringFromDic(response.jsonDict, @"code");
         self.orderNO = EncodeStringFromDic(data, @"ippOrderNo");
-        OrderString = EncodeStringFromDic(data, @"transMsg");
         
-        [self gotoPay];
+        
+        if([@"0000" isEqualToString:respcode]){
+            OrderString = EncodeStringFromDic(data, @"transMsg");
+            [self gotoPay];
+        }else if([@"9999" isEqualToString:respcode]){
+            [self payComplete];
+            
+        }
+        
         
         [[MOPHUDCenter shareInstance]removeHUD];
         
@@ -205,12 +224,24 @@
         
         EncodeUnEmptyStrObjctToDic(_resultDict, errorMsg, @"message");
         EncodeUnEmptyStrObjctToDic(_resultDict, errorCode, @"code");
-        EncodeUnEmptyDicObjctToDic(_resultDict, [self getParamsWrap], @"content");
+        EncodeUnEmptyDicObjctToDic(_resultDict, [self getParamsWrapForPay], @"content");
         
         [self tradeReturn];
         
         [[MOPHUDCenter shareInstance]removeHUD];
     } controller:self showProgressBar:NO];
+    
+    
+}
+
+-(void)payComplete{
+    
+    //TODO
+    [self getParamsWrapForPay];
+    EncodeUnEmptyStrObjctToDic(_resultDict, @"支付成功", @"message");
+    EncodeUnEmptyStrObjctToDic(_resultDict, @"0000", @"code");
+    EncodeUnEmptyDicObjctToDic(_resultDict, [self getParamsWrapForPay], @"content");
+    [self tradeReturn];
     
     
 }
@@ -225,7 +256,7 @@
     payingAlert = [[UIAlertView alloc]initWithTitle:@"支付中。。。" message:nil delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
 //    [payingAlert show];
     
-    switch (self.payType) {
+    switch (self.orderInfo.paytype) {
         case PayType_Alipay:
         {
             [self alipay];
@@ -285,7 +316,7 @@
         
             EncodeUnEmptyStrObjctToDic(_resultDict, TRADECANCEL, @"message");
             EncodeUnEmptyStrObjctToDic(_resultDict, @"0001", @"code");
-            EncodeUnEmptyDicObjctToDic(_resultDict, [self getParamsWrap], @"content");
+            EncodeUnEmptyDicObjctToDic(_resultDict, [self getParamsWrapForPay], @"content");
             [self tradeReturn];
         }
             break;
@@ -317,28 +348,28 @@
     switch (selectedPayType) {
         case 0:
         {
-            self.payType = PayType_YiPay;
+            self.orderInfo.paytype = PayType_YiPay;
             
         }
             break;
         case 1:
         {
-            self.payType = PayType_WeichatPay;
+            self.orderInfo.paytype = PayType_WeichatPay;
         }
             break;
         case 2:
         {
-            self.payType = PayType_Alipay;
+            self.orderInfo.paytype = PayType_Alipay;
         }
             break;
         case 3:
         {
-            self.payType = PayType_BaiduPay;
+            self.orderInfo.paytype = PayType_BaiduPay;
         }
             break;
         case 4:
         {
-            self.payType = PayType_ApplePay;
+            self.orderInfo.paytype = PayType_ApplePay;
         }
             break;
             
@@ -561,7 +592,8 @@
 
 -(void)resetPayAmount{
     
-    payAmount = [self.orderInfo.totalAmount intValue];;
+    payAmount = [self.orderInfo.totalAmount intValue];
+    [self.voucherArr removeAllObjects];
     for (VoucherData *temp in vouchDataSource) {
         
         if (temp.selected) {
@@ -572,6 +604,12 @@
                 payAmount = payAmount*[temp.discount floatValue];
                 break;
             }
+            PNRVoucherInfo *voucher = [[PNRVoucherInfo alloc]init];
+            voucher.voucherAmount = temp.voucherAmount;
+            voucher.voucherId = temp.voucherNo;
+            voucher.voucherType = temp.voucherType;
+            [self.voucherArr addObject:voucher];
+            
         }
         
     }
@@ -603,20 +641,20 @@
                 payStatus = PayStatus_PAYSUCCESS;
                 EncodeUnEmptyStrObjctToDic(_resultDict, TRADESUCCESS, @"message");
                 EncodeUnEmptyStrObjctToDic(_resultDict, @"0000", @"code");
-                EncodeUnEmptyDicObjctToDic(_resultDict, [self getParamsWrap], @"content");
+                EncodeUnEmptyDicObjctToDic(_resultDict, [self getParamsWrapForPay], @"content");
                 
             }else if ([resultStatus isEqualToString:@"6001"]){
                 payStatus = PayStatus_PAYCANCEL;
                 EncodeUnEmptyStrObjctToDic(_resultDict, TRADECANCEL, @"message");
                 EncodeUnEmptyStrObjctToDic(_resultDict, resultStatus, @"code");
-                EncodeUnEmptyDicObjctToDic(_resultDict, [self getParamsWrap], @"content");
+                EncodeUnEmptyDicObjctToDic(_resultDict, [self getParamsWrapForPay], @"content");
                 
                 
             }else{
                 payStatus = PayStatus_PAYFAIL;
                 EncodeUnEmptyStrObjctToDic(_resultDict, TRADEFAILED, @"message");
                 EncodeUnEmptyStrObjctToDic(_resultDict, resultStatus, @"code");
-                EncodeUnEmptyDicObjctToDic(_resultDict, [self getParamsWrap], @"content");
+                EncodeUnEmptyDicObjctToDic(_resultDict, [self getParamsWrapForPay], @"content");
             }
             
             
@@ -659,7 +697,7 @@
         payStatus = PayStatus_PAYFAIL;
         EncodeUnEmptyStrObjctToDic(_resultDict, BOOKORDERFAILED, @"message");
         EncodeUnEmptyStrObjctToDic(_resultDict, @"9000", @"code");
-        EncodeUnEmptyDicObjctToDic(_resultDict, [self getParamsWrap], @"content");
+        EncodeUnEmptyDicObjctToDic(_resultDict, [self getParamsWrapForPay], @"content");
         [self tradeReturn];
     }else{
         
@@ -687,7 +725,7 @@
                 payStatus = PayStatus_PAYSUCCESS;
                 EncodeUnEmptyStrObjctToDic(_resultDict, TRADESUCCESS, @"message");
                 EncodeUnEmptyStrObjctToDic(_resultDict, @"0000", @"code");
-                EncodeUnEmptyDicObjctToDic(_resultDict, [self getParamsWrap], @"content");
+                EncodeUnEmptyDicObjctToDic(_resultDict, [self getParamsWrapForPay], @"content");
                 
             }
                 break;
@@ -696,7 +734,7 @@
                 payStatus = PayStatus_PAYCANCEL;
                 EncodeUnEmptyStrObjctToDic(_resultDict, TRADECANCEL, @"message");
                 EncodeUnEmptyStrObjctToDic(_resultDict, [NSString stringWithFormat:@"%d",response.errCode], @"code");
-                EncodeUnEmptyDicObjctToDic(_resultDict, [self getParamsWrap], @"content");
+                EncodeUnEmptyDicObjctToDic(_resultDict, [self getParamsWrapForPay], @"content");
                 
             }
                 break;
@@ -705,7 +743,7 @@
                 payStatus = PayStatus_PAYFAIL;
                 EncodeUnEmptyStrObjctToDic(_resultDict, [NSString stringWithFormat:@"%@:%@",TRADEFAILED,response.errStr], @"message");
                 EncodeUnEmptyStrObjctToDic(_resultDict, [NSString stringWithFormat:@"%d",response.errCode], @"code");
-                EncodeUnEmptyDicObjctToDic(_resultDict, [self getParamsWrap], @"content");
+                EncodeUnEmptyDicObjctToDic(_resultDict, [self getParamsWrapForPay], @"content");
                 DDLog(@"支付失败", response.errStr);
             }
                 break;
@@ -760,7 +798,7 @@
 
 -(Boolean)handleOpenURL:(NSURL *)url withCompletion:(ThirdPayCompletion )complete{
     [payingAlert setHidden:YES];
-    switch (self.payType) {
+    switch (self.orderInfo.paytype) {
         case PayType_YiPay:{
             [BestpaySDK processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
                 NSLog(@"确保结果显示不会出错：%@",resultDic);
@@ -773,19 +811,19 @@
                     payStatus = PayStatus_PAYSUCCESS;
                     EncodeUnEmptyStrObjctToDic(_resultDict, TRADESUCCESS, @"message");
                     EncodeUnEmptyStrObjctToDic(_resultDict, @"0000", @"code");
-                    EncodeUnEmptyDicObjctToDic(_resultDict, [self getParamsWrap], @"content");
+                    EncodeUnEmptyDicObjctToDic(_resultDict, [self getParamsWrapForPay], @"content");
                 }else if([resultCode isEqualToString:@"01"]){
                     payStatus = PayStatus_PAYFAIL;
                     EncodeUnEmptyStrObjctToDic(_resultDict, TRADEFAILED, @"message");
                     EncodeUnEmptyStrObjctToDic(_resultDict, @"0010", @"code");
-                    EncodeUnEmptyDicObjctToDic(_resultDict, [self getParamsWrap], @"content");
+                    EncodeUnEmptyDicObjctToDic(_resultDict, [self getParamsWrapForPay], @"content");
                     
                 }else if([resultCode isEqualToString:@"02"]){
                     
                     payStatus = PayStatus_PAYCANCEL;
                     EncodeUnEmptyStrObjctToDic(_resultDict,TRADECANCEL, @"message");
                     EncodeUnEmptyStrObjctToDic(_resultDict, @"6001", @"code");
-                    EncodeUnEmptyDicObjctToDic(_resultDict, [self getParamsWrap], @"content");
+                    EncodeUnEmptyDicObjctToDic(_resultDict, [self getParamsWrapForPay], @"content");
                 }
             
         }
@@ -803,19 +841,19 @@
                         payStatus = PayStatus_PAYSUCCESS;
                         EncodeUnEmptyStrObjctToDic(_resultDict, TRADESUCCESS, @"message");
                         EncodeUnEmptyStrObjctToDic(_resultDict, @"0000", @"code");
-                        EncodeUnEmptyDicObjctToDic(_resultDict, [self getParamsWrap], @"content");
+                        EncodeUnEmptyDicObjctToDic(_resultDict, [self getParamsWrapForPay], @"content");
                         
                     }else if ([resultStatus isEqualToString:@"6001"]){
                         payStatus = PayStatus_PAYCANCEL;
                         EncodeUnEmptyStrObjctToDic(_resultDict, TRADECANCEL, @"message");
                         EncodeUnEmptyStrObjctToDic(_resultDict, resultStatus, @"code");
-                        EncodeUnEmptyDicObjctToDic(_resultDict, [self getParamsWrap], @"content");
+                        EncodeUnEmptyDicObjctToDic(_resultDict, [self getParamsWrapForPay], @"content");
                         
                     }else{
                         payStatus = PayStatus_PAYFAIL;
                         EncodeUnEmptyStrObjctToDic(_resultDict, TRADEFAILED, @"message");
                         EncodeUnEmptyStrObjctToDic(_resultDict, @"0010", @"code");
-                        EncodeUnEmptyDicObjctToDic(_resultDict, [self getParamsWrap], @"content");
+                        EncodeUnEmptyDicObjctToDic(_resultDict, [self getParamsWrapForPay], @"content");
                     }
                     
                     NSLog(@"reslut = %@",_resultDict);
@@ -898,7 +936,44 @@
     return dic;
 }
 
--(NSDictionary *)getParamsWrap{
+
+-(NSDictionary *)getParamsWrapForTransInfo{
+    
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
+    EncodeUnEmptyStrObjctToDic(dict, self.orderInfo.merchantNo, @"ippTransNo");
+    EncodeUnEmptyStrObjctToDic(dict, self.orderInfo.merchantOrderNo, @"payMethod");
+    
+    EncodeUnEmptyStrObjctToDic(dict, self.orderInfo.orderSubject, @"payTransNo");
+    EncodeUnEmptyStrObjctToDic(dict, self.orderInfo.orderDescription, @"tradeAmount");
+    EncodeUnEmptyStrObjctToDic(dict, self.orderInfo.memo, @"payAmount");
+    EncodeUnEmptyStrObjctToDic(dict, self.orderInfo.totalAmount, @"transStatus");
+    EncodeUnEmptyStrObjctToDic(dict, self.orderInfo.payAmount, @"transFinishTime");
+    EncodeUnEmptyStrObjctToDic(dict, self.orderNO, @"tradeDesc");
+    EncodeUnEmptyStrObjctToDic(dict, self.orderNO, @"settleDate");
+    
+    return dict;
+    
+}
+
+
+-(NSDictionary *)getParamsWrapForPay{
+    
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
+    EncodeUnEmptyStrObjctToDic(dict, self.orderInfo.merchantNo, @"merchantNo");
+    EncodeUnEmptyStrObjctToDic(dict, self.orderInfo.merchantOrderNo, @"merchantOrderNo");
+    
+    EncodeUnEmptyStrObjctToDic(dict, self.orderInfo.orderSubject, @"orderTitle");
+    EncodeUnEmptyStrObjctToDic(dict, self.orderInfo.orderDescription, @"orderDetail");
+    EncodeUnEmptyStrObjctToDic(dict, self.orderInfo.memo, @"memo");
+    EncodeUnEmptyStrObjctToDic(dict, self.orderInfo.totalAmount, @"totalAmount");
+    EncodeUnEmptyStrObjctToDic(dict, self.orderInfo.payAmount, @"payAmount");
+    
+    EncodeUnEmptyStrObjctToDic(dict, self.orderNO, @"ippOrderNo");
+    
+    return dict;
+    
+}
+-(NSDictionary *)getParamsWrapForQuery{
     
     NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
     EncodeUnEmptyStrObjctToDic(dict, self.orderInfo.merchantNo, @"merchantNo");
@@ -965,7 +1040,6 @@
     
     if (!yM) return @"0";
     NSNumberFormatter *nf = [[NSNumberFormatter alloc] init];
-    
     
     if(type==0){
         

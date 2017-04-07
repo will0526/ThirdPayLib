@@ -81,8 +81,8 @@
     EncodeUnEmptyStrObjctToDic(dic, self.appVer, @"appVer");
     
     
-    
-    EncodeUnEmptyStrObjctToDic(dic, self.totalAmount, @"orderAmount");
+    EncodeUnEmptyStrObjctToDic(dic, self.orderAmount, @"orderAmount");
+    EncodeUnEmptyStrObjctToDic(dic, self.totalAmount, @"totalAmount");
     EncodeUnEmptyStrObjctToDic(dic, self.payAmount, @"tradeAmount");
     EncodeUnEmptyStrObjctToDic(dic, self.tradeCurrency, @"currency");
     EncodeUnEmptyStrObjctToDic(dic, self.merchantOrderNo, @"orderNo");
@@ -96,7 +96,7 @@
     EncodeUnEmptyStrObjctToDic(dic, self.memberPoints, @"memberPoints");
     
     if(IsArrEmpty(self.goodsInfo)){
-        EncodeDefaultStrObjctToDic(dic, @"", @"goodsInfo",@"");
+        EncodeDefaultStrObjctToDic(dic, @"", @"GoodsInfo",@"");
     }else{
         
         NSMutableArray *tempGoodsArr = [[NSMutableArray alloc]init];
@@ -106,18 +106,33 @@
             EncodeUnEmptyStrObjctToDic(goods, temp.itemNo, @"itemNo");
             EncodeUnEmptyStrObjctToDic(goods, temp.goodsName, @"goodsName");
             EncodeUnEmptyStrObjctToDic(goods, temp.goodsPrice, @"goodsPrice");
-            EncodeUnEmptyStrObjctToDic(goods, temp.goodsBody, @"goodsBody");
             EncodeUnEmptyStrObjctToDic(goods, temp.goodsNumber, @"goodsQuantity");
             EncodeUnEmptyStrObjctToDic(goods, temp.goodsAmount, @"goodsAmount");
             [tempGoodsArr addObject:goods];
         }
         
-        EncodeUnEmptyArrToDic(dic, tempGoodsArr, @"goodsInfo");
+        EncodeUnEmptyArrToDic(dic, tempGoodsArr, @"GoodsInfo");
         
     }
     
+    if(IsArrEmpty(self.campaignsInfo)){
+        EncodeDefaultStrObjctToDic(dic, @"", @"CampaignInfo",@"");
+    }else{
+        
+        NSMutableArray *tempArr = [[NSMutableArray alloc]init];
+        for (NSString *temp in self.campaignsInfo) {
+            NSMutableDictionary *campaign = [[NSMutableDictionary alloc]init];
+            EncodeUnEmptyStrObjctToDic(campaign, temp, @"CampaignNo");
+            [tempArr addObject:campaign];
+        }
+        
+        EncodeUnEmptyArrToDic(dic, tempArr, @"CampaignInfo");
+        
+    }
+    
+    
     if(IsArrEmpty(self.voucherInfo)){
-        EncodeDefaultStrObjctToDic(dic, @"", @"voucherInfo",@"");
+        EncodeDefaultStrObjctToDic(dic, @"", @"VoucherInfo",@"");
     }else{
         
         NSMutableArray *tempPayArr = [[NSMutableArray alloc]init];
@@ -131,7 +146,7 @@
             [tempPayArr addObject:pay];
         }
         
-        EncodeUnEmptyArrToDic(dic, tempPayArr, @"voucherInfo");
+        EncodeUnEmptyArrToDic(dic, tempPayArr, @"VoucherInfo");
         
     }
     

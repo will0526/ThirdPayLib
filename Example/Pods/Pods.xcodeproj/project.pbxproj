@@ -256,6 +256,8 @@
 		BE271AF41E123A2A00959F37 /* PNRMemberInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = BE215DDF1E0D14AE00C779A3 /* PNRMemberInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BE271AFB1E1264BF00959F37 /* QueryAllMemberInfoRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = BE271AF91E1264BF00959F37 /* QueryAllMemberInfoRequest.h */; };
 		BE271AFC1E1264BF00959F37 /* QueryAllMemberInfoRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = BE271AFA1E1264BF00959F37 /* QueryAllMemberInfoRequest.m */; };
+		BE2D87EC1E8E652A007A0101 /* QureyCampainRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = BE2D87EA1E8E652A007A0101 /* QureyCampainRequest.h */; };
+		BE2D87ED1E8E652A007A0101 /* QureyCampainRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = BE2D87EB1E8E652A007A0101 /* QureyCampainRequest.m */; };
 		BE3757771DC9BC6000E95CF6 /* WXApi.h in Headers */ = {isa = PBXBuildFile; fileRef = BE3757741DC9BC6000E95CF6 /* WXApi.h */; };
 		BE3757781DC9BC6000E95CF6 /* WXApiObject.h in Headers */ = {isa = PBXBuildFile; fileRef = BE3757751DC9BC6000E95CF6 /* WXApiObject.h */; };
 		BE37577C1DC9BC6A00E95CF6 /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BE37577A1DC9BC6A00E95CF6 /* AlipaySDK.bundle */; };
@@ -700,6 +702,8 @@
 		BE271AEF1E11047000959F37 /* QueryMemberRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryMemberRequest.m; sourceTree = "<group>"; };
 		BE271AF91E1264BF00959F37 /* QueryAllMemberInfoRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryAllMemberInfoRequest.h; sourceTree = "<group>"; };
 		BE271AFA1E1264BF00959F37 /* QueryAllMemberInfoRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryAllMemberInfoRequest.m; sourceTree = "<group>"; };
+		BE2D87EA1E8E652A007A0101 /* QureyCampainRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QureyCampainRequest.h; sourceTree = "<group>"; };
+		BE2D87EB1E8E652A007A0101 /* QureyCampainRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QureyCampainRequest.m; sourceTree = "<group>"; };
 		BE2E00E1C23ED078BD2AB67E1584D072 /* KWBeKindOfClassMatcher.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = KWBeKindOfClassMatcher.h; path = Classes/Matchers/KWBeKindOfClassMatcher.h; sourceTree = "<group>"; };
 		BE3757641DC9BAAF00E95CF6 /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlipaySDK.framework; path = alipay/AlipaySDK.framework; sourceTree = "<group>"; };
 		BE37576A1DC9BAD600E95CF6 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.1.sdk/usr/lib/libz.tbd; sourceTree = DEVELOPER_DIR; };
@@ -1526,6 +1530,8 @@
 				BEE4AE731E4B1A1B00E00B67 /* VoucherTableViewCell.m */,
 				BEE4AE761E4B1A7700E00B67 /* VoucherData.h */,
 				BEE4AE771E4B1A7700E00B67 /* VoucherData.m */,
+				BE2D87EA1E8E652A007A0101 /* QureyCampainRequest.h */,
+				BE2D87EB1E8E652A007A0101 /* QureyCampainRequest.m */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -1696,6 +1702,7 @@
 				BE6108AC1DD9A64F007DAE8E /* BestpayNativeModel.h in Headers */,
 				31255730780D57298700DB77F09C22D4 /* CommonViewController.h in Headers */,
 				84225E0330BCDC880518B0D7DD68382C /* Constant.h in Headers */,
+				BE2D87EC1E8E652A007A0101 /* QureyCampainRequest.h in Headers */,
 				4397C1D392A7751E3E5C6FC5151D9CD7 /* EnvironmentConfig.h in Headers */,
 				990C500484DECEC325EA4F0CA7CA39DE /* GlobleConstant.h in Headers */,
 				E49C9EF3B512B62709AE93DE9436BCCD /* GlobleDefine.h in Headers */,
@@ -2233,6 +2240,7 @@
 				7C8D69F5399B327F1BAEDE8A35E5DAC8 /* qrencode.c in Sources */,
 				BEE4AE791E4B1A7700E00B67 /* VoucherData.m in Sources */,
 				14CFB93139B104775FFD622986A22F15 /* qrinput.c in Sources */,
+				BE2D87ED1E8E652A007A0101 /* QureyCampainRequest.m in Sources */,
 				E7307BD63BE9E8F5D37ABA6863E26057 /* qrspec.c in Sources */,
 				D4B2E267168C03A7AF17F2596876A1EF /* QueryOrderRequest.m in Sources */,
 				C827E9AE745ADB4C36D5E62CAC7C77D5 /* rscode.c in Sources */,
@@ -2482,6 +2490,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = arm64;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -2730,6 +2739,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = arm64;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};

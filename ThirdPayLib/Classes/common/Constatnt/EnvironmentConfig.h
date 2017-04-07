@@ -33,6 +33,7 @@
 #define BASEURL @"https://ipp.pnrtec.com/front/gateway/sdk/interface.json"//URL
 #define SALT @"fTWFH3QRH7gSs3DE"
 
+#define TESTBASEURL @"http://ippuat.pnrtec.com/front/gateway/sdk/interface.json"//URL
 
 
 #endif

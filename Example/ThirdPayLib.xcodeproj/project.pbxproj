@@ -698,6 +698,7 @@
 				PROVISIONING_PROFILE = "38b61ba7-c8db-4c7d-a2b8-8f1ec8d44f28";
 				PROVISIONING_PROFILE_SPECIFIER = iOSDevelopNor;
 				TARGETED_DEVICE_FAMILY = 1;
+				VALID_ARCHS = arm64;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -746,6 +747,7 @@
 				PROVISIONING_PROFILE = "38b61ba7-c8db-4c7d-a2b8-8f1ec8d44f28";
 				PROVISIONING_PROFILE_SPECIFIER = iOSDevelopNor;
 				TARGETED_DEVICE_FAMILY = 1;
+				VALID_ARCHS = arm64;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

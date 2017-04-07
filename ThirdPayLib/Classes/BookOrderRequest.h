@@ -42,6 +42,8 @@
 @property(nonatomic,strong)NSString *orderDetail;       //商品详情
 @property(nonatomic,strong)NSString *memo;              //订单备注
 @property(nonatomic,strong)NSString *totalAmount;       //订单总金额
+@property(nonatomic,strong)NSString *orderAmount;       //订单金额
+
 @property(nonatomic,strong)NSString *payAmount;         //订单支付金额
 
 @property(nonatomic,assign)PayType payType;         //订单支付方式
@@ -55,7 +57,7 @@
 @property(nonatomic,strong)NSString *notifyURL;     //通知地址
 @property(nonatomic,strong)NSArray *goodsInfo;     //商品信息
 @property(nonatomic,strong)NSArray *voucherInfo;     //其他支付信息
-
+@property(nonatomic,strong)NSArray *campaignsInfo;     //其他支付信息
 
     
 

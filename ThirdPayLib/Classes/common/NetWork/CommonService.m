@@ -130,8 +130,24 @@ withOptionalAnimation:(MOPHUDCenterHUDType)hudtype
             manager.responseSerializer = [AFHTTPResponseSerializer serializer];
             manager.requestSerializer.timeoutInterval = timeout;
             NSLog(@"paramsStr............%@",request.requestParamDic);
+            NSString *baseUrl = [NSString stringWithFormat:@"%@",BASEURL];
+//            ==================
             
-            [manager POST:BASEURL parameters:request.requestParamDic progress:^(NSProgress * _Nonnull uploadProgress) {
+            NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
+            NSString *environment = (NSString *)[userDef objectForKey:@"environment"];
+            
+            if (environment) {
+                if ([environment isEqualToString:@"测试"]) {
+                    baseUrl = [NSString stringWithFormat:@"%@",TESTBASEURL];
+                }else{
+                    baseUrl = [NSString stringWithFormat:@"%@",BASEURL];
+                }
+                
+            }
+            
+//            ==================
+            DDLog(@"baseurl", baseUrl);
+            [manager POST:baseUrl parameters:request.requestParamDic progress:^(NSProgress * _Nonnull uploadProgress) {
                 
             } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                 
@@ -155,7 +171,7 @@ withOptionalAnimation:(MOPHUDCenterHUDType)hudtype
                     NSString *respcode = EncodeStringFromDic(response.jsonDict, @"code");
                     NSString *msg = EncodeStringFromDic(response.jsonDict, @"message");
                     NSLog(@"response>>>>>>>>>>%@",dic);
-                    if ( [respcode isEqualToString:@"0000"]) {
+                    if ( [respcode isEqualToString:@"0000"] || [respcode isEqualToString:@"9999"]) {
                         
                         if (SuccessBlock)
                         {
