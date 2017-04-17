@@ -105,7 +105,7 @@
 		4A81E6CDBC85B95C30C161709A26A432 /* KWSymbolicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5E764C4FA025C50C8C1A6DFC80B4D6 /* KWSymbolicator.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		4F7C808A15E665124D98DFC80DD1AA61 /* KWMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 439403C8F9DC3D1E474A82ADDC26ADE2 /* KWMatcher.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		4F932F5B556C639DDB006453EF1A65D0 /* KiwiBlockMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 737C2053AC13108E0F68F149AA2E8CBF /* KiwiBlockMacros.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		50318715333A41CDCB73A90D5E8ED9C4 /* ThirdPayLib-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = D2261683EC6BBC18AE1D6031683153D0 /* ThirdPayLib-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		50318715333A41CDCB73A90D5E8ED9C4 /* ThirdPayLib-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = D2261683EC6BBC18AE1D6031683153D0 /* ThirdPayLib-umbrella.h */; };
 		51047C1945103943F70BEADE83725630 /* UIWebView+AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 294539F5FA63BD58D2BA177FC0D4B923 /* UIWebView+AFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		51685EE3CA379CA71AF72AA8332A45AF /* KWInvocationCapturer.m in Sources */ = {isa = PBXBuildFile; fileRef = CF54A6D50F61C76D18A3CA9706047BEF /* KWInvocationCapturer.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		52FF6D9BE2D5B3604472B9D1005BC6D6 /* KWDeviceInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE37A0DA23B5523B6FF895A97AECDAF /* KWDeviceInfo.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
@@ -1693,6 +1693,7 @@
 				BE8965241DFE94D0000104C9 /* PNRVoucherInfo.h in Headers */,
 				BEE4AE781E4B1A7700E00B67 /* VoucherData.h in Headers */,
 				153E7A0A1932BECC82ED2A7166DDF4DD /* BaseResponse.h in Headers */,
+				50318715333A41CDCB73A90D5E8ED9C4 /* ThirdPayLib-umbrella.h in Headers */,
 				D3CC584ECC40A6BBFC23EACA4DF15C97 /* BBCyclingLabel.h in Headers */,
 				F91EFB777B4021D07669C1563B6C651D /* bitstream.h in Headers */,
 				F41290C1C838302264F0B35E15A5AA66 /* BookOrderRequest.h in Headers */,
@@ -1739,7 +1740,6 @@
 				E848F80003183BA90E3B6FAA048F556C /* SystemInfo.h in Headers */,
 				80ED3C7AF328EE936CA4890C7C07B883 /* ThirdPay.h in Headers */,
 				BE3757771DC9BC6000E95CF6 /* WXApi.h in Headers */,
-				50318715333A41CDCB73A90D5E8ED9C4 /* ThirdPayLib-umbrella.h in Headers */,
 				F5FA11F3F6395BA6B0B15397307B3F4E /* UIColor+SNAdditions.h in Headers */,
 				BE6108AD1DD9A64F007DAE8E /* BestpaySDK.h in Headers */,
 				195A1DDAF713CDFC992DA76AD9A1C43E /* UIImage+SNAdditions.h in Headers */,
