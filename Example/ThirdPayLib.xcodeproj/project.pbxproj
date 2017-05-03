@@ -24,6 +24,7 @@
 		7DA7550E220BEEC762FEC902 /* Pods_ThirdPayLib_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6D7CB2900584269E436D98B /* Pods_ThirdPayLib_Tests.framework */; };
 		BE3757911DC9BF5200E95CF6 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE3757901DC9BF5200E95CF6 /* AFNetworking.framework */; };
 		BE52C5821D5C669500408F71 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE52C5811D5C669500408F71 /* Launch Screen.storyboard */; };
+		BE56C8E31EB9928100A8B630 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BE56C8E21EB9928100A8B630 /* icon@2x.png */; };
 		BE56DFA91D8E2AA300FF4DD6 /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEED31731D65541A0037534C /* AlipaySDK.framework */; };
 		BE6108A21DD9A254007DAE8E /* ThirdPayLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE6108A11DD9A254007DAE8E /* ThirdPayLib.framework */; };
 		BE77500F1D813CC100819EA4 /* PNRAboutUSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE77500E1D813CC100819EA4 /* PNRAboutUSViewController.m */; };
@@ -88,6 +89,7 @@
 		807C03805F310A7D7058F0CA /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		BE3757901DC9BF5200E95CF6 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = "../../../../Library/Developer/Xcode/DerivedData/ThirdPayLib-bhqrauzgvzjyvmcuxbvksxtjrgii/Build/Products/Debug-iphoneos/AFNetworking/AFNetworking.framework"; sourceTree = "<group>"; };
 		BE52C5811D5C669500408F71 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		BE56C8E21EB9928100A8B630 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
 		BE6108A11DD9A254007DAE8E /* ThirdPayLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ThirdPayLib.framework; path = "../../../../Library/Developer/Xcode/DerivedData/ThirdPayLib-bhqrauzgvzjyvmcuxbvksxtjrgii/Build/Products/Debug-iphoneos/ThirdPayLib/ThirdPayLib.framework"; sourceTree = "<group>"; };
 		BE77500D1D813CC100819EA4 /* PNRAboutUSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNRAboutUSViewController.h; sourceTree = "<group>"; };
 		BE77500E1D813CC100819EA4 /* PNRAboutUSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNRAboutUSViewController.m; sourceTree = "<group>"; };
@@ -238,6 +240,7 @@
 		6003F594195388D20070C39A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				BE56C8E21EB9928100A8B630 /* icon@2x.png */,
 				BEFA029C1DE81B3800793DE3 /* Bestpaylib */,
 				BEED31711D65541A0037534C /* alipay */,
 				BE82C3E61D5DC9F500926EB5 /* ThirdPayLib.bundle */,
@@ -422,6 +425,7 @@
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
 				BE82C3E71D5DC9F500926EB5 /* ThirdPayLib.bundle in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
+				BE56C8E31EB9928100A8B630 /* icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,7 +10,7 @@
 #import "ThirdPay.h"
 @interface PNROrderInfo : NSObject
 
-
+@property(nonatomic,strong)NSString *projectNo;        //项目号
 @property(nonatomic,strong)NSString *merchantNo;        //商户号
 @property(nonatomic,strong)NSString *accountNo;         //用户号
 @property(nonatomic,strong)NSString *accountType;       //用户类型，
@@ -31,7 +31,7 @@
 
 @property(nonatomic,strong)NSArray *voucherInfo;       //其他支付类型信息
 
-
+@property(nonatomic,strong)NSString *voucherNotifyURL;         //后台发券通知地址
 @property(nonatomic,strong)NSString *notifyURL;         //后台通知地址
 @property(nonatomic,strong)NSString *appSchemeStr;      //支付成功跳转回调
 

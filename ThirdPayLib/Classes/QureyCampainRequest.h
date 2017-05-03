@@ -11,8 +11,7 @@
 @interface QureyCampainRequest : BaseRequest
 
 @property(nonatomic,strong)NSString *merchantNo;        //商户号
-@property(nonatomic,strong)NSString *pageNo;        //页码
-@property(nonatomic,strong)NSString *pageSize;        //每页大小
+@property(nonatomic,strong)NSString *projectNo;        //项目号
 
 
 @end

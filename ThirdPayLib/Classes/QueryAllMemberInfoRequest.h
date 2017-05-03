@@ -14,7 +14,7 @@
 
 
 @property(nonatomic,strong)NSString *merchantNo;        //商户号
-
+@property(nonatomic,strong)NSString *projectNo;        //项目号
 @property(nonatomic,strong)NSString *accountType;       //用户类型
 @property(nonatomic,strong)NSString *accountNo;         //用户号
 

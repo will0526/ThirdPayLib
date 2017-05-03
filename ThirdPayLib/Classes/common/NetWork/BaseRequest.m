@@ -48,6 +48,7 @@
         EncodeUnEmptyStrObjctToDic(_requestParamDic, APIVER, @"version");
         
         
+        
         EncodeUnEmptyStrObjctToDic(_requestParamDic, @"000001", @"terminalNo");
         
         

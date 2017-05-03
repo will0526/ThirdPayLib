@@ -103,6 +103,7 @@
     request.accountType = accountType;
     request.accountNo = accountNo;
     request.orderAmount = orderAmount;
+    request.projectNo = self.orderInfo.projectNo;
     
     BaseResponse *response = [[BaseResponse alloc]init];
     
@@ -112,7 +113,7 @@
         
         NSDictionary *dict = response.jsonDict;
         
-        NSArray *tempArr = EncodeArrayFromDic(EncodeDicFromDic(dict, @"data"), @"voucherInfo");
+        NSArray *tempArr = EncodeArrayFromDic(EncodeDicFromDic(dict, @"data"), @"VoucherInfo");
         
         for (NSDictionary *temp in tempArr) {
             VoucherData *voucher = [VoucherData initWithDict:temp];
@@ -161,6 +162,8 @@
     BookOrderRequest *request = [[BookOrderRequest alloc]init];
     
     request.merchantNo = self.orderInfo.merchantNo;
+    
+    request.projectNo = self.orderInfo.projectNo;
     request.merchantOrderNo = self.orderInfo.merchantOrderNo;
     
     request.orderAmount = self.orderInfo.orderAmount;
@@ -184,6 +187,7 @@
     
     request.payType = self.orderInfo.paytype;
     request.notifyURL = self.orderInfo.notifyURL;
+    request.voucherNotifyURL = self.orderInfo.voucherNotifyURL;
     
     BaseResponse *response = [[BaseResponse alloc]init];
     [[MOPHUDCenter shareInstance]showHUDWithTitle:@""
@@ -606,7 +610,7 @@
             }
             PNRVoucherInfo *voucher = [[PNRVoucherInfo alloc]init];
             voucher.voucherAmount = temp.voucherAmount;
-            voucher.voucherId = temp.voucherNo;
+            voucher.voucherId = temp.voucherId;
             voucher.voucherType = temp.voucherType;
             [self.voucherArr addObject:voucher];
             

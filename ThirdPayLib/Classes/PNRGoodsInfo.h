@@ -12,8 +12,6 @@
 @property(nonatomic,strong)NSString *itemNo;        //货号
 @property(nonatomic,strong)NSString *goodsNo;       //商品编号
 @property(nonatomic,strong)NSString *goodsName;     //商品名称
-@property(nonatomic,strong)NSString *goodsNumber;   //商品数量
-@property(nonatomic,strong)NSString *goodsPrice;    //商品单价
 @property(nonatomic,strong)NSString *goodsAmount;   //商品支付金额（以分为单位）
 
 @end

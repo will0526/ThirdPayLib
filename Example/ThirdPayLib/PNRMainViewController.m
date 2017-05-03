@@ -28,26 +28,41 @@
 @end
 
 @implementation PNRMainViewController
+{
+    int height;
+    int width;
+    UIImageView *icon;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"测试demo";
+    self.title = @"华润支付";
+    
     
     NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
     [userDef setObject:@"测试" forKey:@"environment"];
     
     UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithCustomView:self.transButton];
-    self.navigationItem.rightBarButtonItem = menuButton;
+//    self.navigationItem.rightBarButtonItem = menuButton;
+    icon = [[UIImageView alloc]initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, 308*self.view.frame.size.width/540)];
     
+    [icon setImage:[UIImage imageNamed:@"icon@2x"]];
+    [self.view addSubview:icon];
+    width = (self.view.frame.size.width-30)/2;
+    height = (self.view.frame.size.height - 64 - icon.frame.size.height-30)/3;
+    
+    
+    
+    [self.view addSubview:self.orderButton];
+    [self.view addSubview:self.orderButton2];
     //    [self.view addSubview:self.queryButton];
     [self.view addSubview:self.queryMemberButton];
     [self.view addSubview:self.queryAllMemberButton];
-    [self.view addSubview:self.orderButton];
-    [self.view addSubview:self.orderButton2];
+    
     [self.view addSubview:self.queryCampain];
     
-//    [self.view addSubview:self.aboutButton];
+    [self.view addSubview:self.aboutButton];
 //    [self.view addSubview:self.scanButton];
     // Do any additional setup after loading the view.
 }
@@ -61,9 +76,7 @@
         
         [_queryButton setBackgroundColor:[UIColor orangeColor]];
         
-        _queryButton.clipsToBounds = YES;
-        _queryButton.layer.cornerRadius = 20;
-        _queryButton.tag = 0;
+//        _queryButton.tag = 0;
         [_queryButton addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
         
     }
@@ -74,33 +87,41 @@
 
 -(UIButton *)orderButton{
     if (_orderButton == nil) {
-        _orderButton = [[UIButton alloc]initWithFrame:CGRectMake(self.view.frame.size.width/6, 100, self.view.frame.size.width*2/3, 40)];
+        _orderButton = [[UIButton alloc]initWithFrame:CGRectMake(10, icon.frame.origin.y+icon.frame.size.height+10, width, height)];
         [_orderButton setTitle:@"下单" forState:UIControlStateNormal];
         [_orderButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         
-        [_orderButton setBackgroundColor:[UIColor orangeColor]];
         
-        _orderButton.clipsToBounds = YES;
-        _orderButton.layer.cornerRadius = 20;
-        _orderButton.tag = 1;
+        [_orderButton setBackgroundColor:[self colorWithRGBHex:(0x3d98ff)]];
+        
+        _orderButton.tag = 0;
         [_orderButton addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
     }
     
     return _orderButton;
 }
 
+- (UIColor *)colorWithRGBHex:(UInt32)hex
+{
+    int r = (hex >> 16) & 0xFF;
+    int g = (hex >> 8) & 0xFF;
+    int b = (hex) & 0xFF;
+    
+    return [UIColor colorWithRed:r / 255.0f
+                           green:g / 255.0f
+                            blue:b / 255.0f
+                           alpha:1.0f];
+}
 
 -(UIButton *)orderButton2{
     if (_orderButton2 == nil) {
-        _orderButton2 = [[UIButton alloc]initWithFrame:CGRectMake(self.view.frame.size.width/6, 170, self.view.frame.size.width*2/3, 40)];
+        _orderButton2 = [[UIButton alloc]initWithFrame:CGRectMake(_orderButton.frame.size.width+20, _orderButton.frame.origin.y, width,height)];
         [_orderButton2 setTitle:@"下单（无页面）" forState:UIControlStateNormal];
         [_orderButton2 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         
-        [_orderButton2 setBackgroundColor:[UIColor orangeColor]];
+        [_orderButton2 setBackgroundColor:[self colorWithRGBHex:(0x3d98ff)]];
         
-        _orderButton2.clipsToBounds = YES;
-        _orderButton2.layer.cornerRadius = 20;
-        _orderButton2.tag = 2;
+        _orderButton2.tag = 1;
         [_orderButton2 addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
     }
     
@@ -111,15 +132,13 @@
 
 -(UIButton *)aboutButton{
     if (_aboutButton == nil) {
-        _aboutButton = [[UIButton alloc]initWithFrame:CGRectMake(self.view.frame.size.width/6, 380, self.view.frame.size.width*2/3, 40)];
+        _aboutButton = [[UIButton alloc]initWithFrame:CGRectMake(_queryAllMemberButton.frame.origin.x, _queryAllMemberButton.frame.origin.y + _queryAllMemberButton.frame.size.height + 10,  width,height)];
         [_aboutButton setTitle:@"关于我们" forState:UIControlStateNormal];
         [_aboutButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         
-        [_aboutButton setBackgroundColor:[UIColor orangeColor]];
+        [_aboutButton setBackgroundColor:[self colorWithRGBHex:(0xffa21c)]];
         
-        _aboutButton.clipsToBounds = YES;
-        _aboutButton.layer.cornerRadius = 20;
-        _aboutButton.tag = 3;
+        _aboutButton.tag = 15;
         [_aboutButton addTarget:self action:@selector(aboutUS) forControlEvents:UIControlEventTouchUpInside];
         
     }
@@ -147,15 +166,13 @@
 
 -(UIButton *)queryMemberButton{
     if (_queryMemberButton == nil) {
-        _queryMemberButton = [[UIButton alloc]initWithFrame:CGRectMake(self.view.frame.size.width/6, 240, self.view.frame.size.width*2/3, 40)];
+        _queryMemberButton = [[UIButton alloc]initWithFrame:CGRectMake(10,  _orderButton.frame.origin.y+ _orderButton.frame.size.height+10,  width,height)];
         [_queryMemberButton setTitle:@"订单权益查询" forState:UIControlStateNormal];
         [_queryMemberButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         
-        [_queryMemberButton setBackgroundColor:[UIColor orangeColor]];
+        [_queryMemberButton setBackgroundColor:[self colorWithRGBHex:(0x4fc72f)]];
         
-        _queryMemberButton.clipsToBounds = YES;
-        _queryMemberButton.layer.cornerRadius = 20;
-        _queryMemberButton.tag = 5;
+        _queryMemberButton.tag = 2;
         [_queryMemberButton addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
         
     }
@@ -166,15 +183,13 @@
 
 -(UIButton *)queryAllMemberButton{
     if (_queryAllMemberButton == nil) {
-        _queryAllMemberButton = [[UIButton alloc]initWithFrame:CGRectMake(self.view.frame.size.width/6, 310, self.view.frame.size.width*2/3, 40)];
+        _queryAllMemberButton = [[UIButton alloc]initWithFrame:CGRectMake(_orderButton2.frame.origin.x, _orderButton2.frame.origin.y+_orderButton2.frame.size.height+10,  width,height)];
         [_queryAllMemberButton setTitle:@"所有权益查询" forState:UIControlStateNormal];
         [_queryAllMemberButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         
-        [_queryAllMemberButton setBackgroundColor:[UIColor orangeColor]];
+        [_queryAllMemberButton setBackgroundColor:[self colorWithRGBHex:(0x4fc72f)]];
         
-        _queryAllMemberButton.clipsToBounds = YES;
-        _queryAllMemberButton.layer.cornerRadius = 20;
-        _queryAllMemberButton.tag = 6;
+        _queryAllMemberButton.tag = 3;
         [_queryAllMemberButton addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
         
     }
@@ -201,15 +216,14 @@
 }
 -(UIButton *)queryCampain{
     if (_queryCampain == nil) {
-        _queryCampain = [[UIButton alloc]initWithFrame:CGRectMake(self.view.frame.size.width/6, 380, self.view.frame.size.width*2/3, 40)];
+        _queryCampain = [[UIButton alloc]initWithFrame:CGRectMake(10, _queryAllMemberButton.frame.origin.y+_queryAllMemberButton.frame.size.height+10,  width,height)];
         [_queryCampain setTitle:@"营销活动查询" forState:UIControlStateNormal];
         [_queryCampain setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         
-        [_queryCampain setBackgroundColor:[UIColor orangeColor]];
+        [_queryCampain setBackgroundColor:[self colorWithRGBHex:(0xffa21c)]];
         
-        _queryCampain.clipsToBounds = YES;
-        _queryCampain.layer.cornerRadius = 20;
-        _queryCampain.tag = 8;
+        
+        _queryCampain.tag = 4;
         [_queryCampain addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
     }
     
@@ -228,10 +242,10 @@
 -(void)aboutUS{
     
     
-    //PNRAboutUSViewController *about = [[PNRAboutUSViewController alloc]init];
-    PNRMerchantViewController *merchant = [[PNRMerchantViewController alloc]init];
+    PNRAboutUSViewController *about = [[PNRAboutUSViewController alloc]init];
+//    PNRMerchantViewController *merchant = [[PNRMerchantViewController alloc]init];
     
-    [self.navigationController pushViewController:merchant animated:YES];
+    [self.navigationController pushViewController:about animated:YES];
     
     
 }
@@ -258,11 +272,9 @@
         }else{
             
         }
-        
-        
-        return;
     }
     
+    //0下单1下单（无页面）2订单权益查询3所有权益查询4营销活动查询
     
     PNRViewController *pnr = [[PNRViewController alloc]init];
     

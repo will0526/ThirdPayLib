@@ -27,6 +27,7 @@
     [super dtoToDictionary];
     
     EncodeUnEmptyStrObjctToDic(self.requestParamDic, self.merchantNo, @"merchantNo");
+    EncodeUnEmptyStrObjctToDic(self.requestParamDic, self.projectNo, @"projectNo");
     
     NSString *payTypeStr = @"";
     switch (self.payType) {
@@ -105,8 +106,7 @@
             EncodeUnEmptyStrObjctToDic(goods, temp.goodsNo, @"goodsNo");
             EncodeUnEmptyStrObjctToDic(goods, temp.itemNo, @"itemNo");
             EncodeUnEmptyStrObjctToDic(goods, temp.goodsName, @"goodsName");
-            EncodeUnEmptyStrObjctToDic(goods, temp.goodsPrice, @"goodsPrice");
-            EncodeUnEmptyStrObjctToDic(goods, temp.goodsNumber, @"goodsQuantity");
+            
             EncodeUnEmptyStrObjctToDic(goods, temp.goodsAmount, @"goodsAmount");
             [tempGoodsArr addObject:goods];
         }
@@ -122,7 +122,7 @@
         NSMutableArray *tempArr = [[NSMutableArray alloc]init];
         for (NSString *temp in self.campaignsInfo) {
             NSMutableDictionary *campaign = [[NSMutableDictionary alloc]init];
-            EncodeUnEmptyStrObjctToDic(campaign, temp, @"CampaignNo");
+            EncodeUnEmptyStrObjctToDic(campaign, temp, @"campaignNo");
             [tempArr addObject:campaign];
         }
         
@@ -149,6 +149,9 @@
         EncodeUnEmptyArrToDic(dic, tempPayArr, @"VoucherInfo");
         
     }
+    
+    EncodeDefaultStrObjctToDic(dic, self.voucherNotifyURL, @"voucherNotifyURL",@"");
+    
     
     EncodeUnEmptyStrObjctToDic(dic, self.notifyURL, @"backURL");
     EncodeUnEmptyStrObjctToDic(dic, self.memo, @"attach");

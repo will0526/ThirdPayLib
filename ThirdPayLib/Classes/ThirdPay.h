@@ -152,7 +152,7 @@ typedef void (^ThirdPayCompletion)(NSDictionary *result);
 +(void)showPayTypeWithTradeInfo:(PNROrderInfo *)orderInfo ViewController:(UIViewController *)controller Delegate:(id<ThirdPayDelegate>)delegate;
 
 
-+(void)queryCampaign:(NSString *)merchantNo ViewController:(UIViewController *)controller Delegate:(id<ThirdPayDelegate>)delegate;
++(void)queryCampaign:(PNRMemberInfo *)memberInfo ViewController:(UIViewController *)controller Delegate:(id<ThirdPayDelegate>)delegate;
 
 
 +(Boolean)handleOpenURL:(NSURL *)url withCompletion:(ThirdPayCompletion )complete;

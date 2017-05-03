@@ -32,6 +32,7 @@
  *  @param payType          支付类型
  */
 
+@property (nonatomic, strong) NSString *projectNo;
 @property(nonatomic,strong)NSString *merchantNo;        //商户号
 @property(nonatomic,strong)NSString *accountNo;          //用户号
 @property(nonatomic,strong)NSString *accountType;        //用户号类型
@@ -55,6 +56,8 @@
 @property(nonatomic,strong)NSString *memberPoints;      //积分金额
 @property(nonatomic,strong)NSString *tradeCurrency;     //币种 （RMB）
 @property(nonatomic,strong)NSString *notifyURL;     //通知地址
+@property(nonatomic,strong)NSString *voucherNotifyURL;     //发券通知地址
+
 @property(nonatomic,strong)NSArray *goodsInfo;     //商品信息
 @property(nonatomic,strong)NSArray *voucherInfo;     //其他支付信息
 @property(nonatomic,strong)NSArray *campaignsInfo;     //其他支付信息

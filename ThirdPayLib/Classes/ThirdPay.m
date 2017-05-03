@@ -191,7 +191,7 @@ static ShowPayTypeViewController *payController;
     NSString *orderAmount = memberInfo.orderAmount;
     NSString *accountNo = memberInfo.accountNo;
     NSString *accountType = memberInfo.accountType;
-    
+    NSString *projectNo = memberInfo.projectNo;
     NSString *resultInfo = @"";
     
     if (IsStrEmpty(merchantNo)) {
@@ -202,6 +202,8 @@ static ShowPayTypeViewController *payController;
         resultInfo = @"用户账号不能为空";
     }else if (IsStrEmpty(accountType)){
         resultInfo = @"账号类型不能为空";
+    }else if (IsStrEmpty(projectNo)){
+        resultInfo = @"项目号不能为空";
     }
     
     NSDictionary *dict = [[NSDictionary alloc]init];
@@ -221,6 +223,7 @@ static ShowPayTypeViewController *payController;
     request.merchantNo = merchantNo;
     request.accountType = accountType;
     request.accountNo = accountNo;
+    request.projectNo = projectNo;
     request.orderAmount = orderAmount;
     
     BaseResponse *response = [[BaseResponse alloc]init];
@@ -257,6 +260,7 @@ static ShowPayTypeViewController *payController;
     NSString *merchantNo = memberInfo.merchantNo;
     NSString *accountNo = memberInfo.accountNo;
     NSString *accountType = memberInfo.accountType;
+    NSString *projectNo = memberInfo.projectNo;
     
     NSString *resultInfo = @"";
     
@@ -266,6 +270,8 @@ static ShowPayTypeViewController *payController;
         resultInfo = @"用户账号不能为空";
     }else if (IsStrEmpty(accountType)){
         resultInfo = @"账号类型不能为空";
+    }else if (IsStrEmpty(projectNo)){
+        resultInfo = @"项目号不能为空";
     }
     
     NSDictionary *dict = [[NSDictionary alloc]init];
@@ -285,6 +291,7 @@ static ShowPayTypeViewController *payController;
     request.merchantNo = merchantNo;
     request.accountType = accountType;
     request.accountNo = accountNo;
+    request.projectNo = projectNo;
     
     BaseResponse *response = [[BaseResponse alloc]init];
     
@@ -364,10 +371,12 @@ static ShowPayTypeViewController *payController;
     
 }
 
-+(void)queryCampaign:(NSString *)merchantNo ViewController:(UIViewController *)controller Delegate:(id<ThirdPayDelegate>)delegate{
++(void)queryCampaign:(PNRMemberInfo *)memberInfo ViewController:(UIViewController *)controller Delegate:(id<ThirdPayDelegate>)delegate{
     
     QureyCampainRequest *request = [[QureyCampainRequest alloc]init];
-    request.merchantNo = merchantNo;
+    request.merchantNo = memberInfo.merchantNo;
+    request.projectNo = memberInfo.projectNo;
+    
     
     [[MOPHUDCenter shareInstance]showHUDWithTitle:@""
                                              type:MOPHUDCenterHUDTypeNetWorkLoading
@@ -414,6 +423,8 @@ static ShowPayTypeViewController *payController;
     
     if (IsStrEmpty(orderInfo.merchantNo)) {
         resultInfo = @"商户号不能为空";
+    }else if (IsStrEmpty(orderInfo.projectNo)){
+        resultInfo = @"项目号不能为空";
     }else if (IsStrEmpty(orderInfo.merchantOrderNo)){
         resultInfo = @"商户订单号不能为空";
     }else if (IsStrEmpty(orderInfo.orderSubject)){
@@ -426,6 +437,8 @@ static ShowPayTypeViewController *payController;
         resultInfo = @"支付金额不能为空";
     }else if (IsStrEmpty(orderInfo.notifyURL)){
         resultInfo = @"后台通知地址不能为空";
+    }else if (IsStrEmpty(orderInfo.voucherNotifyURL)){
+        resultInfo = @"发券通知地址不能为空";
     }else if (IsStrEmpty(orderInfo.appSchemeStr)){
         resultInfo = @"appSchemeStr不能为空";
     }else if (!IsArrEmpty(orderInfo.goodsInfo)) {
@@ -437,10 +450,6 @@ static ShowPayTypeViewController *payController;
             }else if (IsStrEmpty(temp.goodsName)){
                 resultInfo = @"商品信息格式不正确";
             }else if (IsStrEmpty(temp.itemNo)){
-                resultInfo = @"商品信息格式不正确";
-            }else if (IsStrEmpty(temp.goodsPrice)){
-                resultInfo = @"商品信息格式不正确";
-            }else if (IsStrEmpty(temp.goodsNumber)){
                 resultInfo = @"商品信息格式不正确";
             }
         }
