@@ -37,14 +37,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"华润支付";
+    self.title = @"惠客支付";
     
     
     NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
     [userDef setObject:@"测试" forKey:@"environment"];
     
     UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithCustomView:self.transButton];
-//    self.navigationItem.rightBarButtonItem = menuButton;
+    self.navigationItem.rightBarButtonItem = menuButton;
     icon = [[UIImageView alloc]initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, 308*self.view.frame.size.width/540)];
     
     [icon setImage:[UIImage imageNamed:@"icon@2x"]];
@@ -272,6 +272,7 @@
         }else{
             
         }
+        return;
     }
     
     //0下单1下单（无页面）2订单权益查询3所有权益查询4营销活动查询
