@@ -30,15 +30,18 @@ Pod::Spec.new do |s|
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '8.0'
-  s.source_files = 'ThirdPayLib/Classes/**/*','Alipay.framework/Headers/*.h'
+  s.source_files = 'ThirdPayLib/Classes/**/*','Alipay.framework/Headers/*.h','BaiduWallet_Portal.framework/Headers/*.h','bankcardDetection.framework/Headers/*.h'
   s.resource_bundles = {
-    'ThirdPayLib' => ['ThirdPayLib/Assets/*.png']
+    'ThirdPayLib' => ['ThirdPayLib/Assets/*']
   }
 
     s.public_header_files = 'ThirdPayLib/Classes/ThirdPay.h'
-    s.frameworks = 'UIKit', 'CoreGraphics', 'AVFoundation', 'AudioToolbox','CoreMotion','CFNetwork','CoreText','QuartzCore','CoreTelephony','SystemConfiguration','Foundation'
+    s.frameworks = 'UIKit', 'CoreGraphics', 'AVFoundation', 'AudioToolbox','CoreMotion','CFNetwork','CoreText','QuartzCore','CoreTelephony','SystemConfiguration','Foundation','AudioToolbox','AssetsLibrary','Messages','MessageUI','LocalAuthentication','Security','AddressBook','CoreMedia'
     s.libraries = 'z','c++','stdc++','sqlite3.0'
     s.dependency 'AFNetworking', '~> 3.0'
+    s.dependency 'Reachability', '~> 3.1.1'
+    s.dependency 'SDWebImage', '~> 3.7.1'
+
     s.vendored_libraries = 'Example/ThirdPayLib/wxSDK/libWeChatSDK.a','Example/ThirdPayLib/Bestpaylib/libH5ContainerStaticLib.a'
 
 

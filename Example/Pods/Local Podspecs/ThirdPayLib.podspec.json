@@ -1,7 +1,7 @@
 {
   "name": "ThirdPayLib",
-  "version": "0.1.1",
-  "summary": "A short description of ThirdPayLib.",
+  "version": "1.0.2",
+  "summary": "To provide a sdk which used to pay online for other app",
   "description": "To provide a sdk which used to pay online for other app.\neasy to pay.",
   "homepage": "https://github.com/will0526/ThirdPayLib",
   "license": {
@@ -13,15 +13,20 @@
   },
   "source": {
     "git": "https://github.com/will0526/ThirdPayLib.git",
-    "tag": "0.1.1"
+    "tag": "1.0.2"
   },
   "platforms": {
     "ios": "8.0"
   },
-  "source_files": "ThirdPayLib/Classes/**/*",
+  "source_files": [
+    "ThirdPayLib/Classes/**/*",
+    "Alipay.framework/Headers/*.h",
+    "BaiduWallet_Portal.framework/Headers/*.h",
+    "bankcardDetection.framework/Headers/*.h"
+  ],
   "resource_bundles": {
     "ThirdPayLib": [
-      "ThirdPayLib/Assets/*.png"
+      "ThirdPayLib/Assets/*"
     ]
   },
   "public_header_files": "ThirdPayLib/Classes/ThirdPay.h",
@@ -36,7 +41,15 @@
     "QuartzCore",
     "CoreTelephony",
     "SystemConfiguration",
-    "Foundation"
+    "Foundation",
+    "AudioToolbox",
+    "AssetsLibrary",
+    "Messages",
+    "MessageUI",
+    "LocalAuthentication",
+    "Security",
+    "AddressBook",
+    "CoreMedia"
   ],
   "libraries": [
     "z",
@@ -47,6 +60,16 @@
   "dependencies": {
     "AFNetworking": [
       "~> 3.0"
+    ],
+    "Reachability": [
+      "~> 3.1.1"
+    ],
+    "SDWebImage": [
+      "~> 3.7.1"
     ]
-  }
+  },
+  "vendored_libraries": [
+    "Example/ThirdPayLib/wxSDK/libWeChatSDK.a",
+    "Example/ThirdPayLib/Bestpaylib/libH5ContainerStaticLib.a"
+  ]
 }

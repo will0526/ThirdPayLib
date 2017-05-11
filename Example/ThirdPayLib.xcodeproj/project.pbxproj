@@ -21,19 +21,31 @@
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
-		7DA7550E220BEEC762FEC902 /* Pods_ThirdPayLib_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6D7CB2900584269E436D98B /* Pods_ThirdPayLib_Tests.framework */; };
+		BE019E2A1EC41ACC00FC287E /* Messages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE019E291EC41ACC00FC287E /* Messages.framework */; };
+		BE019E2C1EC41B3900FC287E /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = BE019E2B1EC41B3900FC287E /* libsqlite3.tbd */; };
+		BE019E2E1EC41B5600FC287E /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = BE019E2D1EC41B5600FC287E /* libstdc++.tbd */; };
+		BE019F211EC41BFA00FC287E /* BaiduWallet_Portal.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BE019F201EC41BFA00FC287E /* BaiduWallet_Portal.bundle */; };
 		BE3757911DC9BF5200E95CF6 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE3757901DC9BF5200E95CF6 /* AFNetworking.framework */; };
 		BE52C5821D5C669500408F71 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE52C5811D5C669500408F71 /* Launch Screen.storyboard */; };
 		BE56C8E51EB9C85000A8B630 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BE56C8E41EB9C85000A8B630 /* icon@2x.png */; };
-		BE56DFA91D8E2AA300FF4DD6 /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEED31731D65541A0037534C /* AlipaySDK.framework */; };
 		BE6108A21DD9A254007DAE8E /* ThirdPayLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE6108A11DD9A254007DAE8E /* ThirdPayLib.framework */; };
+		BE75E3EE1EC08A1A0012DFD2 /* ThirdPayLib.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BE75E3ED1EC08A1A0012DFD2 /* ThirdPayLib.bundle */; };
+		BE75E3F31EC1687D0012DFD2 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE75E3F21EC1687D0012DFD2 /* AssetsLibrary.framework */; };
+		BE75E3F51EC168870012DFD2 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE75E3F41EC168870012DFD2 /* MessageUI.framework */; };
+		BE75E3F71EC168AE0012DFD2 /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE75E3F61EC168AE0012DFD2 /* LocalAuthentication.framework */; };
+		BE75E4D61EC1712D0012DFD2 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE75E4D51EC1712D0012DFD2 /* Security.framework */; };
+		BE75E4D81EC171360012DFD2 /* libz.1.2.5.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = BE75E4D71EC171360012DFD2 /* libz.1.2.5.tbd */; };
+		BE75E4DA1EC171720012DFD2 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE75E4D91EC171720012DFD2 /* MobileCoreServices.framework */; };
+		BE75E4DD1EC171820012DFD2 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE75E4DB1EC171820012DFD2 /* AddressBook.framework */; };
+		BE75E4DE1EC171820012DFD2 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE75E4DC1EC171820012DFD2 /* AddressBookUI.framework */; };
+		BE75E4E01EC171B40012DFD2 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE75E4DF1EC171B40012DFD2 /* CoreMedia.framework */; };
+		BE75E5361EC19F030012DFD2 /* Reachability.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEE898AA1EC07605004BD8D1 /* Reachability.framework */; };
 		BE77500F1D813CC100819EA4 /* PNRAboutUSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE77500E1D813CC100819EA4 /* PNRAboutUSViewController.m */; };
 		BE82BDCE1D6FDF9900A69A0F /* PNRMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE82BDCD1D6FDF9900A69A0F /* PNRMainViewController.m */; };
-		BE82C3E71D5DC9F500926EB5 /* ThirdPayLib.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BE82C3E61D5DC9F500926EB5 /* ThirdPayLib.bundle */; };
 		BE94E5BB1DC877C90034296A /* PNRMerchantViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE94E5BA1DC877C90034296A /* PNRMerchantViewController.m */; };
 		BEB06C231DC051B800588628 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEB06C221DC051B800588628 /* AVFoundation.framework */; };
+		BEE898AD1EC07605004BD8D1 /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEE898AB1EC07605004BD8D1 /* SDWebImage.framework */; };
 		BEED301C1D62B0F40037534C /* PNRSuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEED301B1D62B0F40037534C /* PNRSuccessViewController.m */; };
-		BEED31741D65541A0037534C /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BEED31721D65541A0037534C /* AlipaySDK.bundle */; };
 		BEED31771D6556D90037534C /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = BEED31761D6556D90037534C /* libc++.tbd */; };
 		BEED31791D6556F40037534C /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = BEED31781D6556F40037534C /* libz.tbd */; };
 		BEED317B1D6556FE0037534C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEED317A1D6556FE0037534C /* SystemConfiguration.framework */; };
@@ -45,10 +57,6 @@
 		BEF9843B1D8682A700B7984F /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = BEF9843A1D8682A700B7984F /* libstdc++.6.0.9.tbd */; };
 		BEF9843D1D8682B600B7984F /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = BEF9843C1D8682B600B7984F /* libsqlite3.0.tbd */; };
 		BEF9843F1D8682C900B7984F /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEF9843E1D8682C900B7984F /* AudioToolbox.framework */; };
-		BEFA02A51DE81B3800793DE3 /* libH5ContainerStaticLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BEFA02A01DE81B3800793DE3 /* libH5ContainerStaticLib.a */; };
-		BEFA02A61DE81B3800793DE3 /* bestpay_error.html in Resources */ = {isa = PBXBuildFile; fileRef = BEFA02A21DE81B3800793DE3 /* bestpay_error.html */; };
-		BEFA02A71DE81B3800793DE3 /* bestpay_nowifi.png in Resources */ = {isa = PBXBuildFile; fileRef = BEFA02A31DE81B3800793DE3 /* bestpay_nowifi.png */; };
-		BEFA02A81DE81B3800793DE3 /* PassGuardCtrlBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BEFA02A41DE81B3800793DE3 /* PassGuardCtrlBundle.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,22 +95,36 @@
 		637C85A41B49456A28CDAFB3 /* Pods-ThirdPayLib_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThirdPayLib_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-ThirdPayLib_Example/Pods-ThirdPayLib_Example.release.xcconfig"; sourceTree = "<group>"; };
 		79DB0AEDD7781E31D12FCD5E /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		807C03805F310A7D7058F0CA /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		BE019E291EC41ACC00FC287E /* Messages.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Messages.framework; path = System/Library/Frameworks/Messages.framework; sourceTree = SDKROOT; };
+		BE019E2B1EC41B3900FC287E /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		BE019E2D1EC41B5600FC287E /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
+		BE019F201EC41BFA00FC287E /* BaiduWallet_Portal.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = BaiduWallet_Portal.bundle; path = SAPI/BaiduWallet_Portal.bundle; sourceTree = "<group>"; };
 		BE3757901DC9BF5200E95CF6 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = "../../../../Library/Developer/Xcode/DerivedData/ThirdPayLib-bhqrauzgvzjyvmcuxbvksxtjrgii/Build/Products/Debug-iphoneos/AFNetworking/AFNetworking.framework"; sourceTree = "<group>"; };
 		BE52C5811D5C669500408F71 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		BE56C8E41EB9C85000A8B630 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
 		BE6108A11DD9A254007DAE8E /* ThirdPayLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ThirdPayLib.framework; path = "../../../../Library/Developer/Xcode/DerivedData/ThirdPayLib-bhqrauzgvzjyvmcuxbvksxtjrgii/Build/Products/Debug-iphoneos/ThirdPayLib/ThirdPayLib.framework"; sourceTree = "<group>"; };
+		BE75E3ED1EC08A1A0012DFD2 /* ThirdPayLib.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ThirdPayLib.bundle; sourceTree = "<group>"; };
+		BE75E3F21EC1687D0012DFD2 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		BE75E3F41EC168870012DFD2 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		BE75E3F61EC168AE0012DFD2 /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
+		BE75E4D51EC1712D0012DFD2 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		BE75E4D71EC171360012DFD2 /* libz.1.2.5.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.2.5.tbd; path = usr/lib/libz.1.2.5.tbd; sourceTree = SDKROOT; };
+		BE75E4D91EC171720012DFD2 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		BE75E4DB1EC171820012DFD2 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		BE75E4DC1EC171820012DFD2 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
+		BE75E4DF1EC171B40012DFD2 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		BE77500D1D813CC100819EA4 /* PNRAboutUSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNRAboutUSViewController.h; sourceTree = "<group>"; };
 		BE77500E1D813CC100819EA4 /* PNRAboutUSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNRAboutUSViewController.m; sourceTree = "<group>"; };
 		BE82BDCC1D6FDF9900A69A0F /* PNRMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNRMainViewController.h; sourceTree = "<group>"; };
 		BE82BDCD1D6FDF9900A69A0F /* PNRMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNRMainViewController.m; sourceTree = "<group>"; };
-		BE82C3E61D5DC9F500926EB5 /* ThirdPayLib.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ThirdPayLib.bundle; sourceTree = "<group>"; };
 		BE94E5B91DC877C90034296A /* PNRMerchantViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNRMerchantViewController.h; sourceTree = "<group>"; };
 		BE94E5BA1DC877C90034296A /* PNRMerchantViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNRMerchantViewController.m; sourceTree = "<group>"; };
 		BEB06C221DC051B800588628 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		BEC40C961EC0648900B40996 /* ThirdPayLib_Example.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ThirdPayLib_Example.entitlements; sourceTree = "<group>"; };
+		BEE898AA1EC07605004BD8D1 /* Reachability.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Reachability.framework; path = "../../../../Library/Developer/Xcode/DerivedData/ThirdPayLib-ghgjjmmibwjhbnbusuutlcuywtrd/Build/Products/Debug-iphoneos/Reachability/Reachability.framework"; sourceTree = "<group>"; };
+		BEE898AB1EC07605004BD8D1 /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDWebImage.framework; path = "../../../../Library/Developer/Xcode/DerivedData/ThirdPayLib-ghgjjmmibwjhbnbusuutlcuywtrd/Build/Products/Debug-iphoneos/SDWebImage/SDWebImage.framework"; sourceTree = "<group>"; };
 		BEED301A1D62B0F40037534C /* PNRSuccessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNRSuccessViewController.h; sourceTree = "<group>"; };
 		BEED301B1D62B0F40037534C /* PNRSuccessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNRSuccessViewController.m; sourceTree = "<group>"; };
-		BEED31721D65541A0037534C /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlipaySDK.bundle; sourceTree = "<group>"; };
-		BEED31731D65541A0037534C /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
 		BEED31761D6556D90037534C /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		BEED31781D6556F40037534C /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		BEED317A1D6556FE0037534C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -114,15 +136,7 @@
 		BEF9843A1D8682A700B7984F /* libstdc++.6.0.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.0.9.tbd"; path = "usr/lib/libstdc++.6.0.9.tbd"; sourceTree = SDKROOT; };
 		BEF9843C1D8682B600B7984F /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		BEF9843E1D8682C900B7984F /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		BEFA029E1DE81B3800793DE3 /* BestpayNativeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BestpayNativeModel.h; sourceTree = "<group>"; };
-		BEFA029F1DE81B3800793DE3 /* BestpaySDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BestpaySDK.h; sourceTree = "<group>"; };
-		BEFA02A01DE81B3800793DE3 /* libH5ContainerStaticLib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libH5ContainerStaticLib.a; sourceTree = "<group>"; };
-		BEFA02A21DE81B3800793DE3 /* bestpay_error.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = bestpay_error.html; sourceTree = "<group>"; };
-		BEFA02A31DE81B3800793DE3 /* bestpay_nowifi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bestpay_nowifi.png; sourceTree = "<group>"; };
-		BEFA02A41DE81B3800793DE3 /* PassGuardCtrlBundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = PassGuardCtrlBundle.bundle; sourceTree = "<group>"; };
-		E1E23D616DC1E42973AF1276 /* Pods-ThirdPayLib_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThirdPayLib_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ThirdPayLib_Tests/Pods-ThirdPayLib_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		E6D7CB2900584269E436D98B /* Pods_ThirdPayLib_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ThirdPayLib_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F190F638DD424D5F22D3695C /* Pods-ThirdPayLib_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThirdPayLib_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ThirdPayLib_Tests/Pods-ThirdPayLib_Tests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,23 +144,35 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE019E2E1EC41B5600FC287E /* libstdc++.tbd in Frameworks */,
+				BE75E4D81EC171360012DFD2 /* libz.1.2.5.tbd in Frameworks */,
+				BEED31791D6556F40037534C /* libz.tbd in Frameworks */,
+				BE019E2C1EC41B3900FC287E /* libsqlite3.tbd in Frameworks */,
+				BEB06C231DC051B800588628 /* AVFoundation.framework in Frameworks */,
+				BE019E2A1EC41ACC00FC287E /* Messages.framework in Frameworks */,
+				BE75E3F51EC168870012DFD2 /* MessageUI.framework in Frameworks */,
+				BEED317D1D65570A0037534C /* CoreTelephony.framework in Frameworks */,
+				6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */,
+				BE75E5361EC19F030012DFD2 /* Reachability.framework in Frameworks */,
+				BE75E4E01EC171B40012DFD2 /* CoreMedia.framework in Frameworks */,
+				BE75E4D61EC1712D0012DFD2 /* Security.framework in Frameworks */,
+				BE75E4DD1EC171820012DFD2 /* AddressBook.framework in Frameworks */,
+				BE75E4DE1EC171820012DFD2 /* AddressBookUI.framework in Frameworks */,
+				BE75E4DA1EC171720012DFD2 /* MobileCoreServices.framework in Frameworks */,
+				BE75E3F71EC168AE0012DFD2 /* LocalAuthentication.framework in Frameworks */,
+				BEF9843F1D8682C900B7984F /* AudioToolbox.framework in Frameworks */,
+				BE75E3F31EC1687D0012DFD2 /* AssetsLibrary.framework in Frameworks */,
+				BEE898AD1EC07605004BD8D1 /* SDWebImage.framework in Frameworks */,
 				BE6108A21DD9A254007DAE8E /* ThirdPayLib.framework in Frameworks */,
 				BE3757911DC9BF5200E95CF6 /* AFNetworking.framework in Frameworks */,
-				BE56DFA91D8E2AA300FF4DD6 /* AlipaySDK.framework in Frameworks */,
-				BEED317D1D65570A0037534C /* CoreTelephony.framework in Frameworks */,
-				BEB06C231DC051B800588628 /* AVFoundation.framework in Frameworks */,
-				BEF9843F1D8682C900B7984F /* AudioToolbox.framework in Frameworks */,
-				BEFA02A51DE81B3800793DE3 /* libH5ContainerStaticLib.a in Frameworks */,
 				BEF9843D1D8682B600B7984F /* libsqlite3.0.tbd in Frameworks */,
 				BEF9843B1D8682A700B7984F /* libstdc++.6.0.9.tbd in Frameworks */,
 				BEED31851D6557580037534C /* CoreMotion.framework in Frameworks */,
 				BEED31831D6557460037534C /* CFNetwork.framework in Frameworks */,
 				6003F592195388D20070C39A /* UIKit.framework in Frameworks */,
-				6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */,
 				BEED31811D65571D0037534C /* CoreText.framework in Frameworks */,
 				BEED317F1D6557130037534C /* QuartzCore.framework in Frameworks */,
 				BEED317B1D6556FE0037534C /* SystemConfiguration.framework in Frameworks */,
-				BEED31791D6556F40037534C /* libz.tbd in Frameworks */,
 				BEED31771D6556D90037534C /* libc++.tbd in Frameworks */,
 				6003F58E195388D20070C39A /* Foundation.framework in Frameworks */,
 				5A18DDED2D559BC604527C43 /* Pods_ThirdPayLib_Example.framework in Frameworks */,
@@ -160,7 +186,6 @@
 				6003F5B0195388D20070C39A /* XCTest.framework in Frameworks */,
 				6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */,
-				7DA7550E220BEEC762FEC902 /* Pods_ThirdPayLib_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -170,6 +195,7 @@
 		6003F581195388D10070C39A = {
 			isa = PBXGroup;
 			children = (
+				BEC40C961EC0648900B40996 /* ThirdPayLib_Example.entitlements */,
 				60FF7A9C1954A5C5007DD14C /* Podspec Metadata */,
 				6003F593195388D20070C39A /* Example for ThirdPayLib */,
 				6003F5B5195388D20070C39A /* Tests */,
@@ -191,6 +217,20 @@
 		6003F58C195388D20070C39A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BE019E2D1EC41B5600FC287E /* libstdc++.tbd */,
+				BE019E2B1EC41B3900FC287E /* libsqlite3.tbd */,
+				BE019E291EC41ACC00FC287E /* Messages.framework */,
+				BE75E4DF1EC171B40012DFD2 /* CoreMedia.framework */,
+				BE75E4DB1EC171820012DFD2 /* AddressBook.framework */,
+				BE75E4DC1EC171820012DFD2 /* AddressBookUI.framework */,
+				BE75E4D91EC171720012DFD2 /* MobileCoreServices.framework */,
+				BE75E4D71EC171360012DFD2 /* libz.1.2.5.tbd */,
+				BE75E4D51EC1712D0012DFD2 /* Security.framework */,
+				BE75E3F61EC168AE0012DFD2 /* LocalAuthentication.framework */,
+				BE75E3F41EC168870012DFD2 /* MessageUI.framework */,
+				BE75E3F21EC1687D0012DFD2 /* AssetsLibrary.framework */,
+				BEE898AA1EC07605004BD8D1 /* Reachability.framework */,
+				BEE898AB1EC07605004BD8D1 /* SDWebImage.framework */,
 				BE6108A11DD9A254007DAE8E /* ThirdPayLib.framework */,
 				BE3757901DC9BF5200E95CF6 /* AFNetworking.framework */,
 				BEB06C221DC051B800588628 /* AVFoundation.framework */,
@@ -240,10 +280,9 @@
 		6003F594195388D20070C39A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				BE019F201EC41BFA00FC287E /* BaiduWallet_Portal.bundle */,
+				BE75E3ED1EC08A1A0012DFD2 /* ThirdPayLib.bundle */,
 				BE56C8E41EB9C85000A8B630 /* icon@2x.png */,
-				BEFA029C1DE81B3800793DE3 /* Bestpaylib */,
-				BEED31711D65541A0037534C /* alipay */,
-				BE82C3E61D5DC9F500926EB5 /* ThirdPayLib.bundle */,
 				6003F595195388D20070C39A /* ThirdPayLib-Info.plist */,
 				6003F596195388D20070C39A /* InfoPlist.strings */,
 				6003F599195388D20070C39A /* main.m */,
@@ -287,48 +326,8 @@
 			children = (
 				57BBB3B229EE6D84590825F3 /* Pods-ThirdPayLib_Example.debug.xcconfig */,
 				637C85A41B49456A28CDAFB3 /* Pods-ThirdPayLib_Example.release.xcconfig */,
-				E1E23D616DC1E42973AF1276 /* Pods-ThirdPayLib_Tests.debug.xcconfig */,
-				F190F638DD424D5F22D3695C /* Pods-ThirdPayLib_Tests.release.xcconfig */,
 			);
 			name = Pods;
-			sourceTree = "<group>";
-		};
-		BEED31711D65541A0037534C /* alipay */ = {
-			isa = PBXGroup;
-			children = (
-				BEED31721D65541A0037534C /* AlipaySDK.bundle */,
-				BEED31731D65541A0037534C /* AlipaySDK.framework */,
-			);
-			path = alipay;
-			sourceTree = "<group>";
-		};
-		BEFA029C1DE81B3800793DE3 /* Bestpaylib */ = {
-			isa = PBXGroup;
-			children = (
-				BEFA029D1DE81B3800793DE3 /* include */,
-				BEFA02A01DE81B3800793DE3 /* libH5ContainerStaticLib.a */,
-				BEFA02A11DE81B3800793DE3 /* Resources */,
-			);
-			path = Bestpaylib;
-			sourceTree = "<group>";
-		};
-		BEFA029D1DE81B3800793DE3 /* include */ = {
-			isa = PBXGroup;
-			children = (
-				BEFA029E1DE81B3800793DE3 /* BestpayNativeModel.h */,
-				BEFA029F1DE81B3800793DE3 /* BestpaySDK.h */,
-			);
-			path = include;
-			sourceTree = "<group>";
-		};
-		BEFA02A11DE81B3800793DE3 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				BEFA02A21DE81B3800793DE3 /* bestpay_error.html */,
-				BEFA02A31DE81B3800793DE3 /* bestpay_nowifi.png */,
-				BEFA02A41DE81B3800793DE3 /* PassGuardCtrlBundle.bundle */,
-			);
-			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -358,12 +357,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6003F5C2195388D20070C39A /* Build configuration list for PBXNativeTarget "ThirdPayLib_Tests" */;
 			buildPhases = (
-				67B91B0121EDED7FAF826827 /* [CP] Check Pods Manifest.lock */,
 				6003F5AA195388D20070C39A /* Sources */,
 				6003F5AB195388D20070C39A /* Frameworks */,
 				6003F5AC195388D20070C39A /* Resources */,
-				2D22483D58BFE7C9D4EF3B68 /* [CP] Embed Pods Frameworks */,
-				640FBBAE360ADCB09477D6DE /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -387,6 +383,11 @@
 				TargetAttributes = {
 					6003F589195388D20070C39A = {
 						DevelopmentTeam = 69CTN459HT;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 					6003F5AD195388D20070C39A = {
 						TestTargetID = 6003F589195388D20070C39A;
@@ -417,14 +418,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BEFA02A61DE81B3800793DE3 /* bestpay_error.html in Resources */,
-				BEFA02A71DE81B3800793DE3 /* bestpay_nowifi.png in Resources */,
-				BEED31741D65541A0037534C /* AlipaySDK.bundle in Resources */,
-				BEFA02A81DE81B3800793DE3 /* PassGuardCtrlBundle.bundle in Resources */,
 				BE52C5821D5C669500408F71 /* Launch Screen.storyboard in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
-				BE82C3E71D5DC9F500926EB5 /* ThirdPayLib.bundle in Resources */,
+				BE75E3EE1EC08A1A0012DFD2 /* ThirdPayLib.bundle in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
+				BE019F211EC41BFA00FC287E /* BaiduWallet_Portal.bundle in Resources */,
 				BE56C8E51EB9C85000A8B630 /* icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -452,7 +450,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		20C34F5388461265EBADE1E6 /* [CP] Copy Pods Resources */ = {
@@ -470,21 +468,6 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ThirdPayLib_Example/Pods-ThirdPayLib_Example-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		2D22483D58BFE7C9D4EF3B68 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ThirdPayLib_Tests/Pods-ThirdPayLib_Tests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		55009623EFB258771A770DE8 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -498,36 +481,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ThirdPayLib_Example/Pods-ThirdPayLib_Example-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		640FBBAE360ADCB09477D6DE /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ThirdPayLib_Tests/Pods-ThirdPayLib_Tests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		67B91B0121EDED7FAF826827 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -663,34 +616,25 @@
 			baseConfigurationReference = 57BBB3B229EE6D84590825F3 /* Pods-ThirdPayLib_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ThirdPayLib_Example.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: yiwen lu (3H34FLDBJ3)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: yiwen lu (3H34FLDBJ3)";
 				DEVELOPMENT_TEAM = 69CTN459HT;
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/ThirdPayLib/alipay",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ThirdPayLib/ThirdPayLib-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/ThirdPayLib",
-					"$(PROJECT_DIR)/ThirdPayLib/alipay",
-					"$(SRCROOT)/ThirdPayLib/Bestpaylib",
-					"$(SRCROOT)/ThirdPayLib/wxSDK",
 				);
 				INFOPLIST_FILE = "ThirdPayLib/ThirdPayLib-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/ThirdPayLib/Bestpaylib",
-					"$(PROJECT_DIR)/ThirdPayLib/alipay",
-					"$(PROJECT_DIR)/ThirdPayLib/wxSDK",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MODULE_NAME = ExampleApp;
 				OTHER_LDFLAGS = (
 					"-ObjC",
+					"-all_load",
 					"$(inherited)",
 					"-framework",
 					"\"AFNetworking\"",
@@ -712,6 +656,7 @@
 			baseConfigurationReference = 637C85A41B49456A28CDAFB3 /* Pods-ThirdPayLib_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ThirdPayLib_Example.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: yiwen lu (3H34FLDBJ3)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: yiwen lu (3H34FLDBJ3)";
 				DEVELOPMENT_TEAM = 69CTN459HT;
@@ -725,21 +670,14 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/ThirdPayLib",
-					"$(PROJECT_DIR)/ThirdPayLib/alipay",
-					"$(SRCROOT)/ThirdPayLib/Bestpaylib",
-					"$(SRCROOT)/ThirdPayLib/wxSDK",
 				);
 				INFOPLIST_FILE = "ThirdPayLib/ThirdPayLib-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/ThirdPayLib/Bestpaylib",
-					"$(PROJECT_DIR)/ThirdPayLib/alipay",
-					"$(PROJECT_DIR)/ThirdPayLib/wxSDK",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MODULE_NAME = ExampleApp;
 				OTHER_LDFLAGS = (
 					"-ObjC",
+					"-all_load",
 					"$(inherited)",
 					"-framework",
 					"\"AFNetworking\"",
@@ -758,7 +696,6 @@
 		};
 		6003F5C3195388D20070C39A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E1E23D616DC1E42973AF1276 /* Pods-ThirdPayLib_Tests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -782,7 +719,6 @@
 		};
 		6003F5C4195388D20070C39A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F190F638DD424D5F22D3695C /* Pods-ThirdPayLib_Tests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (

@@ -14,12 +14,16 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
-  - Kiwi (2.4.0)
-  - ThirdPayLib (0.1.1):
+  - Reachability (3.1.1)
+  - SDWebImage (3.7.6):
+    - SDWebImage/Core (= 3.7.6)
+  - SDWebImage/Core (3.7.6)
+  - ThirdPayLib (1.0.2):
     - AFNetworking (~> 3.0)
+    - Reachability (~> 3.1.1)
+    - SDWebImage (~> 3.7.1)
 
 DEPENDENCIES:
-  - Kiwi
   - ThirdPayLib (from `../`)
 
 EXTERNAL SOURCES:
@@ -28,9 +32,10 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
-  Kiwi: f49c9d54b28917df5928fe44968a39ed198cb8a8
-  ThirdPayLib: 599f430861cf4875b18ae9ec95c8717d5d0a693e
+  Reachability: dd9aa4fb6667b9f787690a74f53cb7634ce99893
+  SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
+  ThirdPayLib: 5b8a460c42b07172dd2f40cebe187a39f99376ad
 
-PODFILE CHECKSUM: 6ad449934bb9b601087f9d3fb9dd9722821f34b4
+PODFILE CHECKSUM: fc23c4b0159daa5d78f86213e994d37c656d66ac
 
-COCOAPODS: 1.1.1
+COCOAPODS: 1.2.1

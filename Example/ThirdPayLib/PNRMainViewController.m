@@ -37,14 +37,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"惠客支付";
+    self.title = @"慧客支付";
     
     
     NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
     [userDef setObject:@"测试" forKey:@"environment"];
     
     UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithCustomView:self.transButton];
-    self.navigationItem.rightBarButtonItem = menuButton;
+//    self.navigationItem.rightBarButtonItem = menuButton;
     icon = [[UIImageView alloc]initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, 308*self.view.frame.size.width/540)];
     
     [icon setImage:[UIImage imageNamed:@"icon@2x"]];

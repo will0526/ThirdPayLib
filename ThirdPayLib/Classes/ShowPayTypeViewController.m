@@ -20,8 +20,9 @@
 #import "MerchantViewController.h"
 #import "VoucherTableViewCell.h"
 #import "QueryMemberRequest.h"
+#import <BaiduWallet_Portal/BDWalletSDKMainManager.h>
 
-@interface ShowPayTypeViewController ()<UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate,WXApiDelegate,QRCodeDelegate>
+@interface ShowPayTypeViewController ()<UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate,WXApiDelegate,QRCodeDelegate,BDWalletSDKMainManagerDelegate>
 
 @property(nonatomic, strong)UITableView *tableView;
 @property(nonatomic, strong)UITableView *backtableView;
@@ -75,7 +76,7 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(Back)];
     
 //    payDataSource = @[@"翼支付",@"微信支付",@"支付宝支付",@"百度钱包支付",@"Apple Pay"];
-    payDataSource = @[@"翼支付",@"微信支付",@"支付宝支付"];
+    payDataSource = @[@"翼支付",@"微信支付",@"支付宝支付",@"百度钱包"];
     payTypeIcon = @[@"YipayIcon",@"weixinIcon",@"alipayIcon",@"baiIcon",@"applepayIcon"];
     selectedPayType = 0;
     _resultDict = [[NSMutableDictionary alloc]init];
@@ -153,6 +154,11 @@
 
 
 -(void)bookOrder{
+//    
+//    OrderString = @"sp_no=9000100005&version=2&currency=1&order_no=918712297565&pay_type=2&goods_desc=%C9%CC%C6%B7%C3%E8%CA%F6&goods_name=%C9%CC%C6%B7%C3%FB%B3%C6&return_url=http%3A%2F%2Fipp.pnrtec.com%2Freceiver%2F0006%2F0005%2F01.html&sign_method=1&service_code=1&total_amount=1&input_charset=1&order_create_time=20170508190137&sign=544046f1c97a60629b4f736902f33a4e";
+//    [self gotoPay];
+//    return;
+    
     
     BOOL background = YES;
     if ([_viewType isEqualToString:@"NOVIEW"]) {
@@ -280,7 +286,7 @@
         
         case PayType_BaiduPay:
         {
-            
+            [self baiduPay];
         }
             break;
         case PayType_ApplePay:
@@ -627,6 +633,48 @@
 
 #pragma mark pay method
 
+//百度钱包
+
+-(void)baiduPay{
+
+    
+    BDWalletSDKMainManager* payMainManager = [BDWalletSDKMainManager getInstance];
+    [payMainManager setDelegate:self];
+    [payMainManager setRootViewController:self];
+   BDWalletSDKErrorType type = [payMainManager doPayWithOrderInfo:OrderString params:nil delegate:self];
+    //调用支付接口
+    [payMainManager doPayWithOrderInfo:OrderString params:nil delegate:self];
+    
+}
+
+-(void)BDWalletPayResultWithCode:(int)statusCode payDesc:(NSString*)payDescs{
+    if (statusCode == 0) {
+        payStatus = PayStatus_PAYSUCCESS;
+        EncodeUnEmptyStrObjctToDic(_resultDict, TRADESUCCESS, @"message");
+        EncodeUnEmptyStrObjctToDic(_resultDict, @"0000", @"code");
+        EncodeUnEmptyDicObjctToDic(_resultDict, [self getParamsWrapForPay], @"content");
+        NSLog(@"成功");
+    } else if (statusCode == 1) {
+        NSLog(@"支付中");
+        payStatus = PayStatus_PAYSUCCESS;
+        EncodeUnEmptyStrObjctToDic(_resultDict, TRADESUCCESS, @"message");
+        EncodeUnEmptyStrObjctToDic(_resultDict, @"0000", @"code");
+        EncodeUnEmptyDicObjctToDic(_resultDict, [self getParamsWrapForPay], @"content");
+        NSLog(@"取消");
+    } else if (statusCode == 2) {
+        payStatus = PayStatus_PAYCANCEL;
+        EncodeUnEmptyStrObjctToDic(_resultDict, TRADECANCEL, @"message");
+        EncodeUnEmptyStrObjctToDic(_resultDict, @"2", @"code");
+        EncodeUnEmptyDicObjctToDic(_resultDict, [self getParamsWrapForPay], @"content");
+        NSLog(@"取消");
+    }
+    
+    [self tradeReturn];
+    
+}
+
+
+
 //支付宝
 -(void)alipay{
     
@@ -673,7 +721,7 @@
         
     }
     
-//    [self tradeReturn];
+
 }
 
 
@@ -755,12 +803,6 @@
     }
 }
 
-//百度钱包
--(void)baidupay{
-    
-    
-//    [self tradeReturn];
-}
 
 //翼支付
 -(void)yipay{
