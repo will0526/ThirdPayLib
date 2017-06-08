@@ -16,7 +16,7 @@
     self = [super init];
     if (self) {
         _tradeCurrency = @"CNY";
-        _tradeTpye = @"01";
+        
         
     }
     return self;
@@ -90,7 +90,24 @@
     EncodeUnEmptyStrObjctToDic(dic, self.orderTitle, @"orderSubject");
     EncodeUnEmptyStrObjctToDic(dic, self.orderDetail, @"orderDescription");
     
-    EncodeUnEmptyStrObjctToDic(dic, self.tradeTpye, @"tradeType");
+    switch (self.tradeTpye) {
+        case TradeType_Online:
+        {
+            EncodeUnEmptyStrObjctToDic(dic, @"01", @"tradeType");
+        }
+            break;
+        case TradeType_Offline:
+        {
+            EncodeUnEmptyStrObjctToDic(dic, @"02", @"tradeType");
+        }
+            break;
+            
+        default:{
+            EncodeUnEmptyStrObjctToDic(dic, @"01", @"tradeType");
+        }
+            break;
+    }
+    
     EncodeUnEmptyStrObjctToDic(dic, self.accountNo, @"accountNo");
     EncodeUnEmptyStrObjctToDic(dic, self.accountType, @"accountType");
     EncodeUnEmptyStrObjctToDic(dic, self.redPocket, @"redPocket");

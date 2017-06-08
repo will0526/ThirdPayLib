@@ -25,6 +25,8 @@
 		BE019E2C1EC41B3900FC287E /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = BE019E2B1EC41B3900FC287E /* libsqlite3.tbd */; };
 		BE019E2E1EC41B5600FC287E /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = BE019E2D1EC41B5600FC287E /* libstdc++.tbd */; };
 		BE019F211EC41BFA00FC287E /* BaiduWallet_Portal.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BE019F201EC41BFA00FC287E /* BaiduWallet_Portal.bundle */; };
+		BE32DFE31ED52045002ED734 /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BE32DFE11ED52045002ED734 /* AlipaySDK.bundle */; };
+		BE32DFE41ED52045002ED734 /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE32DFE21ED52045002ED734 /* AlipaySDK.framework */; };
 		BE3757911DC9BF5200E95CF6 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE3757901DC9BF5200E95CF6 /* AFNetworking.framework */; };
 		BE52C5821D5C669500408F71 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE52C5811D5C669500408F71 /* Launch Screen.storyboard */; };
 		BE56C8E51EB9C85000A8B630 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BE56C8E41EB9C85000A8B630 /* icon@2x.png */; };
@@ -99,6 +101,8 @@
 		BE019E2B1EC41B3900FC287E /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		BE019E2D1EC41B5600FC287E /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
 		BE019F201EC41BFA00FC287E /* BaiduWallet_Portal.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = BaiduWallet_Portal.bundle; path = SAPI/BaiduWallet_Portal.bundle; sourceTree = "<group>"; };
+		BE32DFE11ED52045002ED734 /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlipaySDK.bundle; sourceTree = "<group>"; };
+		BE32DFE21ED52045002ED734 /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
 		BE3757901DC9BF5200E95CF6 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = "../../../../Library/Developer/Xcode/DerivedData/ThirdPayLib-bhqrauzgvzjyvmcuxbvksxtjrgii/Build/Products/Debug-iphoneos/AFNetworking/AFNetworking.framework"; sourceTree = "<group>"; };
 		BE52C5811D5C669500408F71 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		BE56C8E41EB9C85000A8B630 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
@@ -161,6 +165,7 @@
 				BE75E4DA1EC171720012DFD2 /* MobileCoreServices.framework in Frameworks */,
 				BE75E3F71EC168AE0012DFD2 /* LocalAuthentication.framework in Frameworks */,
 				BEF9843F1D8682C900B7984F /* AudioToolbox.framework in Frameworks */,
+				BE32DFE41ED52045002ED734 /* AlipaySDK.framework in Frameworks */,
 				BE75E3F31EC1687D0012DFD2 /* AssetsLibrary.framework in Frameworks */,
 				BEE898AD1EC07605004BD8D1 /* SDWebImage.framework in Frameworks */,
 				BE6108A21DD9A254007DAE8E /* ThirdPayLib.framework in Frameworks */,
@@ -280,6 +285,7 @@
 		6003F594195388D20070C39A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				BE32DFE01ED52045002ED734 /* alipay */,
 				BE019F201EC41BFA00FC287E /* BaiduWallet_Portal.bundle */,
 				BE75E3ED1EC08A1A0012DFD2 /* ThirdPayLib.bundle */,
 				BE56C8E41EB9C85000A8B630 /* icon@2x.png */,
@@ -328,6 +334,15 @@
 				637C85A41B49456A28CDAFB3 /* Pods-ThirdPayLib_Example.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		BE32DFE01ED52045002ED734 /* alipay */ = {
+			isa = PBXGroup;
+			children = (
+				BE32DFE11ED52045002ED734 /* AlipaySDK.bundle */,
+				BE32DFE21ED52045002ED734 /* AlipaySDK.framework */,
+			);
+			path = alipay;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -420,6 +435,7 @@
 			files = (
 				BE52C5821D5C669500408F71 /* Launch Screen.storyboard in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
+				BE32DFE31ED52045002ED734 /* AlipaySDK.bundle in Resources */,
 				BE75E3EE1EC08A1A0012DFD2 /* ThirdPayLib.bundle in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
 				BE019F211EC41BFA00FC287E /* BaiduWallet_Portal.bundle in Resources */,
@@ -621,7 +637,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: yiwen lu (3H34FLDBJ3)";
 				DEVELOPMENT_TEAM = 69CTN459HT;
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ThirdPayLib/alipay",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ThirdPayLib/ThirdPayLib-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -646,7 +665,7 @@
 				PROVISIONING_PROFILE = "38b61ba7-c8db-4c7d-a2b8-8f1ec8d44f28";
 				PROVISIONING_PROFILE_SPECIFIER = iOSDevelopNor;
 				TARGETED_DEVICE_FAMILY = 1;
-				VALID_ARCHS = arm64;
+				VALID_ARCHS = "arm64 armv7";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -664,6 +683,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/ThirdPayLib/alipay",
+					"$(PROJECT_DIR)/ThirdPayLib/alipay",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ThirdPayLib/ThirdPayLib-Prefix.pch";
@@ -689,7 +709,7 @@
 				PROVISIONING_PROFILE = "38b61ba7-c8db-4c7d-a2b8-8f1ec8d44f28";
 				PROVISIONING_PROFILE_SPECIFIER = iOSDevelopNor;
 				TARGETED_DEVICE_FAMILY = 1;
-				VALID_ARCHS = arm64;
+				VALID_ARCHS = "arm64 armv7";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

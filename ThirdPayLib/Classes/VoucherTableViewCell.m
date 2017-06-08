@@ -146,7 +146,7 @@
         str3 = [[NSMutableAttributedString alloc]initWithString:@"折扣"];
         int discount =  [self.voucher.discount floatValue]*100;
         str4 = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"%d%%",discount]];
-    }else if ([self.voucher.voucherType isEqualToString:@"2"]){
+    }else if ([self.voucher.voucherType isEqualToString:@"2"]||[self.voucher.voucherType isEqualToString:@"5"]){
         str3 =[[NSMutableAttributedString alloc]initWithString: @"减"];
         NSString *money2 = [self moneyTran:self.voucher.voucherAmount ownType:1];
         str4 = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"%@元",money2]];

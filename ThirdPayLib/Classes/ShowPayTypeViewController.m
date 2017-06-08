@@ -22,6 +22,10 @@
 #import "QueryMemberRequest.h"
 #import <BaiduWallet_Portal/BDWalletSDKMainManager.h>
 
+#import "ThirdPayViewController.h"
+
+
+
 @interface ShowPayTypeViewController ()<UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate,WXApiDelegate,QRCodeDelegate,BDWalletSDKMainManagerDelegate>
 
 @property(nonatomic, strong)UITableView *tableView;
@@ -60,6 +64,10 @@
     UIAlertView *payingAlert;
     NSMutableArray *vouchDataSource;
     
+    
+    ThirdPayViewController *thirdPayViewController;
+    
+    
 }
 
 
@@ -76,8 +84,8 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(Back)];
     
 //    payDataSource = @[@"翼支付",@"微信支付",@"支付宝支付",@"百度钱包支付",@"Apple Pay"];
-    payDataSource = @[@"翼支付",@"微信支付",@"支付宝支付",@"百度钱包"];
-    payTypeIcon = @[@"YipayIcon",@"weixinIcon",@"alipayIcon",@"baiIcon",@"applepayIcon"];
+    payDataSource = @[@"微信支付",@"支付宝支付",@"百度钱包",@"翼支付",];
+    payTypeIcon = @[@"weixinIcon",@"alipayIcon",@"baiIcon",@"YipayIcon",@"applepayIcon"];
     selectedPayType = 0;
     _resultDict = [[NSMutableDictionary alloc]init];
     if (![_viewType isEqualToString:@"NOVIEW"]) {
@@ -171,7 +179,7 @@
     
     request.projectNo = self.orderInfo.projectNo;
     request.merchantOrderNo = self.orderInfo.merchantOrderNo;
-    
+    request.tradeTpye = self.orderInfo.tradeType;
     request.orderAmount = self.orderInfo.orderAmount;
     request.appVer = self.orderInfo.appVer;
     request.accountNo = self.orderInfo.accountNo;
@@ -256,7 +264,79 @@
     
 }
 
+
+- (void)testPay{
+    
+    ThirdPayType payType = ThirdPayType_YiPay;
+    switch (self.orderInfo.paytype) {
+        case PayType_Alipay:
+        {
+            payType = ThirdPayType_Alipay;
+        }
+            break;
+        case PayType_YiPay:
+        {
+            payType = ThirdPayType_YiPay;
+            
+        }
+            break;
+        case PayType_WeichatPay:
+        {
+            payType = ThirdPayType_WeichatPay;
+        }
+            break;
+            
+        case PayType_BaiduPay:
+        {
+            payType = ThirdPayType_BaiduPay;
+        }
+            break;
+        case PayType_ApplePay:
+        {
+            payType = ThirdPayType_ApplePay;
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
+    
+    thirdPayViewController = [[ThirdPayViewController alloc]init];
+    [thirdPayViewController pay:OrderString payType:payType appSchemeStr:self.orderInfo.appSchemeStr CallBack:^(ThirdPayResult code, NSString *message) {
+        
+        switch (code) {
+            case ThirdPayResult_CANCEL:
+                payStatus = PayStatus_PAYCANCEL;
+                break;
+            case ThirdPayResult_SUCCESS:
+                payStatus = PayStatus_PAYSUCCESS;
+                break;
+            case ThirdPayResult_EXCEPTION:
+                payStatus = PayStatus_PAYTIMEOUT;
+                break;
+            case ThirdPayResult_UNKNOWTYPE:
+                payStatus = PayStatus_PAYTIMEOUT;
+                break;
+            case ThirdPayResult_PAYING:
+                payStatus = PayStatus_PAYTIMEOUT;
+                break;
+            case ThirdPayResult_FAILED:
+                payStatus = PayStatus_PAYFAIL;
+                break;
+            default:
+                break;
+        }
+        [self tradeReturn];
+    }];
+    
+}
+
 -(void)gotoPay{
+    
+    
+    [self testPay];
+    return;
     
     if (IsStrEmpty(OrderString)) {
         [self tradeReturn];
@@ -358,28 +438,28 @@
     switch (selectedPayType) {
         case 0:
         {
-            self.orderInfo.paytype = PayType_YiPay;
+            self.orderInfo.paytype = PayType_WeichatPay;;
             
         }
             break;
         case 1:
         {
-            self.orderInfo.paytype = PayType_WeichatPay;
+            self.orderInfo.paytype = PayType_Alipay;
         }
             break;
         case 2:
         {
-            self.orderInfo.paytype = PayType_Alipay;
+            self.orderInfo.paytype = PayType_BaiduPay;
         }
             break;
         case 3:
         {
-            self.orderInfo.paytype = PayType_BaiduPay;
+            self.orderInfo.paytype = PayType_ApplePay;
         }
             break;
         case 4:
         {
-            self.orderInfo.paytype = PayType_ApplePay;
+            self.orderInfo.paytype = PayType_YiPay;
         }
             break;
             
@@ -551,39 +631,41 @@
         
         VoucherData *voucher = cell.voucher;
         
-        if (voucher.selected) {
-            return;
-        }
-        
-        if (voucher.superposeType) {//可以重用优惠券
-            
-            if (!(payAmount>[voucher.satisfyOrderAmount intValue]) && hasSelected) {
-                [self presentSheet:@"不满足优惠券使用条件"];
-                return;
-            }
-            
-            for (VoucherData *temp in vouchDataSource) {
-                
-                
-                if (temp.superposeType == NO) {
-                    temp.selected = NO;
-                }
-            }
-            voucher.selected = YES;
-            hasSelected = YES;
-            
-        }else{
-            NSInteger i=0;
-            hasSelected = NO;
-            for (VoucherData *temp in vouchDataSource) {
-                if (i != indexPath.row) {
-                    temp.selected = NO;
-                }else{
-                    temp.selected = YES;
-                }
-                i++;
-            }
-        }
+        voucher.selected = !voucher.selected;
+//        if (voucher.selected) {
+//            
+//            return;
+//        }
+//        
+//        if (voucher.superposeType) {//可以重用优惠券
+//            
+//            if (!(payAmount>[voucher.satisfyOrderAmount intValue]) && hasSelected) {
+//                [self presentSheet:@"不满足优惠券使用条件"];
+//                return;
+//            }
+//            
+//            for (VoucherData *temp in vouchDataSource) {
+//                
+//                
+//                if (temp.superposeType == NO) {
+//                    temp.selected = NO;
+//                }
+//            }
+//            voucher.selected = YES;
+//            hasSelected = YES;
+//            
+//        }else{
+//            NSInteger i=0;
+//            hasSelected = NO;
+//            for (VoucherData *temp in vouchDataSource) {
+//                if (i != indexPath.row) {
+//                    temp.selected = NO;
+//                }else{
+//                    temp.selected = YES;
+//                }
+//                i++;
+//            }
+//        }
         [tableView reloadData];
         [self resetPayAmount];
         
@@ -608,11 +690,14 @@
         
         if (temp.selected) {
             
-            if (temp.superposeType) {
-                payAmount = payAmount - [temp.voucherAmount intValue];
-            }else{
+            if ([temp.voucherType isEqualToString:@"4"]) {
                 payAmount = payAmount*[temp.discount floatValue];
-                break;
+            }else{
+                
+                payAmount = payAmount - [temp.voucherAmount intValue];
+                if (payAmount < 0) {
+                    payAmount = 0;
+                }
             }
             PNRVoucherInfo *voucher = [[PNRVoucherInfo alloc]init];
             voucher.voucherAmount = temp.voucherAmount;
@@ -843,6 +928,12 @@
 
 
 -(Boolean)handleOpenURL:(NSURL *)url withCompletion:(ThirdPayCompletion )complete{
+    
+    
+    [thirdPayViewController handleOpenURL:url];
+    return YES;
+    
+    
     [payingAlert setHidden:YES];
     switch (self.orderInfo.paytype) {
         case PayType_YiPay:{
@@ -906,7 +997,7 @@
                     
                     
                 }];
-                
+            
             }
         }
         case PayType_WeichatPay:{

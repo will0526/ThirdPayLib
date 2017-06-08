@@ -51,7 +51,7 @@
 
 @property(nonatomic,strong)NSString *appVer;         //app版本号
 @property(nonatomic,strong)NSString *appType;        //app类型
-@property(nonatomic,strong)NSString *tradeTpye;         //调用类型(线上)
+@property(nonatomic,assign)TradeType tradeTpye;         //调用类型(线上)
 @property(nonatomic,strong)NSString *redPocket;         //红包金额
 @property(nonatomic,strong)NSString *memberPoints;      //积分金额
 @property(nonatomic,strong)NSString *tradeCurrency;     //币种 （RMB）

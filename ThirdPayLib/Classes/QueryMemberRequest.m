@@ -34,7 +34,8 @@
     
     
     EncodeUnEmptyStrObjctToDic(dic, self.orderAmount, @"orderAmount");
-    
+    EncodeUnEmptyStrObjctToDic(dic, @"01", @"tradeType");
+    EncodeUnEmptyStrObjctToDic(dic, @"01", @"appType");
     EncodeUnEmptyStrObjctToDic(dic, self.accountNo, @"accountNo");
     EncodeUnEmptyStrObjctToDic(dic, self.accountType, @"accountType");
     EncodeUnEmptyStrObjctToDic(dic, self.merchantNo, @"merchantNo");

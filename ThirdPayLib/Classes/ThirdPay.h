@@ -24,18 +24,17 @@ typedef enum{
 
 
 typedef enum{
-    
     PayType_Alipay,           //支付宝
     PayType_WeichatPay,       //微信
     PayType_ApplePay,         //Apple Pay
     PayType_YiPay,            //翼支付
-    PayType_BaiduPay             //百度钱包
+    PayType_BaiduPay          //百度钱包
     
 }PayType;
 
 typedef enum{
     
-    TradeType_Online,           //01
+    TradeType_Online,        //01网上订单
     TradeType_Offline,       //02
 }TradeType;
 

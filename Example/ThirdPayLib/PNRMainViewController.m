@@ -11,7 +11,7 @@
 #import "PNRAboutUSViewController.h"
 #import <ThirdPayLib/ThirdPay.h>
 #import "PNRMerchantViewController.h"
-
+#import <AlipaySDK/AlipaySDK.h>
 
 @interface PNRMainViewController ()
 
@@ -44,7 +44,7 @@
     [userDef setObject:@"测试" forKey:@"environment"];
     
     UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithCustomView:self.transButton];
-//    self.navigationItem.rightBarButtonItem = menuButton;
+    self.navigationItem.rightBarButtonItem = menuButton;
     icon = [[UIImageView alloc]initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, 308*self.view.frame.size.width/540)];
     
     [icon setImage:[UIImage imageNamed:@"icon@2x"]];
@@ -242,12 +242,38 @@
 -(void)aboutUS{
     
     
-    PNRAboutUSViewController *about = [[PNRAboutUSViewController alloc]init];
-//    PNRMerchantViewController *merchant = [[PNRMerchantViewController alloc]init];
     
-    [self.navigationController pushViewController:about animated:YES];
+    [self alipay];
+    
+//    
+//    PNRAboutUSViewController *about = [[PNRAboutUSViewController alloc]init];
+////    PNRMerchantViewController *merchant = [[PNRMerchantViewController alloc]init];
+//    
+//    [self.navigationController pushViewController:about animated:YES];
     
     
+}
+
+-(void)alipay{
+    
+    NSString * OrderString = @"app_id=2016072801677304&format=JSON&method=alipay.trade.app.pay&charset=utf-8&version=1.0&sign_type=RSA&timestamp=2017-05-24+10%3A15%3A18&notify_url=http%3A%2F%2Fipp.pnrtec.com%2Freceiver%2F0003%2F0005%2F01.html&sign=V3xokJ%2Fn5nyAsTRHxtuYpQr3diDfJHfNUJBrtkTS1nDyD95%2FO5U2otkW6uCiH5jRW%2BRb1YmwqoSuhfrOr5WGaUUGeNIaTfKZs16babKIzTV1BABNjHrpnBSh1XUSjQRRpI0RePtWIYuYIT6LtinmhaKjlZMS1IVDbGp5vwYjG4c%3D&biz_content={\"total_amount\":\"1.00\",\"body\":\"%E8%8B%B9%E6%9E%9C%E6%89%8B%E6%9C%BA6s%E5%92%8CiPhone7+%E6%AD%A3%E5%93%81%E8%A1%8C%E8%B4%A7\",\"product_code\":\"QUICK_MSECURITY_PAY\",\"subject\":\"%E8%8B%B9%E6%9E%9C%E6%89%8B%E6%9C%BA6s%E5%92%8CiPhone7+%E6%AD%A3%E5%93%81%E8%A1%8C%E8%B4%A7\",\"seller_id\":\"2088611361074461\",\"out_trade_no\":\"000000000010\"}";
+    
+    @try{
+        [[[UIApplication sharedApplication] windows] objectAtIndex:0].hidden = NO;
+        
+        [[AlipaySDK defaultService] payOrder:OrderString fromScheme:@"ThirdPay" callback:^(NSDictionary *result) {
+            
+            NSLog(@"reslut = %@",result);
+            
+        }];
+    }
+    @catch(NSException *exception) {
+        NSLog(@"exception%@",exception);
+    }
+    @finally {
+        
+    }
+
 }
 
 

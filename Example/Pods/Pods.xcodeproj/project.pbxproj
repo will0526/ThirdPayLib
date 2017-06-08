@@ -181,6 +181,8 @@
 		BE019E261EC4198600FC287E /* libz.1.2.5.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = BE019E251EC4198600FC287E /* libz.1.2.5.tbd */; };
 		BE019E281EC419C800FC287E /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE019E271EC419C800FC287E /* AddressBookUI.framework */; };
 		BE16C28916FA3DE55AF94E6A8160914B /* UIColor+SNAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D84A48DFFA3BB499CB00DBFDD7138BA0 /* UIColor+SNAdditions.m */; };
+		BE32DFE71ED58FFB002ED734 /* ThirdPayViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = BE32DFE51ED58FFB002ED734 /* ThirdPayViewController.h */; };
+		BE32DFE81ED58FFB002ED734 /* ThirdPayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE32DFE61ED58FFB002ED734 /* ThirdPayViewController.m */; };
 		BE75E4F61EC198210012DFD2 /* BaiduWallet_Portal.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BE75E4E21EC198210012DFD2 /* BaiduWallet_Portal.bundle */; };
 		BE75E4F71EC198210012DFD2 /* BaiduWallet_Portal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE75E4E31EC198210012DFD2 /* BaiduWallet_Portal.framework */; };
 		BE75E4F81EC198210012DFD2 /* BestpayNativeModel.h in Headers */ = {isa = PBXBuildFile; fileRef = BE75E4E61EC198210012DFD2 /* BestpayNativeModel.h */; };
@@ -632,6 +634,8 @@
 		BE019E231EC4191F00FC287E /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/usr/lib/libsqlite3.tbd; sourceTree = DEVELOPER_DIR; };
 		BE019E251EC4198600FC287E /* libz.1.2.5.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.2.5.tbd; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/usr/lib/libz.1.2.5.tbd; sourceTree = DEVELOPER_DIR; };
 		BE019E271EC419C800FC287E /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/AddressBookUI.framework; sourceTree = DEVELOPER_DIR; };
+		BE32DFE51ED58FFB002ED734 /* ThirdPayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThirdPayViewController.h; sourceTree = "<group>"; };
+		BE32DFE61ED58FFB002ED734 /* ThirdPayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThirdPayViewController.m; sourceTree = "<group>"; };
 		BE75E4E21EC198210012DFD2 /* BaiduWallet_Portal.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = BaiduWallet_Portal.bundle; sourceTree = "<group>"; };
 		BE75E4E31EC198210012DFD2 /* BaiduWallet_Portal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduWallet_Portal.framework; sourceTree = "<group>"; };
 		BE75E4E61EC198210012DFD2 /* BestpayNativeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BestpayNativeModel.h; sourceTree = "<group>"; };
@@ -1750,6 +1754,8 @@
 				7A14D2AB93F90467407491306AD2260A /* VoucherTableViewCell.h */,
 				5603B64CF1E9EAC01D2EAF7122B7EC90 /* VoucherTableViewCell.m */,
 				5ADA7E600566B03A208A006A5D3773A3 /* common */,
+				BE32DFE51ED58FFB002ED734 /* ThirdPayViewController.h */,
+				BE32DFE61ED58FFB002ED734 /* ThirdPayViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1902,6 +1908,7 @@
 				1FF5A2E704508291338CAACA5871908C /* MOPCustomStatueBar.h in Headers */,
 				152CEAE91BCB49CCBD72D28BC3CD947F /* MOPHUDCenter.h in Headers */,
 				BE75E62E1EC1A2B70012DFD2 /* SAPIMainWebView.h in Headers */,
+				BE32DFE71ED58FFB002ED734 /* ThirdPayViewController.h in Headers */,
 				54F9E091F739565CE8332273CF75230A /* NSAttributedString+Attributes.h in Headers */,
 				BD5DF0B446044E56525A020B36DDA015 /* NSData+Base64.h in Headers */,
 				4DA4542C4924A221FCD0F8A4A4D57502 /* NSData+Utils.h in Headers */,
@@ -2365,6 +2372,7 @@
 				7CBF6FE283395CFB523C35C910A91B52 /* CommonService.m in Sources */,
 				9E5763D4FA0C7D01D0F58227F6A3C16F /* CommonViewController.m in Sources */,
 				58FAB1783697F59E4A60FF2CA421AC36 /* GlobleDefine.m in Sources */,
+				BE32DFE81ED58FFB002ED734 /* ThirdPayViewController.m in Sources */,
 				1EF3622009EA1E0D1524FC6F09C6FAC6 /* IPAddress.c in Sources */,
 				FA877903AE65AFE9DCC55FAD3D81245C /* LJTimer.m in Sources */,
 				05CC983E0FB467576460F71DB0E83398 /* mask.c in Sources */,
@@ -2484,6 +2492,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREFIX_HEADER = "Target Support Files/Reachability/Reachability-prefix.pch";
@@ -2516,6 +2525,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2800,6 +2810,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREFIX_HEADER = "Target Support Files/Reachability/Reachability-prefix.pch";
@@ -2832,6 +2843,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

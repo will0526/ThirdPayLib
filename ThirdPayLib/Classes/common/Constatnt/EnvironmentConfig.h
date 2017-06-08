@@ -30,10 +30,10 @@
 
 #define DDLog(string, object) NSLog(@"%@..........%@",string,object)
 
-#define TESTBASEURL @"https://ipp.pnrtec.com/front/gateway/sdk/interface.json"//URL
+#define TESTBASEURL @"https://ippuat.pnrtec.com/front/gateway/sdk/interface.json"//URL
 #define SALT @"fTWFH3QRH7gSs3DE"
 
-#define BASEURL @"http://huanghui.tunnel.qydev.com/front/gateway/sdk/interface.json"//URL
+#define BASEURL @"http://ipp.pnrtec.com/front/gateway/sdk/interface.json"//URL
 
 //http://huanghui.tunnel.qydev.com
 #endif

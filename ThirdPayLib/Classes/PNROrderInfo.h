@@ -34,7 +34,7 @@
 @property(nonatomic,strong)NSString *voucherNotifyURL;         //后台发券通知地址
 @property(nonatomic,strong)NSString *notifyURL;         //后台通知地址
 @property(nonatomic,strong)NSString *appSchemeStr;      //支付成功跳转回调
-
+@property(nonatomic,assign)TradeType tradeType;         //订单渠道，线下主扫，网上商城订单
 @property(nonatomic, assign)PayType paytype;            //支付方式
 @property(nonatomic,strong)NSArray *campaignsInfo;          //营销信息数组（营销活动ID字符串数组{@"0001",@"0003",@"0002"})
 
