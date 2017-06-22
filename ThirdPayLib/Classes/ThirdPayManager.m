@@ -6,7 +6,7 @@
 //
 //
 
-#import "ThirdPayViewController.h"
+#import "ThirdPayManager.h"
 
 #import <BaiduWallet_Portal/BDWalletSDKMainManager.h>
 
@@ -17,36 +17,80 @@
 
 #define IsEmptyStr(_ref)    (((_ref) == nil) || ([(_ref) isEqual:[NSNull null]]) ||([(_ref)isEqualToString:@""]))
 
-@interface ThirdPayViewController ()<WXApiDelegate,BDWalletSDKMainManagerDelegate>
+static NSString *scheme;
+@interface ThirdPayManager ()<WXApiDelegate,BDWalletSDKMainManagerDelegate>
+
+@property(nonatomic,strong)UIViewController *rootView;
+
+@property(nonatomic,strong)NSString *orderString;
+@property(nonatomic,strong)NSString *alipaySign;
+@property(nonatomic,strong)NSString *appSchemeStr;
+@property(nonatomic,strong)CallBack callback;
+@property(nonatomic,assign)ThirdPayType  thirdPayType;
+
 
 @end
 
-@implementation ThirdPayViewController
+@implementation ThirdPayManager
+
+static ThirdPayManager *defaultThirdPayManager = nil;
+
++ (ThirdPayManager *)getThirdPayManagerInstance
 {
-    NSString *OrderString;
-    ThirdPayType thirdPayType;
-    NSString * appSchemeStr;
-    CallBack callBack;
-}
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    @synchronized(self){
+        if (defaultThirdPayManager == nil) {
+            defaultThirdPayManager = [[ThirdPayManager alloc] init];
+        }
+    }
+    return defaultThirdPayManager;
 }
 
++ (id)allocWithZone:(NSZone *)zone
+{
+    @synchronized(self)
+    {
+        if (defaultThirdPayManager == nil)
+        {
+            defaultThirdPayManager = [super allocWithZone:zone];
+            
+            return defaultThirdPayManager;
+        }
+        
+    }
+    return nil;
+}
 
++(void)setAppSchemeStr:(NSString *)appSchemeStr{
+    scheme = appSchemeStr;
+    [ThirdPayManager getThirdPayManagerInstance];
+    
 
--(void)pay:(NSString *)OrderInfo payType:(ThirdPayType )payType appSchemeStr:(NSString *)SchemeStr CallBack:(CallBack)callBack1{
+}
++(void)setViewController:(UIViewController *)viewController{
+    [ThirdPayManager getThirdPayManagerInstance];
+    
+    defaultThirdPayManager.rootView = viewController;
+}
+
++(void)pay:(NSString *)OrderInfo payType:(ThirdPayType )payType CallBack:(CallBack)callBack1{
+    defaultThirdPayManager = [ThirdPayManager getThirdPayManagerInstance];
     
     if (!OrderInfo || [OrderInfo isEqualToString:@""]) {
         
-        [self tradeReturn:ThirdPayResult_EXCEPTION];
+        [ThirdPayManager tradeReturn:ThirdPayResult_EXCEPTION];
         return;
     }
     
-    appSchemeStr = SchemeStr;
-    OrderString = OrderInfo;
-    thirdPayType = payType;
-    callBack = callBack1;
+    if(nil == payType || callBack1 == nil){
+        
+        [ThirdPayManager tradeReturn:ThirdPayResult_EXCEPTION];
+        return;
+    }
+    
+    defaultThirdPayManager.appSchemeStr = scheme;
+    defaultThirdPayManager.orderString = OrderInfo;
+    defaultThirdPayManager.thirdPayType = payType;
+    defaultThirdPayManager.callback = callBack1;
     switch (payType) {
         case ThirdPayType_Alipay:
         {
@@ -76,7 +120,11 @@
         }
             break;
             
-        default:
+        default:{
+            [ThirdPayManager tradeReturn:ThirdPayResult_EXCEPTION];
+            return;
+            
+        }
             break;
     }
     
@@ -86,14 +134,14 @@
 
 //百度钱包
 
--(void)baiduPay{
++(void)baiduPay{
     
     
     BDWalletSDKMainManager* payMainManager = [BDWalletSDKMainManager getInstance];
-    [payMainManager setDelegate:self];
-    [payMainManager setRootViewController:self];
+    [payMainManager setDelegate:defaultThirdPayManager];
+    [payMainManager setRootViewController:defaultThirdPayManager.rootView];
     
-    [payMainManager doPayWithOrderInfo:OrderString params:nil delegate:self];
+    [payMainManager doPayWithOrderInfo:defaultThirdPayManager.orderString params:nil delegate:defaultThirdPayManager];
     
 }
 
@@ -104,13 +152,13 @@
     if (statusCode == 0) {
         
         NSLog(@"成功");
-        [self tradeReturn:ThirdPayResult_SUCCESS];
+        [ThirdPayManager tradeReturn:ThirdPayResult_SUCCESS];
         
     } else if (statusCode == 1) {
         NSLog(@"支付中");
-        [self tradeReturn:ThirdPayResult_PAYING];
+        [ThirdPayManager tradeReturn:ThirdPayResult_PAYING];
     } else if (statusCode == 2) {
-        [self tradeReturn:ThirdPayResult_CANCEL];
+        [ThirdPayManager tradeReturn:ThirdPayResult_CANCEL];
         
         NSLog(@"取消");
     }
@@ -119,13 +167,14 @@
     
 }
 
--(void)tradeReturn:(ThirdPayResult)result{
++(void)tradeReturn:(ThirdPayResult)result{
     //    code 0000 成功
     //    code 0010 取消
     //    code 1000 失败
     //    code 2000 支付中
     //    code 3000 参数异常
     //    code 9999 支付方式未实现
+    
     NSString *message = @"";
     switch (result) {
         case ThirdPayResult_CANCEL:
@@ -150,46 +199,32 @@
             break;
     }
     
-    callBack(result,message);
-    
-    
-    
+    if(defaultThirdPayManager.callback){
+        defaultThirdPayManager.callback(result,message,defaultThirdPayManager.alipaySign);
+    }
 }
 
 //支付宝
--(void)alipay{
++(void)alipay{
     
-    @try{
-        [[[UIApplication sharedApplication] windows] objectAtIndex:0].hidden = NO;
+    [[AlipaySDK defaultService] payOrder:defaultThirdPayManager.orderString fromScheme:defaultThirdPayManager.appSchemeStr callback:^(NSDictionary *result) {
+        NSString *resultStatus = [self encodeStringFromDic:result key:@"resultStatus"];
+        if ([resultStatus isEqualToString:@"9000"]) {
+            [self tradeReturn:ThirdPayResult_SUCCESS];
+        }else if ([resultStatus isEqualToString:@"6001"]){
+            [self tradeReturn:ThirdPayResult_CANCEL];
+        }else{
+            [self tradeReturn:ThirdPayResult_FAILED];
+        }
         
-        [[AlipaySDK defaultService] payOrder:OrderString fromScheme:appSchemeStr callback:^(NSDictionary *result) {
-            NSString *resultStatus = [self encodeStringFromDic:result key:@"resultStatus"];
-            if ([resultStatus isEqualToString:@"9000"]) {
-                [self tradeReturn:ThirdPayResult_SUCCESS];
-            }else if ([resultStatus isEqualToString:@"6001"]){
-                [self tradeReturn:ThirdPayResult_CANCEL];
-            }else{
-                [self tradeReturn:ThirdPayResult_FAILED];
-            }
-            
-        }];
-    }
-    @catch(NSException *exception) {
-       
-        [self tradeReturn:ThirdPayResult_EXCEPTION];
-    }
-    @finally {
-        
-    }
-    
-    
+    }];
 }
 
 
 //微信
--(void)weixinpay{
++(void)weixinpay{
     
-    NSData *jsonData = [OrderString dataUsingEncoding:NSUTF8StringEncoding];
+    NSData *jsonData = [defaultThirdPayManager.orderString dataUsingEncoding:NSUTF8StringEncoding];
     NSError *err;
     NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData
                                                         options:NSJSONReadingMutableContainers
@@ -203,7 +238,10 @@
     NSString *partnerId = [self encodeStringFromDic:dic key:@"partnerid"];
     
     NSString *prepayId = [self encodeStringFromDic:dic key: @"prepayid"];
-    NSString *package = [self encodeStringFromDic:dic key:@"package"];
+    NSString *package = [self encodeStringFromDic:dic key:@"packageVal"];
+    if(nil == package){
+        package = [self encodeStringFromDic:dic key:@"package"];
+    }
     NSString *nonceStr= [self encodeStringFromDic:dic key:@"noncestr"];
     NSString *timeSp = [self encodeStringFromDic:dic key:@"timestamp"];
     
@@ -229,6 +267,12 @@
     
 }
 
++(BOOL)wechatInstalled{
+    
+    return [WXApi isWXAppInstalled];
+
+}
+
 //微信回调
 
 -(void)onResp:(BaseResp*)resp{
@@ -238,18 +282,18 @@
         switch(response.errCode){
             case WXSuccess:
             {
-                [self tradeReturn:ThirdPayResult_SUCCESS];
+                [ThirdPayManager tradeReturn:ThirdPayResult_SUCCESS];
             }
                 break;
             case WXErrCodeUserCancel:
             {
                 
-                [self tradeReturn:ThirdPayResult_CANCEL];
+                [ThirdPayManager tradeReturn:ThirdPayResult_CANCEL];
             }
                 break;
             default:
             {
-                [self tradeReturn:ThirdPayResult_FAILED];
+                [ThirdPayManager tradeReturn:ThirdPayResult_FAILED];
             }
                 break;
         }
@@ -258,8 +302,9 @@
 
 
 //翼支付
--(void)yipay{
++(void)yipay{
     
+    [ThirdPayManager tradeReturn:ThirdPayResult_UNKNOWTYPE];
 //    DDLog(@"跳转支付页面带入信息:", OrderString);
 //    
 //    NSString *scheml = appSchemeStr;
@@ -286,17 +331,23 @@
 }
 
 
--(void)applePay{
++(void)applePay{
     
-   [self tradeReturn:ThirdPayResult_UNKNOWTYPE];
+   [ThirdPayManager tradeReturn:ThirdPayResult_UNKNOWTYPE];
     
 }
 
 
 
--(Boolean)handleOpenURL:(NSURL *)url{
++(BOOL)handleOpenURL:(NSURL *)url{
     
-    switch (thirdPayType) {
+    if (!url) {
+        [ThirdPayManager tradeReturn:ThirdPayResult_EXCEPTION];
+        return YES;
+    }
+    
+    
+    switch (defaultThirdPayManager.thirdPayType) {
         case ThirdPayType_YiPay:{
 //            [BestpaySDK processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
 //                NSLog(@"确保结果显示不会出错：%@",resultDic);
@@ -326,28 +377,41 @@
                 [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
                     
                     NSLog(@"result = %@",resultDic);
+                    
                     NSString *resultStatus = [self encodeStringFromDic:resultDic key:@"resultStatus"];
                     if ([resultStatus isEqualToString:@"9000"]) {
+                        defaultThirdPayManager.alipaySign = [self encodeStringFromDic:resultDic key:@"result"];
                         
-                        [self tradeReturn:ThirdPayResult_SUCCESS];
+                        [ThirdPayManager tradeReturn:ThirdPayResult_SUCCESS];
                         
                     }else if ([resultStatus isEqualToString:@"6001"]){
                         
-                        [self tradeReturn:ThirdPayResult_CANCEL];
+                        [ThirdPayManager tradeReturn:ThirdPayResult_CANCEL];
                     }else{
                         
-                        [self tradeReturn:ThirdPayResult_SUCCESS];
+                        [ThirdPayManager tradeReturn:ThirdPayResult_FAILED];
                     }
                     
                 }];
                 
             }
+            break;
         }
         case ThirdPayType_WeichatPay:{
             
-            [WXApi handleOpenURL:url delegate:self];
+            if ([url.scheme hasPrefix:@"wx"]&&[url.host isEqualToString:@"pay"]) {
+                [WXApi handleOpenURL:url delegate:defaultThirdPayManager];
+                return YES;
+            }else{
+                return NO;
+            }
+            
+            break;
         }
         default:
+        {
+            return NO;
+        }
             break;
     }
     
@@ -355,7 +419,7 @@
     
 }
 
--(NSString *)encodeStringFromDic:(NSDictionary *)dic key:(NSString *)key
++(NSString *)encodeStringFromDic:(NSDictionary *)dic key:(NSString *)key
 {
     id temp = [dic objectForKey:key];
     if ([temp isKindOfClass:[NSString class]])
@@ -369,16 +433,16 @@
     return nil;
 }
 
-- (NSDictionary *)paramsFromString:(NSString *)urlStr
++(NSDictionary *)paramsFromString:(NSString *)urlStr
 {
     urlStr = [urlStr stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    if (urlStr == nil || [urlStr isEqualToString:@""] || ![urlStr hasPrefix:appSchemeStr])
+    if (urlStr == nil || [urlStr isEqualToString:@""] || ![urlStr hasPrefix:defaultThirdPayManager.appSchemeStr])
     {
         return nil;
     }
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     
-    NSString *str = [urlStr stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%@://",appSchemeStr] withString:@""];
+    NSString *str = [urlStr stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%@://",defaultThirdPayManager.appSchemeStr] withString:@""];
     
     if ([str isEqualToString:@""])
     {
@@ -431,19 +495,5 @@
 
 
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

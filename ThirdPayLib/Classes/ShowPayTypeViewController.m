@@ -22,7 +22,7 @@
 #import "QueryMemberRequest.h"
 #import <BaiduWallet_Portal/BDWalletSDKMainManager.h>
 
-#import "ThirdPayViewController.h"
+#import "ThirdPayManager.h"
 
 
 
@@ -65,7 +65,7 @@
     NSMutableArray *vouchDataSource;
     
     
-    ThirdPayViewController *thirdPayViewController;
+    
     
     
 }
@@ -272,11 +272,13 @@
         case PayType_Alipay:
         {
             payType = ThirdPayType_Alipay;
+            [ThirdPayManager setAppSchemeStr:self.orderInfo.appSchemeStr];
         }
             break;
         case PayType_YiPay:
         {
             payType = ThirdPayType_YiPay;
+            [ThirdPayManager setAppSchemeStr:self.orderInfo.appSchemeStr];
             
         }
             break;
@@ -289,6 +291,7 @@
         case PayType_BaiduPay:
         {
             payType = ThirdPayType_BaiduPay;
+            [ThirdPayManager setViewController:self];
         }
             break;
         case PayType_ApplePay:
@@ -301,9 +304,7 @@
             break;
     }
     
-    
-    thirdPayViewController = [[ThirdPayViewController alloc]init];
-    [thirdPayViewController pay:OrderString payType:payType appSchemeStr:self.orderInfo.appSchemeStr CallBack:^(ThirdPayResult code, NSString *message) {
+    [ThirdPayManager pay:OrderString payType:payType CallBack:^(ThirdPayResult code, NSString *message, NSString *alipaySign) {
         
         switch (code) {
             case ThirdPayResult_CANCEL:
@@ -930,7 +931,7 @@
 -(Boolean)handleOpenURL:(NSURL *)url withCompletion:(ThirdPayCompletion )complete{
     
     
-    [thirdPayViewController handleOpenURL:url];
+    [ThirdPayManager handleOpenURL:url];
     return YES;
     
     
@@ -1129,7 +1130,7 @@
 }
 
 -(void)tradeReturn{
-    
+    _resultDict = [self getParamsWrapForPay];
     if (self.thirdPayDelegate && [self.thirdPayDelegate respondsToSelector:@selector(onPayResult:withInfo:)]) {
         [self.thirdPayDelegate onPayResult:payStatus withInfo:_resultDict];
     }

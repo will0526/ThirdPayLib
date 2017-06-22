@@ -63,6 +63,9 @@
     [self.view addSubview:self.queryCampain];
     
     [self.view addSubview:self.aboutButton];
+    
+    
+    
 //    [self.view addSubview:self.scanButton];
     // Do any additional setup after loading the view.
 }
@@ -243,13 +246,13 @@
     
     
     
-    [self alipay];
     
-//    
-//    PNRAboutUSViewController *about = [[PNRAboutUSViewController alloc]init];
-////    PNRMerchantViewController *merchant = [[PNRMerchantViewController alloc]init];
-//    
-//    [self.navigationController pushViewController:about animated:YES];
+    
+    
+    PNRAboutUSViewController *about = [[PNRAboutUSViewController alloc]init];
+//    PNRMerchantViewController *merchant = [[PNRMerchantViewController alloc]init];
+    
+    [self.navigationController pushViewController:about animated:YES];
     
     
 }

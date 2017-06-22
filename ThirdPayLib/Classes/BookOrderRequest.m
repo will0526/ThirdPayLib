@@ -80,7 +80,7 @@
     EncodeUnEmptyStrObjctToDic(dic, [self getResolution], @"resolution");
     EncodeUnEmptyStrObjctToDic(dic, @"01", @"appType");
     EncodeUnEmptyStrObjctToDic(dic, self.appVer, @"appVer");
-    
+    EncodeUnEmptyStrObjctToDic(dic, @"30", @"orderLimitTime");
     
     EncodeUnEmptyStrObjctToDic(dic, self.orderAmount, @"orderAmount");
     EncodeUnEmptyStrObjctToDic(dic, self.totalAmount, @"totalAmount");

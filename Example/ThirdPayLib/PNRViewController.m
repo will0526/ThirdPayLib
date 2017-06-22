@@ -60,6 +60,7 @@
     [super viewDidLoad];
     
     
+    
     NSDate *datenow = [NSDate date];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyMMddHHmmss"];
@@ -149,6 +150,7 @@
     [self.view addSubview:_pickerView];
     
     
+        
 }
 
 -(void)keyboardDown{
