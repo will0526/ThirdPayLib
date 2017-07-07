@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+static NSString *AlipayScheme = @"ThirdPayDemo";
+static NSString *YipayScheme = @"ThirdPayDemo";
 @interface ThirdPayManager : NSObject
 
 
@@ -32,11 +34,12 @@ typedef NS_ENUM(NSInteger,ThirdPayResult){
     
 };
 
+
+
 typedef void (^CallBack)(ThirdPayResult code,NSString *message,NSString *alipaySign);
 
 +(void)pay:(NSString *)OrderInfo payType:(ThirdPayType )payType CallBack:(CallBack)callBack;
-//支付宝必调
-+(void)setAppSchemeStr:(NSString *)appSchemeStr;
+
 //百度钱包必调
 +(void)setViewController:(UIViewController *)viewController;
 

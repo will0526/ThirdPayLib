@@ -11,20 +11,19 @@
 #import <BaiduWallet_Portal/BDWalletSDKMainManager.h>
 
 #import <AlipaySDK/AlipaySDK.h>
-//#import "BestpaySDK.h"
-//#import "BestpayNativeModel.h"
+#import "BestpaySDK.h"
+#import "BestpayNativeModel.h"
 #import "WXApi.h"
 
 #define IsEmptyStr(_ref)    (((_ref) == nil) || ([(_ref) isEqual:[NSNull null]]) ||([(_ref)isEqualToString:@""]))
 
-static NSString *scheme;
 @interface ThirdPayManager ()<WXApiDelegate,BDWalletSDKMainManagerDelegate>
 
-@property(nonatomic,strong)UIViewController *rootView;
+@property(nonatomic,strong)UIViewController *rootVC;
 
 @property(nonatomic,strong)NSString *orderString;
 @property(nonatomic,strong)NSString *alipaySign;
-@property(nonatomic,strong)NSString *appSchemeStr;
+
 @property(nonatomic,strong)CallBack callback;
 @property(nonatomic,assign)ThirdPayType  thirdPayType;
 
@@ -60,16 +59,10 @@ static ThirdPayManager *defaultThirdPayManager = nil;
     return nil;
 }
 
-+(void)setAppSchemeStr:(NSString *)appSchemeStr{
-    scheme = appSchemeStr;
-    [ThirdPayManager getThirdPayManagerInstance];
-    
-
-}
 +(void)setViewController:(UIViewController *)viewController{
     [ThirdPayManager getThirdPayManagerInstance];
     
-    defaultThirdPayManager.rootView = viewController;
+    defaultThirdPayManager.rootVC = viewController;
 }
 
 +(void)pay:(NSString *)OrderInfo payType:(ThirdPayType )payType CallBack:(CallBack)callBack1{
@@ -87,7 +80,6 @@ static ThirdPayManager *defaultThirdPayManager = nil;
         return;
     }
     
-    defaultThirdPayManager.appSchemeStr = scheme;
     defaultThirdPayManager.orderString = OrderInfo;
     defaultThirdPayManager.thirdPayType = payType;
     defaultThirdPayManager.callback = callBack1;
@@ -139,7 +131,7 @@ static ThirdPayManager *defaultThirdPayManager = nil;
     
     BDWalletSDKMainManager* payMainManager = [BDWalletSDKMainManager getInstance];
     [payMainManager setDelegate:defaultThirdPayManager];
-    [payMainManager setRootViewController:defaultThirdPayManager.rootView];
+    [payMainManager setRootViewController:defaultThirdPayManager.rootVC];
     
     [payMainManager doPayWithOrderInfo:defaultThirdPayManager.orderString params:nil delegate:defaultThirdPayManager];
     
@@ -207,7 +199,7 @@ static ThirdPayManager *defaultThirdPayManager = nil;
 //支付宝
 +(void)alipay{
     
-    [[AlipaySDK defaultService] payOrder:defaultThirdPayManager.orderString fromScheme:defaultThirdPayManager.appSchemeStr callback:^(NSDictionary *result) {
+    [[AlipaySDK defaultService] payOrder:defaultThirdPayManager.orderString fromScheme:AlipayScheme callback:^(NSDictionary *result) {
         NSString *resultStatus = [self encodeStringFromDic:result key:@"resultStatus"];
         if ([resultStatus isEqualToString:@"9000"]) {
             [self tradeReturn:ThirdPayResult_SUCCESS];
@@ -232,7 +224,7 @@ static ThirdPayManager *defaultThirdPayManager = nil;
     
     
     NSString *weixinAppID = [self encodeStringFromDic:dic key:@"appid"];
-
+    
     [WXApi registerApp:weixinAppID];
     
     NSString *partnerId = [self encodeStringFromDic:dic key:@"partnerid"];
@@ -270,7 +262,7 @@ static ThirdPayManager *defaultThirdPayManager = nil;
 +(BOOL)wechatInstalled{
     
     return [WXApi isWXAppInstalled];
-
+    
 }
 
 //微信回调
@@ -304,28 +296,28 @@ static ThirdPayManager *defaultThirdPayManager = nil;
 //翼支付
 +(void)yipay{
     
-    [ThirdPayManager tradeReturn:ThirdPayResult_UNKNOWTYPE];
-//    DDLog(@"跳转支付页面带入信息:", OrderString);
-//    
-//    NSString *scheml = appSchemeStr;
-//    
-//    BestpayNativeModel *order =[[BestpayNativeModel alloc]init];
-//    order.orderInfo = OrderString;
-//    order.launchType = launchTypePay1;
-//    order.scheme = scheml;
-//    
-//    
-//    @try {
-//        [BestpaySDK payWithOrder:order fromViewController:self callback:^(NSDictionary *resultDic) {
-//            NSLog(@"%@",resultDic);
-//        }];
-//        
-//    } @catch (NSException *exception) {
-//        [self tradeReturn:ThirdPayResult_EXCEPTION];
-//        
-//    } @finally {
-//        
-//    }
+//    [ThirdPayManager tradeReturn:ThirdPayResult_UNKNOWTYPE];
+//        DDLog(@"跳转支付页面带入信息:", OrderString);
+    
+    
+    
+        BestpayNativeModel *order =[[BestpayNativeModel alloc]init];
+        order.orderInfo = defaultThirdPayManager.orderString;
+        order.launchType = launchTypePay1;
+        order.scheme = YipayScheme;
+    
+    
+        @try {
+            [BestpaySDK payWithOrder:order fromViewController:defaultThirdPayManager.rootVC callback:^(NSDictionary *resultDic) {
+                NSLog(@"%@",resultDic);
+            }];
+    
+        } @catch (NSException *exception) {
+            [self tradeReturn:ThirdPayResult_EXCEPTION];
+    
+        } @finally {
+    
+        }
     
     
 }
@@ -333,7 +325,7 @@ static ThirdPayManager *defaultThirdPayManager = nil;
 
 +(void)applePay{
     
-   [ThirdPayManager tradeReturn:ThirdPayResult_UNKNOWTYPE];
+    [ThirdPayManager tradeReturn:ThirdPayResult_UNKNOWTYPE];
     
 }
 
@@ -349,23 +341,23 @@ static ThirdPayManager *defaultThirdPayManager = nil;
     
     switch (defaultThirdPayManager.thirdPayType) {
         case ThirdPayType_YiPay:{
-//            [BestpaySDK processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
-//                NSLog(@"确保结果显示不会出错：%@",resultDic);
-//            }];
-//            
-//            NSString* params =[url absoluteString];
-//            NSDictionary *dic = [self paramsFromString:params];
-//            NSString *resultCode = EncodeStringFromDic(dic, @"resultCode");
-//            if ([resultCode isEqualToString:@"00"]) {
-//               
-//                [self tradeReturn:ThirdPayResult_SUCCESS];
-//            }else if([resultCode isEqualToString:@"01"]){
-//                [self tradeReturn:ThirdPayResult_FAILED];
-//                
-//            }else if([resultCode isEqualToString:@"02"]){
-//                
-//                [self tradeReturn:ThirdPayResult_CANCEL];
-//            }
+            //            [BestpaySDK processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
+            //                NSLog(@"确保结果显示不会出错：%@",resultDic);
+            //            }];
+            //
+            //            NSString* params =[url absoluteString];
+            //            NSDictionary *dic = [self paramsFromString:params];
+            //            NSString *resultCode = EncodeStringFromDic(dic, @"resultCode");
+            //            if ([resultCode isEqualToString:@"00"]) {
+            //
+            //                [self tradeReturn:ThirdPayResult_SUCCESS];
+            //            }else if([resultCode isEqualToString:@"01"]){
+            //                [self tradeReturn:ThirdPayResult_FAILED];
+            //
+            //            }else if([resultCode isEqualToString:@"02"]){
+            //
+            //                [self tradeReturn:ThirdPayResult_CANCEL];
+            //            }
             
         }
             break;
@@ -436,13 +428,13 @@ static ThirdPayManager *defaultThirdPayManager = nil;
 +(NSDictionary *)paramsFromString:(NSString *)urlStr
 {
     urlStr = [urlStr stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    if (urlStr == nil || [urlStr isEqualToString:@""] || ![urlStr hasPrefix:defaultThirdPayManager.appSchemeStr])
+    if (urlStr == nil || [urlStr isEqualToString:@""] || ![urlStr hasPrefix:YipayScheme])
     {
         return nil;
     }
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     
-    NSString *str = [urlStr stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%@://",defaultThirdPayManager.appSchemeStr] withString:@""];
+    NSString *str = [urlStr stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%@://",YipayScheme] withString:@""];
     
     if ([str isEqualToString:@""])
     {

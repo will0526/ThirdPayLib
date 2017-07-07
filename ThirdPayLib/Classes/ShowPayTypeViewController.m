@@ -272,13 +272,13 @@
         case PayType_Alipay:
         {
             payType = ThirdPayType_Alipay;
-            [ThirdPayManager setAppSchemeStr:self.orderInfo.appSchemeStr];
+            
         }
             break;
         case PayType_YiPay:
         {
             payType = ThirdPayType_YiPay;
-            [ThirdPayManager setAppSchemeStr:self.orderInfo.appSchemeStr];
+            [ThirdPayManager setViewController:self];
             
         }
             break;
@@ -458,14 +458,15 @@
             self.orderInfo.paytype = PayType_BaiduPay;
         }
             break;
+        
         case 3:
         {
-            self.orderInfo.paytype = PayType_ApplePay;
+            self.orderInfo.paytype = PayType_YiPay;
         }
             break;
         case 4:
         {
-            self.orderInfo.paytype = PayType_YiPay;
+            self.orderInfo.paytype = PayType_ApplePay;
         }
             break;
             
