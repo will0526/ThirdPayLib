@@ -328,7 +328,12 @@
             default:
                 break;
         }
-        [self tradeReturn];
+        if (IsStrEmpty(alipaySign)) {
+            [self tradeReturn];
+        }else{
+            [self tradeReturn:alipaySign];
+        }
+        
     }];
     
 }
@@ -1111,6 +1116,26 @@
     return dict;
     
 }
+
+-(NSDictionary *)getParamsWrapForPay:(NSString *)alipaySign{
+    
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
+    EncodeUnEmptyStrObjctToDic(dict, self.orderInfo.merchantNo, @"merchantNo");
+    EncodeUnEmptyStrObjctToDic(dict, self.orderInfo.merchantOrderNo, @"merchantOrderNo");
+    
+    EncodeUnEmptyStrObjctToDic(dict, self.orderInfo.orderSubject, @"orderTitle");
+    EncodeUnEmptyStrObjctToDic(dict, self.orderInfo.orderDescription, @"orderDetail");
+    EncodeUnEmptyStrObjctToDic(dict, self.orderInfo.memo, @"memo");
+    EncodeUnEmptyStrObjctToDic(dict, self.orderInfo.totalAmount, @"totalAmount");
+    EncodeUnEmptyStrObjctToDic(dict, self.orderInfo.payAmount, @"payAmount");
+    
+    EncodeUnEmptyStrObjctToDic(dict, alipaySign, @"alipaySign");
+    EncodeUnEmptyStrObjctToDic(dict, self.orderNO, @"ippOrderNo");
+    
+    return dict;
+    
+}
+
 -(NSDictionary *)getParamsWrapForQuery{
     
     NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
@@ -1131,6 +1156,21 @@
 
 -(void)tradeReturn{
     _resultDict = [self getParamsWrapForPay];
+    if (self.thirdPayDelegate && [self.thirdPayDelegate respondsToSelector:@selector(onPayResult:withInfo:)]) {
+        [self.thirdPayDelegate onPayResult:payStatus withInfo:_resultDict];
+    }
+    
+    if (![_viewType isEqualToString:@"NOVIEW"]) {
+        if (_viewController) {
+            [_viewController.navigationController popViewControllerAnimated:YES];
+        }else{
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+    }
+}
+
+-(void)tradeReturn:(NSString *)alipaySign{
+    _resultDict = [self getParamsWrapForPay:alipaySign];
     if (self.thirdPayDelegate && [self.thirdPayDelegate respondsToSelector:@selector(onPayResult:withInfo:)]) {
         [self.thirdPayDelegate onPayResult:payStatus withInfo:_resultDict];
     }
