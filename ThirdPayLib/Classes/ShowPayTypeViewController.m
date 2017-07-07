@@ -278,7 +278,7 @@
         case PayType_YiPay:
         {
             payType = ThirdPayType_YiPay;
-            [ThirdPayManager setViewController:self];
+            
             
         }
             break;
@@ -291,7 +291,7 @@
         case PayType_BaiduPay:
         {
             payType = ThirdPayType_BaiduPay;
-            [ThirdPayManager setViewController:self];
+            
         }
             break;
         case PayType_ApplePay:

@@ -39,6 +39,7 @@ static ThirdPayManager *defaultThirdPayManager = nil;
     @synchronized(self){
         if (defaultThirdPayManager == nil) {
             defaultThirdPayManager = [[ThirdPayManager alloc] init];
+            defaultThirdPayManager.rootVC = [UIApplication sharedApplication].keyWindow.rootViewController;
         }
     }
     return defaultThirdPayManager;
@@ -59,11 +60,6 @@ static ThirdPayManager *defaultThirdPayManager = nil;
     return nil;
 }
 
-+(void)setViewController:(UIViewController *)viewController{
-    [ThirdPayManager getThirdPayManagerInstance];
-    
-    defaultThirdPayManager.rootVC = viewController;
-}
 
 +(void)pay:(NSString *)OrderInfo payType:(ThirdPayType )payType CallBack:(CallBack)callBack1{
     defaultThirdPayManager = [ThirdPayManager getThirdPayManagerInstance];
@@ -119,8 +115,6 @@ static ThirdPayManager *defaultThirdPayManager = nil;
         }
             break;
     }
-    
-    
 }
 
 
@@ -128,11 +122,9 @@ static ThirdPayManager *defaultThirdPayManager = nil;
 
 +(void)baiduPay{
     
-    
     BDWalletSDKMainManager* payMainManager = [BDWalletSDKMainManager getInstance];
     [payMainManager setDelegate:defaultThirdPayManager];
     [payMainManager setRootViewController:defaultThirdPayManager.rootVC];
-    
     [payMainManager doPayWithOrderInfo:defaultThirdPayManager.orderString params:nil delegate:defaultThirdPayManager];
     
 }
@@ -154,9 +146,6 @@ static ThirdPayManager *defaultThirdPayManager = nil;
         
         NSLog(@"取消");
     }
-    
-    
-    
 }
 
 +(void)tradeReturn:(ThirdPayResult)result{
@@ -296,30 +285,13 @@ static ThirdPayManager *defaultThirdPayManager = nil;
 //翼支付
 +(void)yipay{
     
-//    [ThirdPayManager tradeReturn:ThirdPayResult_UNKNOWTYPE];
-//        DDLog(@"跳转支付页面带入信息:", OrderString);
-    
-    
-    
-        BestpayNativeModel *order =[[BestpayNativeModel alloc]init];
-        order.orderInfo = defaultThirdPayManager.orderString;
-        order.launchType = launchTypePay1;
-        order.scheme = YipayScheme;
-    
-    
-        @try {
-            [BestpaySDK payWithOrder:order fromViewController:defaultThirdPayManager.rootVC callback:^(NSDictionary *resultDic) {
-                NSLog(@"%@",resultDic);
-            }];
-    
-        } @catch (NSException *exception) {
-            [self tradeReturn:ThirdPayResult_EXCEPTION];
-    
-        } @finally {
-    
-        }
-    
-    
+    BestpayNativeModel *order =[[BestpayNativeModel alloc]init];
+    order.orderInfo = defaultThirdPayManager.orderString;
+    order.launchType = launchTypePay1;
+    order.scheme = YipayScheme;
+    [BestpaySDK payWithOrder:order fromViewController:defaultThirdPayManager.rootVC callback:^(NSDictionary *resultDic) {
+        NSLog(@"%@",resultDic);
+    }];
 }
 
 
@@ -341,23 +313,23 @@ static ThirdPayManager *defaultThirdPayManager = nil;
     
     switch (defaultThirdPayManager.thirdPayType) {
         case ThirdPayType_YiPay:{
-            //            [BestpaySDK processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
-            //                NSLog(@"确保结果显示不会出错：%@",resultDic);
-            //            }];
-            //
-            //            NSString* params =[url absoluteString];
-            //            NSDictionary *dic = [self paramsFromString:params];
-            //            NSString *resultCode = EncodeStringFromDic(dic, @"resultCode");
-            //            if ([resultCode isEqualToString:@"00"]) {
-            //
-            //                [self tradeReturn:ThirdPayResult_SUCCESS];
-            //            }else if([resultCode isEqualToString:@"01"]){
-            //                [self tradeReturn:ThirdPayResult_FAILED];
-            //
-            //            }else if([resultCode isEqualToString:@"02"]){
-            //
-            //                [self tradeReturn:ThirdPayResult_CANCEL];
-            //            }
+            [BestpaySDK processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
+                NSLog(@"确保结果显示不会出错：%@",resultDic);
+            }];
+            
+            NSString* params =[url absoluteString];
+            NSDictionary *dic = [self paramsFromString:params];
+            NSString *resultCode = [self encodeStringFromDic:dic key: @"resultCode"];
+            if ([resultCode isEqualToString:@"00"]) {
+                
+                [ThirdPayManager tradeReturn:ThirdPayResult_SUCCESS];
+            }else if([resultCode isEqualToString:@"01"]){
+                [ThirdPayManager tradeReturn:ThirdPayResult_FAILED];
+                
+            }else if([resultCode isEqualToString:@"02"]){
+                
+                [ThirdPayManager tradeReturn:ThirdPayResult_CANCEL];
+            }
             
         }
             break;
