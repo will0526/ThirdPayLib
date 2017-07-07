@@ -128,6 +128,23 @@ UMS_EXTERN NSArray      *EncodeArrayFromDicUsingParseBlock(NSDictionary *dic, NS
     return nil;
 }
 
+UMS_EXTERN void EncodeNumberToDic(NSMutableDictionary *dic, NSNumber *number, NSString *key)
+{
+    if (IsNilOrNull(dic))
+    {
+        return;
+    }
+    
+    
+    
+    if (IsStrEmpty(key))
+    {
+        return;
+    }
+    [dic setObject:number forKey:key];
+}
+
+
 UMS_EXTERN void EncodeUnEmptyStrObjctToDic(NSMutableDictionary *dic,NSString *object, NSString *key)
 {
     if (IsNilOrNull(dic))

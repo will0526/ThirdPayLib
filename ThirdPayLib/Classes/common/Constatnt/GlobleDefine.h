@@ -154,6 +154,8 @@ UMS_EXTERN NSNumber     * EncodeNumberFromDic(NSDictionary *dic, NSString *key);
 UMS_EXTERN NSDictionary *EncodeDicFromDic(NSDictionary *dic, NSString *key);
 UMS_EXTERN NSArray      *EncodeArrayFromDic(NSDictionary *dic, NSString *key);
 UMS_EXTERN NSArray      *EncodeArrayFromDicUsingParseBlock(NSDictionary *dic, NSString *key, id(^parseBlock)(NSDictionary *innerDic));
+UMS_EXTERN void EncodeNumberToDic(NSMutableDictionary *dic, NSNumber *number, NSString *key);
+
 UMS_EXTERN void EncodeUnEmptyStrObjctToDic(NSMutableDictionary *dic,NSString *object, NSString *key);
 UMS_EXTERN void EncodeUnEmptyObjctToArray(NSMutableArray *arr,id object);
 UMS_EXTERN void EncodeDefaultStrObjctToDic(NSMutableDictionary *dic,NSString *object, NSString *key,NSString * defaultStr);

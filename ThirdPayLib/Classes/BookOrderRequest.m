@@ -81,10 +81,10 @@
     EncodeUnEmptyStrObjctToDic(dic, @"01", @"appType");
     EncodeUnEmptyStrObjctToDic(dic, self.appVer, @"appVer");
     EncodeUnEmptyStrObjctToDic(dic, @"30", @"orderLimitTime");
+    EncodeNumberToDic(dic, [NSNumber numberWithInt:[self.orderAmount intValue]], @"orderAmount");
     
-    EncodeUnEmptyStrObjctToDic(dic, self.orderAmount, @"orderAmount");
-    EncodeUnEmptyStrObjctToDic(dic, self.totalAmount, @"totalAmount");
-    EncodeUnEmptyStrObjctToDic(dic, self.payAmount, @"tradeAmount");
+    EncodeNumberToDic(dic, [NSNumber numberWithInt:[self.totalAmount intValue]], @"totalAmount");
+    EncodeNumberToDic(dic, [NSNumber numberWithInt:[self.payAmount intValue]], @"tradeAmount");
     EncodeUnEmptyStrObjctToDic(dic, self.tradeCurrency, @"currency");
     EncodeUnEmptyStrObjctToDic(dic, self.merchantOrderNo, @"orderNo");
     EncodeUnEmptyStrObjctToDic(dic, self.orderTitle, @"orderSubject");
@@ -124,7 +124,7 @@
             EncodeUnEmptyStrObjctToDic(goods, temp.itemNo, @"itemNo");
             EncodeUnEmptyStrObjctToDic(goods, temp.goodsName, @"goodsName");
             
-            EncodeUnEmptyStrObjctToDic(goods, temp.goodsAmount, @"goodsAmount");
+            EncodeNumberToDic(goods, [NSNumber numberWithInt:[temp.goodsAmount intValue]], @"goodsAmount");
             [tempGoodsArr addObject:goods];
         }
         
@@ -157,8 +157,7 @@
             NSMutableDictionary *pay = [[NSMutableDictionary alloc]init];
             EncodeUnEmptyStrObjctToDic(pay, temp.voucherType, @"voucherType");
             EncodeUnEmptyStrObjctToDic(pay, temp.voucherId, @"voucherId");
-            EncodeUnEmptyStrObjctToDic(pay, temp.voucherAmount, @"voucherAmount");
-            
+            EncodeNumberToDic(pay, [NSNumber numberWithInt:[temp.voucherAmount intValue]], @"voucherAmount");
             
             [tempPayArr addObject:pay];
         }
