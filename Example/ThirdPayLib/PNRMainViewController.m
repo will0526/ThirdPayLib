@@ -12,6 +12,7 @@
 #import <ThirdPayLib/ThirdPay.h>
 #import "PNRMerchantViewController.h"
 #import <AlipaySDK/AlipaySDK.h>
+#import "PNRPayBillViewController.h"
 
 @interface PNRMainViewController ()
 
@@ -24,7 +25,7 @@
 @property (nonatomic,strong)UIButton *queryAllMemberButton;
 @property (nonatomic, strong)UIButton *transButton;
 @property (nonatomic, strong)UIButton *queryCampain;
-
+@property (nonatomic, strong)UIButton *payBillBtn;
 @end
 
 @implementation PNRMainViewController
@@ -63,11 +64,29 @@
     [self.view addSubview:self.queryCampain];
     
     [self.view addSubview:self.aboutButton];
-    
+    [self.view addSubview:self.payBillBtn];
     
     
 //    [self.view addSubview:self.scanButton];
     // Do any additional setup after loading the view.
+}
+
+
+-(UIButton *)payBillBtn{
+    if (_payBillBtn == nil) {
+        _payBillBtn = [[UIButton alloc]initWithFrame:CGRectMake(self.view.frame.size.width/6, 100, self.view.frame.size.width*2/3, 40)];
+        [_payBillBtn setTitle:@"买单" forState:UIControlStateNormal];
+        [_payBillBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        
+        [_payBillBtn setBackgroundColor:[UIColor orangeColor]];
+        
+        _payBillBtn.tag = 10;
+        [_payBillBtn addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        
+    }
+    
+    return _payBillBtn;
+    
 }
 
 
@@ -301,6 +320,12 @@
         }else{
             
         }
+        return;
+    }
+    
+    if (button.tag == 10) {
+        PNRPayBillViewController *payBill = [[PNRPayBillViewController alloc]init];
+        [self.navigationController pushViewController:payBill animated:YES];
         return;
     }
     

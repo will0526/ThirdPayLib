@@ -1,0 +1,273 @@
+VOUCHER_TRANS_TYPE
+2 满减券
+4 折扣券
+5 现金券
+
+CAMPAIGN_TOOL_TYPE
+02 满减
+04 满赠
+
+全都是可选的
+选择一个/取消选择
+遍历 计算金额
+判断剩余未选是否可选
+    如果是无门槛的，选择优惠券，计算金额，金额是否大于等于遍历出的已选中的优惠券门槛金额。
+    
+
+
+url 附带参数 accountNo=13818181818&projectNo=1402A001&merchantNO=01B101N01&use&accountType=2&appType=01&tradeType=01&orderAmount=100
+
+
+
+VoucherInfo =     (
+                {
+            UseAppType =             {
+                appType = 02;
+            };
+            UseMerchantNo =             {
+            };
+            UseTradeType =             {
+                tradeType = 01;
+            };
+            availableEndTime = 235959;
+            availableStartTime = 000000;
+            discount = 1;
+            expirationTime = "2018/05/01 00:00:00";
+            satisfyOrderAmount = 2;
+            source = 1496218046619;
+            sourceType = 1;
+            startTime = "2017/05/01 00:00:00";
+            superposeType = 0;
+            voucherAmount = 1;
+            voucherDescription = "xym0531满减券";
+            voucherId = JP6VPFPC3TEGZE8BE4WP;
+            voucherName = "xym0531满减券";
+            voucherNo = 149621739200094268480;
+            voucherType = 2;
+        },
+                {
+            UseAppType =             {
+                appType = 02;
+            };
+            UseMerchantNo =             {
+            };
+            UseTradeType =             {
+                tradeType = 01;
+            };
+            availableEndTime = 235959;
+            availableStartTime = 000000;
+            discount = 1;
+            expirationTime = "2018/05/01 00:00:00";
+            satisfyOrderAmount = 2;
+            source = 1496218046619;
+            sourceType = 1;
+            startTime = "2017/05/01 00:00:00";
+            superposeType = 0;
+            voucherAmount = 1;
+            voucherDescription = "xym0531满减券";
+            voucherId = NLZQZDN5GARQJ5UQUYCV;
+            voucherName = "xym0531满减券";
+            voucherNo = 149621739200094268480;
+            voucherType = 2;
+        },
+                {
+            UseAppType =             {
+                appType = 01;
+            };
+            UseMerchantNo =             {
+            };
+            UseTradeType =             {
+                tradeType = 01;
+            };
+            availableEndTime = 235959;
+            availableStartTime = 000000;
+            discount = 1;
+            expirationTime = "2018/07/18 18:55:00";
+            satisfyOrderAmount = 0;
+            source = 1496218046619;
+            sourceType = 1;
+            startTime = "2017/05/01 00:00:00";
+            superposeType = 0;
+            voucherAmount = 1;
+            voucherDescription = "xym0531现金券";
+            voucherId = 7VHQMTK2YVVXC4PZKMU4;
+            voucherName = "xym0531现金券";
+            voucherNo = 149621727300050283316;
+            voucherType = 5;
+        },
+                {
+            UseAppType =             {
+                appType = 02;
+            };
+            UseMerchantNo =             {
+            };
+            UseTradeType =             {
+                tradeType = 01;
+            };
+            availableEndTime = 235959;
+            availableStartTime = 000000;
+            discount = 80;
+            expirationTime = "2018/05/01 00:00:00";
+            satisfyOrderAmount = 2;
+            source = 1496218046619;
+            sourceType = 1;
+            startTime = "2017/05/01 00:00:00";
+            superposeType = 0;
+            voucherAmount = 0;
+            voucherDescription = "xym0531折扣券";
+            voucherId = NA6NJQ9JY5Q9SBYQDFVS;
+            voucherName = "xym0531折扣券";
+            voucherNo = 149621765500049190539;
+            voucherType = 4;
+        },
+                {
+            UseAppType =             {
+                appType = 02;
+            };
+            UseMerchantNo =             {
+            };
+            UseTradeType =             {
+                tradeType = 01;
+            };
+            availableEndTime = 235959;
+            availableStartTime = 000000;
+            discount = 80;
+            expirationTime = "2018/05/01 00:00:00";
+            satisfyOrderAmount = 2;
+            source = 1496218046619;
+            sourceType = 1;
+            startTime = "2017/05/01 00:00:00";
+            superposeType = 0;
+            voucherAmount = 0;
+            voucherDescription = "xym0531折扣券";
+            voucherId = ZSJJD9JSW2DR3D2B6YP8;
+            voucherName = "xym0531折扣券";
+            voucherNo = 149621765500049190539;
+            voucherType = 4;
+        },
+                {
+            UseAppType =             {
+                appType = 02;
+            };
+            UseMerchantNo =             {
+            };
+            UseTradeType =             {
+                tradeType = 01;
+            };
+            availableEndTime = 235959;
+            availableStartTime = 000000;
+            discount = 1;
+            expirationTime = "2018/05/01 15:00:00";
+            satisfyOrderAmount = 0;
+            source = 1496218046619;
+            sourceType = 1;
+            startTime = "2017/05/01 15:00:00";
+            superposeType = 0;
+            voucherAmount = 1;
+            voucherDescription = "0531无门槛满满减券";
+            voucherId = FWBR2XMH536P58GTHRAA;
+            voucherName = "0531无门槛满满减券";
+            voucherNo = 149621746400077105093;
+            voucherType = 2;
+        },
+                {
+            UseAppType =             {
+                appType = 02;
+            };
+            UseMerchantNo =             {
+            };
+            UseTradeType =             {
+                tradeType = 02;
+            };
+            availableEndTime = 235959;
+            availableStartTime = 000000;
+            discount = 80;
+            expirationTime = "2018/05/31 23:00:00";
+            satisfyOrderAmount = 0;
+            source = 1496218046619;
+            sourceType = 1;
+            startTime = "2017/05/01 00:00:00";
+            superposeType = 0;
+            voucherAmount = 0;
+            voucherDescription = "0531无门槛折扣券";
+            voucherId = FECHT62874AVL7GYFP2D;
+            voucherName = "0531无门槛折扣券";
+            voucherNo = 149621772800038573196;
+            voucherType = 4;
+        },
+                {
+            UseAppType =             {
+                appType = 02;
+            };
+            UseMerchantNo =             {
+            };
+            UseTradeType =             {
+                tradeType = 02;
+            };
+            availableEndTime = 235959;
+            availableStartTime = 000000;
+            discount = 80;
+            expirationTime = "2018/05/31 23:00:00";
+            satisfyOrderAmount = 0;
+            source = 1496218046619;
+            sourceType = 1;
+            startTime = "2017/05/01 00:00:00";
+            superposeType = 0;
+            voucherAmount = 0;
+            voucherDescription = "0531无门槛折扣券";
+            voucherId = GB3AHG23VMD2TZURR696;
+            voucherName = "0531无门槛折扣券";
+            voucherNo = 149621772800038573196;
+            voucherType = 4;
+        },
+                {
+            UseAppType =             {
+                appType = 01;
+            };
+            UseMerchantNo =             {
+            };
+            UseTradeType =             {
+                tradeType = 01;
+            };
+            availableEndTime = 235959;
+            availableStartTime = 000000;
+            discount = 1;
+            expirationTime = "2018/07/18 18:55:00";
+            satisfyOrderAmount = 0;
+            source = 1496218046619;
+            sourceType = 1;
+            startTime = "2017/05/01 00:00:00";
+            superposeType = 0;
+            voucherAmount = 1;
+            voucherDescription = "xym0531现金券";
+            voucherId = BX33B3LMA565JFG7EEQ7;
+            voucherName = "xym0531现金券";
+            voucherNo = 149621727300050283316;
+            voucherType = 5;
+        },
+                {
+            UseAppType =             {
+                appType = 02;
+            };
+            UseMerchantNo =             {
+            };
+            UseTradeType =             {
+                tradeType = 01;
+            };
+            availableEndTime = 235959;
+            availableStartTime = 000000;
+            discount = 1;
+            expirationTime = "2018/05/01 15:00:00";
+            satisfyOrderAmount = 0;
+            source = 1496218046619;
+            sourceType = 1;
+            startTime = "2017/05/01 15:00:00";
+            superposeType = 0;
+            voucherAmount = 1;
+            voucherDescription = "0531无门槛满满减券";
+            voucherId = NHCLQRR5JHF9Y4FZQ89Y;
+            voucherName = "0531无门槛满满减券";
+            voucherNo = 149621746400077105093;
+            voucherType = 2;
+        }
+    );

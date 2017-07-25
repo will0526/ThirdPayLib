@@ -9,17 +9,22 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-static NSString *AlipayScheme = @"ThirdPayDemo";
-static NSString *YipayScheme = @"ThirdPayDemo";
+static NSString *AlipayScheme = @"";
+static NSString *YipayScheme = @"";
 @interface ThirdPayManager : NSObject
 
 
 typedef NS_ENUM(NSInteger,ThirdPayType){
-    ThirdPayType_Alipay =1,           //支付宝
-    ThirdPayType_WeichatPay,       //微信
-    ThirdPayType_ApplePay,         //Apple Pay
-    ThirdPayType_YiPay,            //翼支付
-    ThirdPayType_BaiduPay          //百度钱包
+    ThirdPayType_Alipay =3,         //支付宝
+    ThirdPayType_WeichatPay,        //微信
+    ThirdPayType_ChinaPay,          //银联
+    ThirdPayType_BaiduPay,          //百度钱包
+    ThirdPayType_JDPay,             //京东白条
+    
+    ThirdPayType_ApplePay,          //Apple Pay
+    ThirdPayType_YiPay              //翼支付
+    
+    
     
 };
 
@@ -39,9 +44,6 @@ typedef NS_ENUM(NSInteger,ThirdPayResult){
 typedef void (^CallBack)(ThirdPayResult code,NSString *message,NSString *alipaySign);
 
 +(void)pay:(NSString *)OrderInfo payType:(ThirdPayType )payType CallBack:(CallBack)callBack;
-
-//百度钱包必调
-+(void)setViewController:(UIViewController *)viewController;
 
 
 +(BOOL)wechatInstalled;

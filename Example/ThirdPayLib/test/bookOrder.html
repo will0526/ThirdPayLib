@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- <link href="http://cdn.staticfile.org/twitter-bootstrap/3.0.1/css/bootstrap.min.css" rel="stylesheet"> -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.css">
+	<script src="https://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+	
+	<script src="https://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/index.css">
+	
+	
+</head>
+
+<html>
+<body>
+	<div data-role="page">
+		<div data-role="header">
+			<h1 class="title">下单</h1>
+		</div>
+		<div data-role="main" class="ui-content">
+			
+			<div>
+						<div class= "property">
+							<span class="requestLabel" >商户号</span> <input id="merchantNO" value = "000000000000001" /> 
+						</div>
+						<div class="property">
+							<span class="requestLabel" >用户号</span> <input id="memberNo" value = "0001" />
+						</div>
+						<div class="property">
+							<span class="requestLabel" >商户订单号</span> <input id="merchantOrderNO" value = "201609210000001" />
+						</div>
+						<div class="property">
+							<span class="requestLabel" >商品名称</span> <input id="goodsName" value = "苹果手机6s" />
+						</div>
+						<div class="property">
+							<span class="requestLabel" >商品详情</span> <input id="goodsDetail" value = "苹果手机6s 正品行货 64G 假一赔十" />
+						</div>
+						<div class="property">
+							<span class="requestLabel" >订单总额（分)</span> <input id="totalAmount" value = "10" />
+						</div>
+						<div class="property">
+							<span class="requestLabel" >实付金额（分）</span> <input id="payAmount" value = "1" />
+						</div>
+						<div class="property">
+							<span class="requestLabel" >红包</span> <input id="redPocket" value = "0" />
+						</div>
+						<div class="property">
+							<span class="requestLabel" >积分</span> <input id="point" value = "0" />
+						</div>
+						<div class="property">
+							<span class="requestLabel" >备注</span> <input id="memo" value = "不支持货到付款" />
+						</div>
+						<div class="property">
+							<button id="bookSubmit" class="btn" >下单</button>
+						</div>
+						
+						
+			</div>
+		</div>
+		
+  	</div>
+<script type="text/javascript" src="js/pay.js"></script>
+<script type="text/javascript" src="js/demo.js"></script>
+</body>
+
+</html>

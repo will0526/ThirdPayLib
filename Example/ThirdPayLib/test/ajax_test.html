@@ -1,0 +1,42 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript" src="http://libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js "></script>
+<script type="text/javascript">
+    $(function()
+    {
+      alert("页面初始化");        
+      
+      $.ajax({
+					async :false,
+					type : 'GET',
+					url : 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx19783cdd5801fa65&redirect_uri=http%3A%2F%2Fipp.pnrtec.com%2Fipp-pay%2Ftest%2Fxym.html&response_type=code&scope=snsapi_base#wechat_redirect',
+					datatype : 'jsonp',
+					data :{}  ,
+					success : function(resp){
+						alert("应答报文");
+		      	alert(resp);
+		      	alert(JSON.stringify(resp));
+					},
+					error : function(err){
+						alert(JSON.stringify(err));
+					}
+			});
+			
+//      $.getJSON("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx19783cdd5801fa65&redirect_uri=http%3A%2F%2Fipp.pnrtec.com%2Fipp-pay%2Ftest%2Fxym.html&response_type=code&scope=snsapi_base#wechat_redirect",function(json){
+//      	alert("应答报文");
+//      	alert(json);
+//      	alert(JSON.stringify(json));
+//  		});
+    });
+   
+</script>
+</head>
+
+<body>
+
+</body>
+</html>

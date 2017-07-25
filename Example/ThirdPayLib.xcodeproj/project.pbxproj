@@ -45,6 +45,8 @@
 		BE77500F1D813CC100819EA4 /* PNRAboutUSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE77500E1D813CC100819EA4 /* PNRAboutUSViewController.m */; };
 		BE82BDCE1D6FDF9900A69A0F /* PNRMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE82BDCD1D6FDF9900A69A0F /* PNRMainViewController.m */; };
 		BE94E5BB1DC877C90034296A /* PNRMerchantViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE94E5BA1DC877C90034296A /* PNRMerchantViewController.m */; };
+		BEAFEEA01F1DF50B0096BBB1 /* PNRPayBillViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEAFEE9F1F1DF50B0096BBB1 /* PNRPayBillViewController.m */; };
+		BEAFEF071F1DFE100096BBB1 /* test in Resources */ = {isa = PBXBuildFile; fileRef = BEAFEF061F1DFE100096BBB1 /* test */; };
 		BEB06C231DC051B800588628 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEB06C221DC051B800588628 /* AVFoundation.framework */; };
 		BEE898AD1EC07605004BD8D1 /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEE898AB1EC07605004BD8D1 /* SDWebImage.framework */; };
 		BEED301C1D62B0F40037534C /* PNRSuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEED301B1D62B0F40037534C /* PNRSuccessViewController.m */; };
@@ -123,6 +125,9 @@
 		BE82BDCD1D6FDF9900A69A0F /* PNRMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNRMainViewController.m; sourceTree = "<group>"; };
 		BE94E5B91DC877C90034296A /* PNRMerchantViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNRMerchantViewController.h; sourceTree = "<group>"; };
 		BE94E5BA1DC877C90034296A /* PNRMerchantViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNRMerchantViewController.m; sourceTree = "<group>"; };
+		BEAFEE9E1F1DF50B0096BBB1 /* PNRPayBillViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNRPayBillViewController.h; sourceTree = "<group>"; };
+		BEAFEE9F1F1DF50B0096BBB1 /* PNRPayBillViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNRPayBillViewController.m; sourceTree = "<group>"; };
+		BEAFEF061F1DFE100096BBB1 /* test */ = {isa = PBXFileReference; lastKnownFileType = folder; path = test; sourceTree = "<group>"; };
 		BEB06C221DC051B800588628 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		BEC40C961EC0648900B40996 /* ThirdPayLib_Example.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ThirdPayLib_Example.entitlements; sourceTree = "<group>"; };
 		BEE898AA1EC07605004BD8D1 /* Reachability.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Reachability.framework; path = "../../../../Library/Developer/Xcode/DerivedData/ThirdPayLib-ghgjjmmibwjhbnbusuutlcuywtrd/Build/Products/Debug-iphoneos/Reachability/Reachability.framework"; sourceTree = "<group>"; };
@@ -267,6 +272,8 @@
 				BEED301B1D62B0F40037534C /* PNRSuccessViewController.m */,
 				BE82BDCC1D6FDF9900A69A0F /* PNRMainViewController.h */,
 				BE82BDCD1D6FDF9900A69A0F /* PNRMainViewController.m */,
+				BEAFEE9E1F1DF50B0096BBB1 /* PNRPayBillViewController.h */,
+				BEAFEE9F1F1DF50B0096BBB1 /* PNRPayBillViewController.m */,
 				6003F59C195388D20070C39A /* PNRAppDelegate.h */,
 				6003F59D195388D20070C39A /* PNRAppDelegate.m */,
 				6003F5A5195388D20070C39A /* PNRViewController.h */,
@@ -285,6 +292,7 @@
 		6003F594195388D20070C39A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				BEAFEF061F1DFE100096BBB1 /* test */,
 				BE32DFE01ED52045002ED734 /* alipay */,
 				BE019F201EC41BFA00FC287E /* BaiduWallet_Portal.bundle */,
 				BE75E3ED1EC08A1A0012DFD2 /* ThirdPayLib.bundle */,
@@ -437,6 +445,7 @@
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
 				BE32DFE31ED52045002ED734 /* AlipaySDK.bundle in Resources */,
 				BE75E3EE1EC08A1A0012DFD2 /* ThirdPayLib.bundle in Resources */,
+				BEAFEF071F1DFE100096BBB1 /* test in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
 				BE019F211EC41BFA00FC287E /* BaiduWallet_Portal.bundle in Resources */,
 				BE56C8E51EB9C85000A8B630 /* icon@2x.png in Resources */,
@@ -507,6 +516,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6003F59E195388D20070C39A /* PNRAppDelegate.m in Sources */,
+				BEAFEEA01F1DF50B0096BBB1 /* PNRPayBillViewController.m in Sources */,
 				BEED301C1D62B0F40037534C /* PNRSuccessViewController.m in Sources */,
 				6003F5A7195388D20070C39A /* PNRViewController.m in Sources */,
 				BE77500F1D813CC100819EA4 /* PNRAboutUSViewController.m in Sources */,
@@ -660,7 +670,7 @@
 					"-framework",
 					"\"ThirdPayLib\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.huifu.thirdPay;
+				PRODUCT_BUNDLE_IDENTIFIER = com.huifu.thirdPay1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "38b61ba7-c8db-4c7d-a2b8-8f1ec8d44f28";
 				PROVISIONING_PROFILE_SPECIFIER = iOSDevelopNor;
@@ -705,7 +715,7 @@
 					"-framework",
 					"\"ThirdPayLib\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.huifu.thirdPay;
+				PRODUCT_BUNDLE_IDENTIFIER = com.huifu.thirdPay1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "38b61ba7-c8db-4c7d-a2b8-8f1ec8d44f28";
 				PROVISIONING_PROFILE_SPECIFIER = iOSDevelopNor;

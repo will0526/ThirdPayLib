@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta content="yes" name="apple-mobile-web-app-capable"> 
+    <meta content="width=device-width,height=(device-height-64), initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <!-- <link href="http://cdn.staticfile.org/twitter-bootstrap/3.0.1/css/bootstrap.min.css" rel="stylesheet"> -->
+    
+    <link rel="stylesheet" href="https://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    <script src="https://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+    
+    <script src="https://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/paybill.css">
+    
+
+</head>
+
+<html style=" min-height: 420px;">
+    <body style="background-color: #f4f4f4;">
+        <div data-role="page" style="background-color: #f4f4f4; min-height: 420px;">
+            
+            <div data-role="main" class="ui-content" id ="content">
+                <div class= "orderAmountDiv">
+                    <div class="orderAmountLabel" >消费总额</div>
+                    <input data-role="none" id="orderAmountInput" type="number" placeHolder="请询问服务员后输入消费总额" />
+                    <hr size="1">
+                </div>
+                
+                <div id="accountDiscountDiv" value="enable">
+                    <div id="memberIcon">会员</div>
+                    <div id="memberDiscount" class=" enableText"></div>
+                    <div class="checkIcon enableIcon" id="memberCheckIcon"></div>
+                    <div class="discountAmount" id="accountDiscountAmount"></div>
+                    
+                    <hr size="1">
+                </div>
+                <div id="voucherlisttitle" value="normal">
+                    <div class="voucherLabel enableText" id="voucherTitleLabel">优惠券</div>
+
+                    <div class="listIcon enableIcon" id="voucherListIcon"></div>
+                    <div class="networkIcon Rotation" id="voucherNetwork"></div>
+                    <div class="discountAmount" id="voucherDiscountAmount"></div>
+                    <div class="novoucherTips" id="novoucherTipsDiv">无可用</div>
+                    <hr size="1">
+                </div>
+                <div class="voucherList" id="voucherListDiv">
+                    
+                </div>
+                <div id="campaignlisttitle" value="normal">
+                    <div class="campaignLabel enableText" id="campaignTitleLabel">满减活动</div>
+                    <div class="listIcon enableIcon" id="campaignListIcon"></div>
+                    <div class="discountAmount" id="campainDiscountAmount"></div>
+                    <div class="novoucherTips" id="noCampaignTipsDiv">无可用</div>
+                    <hr size="1">
+                </div>
+                <div class="campaignList" id="campaignListDiv">
+                    
+                </div>
+
+                <div class="payAmountDiv">
+                    <span class="payAmountValue" id="payAmountValueText">￥0</span><span class="payAmountLabel">实付金额</span>
+                </div>
+                
+            </div>
+            <div class ="bottom"></div>
+            <div class="btnDiv">
+                <div class="submitBtn" id="ordersubmit">确定买单</div>
+            </div>
+        </div>
+        <div id="alertDiv">
+            <div id="shadow">
+                
+            </div>
+            <div id="dialog">
+                <div class="dialogTitle">
+                    <p>网络不给力，暂时无法使用优惠，</p>
+                    <p>是否继续？</p></div>
+                    <div id="cancelBtn" class="dialogBtn">取消</div>
+                    <div id="OKBtn" class="dialogBtn">继续</div>
+            </div>
+        </div>
+        <div id="payTypeDiv">
+            <div class="paytypeshadow">
+                
+            </div>
+            <div id="payTypeDialog" class="hideStyle" >
+                <div id="payTypeTitle">
+                    <div id="selectpaytype">选择支付方式</div>
+                </div>
+                <div id="cancelBtnPaytype"></div>
+                <div id="payInfos">
+
+                <!-- <div class="payType" value="5">
+                    <div class="paytypeuncheck paytypechecked"></div>
+                    <div class="paytypeicon aliIcon"></div>
+                    <div class="paytypename">支付宝支付</div>
+                    <div class="paytypecapaigntitle">随机立减</div>
+                </div>
+                <div class="payType" value="5">
+                    <div class=" paytypeuncheck"></div>
+                    <div class="paytypeicon weichatIcon"></div>
+                    <div class="paytypename">微信支付</div>
+                    <div class="paytypecapaigntitle">随机立减</div>
+                </div>
+                <div class="payType" value="6">
+                    <div class="paytypeuncheck"></div>
+                    <div class="paytypeicon baiduIcon"></div>
+                    <div class="paytypename">百度钱包</div>
+                    <div class="paytypecapaigntitle">随机立减</div>
+                </div> -->
+                </div>
+                <div class="orderBtn">
+                    <div class="orderSubmit" id="bookOrder">确定买单</div>
+                </div>
+            </div>
+        </div>
+        
+
+    </body>
+<script type="text/javascript" src="js/paybill.js"></script>
+<script type="text/javascript" src="js/query.js"></script>
+</html>

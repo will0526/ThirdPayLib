@@ -1,0 +1,431 @@
+
+html{
+    min-height: 420px;
+}
+#content{
+    background: #ffffff;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    color: #222222;
+}
+#content hr{
+
+    border-top:1px dashed #e6e6e6;
+    float: left;
+    width: 100%;
+    margin: 0px;
+}
+.orderAmountDiv{
+    float: left;
+    width: 100%;
+    line-height: 72px;
+    font-weight: 400;
+
+}
+.orderAmountLabel{
+    float: left;
+    width: 30%;
+    font-size: 17px;
+    line-height: 75px;
+}
+
+#orderAmountInput{
+    float: right;
+    width: 60%;
+    text-align: right;
+    margin-top: 13px;
+    line-height: 45px;
+    font-size: 15px;
+    font-weight: 300;
+    outline:none;
+    border: none;
+    color: #fe8a3d;
+}
+#accountDiscountDiv{
+
+    float: left;
+    width: 100%;
+    line-height: 50px;
+    display: none;
+}
+
+
+#memberIcon{
+    float: left;
+    line-height: 9px;
+    margin-top: 16px;
+    margin-right: 10px;
+    padding: 2px;
+    font-size: 12px;
+    font-weight: lighter;
+    color: #ffffff;
+    background-color: #fe8a3d;
+    border: 1px solid #fe8a3d;
+    border-radius: 2px;
+    text-shadow: 0 0px 0 #f3f3f3;
+}
+#memberDiscount{
+    float: left;
+    font-size: 14px;
+
+}
+
+.checkIcon{
+    float: right;
+    width: 18px;
+    margin-top: 13.5px;
+    margin-left: 10px;
+    height: 18px;
+    background: url(../img/checkIcon.png) no-repeat 0px 0px;
+    background-size: contain;
+
+}
+.checked{
+    background: url(../img/checkedIcon.png) no-repeat 0px 0px;
+    background-size: contain;
+
+}
+#voucherlisttitle{
+    float: left;
+    width: 100%;
+    line-height: 50px;
+}
+#voucherlisttitle .voucherLabel{
+    float: left;
+    font-size: 15px;
+}
+.discountAmount{
+    float: right;
+    text-align: right;
+    font-size: 14px;
+    color: #fe8a3d;
+}
+.listIcon{
+    float: right;
+
+    width: 18px;
+    margin-top: 18px;
+    margin-left: 10px;
+    height: 13px;
+    background: url(../img/listIcon.png) no-repeat 0px 0px;
+    background-size: contain;
+}
+
+.networkIcon{
+     float: right;
+
+    width: 18px;
+    margin-top: 16px;
+    height: 18px;
+    background: url(../img/networking.png) no-repeat 0px 0px;
+    background-size: contain;
+    display: none;
+}
+
+@-webkit-keyframes rotation{
+    from {-webkit-transform: rotate(0deg);}
+    to {-webkit-transform: rotate(360deg);}
+}
+
+.Rotation{
+    -webkit-transform: rotate(360deg);
+    animation: rotation 1.2s linear infinite;
+    -moz-animation: rotation 1.2s linear infinite;
+    -webkit-animation: rotation 1.2s linear infinite;
+    -o-animation: rotation 1.2s linear infinite;
+}
+
+.listFoldIcon{
+    transform: rotate(180deg);
+}
+
+
+.voucherList{
+    float: left;
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: none;
+}
+.novoucherTips{
+    float: right;
+    color: #999999;
+}
+#content .voucherList hr, .campaignList hr {
+
+    position: relative;
+    bottom: -10px;
+}
+.voucherContent{
+    float: left;
+    width: 100%;
+    line-height: 45px;
+}
+
+
+
+.voucherType{
+    margin-top: 11px;
+    float: left;
+    color: #fe8a3d;
+    border: 1px solid #fe8a3d;
+    font-size: 10px;
+    padding: 2px;
+    line-height: 12px;
+    border-radius: 3px;
+    margin-right: 10px;
+}
+.voucherName{
+    float: left;
+    font-size: 14px;
+    color: #222222;
+}
+
+#campaignlisttitle{
+    float: left;
+    width: 100%;
+    line-height: 50px;
+}
+#campaignlisttitle .campaignLabel{
+    font-size: 15px;
+    float: left;
+}
+#campaignlisttitle .campaignDiscountAmount{
+    float: right;
+}
+
+.campaignList{
+    float: left;
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: none;
+}
+.campaignContent{
+    float: left;
+    width: 100%;
+    height: 45px;
+}
+.campaignType{
+    float: left;
+}
+.campaignName{
+    float: left;
+}
+.payAmountDiv{
+    float: left;
+    width: 100%;
+    line-height: 50px;
+}
+.payAmountDiv .payAmountValue{
+    float: right;
+    font-size: 18px;
+    color: #fe8a3d;
+}
+.payAmountDiv .payAmountLabel{
+    float: right;
+    font-size: 15px;
+}
+
+.submitBtn{
+    float: left;
+    line-height: 45px;
+    border-radius: 4px;
+    text-align: center;
+    width: 100%;
+    background:#CCCCCC;
+    
+    font-size: 17px;
+    color: white;
+    text-shadow: none;
+    margin-bottom: 15px;
+}
+.ableBtn{
+    background: #fe8a3d;
+}
+.btnDiv{
+    padding: 15px;
+    padding-bottom: 10px;
+}
+.bottom{
+    width: 100%;
+    height: 5px;
+    background: url(../img/bottomIcon.png) repeat-x 0px 0px;
+    background-size: 14px 4px;
+
+}
+#shadow{
+    width: 100%;
+    height: 100%;
+    background-color: #222222;
+    opacity: 0.6;
+    
+}
+#dialog{
+    position: absolute;
+    top: 30%;
+    left: 25px;
+    right: 25px;
+    border-radius: 10px;
+    height: 150px;
+    background-color: white;
+    font-size: 18px;
+    
+}
+#dialog p{
+    margin: 0px;
+    text-align: center;
+}
+.dialogTitle{
+    margin-top: 40px;
+}
+#alertDiv{
+    width: 100%;
+    height: 100%;
+    display: none; 
+}
+.dialogBtn{
+    border-top: 1px solid #ebebeb;
+    position: absolute;
+    font-size: 17px;
+    width: 50%;
+    bottom: 0px;
+    line-height: 48px;
+    text-align: center;
+    margin-right: 0px;
+}
+#OKBtn{
+    right: 0px;
+    border-left: 1px solid #ebebeb;
+    color: #FE8A3D;
+}
+
+.enableText{
+    color: #999999;
+}
+.enableIcon{
+    opacity: 0.5;
+}
+#payTypeDiv{
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+#payTypeDialog{
+    width: 100%;
+    height: 295px;
+    position: fixed;
+    background-color: #ffffff;
+    bottom: 0px;
+    box-shadow: 0px -4px 4px 0px rgba(0,0,0,0.18);
+    transition: height 0.5s;
+}
+#payTypeDialog .payTypeDialogShow{
+    height: 212px;
+}
+#selectpaytype{
+    border-bottom: 0.5px solid #dedede;
+}
+#payTypeTitle{
+    color: #222222;
+    line-height: 55px;
+    font-size: 18px;
+    padding-bottom: 10px;
+    background-color: white;
+    text-align: center;
+}
+.paytypeshadow{
+    width: 100%;
+    height: 100%;
+    background-color: #222222;
+    opacity: 0.7;
+    position: fixed;
+}
+
+.payType{
+    background-color: white;
+    color: #222222;
+    line-height: 50px;
+    font-size: 16px;
+    width: 100%;
+    float: left;
+    /*border-top: 1px solid #f2f2f2;*/
+}
+.paytypeuncheck{
+    margin-top: 14.5px;
+    margin-left: 14px;
+    float: left;
+    width: 21px;
+    height: 21px;
+    margin-right: 14.5px;
+    background: url(../img/paytypeuncheck.png) no-repeat 0px 0px;
+    background-size: contain;
+
+}
+.paytypechecked{
+    background: url(../img/paytypechecked.png) no-repeat 0px 0px;
+    background-size: contain;
+}
+
+.paytypeicon{
+    line-height: 50px;
+    margin-top: 16.5px;
+    float: left;
+    width: 17px;
+    height: 17px;
+    margin-right: 10px;
+}
+.aliIcon{
+    background: url(../img/alipayIcon.png) no-repeat 0px 0px;
+    background-size: contain;
+}
+.weichatIcon{
+    background: url(../img/weichatIcon.png) no-repeat 0px 0px;
+    background-size: contain;
+}
+.baiduIcon{
+    background: url(../img/baiduIcon.png) no-repeat 0px 0px;
+    background-size: contain;
+}
+.paytypename{
+    font-size: 16px;
+    line-height: 50px;
+    float: left;
+    margin-right: 10px;
+}
+#cancelBtnPaytype{
+    position: absolute;
+    float: left;
+    width: 24px;
+    height: 24px;
+    top: 16px;
+    margin-left: 15px;
+    background: url(../img/cancelBtn.png) no-repeat 0px 0px;
+    background-size: contain;
+    
+}
+.orderSubmit{
+    height: 50px;
+    width: 100%;
+    position: fixed;
+    bottom: 0px;
+}
+#bookOrder{
+    float: left;
+    bottom: 0px;
+    line-height: 50px;
+    text-align: center;
+    width: 100%;
+    background: #F58A3D;
+    font-size: 18px;
+    color: white;
+    text-shadow: none;
+}
+.hideStyle{
+    height: 0px;
+}
+.showStyle{
+    height: 325px;
+}
+
+
