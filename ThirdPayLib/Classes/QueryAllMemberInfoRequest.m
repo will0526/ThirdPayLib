@@ -33,7 +33,9 @@
     EncodeUnEmptyStrObjctToDic(dic, self.accountNo, @"accountNo");
     EncodeUnEmptyStrObjctToDic(dic, self.accountType, @"accountType");
     EncodeUnEmptyStrObjctToDic(dic, @"01", @"tradeType");
-    EncodeUnEmptyStrObjctToDic(dic, @" ", @"VoucherStatus");
+    NSArray *temp = [[NSArray alloc]init];
+    EncodeDefaultArrToDic(dic, temp, @"VoucherStatus");
+    
     
     
     EncodeUnEmptyStrObjctToDic(dic, @"01", @"appType");

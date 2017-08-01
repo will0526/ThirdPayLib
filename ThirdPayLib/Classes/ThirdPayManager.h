@@ -50,6 +50,7 @@ typedef void (^CallBack)(ThirdPayResult code,NSString *message,NSString *alipayS
 
 +(BOOL)handleOpenURL:(NSURL *)url;
 
-
+//百度钱包或翼支付必调
++(void)setRootViewController:(UIViewController *)viewController;
 
 @end

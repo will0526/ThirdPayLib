@@ -303,7 +303,7 @@
         default:
             break;
     }
-    
+    [ThirdPayManager setRootViewController:self];
     [ThirdPayManager pay:OrderString payType:payType CallBack:^(ThirdPayResult code, NSString *message, NSString *alipaySign) {
         
         switch (code) {

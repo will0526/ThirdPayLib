@@ -11,8 +11,8 @@
 #import <BaiduWallet_Portal/BDWalletSDKMainManager.h>
 
 #import <AlipaySDK/AlipaySDK.h>
-#import "BestpaySDK.h"
-#import "BestpayNativeModel.h"
+//#import "BestpaySDK.h"
+//#import "BestpayNativeModel.h"
 #import "WXApi.h"
 
 #define IsEmptyStr(_ref)    (((_ref) == nil) || ([(_ref) isEqual:[NSNull null]]) ||([(_ref)isEqualToString:@""]))
@@ -60,6 +60,9 @@ static ThirdPayManager *defaultThirdPayManager = nil;
     return nil;
 }
 
++(void)setRootViewController:(UIViewController *)viewController{
+    [ThirdPayManager getThirdPayManagerInstance].rootVC = viewController;
+}
 
 +(void)pay:(NSString *)OrderInfo payType:(ThirdPayType )payType CallBack:(CallBack)callBack1{
     defaultThirdPayManager = [ThirdPayManager getThirdPayManagerInstance];
@@ -132,7 +135,6 @@ static ThirdPayManager *defaultThirdPayManager = nil;
 //百度回调
 -(void)BDWalletPayResultWithCode:(int)statusCode payDesc:(NSString*)payDescs{
     
-    
     if (statusCode == 0) {
         
         NSLog(@"成功");
@@ -189,18 +191,30 @@ static ThirdPayManager *defaultThirdPayManager = nil;
 +(void)alipay{
     
     [[AlipaySDK defaultService] payOrder:defaultThirdPayManager.orderString fromScheme:AlipayScheme callback:^(NSDictionary *result) {
-        NSString *resultStatus = [self encodeStringFromDic:result key:@"resultStatus"];
-        if ([resultStatus isEqualToString:@"9000"]) {
-            [self tradeReturn:ThirdPayResult_SUCCESS];
-        }else if ([resultStatus isEqualToString:@"6001"]){
-            [self tradeReturn:ThirdPayResult_CANCEL];
-        }else{
-            [self tradeReturn:ThirdPayResult_FAILED];
-        }
+        
+        [self alipayProcessResult:result];
         
     }];
 }
 
++(void)alipayProcessResult:(NSDictionary *)resultDic{
+    NSLog(@"result = %@",resultDic);
+    
+    NSString *resultStatus = [self encodeStringFromDic:resultDic key:@"resultStatus"];
+    if ([resultStatus isEqualToString:@"9000"]) {
+        defaultThirdPayManager.alipaySign = [self encodeStringFromDic:resultDic key:@"result"];
+        
+        [ThirdPayManager tradeReturn:ThirdPayResult_SUCCESS];
+        
+    }else if ([resultStatus isEqualToString:@"6001"]){
+        
+        [ThirdPayManager tradeReturn:ThirdPayResult_CANCEL];
+    }else{
+        
+        [ThirdPayManager tradeReturn:ThirdPayResult_FAILED];
+    }
+    
+}
 
 //微信
 +(void)weixinpay{
@@ -285,13 +299,13 @@ static ThirdPayManager *defaultThirdPayManager = nil;
 //翼支付
 +(void)yipay{
     
-    BestpayNativeModel *order =[[BestpayNativeModel alloc]init];
-    order.orderInfo = defaultThirdPayManager.orderString;
-    order.launchType = launchTypePay1;
-    order.scheme = YipayScheme;
-    [BestpaySDK payWithOrder:order fromViewController:defaultThirdPayManager.rootVC callback:^(NSDictionary *resultDic) {
-        NSLog(@"%@",resultDic);
-    }];
+//    BestpayNativeModel *order =[[BestpayNativeModel alloc]init];
+//    order.orderInfo = defaultThirdPayManager.orderString;
+//    order.launchType = launchTypePay1;
+//    order.scheme = YipayScheme;
+//    [BestpaySDK payWithOrder:order fromViewController:defaultThirdPayManager.rootVC callback:^(NSDictionary *resultDic) {
+//        NSLog(@"%@",resultDic);
+//    }];
 }
 
 
@@ -313,9 +327,9 @@ static ThirdPayManager *defaultThirdPayManager = nil;
     
     switch (defaultThirdPayManager.thirdPayType) {
         case ThirdPayType_YiPay:{
-            [BestpaySDK processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
-                NSLog(@"确保结果显示不会出错：%@",resultDic);
-            }];
+//            [BestpaySDK processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
+//                NSLog(@"确保结果显示不会出错：%@",resultDic);
+//            }];
             
             NSString* params =[url absoluteString];
             NSDictionary *dic = [self paramsFromString:params];
@@ -339,22 +353,7 @@ static ThirdPayManager *defaultThirdPayManager = nil;
                 
                 //跳转支付宝钱包进行支付，处理支付结果
                 [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
-                    
-                    NSLog(@"result = %@",resultDic);
-                    
-                    NSString *resultStatus = [self encodeStringFromDic:resultDic key:@"resultStatus"];
-                    if ([resultStatus isEqualToString:@"9000"]) {
-                        defaultThirdPayManager.alipaySign = [self encodeStringFromDic:resultDic key:@"result"];
-                        
-                        [ThirdPayManager tradeReturn:ThirdPayResult_SUCCESS];
-                        
-                    }else if ([resultStatus isEqualToString:@"6001"]){
-                        
-                        [ThirdPayManager tradeReturn:ThirdPayResult_CANCEL];
-                    }else{
-                        
-                        [ThirdPayManager tradeReturn:ThirdPayResult_FAILED];
-                    }
+                    [self alipayProcessResult:resultDic];
                     
                 }];
                 
